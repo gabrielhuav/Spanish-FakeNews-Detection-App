@@ -1,0 +1,32 @@
+@startuml
+!theme vibrant
+skinparam componentStyle uml2
+skinparam rectangle {
+    backgroundColor #0072ce
+    borderColor #ffffff
+    fontColor #ffffff
+}
+skinparam actor {
+    backgroundColor #660066
+    borderColor #4c004c
+    fontColor #ffffff
+}
+
+actor User as "User (Browser)"
+
+node "Docker Container" {
+    rectangle "Frontend\n(index.html)" as Frontend
+    rectangle "Backend Logic\n(main.py - Flask API)" as Backend
+    rectangle "AI Model\n(DistilBERT Inference)" as AI_Model
+}
+
+cloud "External URL" as External
+
+User -right-> Frontend : 1. Submits URL
+Frontend -down-> Backend : 2. Sends Request
+Backend -> External : 3. Scrapes Content
+Backend -> AI_Model : 4. Requests Prediction
+AI_Model --> Backend : 5. Returns Verdict (JSON)
+Backend -up-> Frontend : 6. Sends Result to UI
+Frontend -left-> User : 7. Displays Verdict (REAL/FAKE)
+@enduml

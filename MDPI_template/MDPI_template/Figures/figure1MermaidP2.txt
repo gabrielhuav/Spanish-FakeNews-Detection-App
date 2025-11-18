@@ -1,0 +1,28 @@
+graph TD
+    %% Palette: Blue & UAM Purple
+    classDef block fill:#0072ce,stroke:#ffffff,color:#ffffff;
+    classDef process fill:#ffffff,stroke:#0072ce,color:#0072ce,stroke-width:2px;
+    classDef final fill:#660066,stroke:#4c004c,color:#ffffff;
+    classDef model fill:#f1c1f0,stroke:#ad25a8,color:#333;
+    
+    %% Diagram
+    A["<b>Unified & Balanced Corpus</b><br/>(Split: 70% Train, 10% Val, 20% Test)"]:::block
+    
+    %% Metaheuristics Path
+    B["Text Preprocessing & Cleaning<br/>(Lowercase, Regex, Tokenize, Stopwords)"]:::process
+    C["TF-IDF Vectorization<br/>(scikit-learn, 5k features)"]:::process
+    D["Feature Selection (Top 10%)<br/>(Chi-squared Test)"]:::process
+    E["<b>Hyperparameter Calibration (Metaheuristics)</b><br/>(GA, PSO, SA, VNS, SS)"]:::process
+    F["Optimized Classical Model<br/>(Around 70% Accuracy)"]:::model
+    
+    %% DistilBERT Path
+    G["Native Tokenization<br/>(Hugging Face Tokenizer)"]:::process
+    H["<b>Hyperparameter Calibration (Fine-Tuning)</b><br/>(Keras Tuner, >500 GPU hours)"]:::process
+    I["Fine-Tuned DistilBERT Model<br/>(95.2% Accuracy)"]:::model
+    
+    %% Final Step
+    J["<b>Final Comparative Evaluation</b><br/>(Using Common Metrics like Accuracy & F1-Score)"]:::final
+    
+    %% Connections
+    A --> B --> C --> D --> E --> F --> J
+    A --> G --> H --> I --> J

@@ -1,0 +1,61 @@
+@startuml
+!theme vibrant
+
+title Flujo de Solicitud de Análisis de URL
+
+actor Usuario
+participant "Frontend\n(Formulario HTML)" as Frontend
+participant "API de Flask\n(main.py)" as Backend
+participant "Extractor Web\n(extract_url_text)" as Scraper
+participant "Modelo DistilBERT\n(predict_news)" as Modelo
+entity "Sitio Web\nExterno" as Web
+
+autonumber
+
+== Inicialización del Sistema ==
+note over Backend : Al iniciar:\nCarga el modelo y el tokenizador\nen memoria
+
+== Solicitud del Usuario ==
+Usuario -> Frontend : Ingresa URL y hace clic en "Analizar"
+Frontend -> Backend : POST "/" con datos del formulario (url)
+activate Backend
+
+== Extracción de Contenido ==
+Backend -> Scraper : extract_url_text(url)
+activate Scraper
+
+Scraper -> Web : GET HTTP con cabeceras User-Agent
+Web --> Scraper : Devuelve contenido HTML
+
+Scraper -> Scraper : Parseo con BeautifulSoup:\n• Extrae <h1> para el título\n• Extrae <p> con stripped_strings
+Scraper --> Backend : (titulo, texto, html_completo)
+deactivate Scraper
+
+== Procesamiento e Inferencia ==
+Backend -> Modelo : predict_news(titulo, texto)
+activate Modelo
+
+Modelo -> Modelo : Combina: título + [SEP] + texto
+Modelo -> Modelo : Tokeniza (max_length=256, truncation=True)
+Modelo -> Modelo : Ejecuta inferencia:\n• Pasada hacia adelante (Forward pass)\n• Softmax sobre los logits
+Modelo -> Modelo : Calcula confianza y predicción
+
+Modelo --> Backend : (veredicto, confianza, texto_analizado)
+deactivate Modelo
+
+== Respuesta ==
+Backend -> Backend : Prepara datos para la plantilla:\n• veredicto (VERDADERO/FALSO)\n• confianza (porcentaje)\n• contenido HTML completo
+
+Backend --> Frontend : render_template("index.html", datos)
+deactivate Backend
+
+Frontend -> Usuario : Muestra el resultado con:\n• Veredicto con color\n• Porcentaje de confianza\n• Vista previa del sitio (iframe)\n• Detalles expandibles
+
+note over Frontend
+Resultado visual:
+• Verde: VERDADERO
+• Rojo: FALSO  
+• Naranja: ERROR
+end note
+
+@enduml

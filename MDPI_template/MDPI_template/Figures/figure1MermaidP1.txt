@@ -1,0 +1,26 @@
+graph TD
+    %% Palette: Blue & UAM Purple
+    classDef block fill:#0072ce,stroke:#ffffff,color:#ffffff;
+    classDef process fill:#ffffff,stroke:#0072ce,color:#0072ce,stroke-width:2px;
+    classDef final fill:#660066,stroke:#4c004c,color:#ffffff;
+
+    %% Diagram
+    subgraph "Step 1: Original Sources"
+        D1["Corpus: Posadas-Durán "]:::block
+        D2["Corpus: Acosta (UPM) "]:::block
+        D3["Corpus: Tretiakov "]:::block
+        D4["Corpus: Blanco-Fernández "]:::block
+    end
+
+    B["Unification & Deduplication"]:::process
+    D["Intermediate Unified Corpus<br/>(52,689) "]:::block
+    
+    subgraph "Enrichment Source"
+        C["Web Scraping<br/>(Satirical Content) "]:::process
+    end
+
+    E["Final Balanced Corpus<br/>(61,674) "]:::final
+    
+    %% Connections
+    D1 & D2 & D3 & D4 --> B --> D --> E
+    C --> E

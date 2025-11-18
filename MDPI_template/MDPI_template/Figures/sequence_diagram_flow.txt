@@ -1,0 +1,61 @@
+@startuml
+!theme vibrant
+
+title URL Analysis Request Flow
+
+actor User
+participant "Frontend\n(HTML Form)" as Frontend
+participant "Flask API\n(main.py)" as Backend
+participant "Web Scraper\n(extract_url_text)" as Scraper
+participant "DistilBERT Model\n(predict_news)" as Model
+entity "External\nWebsite" as Web
+
+autonumber
+
+== System Initialization ==
+note over Backend : At startup:\nLoads model and tokenizer\ninto memory
+
+== User Request ==
+User -> Frontend : Enters URL and clicks "Analyze"
+Frontend -> Backend : POST "/" with form data (url)
+activate Backend
+
+== Content Extraction ==
+Backend -> Scraper : extract_url_text(url)
+activate Scraper
+
+Scraper -> Web : HTTP GET with User-Agent headers
+Web --> Scraper : Returns HTML content
+
+Scraper -> Scraper : BeautifulSoup parsing:\n• Extracts <h1> for title\n• Extracts <p> with stripped_strings
+Scraper --> Backend : (title, text, complete_html)
+deactivate Scraper
+
+== Processing and Inference ==
+Backend -> Model : predict_news(title, text)
+activate Model
+
+Model -> Model : Combines: title + [SEP] + text
+Model -> Model : Tokenizes (max_length=256, truncation=True)
+Model -> Model : Executes inference:\n• Forward pass\n• Softmax over logits
+Model -> Model : Calculates confidence and prediction
+
+Model --> Backend : (verdict, confidence, analyzed_text)
+deactivate Model
+
+== Response ==
+Backend -> Backend : Prepares template data:\n• verdict (REAL/FAKE)\n• confidence (percentage)\n• complete HTML content
+
+Backend --> Frontend : render_template("index.html", data)
+deactivate Backend
+
+Frontend -> User : Shows result with:\n• Colored verdict\n• Confidence percentage\n• Site preview (iframe)\n• Expandable details
+
+note over Frontend
+Visual result:
+• Green: REAL
+• Red: FAKE  
+• Orange: ERROR
+end note
+
+@enduml

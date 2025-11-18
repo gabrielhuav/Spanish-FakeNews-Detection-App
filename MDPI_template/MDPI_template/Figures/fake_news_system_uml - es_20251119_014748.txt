@@ -1,0 +1,61 @@
+@startuml
+!theme vibrant
+
+title Arquitectura del Sistema de Análisis de Noticias
+
+actor Usuario
+
+package "Cliente" {
+  component [UI Frontend\n(HTML/CSS)] as UI
+  note right of UI : Interfaz minimalista\nFormulario de envío de URL\nVisualización de resultados
+}
+
+package "Servidor en Contenedor (Docker)" {
+    package "API Backend" {
+        component [Aplicación Flask\n(main.py)] as API
+        note right of API : Endpoint principal "/"\nGestión de solicitudes POST\nRenderizado de plantillas
+    }
+
+    package "Módulo de Inferencia" {
+        component [Extractor Web\n(BeautifulSoup)] as Scraper
+        component [Preprocesador de Texto\n(Tokenizador)] as Preprocessor  
+        component [Modelo DistilBERT\n(Clasificación)] as Model
+        
+        note right of Scraper : Extrae <h1> y <p>\nRequests + BeautifulSoup\nCabeceras User-Agent
+        note right of Preprocessor : Título + [SEP] + texto\nTokenización máx 256\nTruncamiento y relleno
+        note right of Model : DistilBERT multilingüe\nClasificación binaria\nSoftmax + confianza
+    }
+
+    API ..> Scraper : usa
+    API ..> Preprocessor : usa  
+    API ..> Model : usa
+    
+    package "Configuración de Docker" {
+        component [requirements.txt] as Reqs
+        component [Dockerfile] as Docker
+        component [docker-compose.yml] as Compose
+    }
+}
+
+package "Recursos Externos" {
+    cloud "Sitios Web\n(Internet)" as Web
+    database "Archivos del Modelo" as ModelFiles {
+        file "config.json"
+        file "tokenizer_config.json"
+        file "special_tokens_map.json"
+        file "pesos del modelo"
+    }
+}
+
+' Relaciones principales
+Usuario --> UI : Interactúa con
+UI --> API : Envía URL\n(solicitud POST)
+Scraper --> Web : GET HTTP\n(extracción)
+Model --> ModelFiles : Carga al iniciar
+
+' Dependencias del contenedor
+Docker --> API : Contiene
+Docker --> ModelFiles : Incluye
+Docker --> Reqs : Instala dependencias
+
+@enduml
