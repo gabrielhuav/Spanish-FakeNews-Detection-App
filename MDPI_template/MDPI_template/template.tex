@@ -3,7 +3,7 @@
 % For this submission, the journal is bdcc (Big Data and Cognitive Computing)
 %=================================================================
 % Add packages and commands here.
-\usepackage{booktabs} % For professioIn the first round of tests, we set up a baseline with some classic methods. We ran five metaheuristic algorithms under the same setup and checked their results on the test set. The Genetic Algorithm (GA) came out on top, hitting 72.03\% accuracy and a macro F1-score of 0.714. The others were all over the place, mostly lagging behind, and PSO had some real trouble converging. Overall, it showed these traditional approaches do okay, but they're held back by stuff like TF-IDF's limits—they just don't get the context.al quality tables
+\usepackage{booktabs} % For professional quality tables
 \usepackage{multirow} % For multi-row cells in tables
 \usepackage{siunitx} % For aligning numbers in tables
 \usepackage{textcomp} % For better text symbols
@@ -313,14 +313,14 @@ To validate the model in practice, we developed a Dockerized web application com
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.8\textwidth]{Figures/diagramaComponentesV2.png}
+\includegraphics[width=0.8\textwidth]{Figures/component_diagram.png}
 \caption{System architecture of the deployed web application, showing the static components and their dependencies.}
 \label{fig:system_components}
 \end{figure}
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.8\textwidth]{Figures/diagramaSecuenciaV2.png}
+\includegraphics[width=0.8\textwidth]{Figures/sequence_diagram.png}
 \caption{Sequence diagram illustrating the dynamic step-by-step workflow of a prediction request from the user to the final verdict.}
 \label{fig:system_sequence}
 \end{figure}
