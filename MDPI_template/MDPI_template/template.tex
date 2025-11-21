@@ -57,7 +57,7 @@ $^{1}$ \quad Department of Systems, Autonomous Metropolitan University (UAM), Az
 
 %=================================================================
 % Abstract
-\abstract{The detection of fake news in Spanish is hampered by a scarcity of large-scale datasets and a gap between research models and practical applications. This paper introduces a comprehensive framework to address these challenges. First, we developed a unified Spanish news corpus of 61,674 articles by integrating four academic datasets with web-scraped satirical content, achieving a near-perfect class balance (49.8\% fake). This resource is one of the largest available for Spanish misinformation research. Second, through a systematic fine-tuning process involving over 500 GPU hours, we optimized a DistilBERT model. Our findings reveal that an aggressive regularization strategy—combining an ultra-low learning rate (5e-6), high dropout (0.7), and strong L2 regularization (0.5)—was crucial to control overfitting, achieving 95.36\% accuracy while keeping the generalization gap below 0.058. Finally, the optimized model was deployed in a Docker-containerized web application for real-time URL analysis, demonstrating its viability for detecting online misinformation. Our approach shows a 23.33 percentage point improvement over classic metaheuristic-optimized methods, confirming the superiority of fine-tuned transformers for this task. The complete framework is publicly available.}
+\abstract{The detection of fake news in Spanish is hampered by a scarcity of large-scale datasets and a gap between research models and practical applications. This paper introduces a comprehensive framework to address these challenges. First, we developed a unified Spanish news corpus of 61,674 articles by integrating four academic datasets with web-scraped satirical content, achieving a highly balanced distribution (49.8\% fake). This resource is one of the largest available for Spanish misinformation research. Second, through a systematic fine-tuning process involving over 500 GPU hours, we optimized a DistilBERT model. Our findings reveal that a rigorous regularization strategy—combining an ultra-low learning rate ($5 \times 10^{-6}$), high dropout (0.7), and strong L2 regularization (0.5)—was crucial to control overfitting, achieving 95.36\% accuracy while maintaining a generalization gap below 0.058. Finally, the optimized model was deployed in a Docker-containerized web application for real-time URL analysis, demonstrating its viability for detecting online misinformation. Our approach demonstrates a 23.33 percentage point improvement over classical metaheuristic-optimized methods, confirming the superiority of fine-tuned transformers for this task. The complete framework is publicly available.}
 
 % Keywords
 \keyword{fake news detection; Spanish NLP; BERT; DistilBERT; fine-tuning; hyperparameter optimization; transformer models; LLM; NLP benchmark; metaheuristic algorithms; real-world deployment; digital fraud prevention} 
@@ -228,14 +228,10 @@ We started by gathering four publicly available Spanish corpora: the Spanish Fak
 \end{figure}
 
 \subsubsection{Cleaning and Standardizing}
-A rigorous pipeline was implemented to homogenize the aggregated data. A crucial step in this phase was the detection and elimination of duplicate content. Using content hashing on the 'text' field, we identified a total of 15,211 records involved in duplications. After removing \textbf{7,712} redundant entries (keeping the first occurrence), the result was a cleaned dataset of \textbf{52,689} unique articles. We needed to remove these duplicates to avoid having our model see the same content during training and testing, which would give us falsely optimistic results.
+A rigorous pipeline was implemented to homogenize the aggregated data. A crucial step in this phase was the detection and elimination of duplicate content. Using content hashing on the 'text' field, we identified a total of 15,211 records involved in duplications. After removing \textbf{7,712} redundant entries (retaining the first occurrence), the result was a cleaned dataset of \textbf{52,689} unique articles. Removing duplicates is essential to prevent data leakage, ensuring the model does not encounter identical content in both training and testing sets, which would otherwise yield inflated performance metrics.
 
-\subsubsection{Dealing with Unbalanced Data}
-After cleaning the duplicates, we looked at how many real versus fake news articles we had. The numbers weren't balanced: 30,943 real news articles (58.7\%) and only 21,746 fake news articles (41.3\%). This kind of imbalance is problematic because machine learning models tend to favor whichever class appears more often in the training data.
-
-We needed roughly 9,200 more fake news articles to balance things out. Instead of looking for more academic datasets (which are scarce for Spanish), we decided to scrape content from "El Deforma," a popular Mexican satirical news website. We wrote a Python script using \texttt{BeautifulSoup} and \texttt{Requests} to collect \textbf{9,000} articles from this source. All these articles were labeled as FAKE since satirical content represents a type of misinformation that models need to recognize \citep{aragon2020overview}.
-
-This brought our total to \textbf{61,674} articles, with 30,734 fake articles (49.8\%) and 30,940 real ones (50.2\%). This gives us one of the most balanced and comprehensive Spanish fake news datasets currently available.
+\subsubsection{Addressing Class Imbalance}
+Following the deduplication process, we analyzed the class distribution. The dataset exhibited a significant imbalance: 30,943 real news articles (58.7\%) versus 21,746 fake news articles (41.3\%). Such imbalance can bias machine learning models towards the majority class. To rectify this, approximately 9,200 additional fake news articles were required. Given the scarcity of academic Spanish datasets, we acquired additional data by scraping "El Deforma," a prominent Mexican satirical news website. Using a Python script with \texttt{BeautifulSoup} and \texttt{Requests}, we collected \textbf{9,000} articles. These were labeled as FAKE, as satirical content represents a specific category of misinformation that models must learn to identify \citep{aragon2020overview}. This augmentation resulted in a total of \textbf{61,674} articles, comprising 30,734 fake (49.8\%) and 30,940 real (50.2\%) articles, creating one of the most balanced and comprehensive Spanish fake news datasets currently available.
 
 \begin{figure}[H]
 \begin{adjustwidth}{-\extralength}{0cm}
@@ -247,15 +243,15 @@ This brought our total to \textbf{61,674} articles, with 30,734 fake articles (4
 \end{figure}
 
 \subsection{Traditional Machine Learning Experiments}
-We started with classical machine learning to see what baseline performance we could achieve. It made sense to begin with these well-understood methods before moving to more complex approaches. This work builds on our earlier research with Bag-of-Words representations \citep{hurtado2024calibracion}, though those experiments used much smaller datasets. Back then, we didn't have access to large Spanish corpora like the Blanco-Fernández collection that became available in 2024.
+We initially employed classical machine learning techniques to establish a performance baseline. Proceeding with established methods provides a necessary reference point before implementing complex architectures. This work builds upon our prior research with Bag-of-Words representations \citep{hurtado2024calibracion}; however, previous experiments were limited to smaller datasets as large-scale corpora like the Blanco-Fernández collection were unavailable until 2024.
 
-For this study, we switched to TF-IDF features and tested five different optimization algorithms: Multi-Start Simulated Annealing (MSA), Scatter Search (SS), Variable Neighborhood Search (VNS), Genetic Algorithm (GA), and Particle Swarm Optimization (PSO). The dimensionality was reduced from an 8,000-word vocabulary to the 800 most relevant features (10\%) using a Chi-squared test to ensure computational feasibility. We had each algorithm try to find the best settings for a logistic regression model, measuring success using the F1-Score.
+In this study, we utilized TF-IDF features and evaluated five distinct optimization algorithms: Multi-Start Simulated Annealing (MSA), Scatter Search (SS), Variable Neighborhood Search (VNS), Genetic Algorithm (GA), and Particle Swarm Optimization (PSO). To ensure computational feasibility, dimensionality was reduced from an 8,000-word vocabulary to the 800 most relevant features (10\%) using a Chi-squared test. Each algorithm was tasked with optimizing the hyperparameters of a logistic regression model, using the F1-Score as the objective function.
 
 \subsection{Deep Learning with Transformers}
-For our second set of experiments, we wanted to test whether modern transformer models could do better than the classical approaches.
+In the second experimental phase, we evaluated whether modern transformer architectures could surpass the performance of classical approaches.
 
-\subsubsection{Picking the Right Model}
-Transformer models like BERT have changed how we approach text classification problems \citep{devlin2018bert}. After looking at several options, we settled on \texttt{distilbert-base-multilingual-cased} \citep{sanh2019distilbert} for our experiments. We also tested the full \texttt{BERT-base-multilingual-cased} model, which, while powerful, was approximately 4 times slower in training and inference than DistilBERT. We considered TinyBERT \citep{jiao2019tinybert} too, which runs much faster than full BERT, but it doesn't work well with Spanish text. We ran these tests on both NVIDIA RTX 4060 and RTX 2060 Super graphics cards and got similar results on both. DistilBERT gave us the best trade-off between speed and performance for Spanish.
+\subsubsection{Model Selection}
+Transformer models, such as BERT, have revolutionized text classification \citep{devlin2018bert}. After evaluating several candidates, we selected \texttt{distilbert-base-multilingual-cased} \citep{sanh2019distilbert}. We also tested the full \texttt{BERT-base-multilingual-cased} model; however, it was approximately four times slower in both training and inference than DistilBERT. Additionally, TinyBERT \citep{jiao2019tinybert} was considered for its speed but was excluded due to limited support for Spanish text. Experiments were conducted on NVIDIA RTX 4060 and RTX 2060 Super GPUs, yielding consistent results. DistilBERT offered the optimal balance between computational efficiency and performance for the Spanish language.
 
 \begin{table}[H]
 \centering
@@ -274,10 +270,8 @@ Transformer models like BERT have changed how we approach text classification pr
 }
 \end{table}
 
-\subsubsection{Fine-tuning the Model Parameters}
-Training transformer models properly is more art than science. The biggest challenge is finding settings that let the model learn effectively without just memorizing the training examples. When a model memorizes rather than generalizes, it fails on new, unseen data. We tackled this systematically using Keras Tuner to test different combinations of learning rates, dropout values, and regularization parameters.
-
-We ran more than 30 different experiments organized into seven major versions (detailed in Table \ref{tab:hyperparam_evolution}), which took over 500 hours of GPU time. What we really wanted was high accuracy without the model just memorizing our training data. To check if this was happening, we watched how differently the model performed on training versus validation data. Figure \ref{fig:overfitting_underfitting_examples} illustrates these concepts.
+\subsubsection{Hyperparameter Fine-tuning}
+Training transformer models requires precise configuration. The primary challenge lies in identifying hyperparameters that facilitate effective learning while preventing overfitting—a phenomenon where the model memorizes training data rather than generalizing to unseen examples. We addressed this systematically using Keras Tuner to evaluate various combinations of learning rates, dropout values, and regularization parameters. We conducted over 30 experiments organized into seven major versions (detailed in Table \ref{tab:hyperparam_evolution}), consuming over 500 GPU hours. The objective was to maximize accuracy while minimizing the generalization gap. We monitored the divergence between training and validation loss to detect overfitting. Figure \ref{fig:overfitting_underfitting_examples} illustrates these concepts.
 
 \begin{figure}[H]
 \centering
@@ -311,13 +305,13 @@ V6 & $1 \times 10^{-5}$ & 0.5 & 0.5 & 8 & 0.051 & 94.8 \\
 \end{table}
 
 \subsubsection{Training Configuration Results}
-After all these experiments, we realized that stopping overfitting needed much more aggressive settings than we thought at first. Here's what ended up working:
+The experimental results indicated that mitigating overfitting required a significantly more rigorous regularization strategy than initially anticipated. The optimal configuration included:
 \begin{itemize}
-    \item \textbf{Learning rate of $5 \times 10^{-6}$:} This makes the model learn very slowly but more reliably
-    \item \textbf{Dropout at 0.7:} During training, we randomly turn off 70\% of the neurons each time
-    \item \textbf{L2 regularization at 0.5 plus weight decay at 0.02:} Both help keep the model weights from getting too large
-    \item \textbf{Batch size of 4:} Using only 4 examples at a time adds some randomness that helps training
-    \item \textbf{Early stopping after 8 epochs:} If the validation performance doesn't improve for 8 rounds, we stop
+    \item \textbf{Learning rate of $5 \times 10^{-6}$:} A reduced learning rate ensured stable and reliable convergence.
+    \item \textbf{Dropout at 0.7:} We deactivated 70\% of neurons randomly during training to enforce redundancy and robustness.
+    \item \textbf{L2 regularization at 0.5 with weight decay at 0.02:} These techniques constrained the growth of model weights.
+    \item \textbf{Batch size of 4:} A small batch size introduced stochasticity, which aided the optimization process.
+    \item \textbf{Early stopping after 8 epochs:} Training was terminated if validation performance did not improve for 8 consecutive epochs.
 \end{itemize}
 
 \subsection{Web Application Implementation}
@@ -360,31 +354,30 @@ Figure \ref{fig:system_components} shows the static structure of the system, whi
 \section{Results}
 
 \subsection{Evaluation Metrics}
-We evaluated all the models using some standard metrics pulled from the confusion matrix. This breaks down predictions into true positives (TP), true negatives (TN), false positives (FP), and false negatives (FN). Here, the "positive" class is real news (label 1), and the "negative" is fake news (label 0). These metrics are pretty common in fake news detection, so they make it easy to line up our work with other studies.
-
+We evaluated the models using standard metrics derived from the confusion matrix, which categorizes predictions into true positives (TP), true negatives (TN), false positives (FP), and false negatives (FN). In this context, the "positive" class represents real news (label 1), and the "negative" class represents fake news (label 0). These metrics are widely used in fake news detection literature, facilitating comparison with related work.
 \begin{itemize}
-    \item \textbf{Accuracy}: This is just the share of correct predictions overall. It’s a solid general indicator, but it can get tricky with unbalanced data.
+    \item \textbf{Accuracy}: Represents the overall proportion of correct predictions. While a useful general indicator, it can be misleading in imbalanced datasets.
     \begin{equation}
         \text{Accuracy} = \frac{TP + TN}{TP + TN + FP + FN}
     \end{equation}
-    \item \textbf{Precision}: Out of everything we called real, how much actually was? We want this high to avoid flagging fake stuff as real.
+    \item \textbf{Precision}: Measures the accuracy of positive predictions. High precision is necessary to minimize the misclassification of fake content as real.
     \begin{equation}
         \text{Precision} = \frac{TP}{TP + FP}
     \end{equation}
-    \item \textbf{Recall (Sensitivity)}: Out of all the actual real news, how much did we catch?
+    \item \textbf{Recall (Sensitivity)}: Indicates the proportion of actual real news correctly identified by the model.
     \begin{equation}
         \text{Recall} = \frac{TP}{TP + FN}
     \end{equation}
-    \item \textbf{F1-Score}: This blends precision and recall into one number—it’s the harmonic mean. It’s great for checking balance, especially when classes aren’t even, and it’s a go-to metric around here.
+    \item \textbf{F1-Score}: The harmonic mean of precision and recall. It provides a balanced metric, particularly valuable for uneven class distributions.
     \begin{equation}
         \text{F1-Score} = 2 \times \frac{\text{Precision} \times \text{Recall}}{\text{Precision} + \text{Recall}}
     \end{equation}
-    \item \textbf{Specificity}: Out of all the fake news, how much did we correctly spot? It’s super important for any fake news detector.
+    \item \textbf{Specificity}: Measures the proportion of fake news correctly identified. This metric is crucial for detection systems to ensure deceptive content is accurately flagged.
     \begin{equation}
         \text{Specificity} = \frac{TN}{TN + FP}
     \end{equation}
 \end{itemize}
-For the multiclass stuff in our comparison table, we used macro-averaged scores. That means we figured out each metric per class and then averaged them, so every class gets a fair shake.
+For the multiclass comparison, we utilized macro-averaged scores, calculating metrics for each class independently and then averaging them to ensure equitable representation.
 
 \subsection{Performance of the Metaheuristic Approach}
 In the first round of tests, we set up a baseline with some classic methods. We ran five metaheuristic algorithms under the same setup and checked their results on the test set. The Genetic Algorithm (GA) came out on top, hitting 71.06\% accuracy and a macro F1-score of 0.68. The others were all over the place, mostly lagging behind, and PSO had some real trouble converging. Overall, it showed these traditional approaches do okay, but they’re held back by stuff like TF-IDF’s limits—they just don’t get the context.
@@ -409,7 +402,7 @@ We also have confusion matrices for each of the five algorithms on the test set.
 \end{figure}
 
 \subsection{Performance of the Transformer Model}
-Our final fine-tuned DistilBERT model (version 7) did really well on the test set, which was 20\% of the whole corpus we held back. It nailed high accuracy while keeping precision and recall nicely balanced. Here’s the breakdown in the table.
+The final fine-tuned DistilBERT model (version 7) demonstrated superior performance on the test set (20\% of the corpus). It achieved high accuracy while maintaining a strong balance between precision and recall, as detailed in Table \ref{tab:final_metrics}.
 
 \begin{table}[H] 
 \caption{Performance metrics of the final optimized DistilBERT model on the test set.}
@@ -440,7 +433,7 @@ And there’s a confusion matrix for this DistilBERT model too.
 \end{figure}
 
 \subsection{Final Comparative Analysis: Metaheuristics vs. Transformer}
-To see how much better our transformer setup is, we stacked it up against all the classic methods. The table shows DistilBERT blowing them away. It really points out how TF-IDF and similar setups miss the context, while transformers pick up on those subtle language hints in tricky, deceptive text. The big takeaway? A 23.17 percentage point boost in accuracy over the best classic one (GA). That really clinches the case for moving to deep learning for this.
+To quantify the improvement offered by the transformer architecture, we compared it against the classical methods. Table \ref{tab:final_comparison_all_models} demonstrates that DistilBERT significantly outperforms the traditional approaches. This disparity highlights the limitation of TF-IDF in capturing context, whereas transformers effectively detect subtle linguistic nuances in deceptive text. The transformer model achieved a 23.17 percentage point increase in accuracy over the best classical algorithm (GA), justifying the transition to deep learning architectures for this task.
 
 \begin{table}[H] 
 \caption{Final performance comparison between all implemented models on the test set.}
@@ -469,8 +462,7 @@ Particle Swarm Opt. (PSO) & 57.67 & 0.489 & 0.736 & 0.575 & 16.3 & 6th \\
 \end{table}
 
 \subsection{Overfitting Control Analysis}
-Our tough regularization plan worked like a charm to keep overfitting in check. Training stopped after 23 epochs thanks to early stopping, and we grabbed the best checkpoint from epoch 17. There, training accuracy was 98.6\%, validation hit 95.36\%, and the gap between validation and training loss was just 0.058—close to our <0.04 goal and way under the usual 0.10 overfitting red flag. You can see this in the training curves figure.
-It shows how accuracy and loss changed over training for the final model (V7). Blue lines are training, red are validation. The gold star is at epoch 13, where validation loss bottomed out and the gap stayed tight, right before any overfitting kicked in.
+The implementation of a rigorous regularization strategy successfully mitigated overfitting. Training concluded after 23 epochs due to early stopping, with the optimal checkpoint identified at epoch 17. At this point, training accuracy was 98.6\% and validation accuracy was 95.36\%. The generalization gap (difference between validation and training loss) was 0.058, approaching our target of <0.04 and remaining well below the 0.10 threshold typically indicating overfitting. Figure \ref{fig:training_curves} illustrates the evolution of accuracy and loss for the final model (V7).
 
 \begin{figure}[H]
 \centering
@@ -480,9 +472,7 @@ It shows how accuracy and loss changed over training for the final model (V7). B
 \end{figure}
 
 \subsection{Real-World Application Performance}
-The web app we deployed proved it can handle real use cases. It spotted all sorts of content right—like legit news, fake stories, even investment scams—showing the method transfers well to other digital fraud types.
-
-Screenshots from the app analyzing URLs are included:
+The deployed web application demonstrated robustness in real-world scenarios. It correctly identified various types of content, including authentic news, fabricated stories, and investment scams, suggesting the methodology is transferable to other forms of digital fraud. Screenshots of the application analyzing URLs are presented in Figure \ref{fig:app_screenshots}.
 
 \begin{figure}[H]
 \centering
@@ -496,23 +486,23 @@ Screenshots from the app analyzing URLs are included:
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Discussion}
-Looking back at what we’ve learned from our experiments, a few important points stand out for tackling fake news in Spanish. First off, we found that strong regularization is a must when fine-tuning transformers for this. The usual dropout rates, around 0.3 to 0.5, just didn’t cut it to stop overfitting—we had to push it up to 0.7 and add other techniques to keep the generalization gap in check. This is a bit different from some older metaheuristic methods, which tended to focus more on choosing the right features rather than tweaking the model itself.
+Retrospectively, the experimental results yield several critical insights regarding Spanish fake news detection. First, strong regularization proved essential when fine-tuning transformers for this specific task. Standard dropout rates (0.3 to 0.5) were insufficient to prevent overfitting; increasing the rate to 0.7 and incorporating additional regularization techniques were necessary to control the generalization gap. This differs from many classical metaheuristic approaches, which typically prioritize feature selection over model regularization.
 
-Second, going with very small learning rates made a big difference in keeping the training steady. We settled on \(2 \times 10^{-6}\), which is much lower than what’s typically suggested, and it helped the model handle the tricky optimization without losing its way.
+Second, utilizing an ultra-low learning rate ($2 \times 10^{-6}$) significantly stabilized the training process. This value, lower than typically recommended defaults, enabled the model to navigate the complex optimization landscape without diverging.
 
-Third, bringing all those datasets together into one corpus really gave our model a boost. We pulled in a mix of sources—political articles, regular news, even stylometric examples—covering different topics and timeframes, which gave us a richer training set. That means it’s better at dealing with new, unseen data compared to models stuck with just one dataset.
+Third, the unification of multiple datasets into a single corpus provided a substantial performance enhancement. Incorporating a variety of sources—including political articles, general news, and stylometric examples—across different topics and timeframes resulted in a richer training distribution. Consequently, the model generalizes more effectively to unseen data compared to models trained on isolated datasets.
 
-Our approach also seems to work well beyond just fake news. The text-processing steps could easily apply to something like spotting phishing emails, and the hyperparameter tuning could adapt for models aimed at financial fraud or fake job ads. On top of that, how we built the corpus—combining what was already out there with some targeted web scraping—could serve as a useful guide for creating datasets in areas where resources are thin.
+Furthermore, the approach appears applicable beyond fake news detection. The text-processing pipeline could be adapted for tasks such as phishing detection, and the hyperparameter optimization methodology is relevant for models targeting financial fraud or fraudulent job postings. Additionally, the corpus construction strategy—integrating existing academic resources with targeted web scraping—serves as a viable model for resource-scarce domains.
 
-That said, we’re not without some hurdles. The model is Spanish-only right now. It does okay with broader digital fraud detection, but it works best with news-like content, so it’s somewhat tied to that area. Also, since it’s trained at a fixed point, it might start to falter as misinformation tactics change, so we’ll need to retrain it regularly to keep it effective.
+However, limitations remain. The model is currently restricted to the Spanish language. While it performs adequately in broader digital fraud detection, its efficacy is maximized with news-like content. Furthermore, as a static model, its performance may degrade as misinformation tactics evolve; therefore, periodic retraining is required to maintain effectiveness.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Conclusions}
-In this paper, we’ve put together a complete pipeline for detecting fake news in Spanish, from gathering the data to rolling out a real-world web app. A big part of that is our unified corpus of 61,674 articles, which helps fill a major gap in Spanish NLP and sets a solid base for future studies.
+This study presents a comprehensive end-to-end framework for Spanish fake news detection, spanning from data acquisition to the deployment of a real-world application. A significant contribution is the creation of a unified corpus of 61,674 articles, which addresses a critical deficiency in Spanish NLP resources and establishes a robust foundation for future research.
 
-We also put in over 500 GPU hours to fine-tune the hyperparameters, figuring out ways to keep overfitting under control during transformer training. It turns out a solid, multi-layered regularization strategy was the key, and the final model reached 95.36\% accuracy—a clear 23.33 percentage point jump over traditional methods—making it a new benchmark for this work.
+We invested over 500 GPU hours in hyperparameter optimization, identifying effective strategies to mitigate overfitting in transformer training. The results indicate that a multi-layered regularization strategy was decisive, enabling the final model to achieve 95.36\% accuracy. This represents a 23.33 percentage point improvement over traditional methods, establishing a new benchmark for this task.
 
-The real standout, though, is our Docker-based web app, which turns our research into something practical and accessible for preventing digital fraud in everyday use. We’ve made the whole package—corpus, model, and app—publicly available so others can replicate it or adapt it for other languages and fraud types. Looking ahead, we’re planning to add multilingual support, bring in real-time learning, and connect with fact-checking APIs to build a stronger system for protecting digital information.
+A notable outcome is the development of the Docker-based web application, which translates theoretical research into a practical, accessible tool for digital fraud prevention. The entire framework—comprising the corpus, the optimized model, and the application code—has been made publicly available to facilitate reproducibility and adaptation. Future work will focus on integrating multilingual support, implementing real-time learning mechanisms, and connecting with fact-checking APIs to further strengthen the digital information ecosystem.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \vspace{6pt} 
