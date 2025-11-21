@@ -281,10 +281,10 @@ We ran more than 30 different experiments organized into seven major versions (d
 
 \begin{figure}[H]
 \centering
-\subfloat[Example of Overfitting]{\includegraphics[width=0.45\textwidth]{Figures/overfitting_example.png} \label{fig:overfitting_example}}
+\subfloat[Overfitting scenario: Validation loss increases while training loss continues to decrease.]{\includegraphics[width=0.45\textwidth]{Figures/overfitting_example.png} \label{fig:overfitting_example}}
 \hfill
-\subfloat[Example of Underfitting]{\includegraphics[width=0.45\textwidth]{Figures/underfitting_example.png} \label{fig:underfitting_example}}
-\caption{Visual examples of overfitting, where training and validation curves diverge, and underfitting, where both fail to converge.}
+\subfloat[Underfitting scenario: Both training and validation losses remain high and fail to converge.]{\includegraphics[width=0.45\textwidth]{Figures/underfitting_example.png} \label{fig:underfitting_example}}
+\caption{Visual comparison of training behaviors. The horizontal axis represents the number of epochs, while the vertical axis indicates the Loss value. (a) Illustrates overfitting, characterized by the divergence of the validation curve (red) from the training curve (blue). (b) Illustrates underfitting, where the model fails to capture underlying patterns effectively.}
 \label{fig:overfitting_underfitting_examples}
 \end{figure}
 
@@ -475,8 +475,9 @@ It shows how accuracy and loss changed over training for the final model (V7). B
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.8\textwidth]{Figures/training_curves.png}
-\caption{Evolution of accuracy and loss during the training of the final model (V7). The blue and red lines represent the training and validation metrics, respectively. The gold star marks the optimal epoch (13), where validation loss was minimal and the generalization gap was controlled, just before the onset of overfitting.\label{fig:training_curves}}
-\end{figure} 
+\caption{Evolution of performance metrics during the fine-tuning of the final model (V7). The x-axis represents the training epochs, while the y-axes represent Loss (left) and Accuracy (right). The blue lines denote training performance, and the red lines denote validation performance. The gold star identifies the optimal checkpoint at Epoch 13, where the generalization gap (0.058) was minimized before the onset of overfitting.}
+\label{fig:training_curves}
+\end{figure}
 
 \subsection{Real-World Application Performance}
 The web app we deployed proved it can handle real use cases. It spotted all sorts of content right—like legit news, fake stories, even investment scams—showing the method transfers well to other digital fraud types.
