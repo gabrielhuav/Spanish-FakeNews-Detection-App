@@ -166,11 +166,14 @@ A persistent issue in the academic NLP community is the "deployment gap"—the s
 \subsection{Proposed Methodology Overview}
 The methodology of this research is structured as a unified and integrated pipeline to address the problem of fake news detection in Spanish. It is based on an evolutionary development and evaluation process, progressing from classical techniques to state-of-the-art language models. This allows for a systematic and objective comparison of different artificial intelligence paradigms on a common data foundation. The methodological design adopts a phased experimental approach that includes: (1) unified data acquisition and processing, (2) implementation of a common data processing workflow, (3) parallel development of classification models using metaheuristic algorithms and Transformer models, and (4) a comprehensive comparative evaluation under a unified metrics framework. This process culminates in the implementation of the most effective solution in a functional web application, as depicted in Figure \ref{fig:metodologia_general}.
 
+% Part 1
 \begin{figure}[H]
+\begin{adjustwidth}{-\extralength}{0cm}
 \centering
-\includegraphics[width=\textwidth]{Figures/system_architecture.png}
-\caption{Overview of the proposed research methodology, illustrating the evolutionary path from data unification to the comparative evaluation of classical and transformer-based approaches, culminating in a deployed application.}
-\label{fig:metodologia_general}
+\includegraphics[width=\linewidth]{Figures/system_architecture_p1.png}
+\end{adjustwidth}
+\caption{Overview of the proposed research methodology (Part 1/3): Data Unification and Processing.}
+\label{fig:metodologia_general_p1}
 \end{figure}
 
 \subsection{Building the Dataset}
@@ -204,6 +207,26 @@ We started by gathering four publicly available Spanish corpora: the Spanish Fak
 }
 \end{table}
 
+% Part 2
+\begin{figure}[H]
+\begin{adjustwidth}{-\extralength}{0cm}
+\centering
+\includegraphics[width=\linewidth]{Figures/system_architecture_p2.png}
+\end{adjustwidth}
+\caption{Overview of the proposed research methodology (Part 2/3): Model Optimization and Comparative Evaluation.}
+\label{fig:metodologia_general_p2}
+\end{figure}
+
+% Part 3
+\begin{figure}[H]
+\begin{adjustwidth}{-\extralength}{0cm}
+\centering
+\includegraphics[width=\linewidth]{Figures/system_architecture_p3.png}
+\end{adjustwidth}
+\caption{Overview of the proposed research methodology (Part 3/3): Web Application Deployment and Inference.}
+\label{fig:metodologia_general_p3}
+\end{figure}
+
 \subsubsection{Cleaning and Standardizing}
 A rigorous pipeline was implemented to homogenize the aggregated data. A crucial step in this phase was the detection and elimination of duplicate content. Using content hashing on the 'text' field, we identified a total of 15,211 records involved in duplications. After removing \textbf{7,712} redundant entries (keeping the first occurrence), the result was a cleaned dataset of \textbf{52,689} unique articles. We needed to remove these duplicates to avoid having our model see the same content during training and testing, which would give us falsely optimistic results.
 
@@ -215,8 +238,10 @@ We needed roughly 9,200 more fake news articles to balance things out. Instead o
 This brought our total to \textbf{61,674} articles, with 30,734 fake articles (49.8\%) and 30,940 real ones (50.2\%). This gives us one of the most balanced and comprehensive Spanish fake news datasets currently available.
 
 \begin{figure}[H]
+\begin{adjustwidth}{-\extralength}{0cm}
 \centering
-\includegraphics[width=0.8\textwidth]{Figures/corpus_balance.png}
+\includegraphics[width=\linewidth]{Figures/corpus_balance.png}
+\end{adjustwidth}
 \caption{Visual representation of the corpus balancing process. The initial imbalanced distribution (left) was corrected by strategically adding 9,000 FAKE articles via web scraping, resulting in a nearly 50/50 final distribution (right).}
 \label{fig:corpus_balance}
 \end{figure}
@@ -296,7 +321,10 @@ After all these experiments, we realized that stopping overfitting needed much m
 \end{itemize}
 
 \subsection{Web Application Implementation}
-To validate the model in practice, we developed a Dockerized web application comprising four modules: user interface, Flask API, DistilBERT inference engine, and deployment environment. The system accepts article URLs and outputs authenticity predictions. Figure \ref{fig:system_components} shows the static structure of the system, while Figure \ref{fig:system_sequence} illustrates its dynamic workflow.
+To validate the model in practice, we developed a Dockerized web application comprising four modules: user interface, Flask API, DistilBERT inference engine, and deployment environment. The system accepts article URLs and outputs authenticity predictions.
+
+
+Figure \ref{fig:system_components} shows the static structure of the system, while Figure \ref{fig:system_sequence} illustrates its dynamic workflow.
 
 \begin{enumerate}
     \item \textbf{User Interface:} Simple web page where users input article URLs. It is served as a static file by the backend.
@@ -312,19 +340,22 @@ To validate the model in practice, we developed a Dockerized web application com
 \end{enumerate}
 
 \begin{figure}[H]
+\begin{adjustwidth}{-\extralength}{0cm}
 \centering
-\includegraphics[width=0.8\textwidth]{Figures/component_diagram.png}
+\includegraphics[width=\linewidth]{Figures/component_diagram.png}
+\end{adjustwidth}
 \caption{System architecture of the deployed web application, showing the static components and their dependencies.}
 \label{fig:system_components}
 \end{figure}
 
 \begin{figure}[H]
+\begin{adjustwidth}{-\extralength}{0cm}
 \centering
-\includegraphics[width=0.8\textwidth]{Figures/sequence_diagram.png}
+\includegraphics[width=\linewidth]{Figures/sequence_diagram.png}
+\end{adjustwidth}
 \caption{Sequence diagram illustrating the dynamic step-by-step workflow of a prediction request from the user to the final verdict.}
 \label{fig:system_sequence}
 \end{figure}
-
 
 \section{Results}
 
@@ -361,16 +392,18 @@ In the first round of tests, we set up a baseline with some classic methods. We 
 We also have confusion matrices for each of the five algorithms on the test set.
 
 \begin{figure}[H]
+\begin{adjustwidth}{-\extralength}{0cm}
 \centering
-\subfloat[GA Confusion Matrix]{\includegraphics[width=0.3\textwidth]{Figures/confusion_matrix_ga.png}}
+\subfloat[GA Confusion Matrix]{\includegraphics[width=0.48\linewidth]{Figures/confusion_matrix_ga.png}}
 \hfill
-\subfloat[VNS Confusion Matrix]{\includegraphics[width=0.3\textwidth]{Figures/confusion_matrix_vns.png}}
-\hfill
-\subfloat[SS Confusion Matrix]{\includegraphics[width=0.3\textwidth]{Figures/confusion_matrix_ss.png}}
+\subfloat[VNS Confusion Matrix]{\includegraphics[width=0.48\linewidth]{Figures/confusion_matrix_vns.png}}
 \\
-\subfloat[MSA Confusion Matrix]{\includegraphics[width=0.3\textwidth]{Figures/confusion_matrix_msa.png}}
+\subfloat[SS Confusion Matrix]{\includegraphics[width=0.48\linewidth]{Figures/confusion_matrix_ss.png}}
 \hfill
-\subfloat[PSO Confusion Matrix]{\includegraphics[width=0.3\textwidth]{Figures/confusion_matrix_pso.png}}
+\subfloat[MSA Confusion Matrix]{\includegraphics[width=0.48\linewidth]{Figures/confusion_matrix_msa.png}}
+\\
+\subfloat[PSO Confusion Matrix]{\includegraphics[width=0.48\linewidth]{Figures/confusion_matrix_pso.png}}
+\end{adjustwidth}
 \caption{Confusion matrices for the five metaheuristic algorithms on the test set.}
 \label{fig:metaheuristic_confusion_matrices}
 \end{figure}
@@ -398,8 +431,10 @@ Specificity & 94.5 \\
 And there’s a confusion matrix for this DistilBERT model too.
 
 \begin{figure}[H]
+\begin{adjustwidth}{-\extralength}{0cm}
 \centering
-\includegraphics[width=0.5\textwidth]{Figures/DistilBERT_confusion_matrix.png} 
+\includegraphics[width=\linewidth]{Figures/DistilBERT_confusion_matrix.png} 
+\end{adjustwidth}
 \caption{Confusion matrix for the final DistilBERT model on the test set.}
 \label{fig:distilbert_confusion_matrix}
 \end{figure}
