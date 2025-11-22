@@ -355,18 +355,19 @@ Figure \ref{fig:system_components} shows the static structure of the system, whi
 
 \subsection{Evaluation Metrics}
 We evaluated the models using standard metrics derived from the confusion matrix, which categorizes predictions into true positives (TP), true negatives (TN), false positives (FP), and false negatives (FN). In this context, the "positive" class represents real news (label 1), and the "negative" class represents fake news (label 0). These metrics are widely used in fake news detection literature, facilitating comparison with related work.
+
 \begin{itemize}
     \item \textbf{Accuracy}: Represents the overall proportion of correct predictions. While a useful general indicator, it can be misleading in imbalanced datasets.
     \begin{equation}
-        \text{Accuracy} = \frac{TP + TN}{TP + TN + FP + FN}
+        \text{Accuracy} = \frac{\text{TP} + \text{TN}}{\text{TP} + \text{TN} + \text{FP} + \text{FN}}
     \end{equation}
     \item \textbf{Precision}: Measures the accuracy of positive predictions. High precision is necessary to minimize the misclassification of fake content as real.
     \begin{equation}
-        \text{Precision} = \frac{TP}{TP + FP}
+        \text{Precision} = \frac{\text{TP}}{\text{TP} + \text{FP}}
     \end{equation}
     \item \textbf{Recall (Sensitivity)}: Indicates the proportion of actual real news correctly identified by the model.
     \begin{equation}
-        \text{Recall} = \frac{TP}{TP + FN}
+        \text{Recall} = \frac{\text{TP}}{\text{TP} + \text{FN}}
     \end{equation}
     \item \textbf{F1-Score}: The harmonic mean of precision and recall. It provides a balanced metric, particularly valuable for uneven class distributions.
     \begin{equation}
@@ -374,9 +375,10 @@ We evaluated the models using standard metrics derived from the confusion matrix
     \end{equation}
     \item \textbf{Specificity}: Measures the proportion of fake news correctly identified. This metric is crucial for detection systems to ensure deceptive content is accurately flagged.
     \begin{equation}
-        \text{Specificity} = \frac{TN}{TN + FP}
+        \text{Specificity} = \frac{\text{TN}}{\text{TN} + \text{FP}}
     \end{equation}
 \end{itemize}
+
 For the multiclass comparison, we utilized macro-averaged scores, calculating metrics for each class independently and then averaging them to ensure equitable representation.
 
 \subsection{Performance of the Metaheuristic Approach}
