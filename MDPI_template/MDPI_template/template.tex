@@ -163,10 +163,9 @@ A persistent issue in the academic NLP community is the "deployment gap"—the s
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Materials and Methods}
 
-\subsection{Proposed Methodology Overview}
-The methodology of this research is structured as a unified and integrated pipeline to address the problem of fake news detection in Spanish. It is based on an evolutionary development and evaluation process, progressing from classical techniques to state-of-the-art language models. This allows for a systematic and objective comparison of different artificial intelligence paradigms on a common data foundation. The methodological design adopts a phased experimental approach that includes: (1) unified data acquisition and processing, (2) implementation of a common data processing workflow, (3) parallel development of classification models using metaheuristic algorithms and Transformer models, and (4) a comprehensive comparative evaluation under a unified metrics framework. This process culminates in the implementation of the most effective solution in a functional web application, as depicted in Figure \ref{fig:metodologia_general_p3}.
+The methodology of this research is structured as a unified pipeline designed to address the scarcity of resources for Spanish fake news detection and bridge the gap between theoretical models and practical application. As illustrated in Figure \ref{fig:metodologia_general_p1}, the experimental design follows a three-stage process: (1) the construction of a unified and balanced corpus, (2) the systematic optimization of classification models comparing classical and deep learning paradigms, and (3) the deployment of the optimal solution as a functional web application.
 
-% Part 1
+% Part 1 (Image)
 \begin{figure}[H]
 \centering
 \includegraphics[width=\textwidth]{Figures/system_architecture_p1.png}
@@ -174,11 +173,8 @@ The methodology of this research is structured as a unified and integrated pipel
 \label{fig:metodologia_general_p1}
 \end{figure}
 
-\subsection{Building the Dataset}
-Creating a comprehensive dataset was our first challenge. Spanish fake news resources are scattered and limited, so we decided to combine multiple sources into one large, balanced corpus.
-
-\subsubsection{Collecting Academic Datasets}
-We started by gathering four publicly available Spanish corpora: the Spanish Fake News Corpus with 971 articles \citep{posadas2019detection}, the Acosta Dataset containing 598 articles \citep{acosta2019construccion}, the Tretiakov Dataset with 2,000 articles \citep{tretiakov2022detection}, and the Spanish Political Dataset with 57,231 articles \citep{blanco2024enhancing}. This gave us \textbf{60,401} articles in total.
+\subsection{Data Acquisition and Processing}
+Creating a comprehensive dataset was the primary challenge addressed in this study. Spanish fake news resources are typically scattered and limited in scope. To overcome this, we constructed a unified corpus by aggregating four publicly available academic datasets: the Spanish Fake News Corpus (971 articles) \citep{posadas2019detection}, the Acosta Dataset (598 articles) \citep{acosta2019construccion}, the Tretiakov Dataset (2,000 articles) \citep{tretiakov2022detection}, and the Spanish Political Dataset (57,231 articles) \citep{blanco2024enhancing}. This initial aggregation yielded a total of \textbf{60,401} articles. Table \ref{tab:comparacion_exhaustiva_corpus} details the characteristics of each source.
 
 \begin{table}[H]
 \centering
@@ -197,35 +193,15 @@ We started by gathering four publicly available Spanish corpora: the Spanish Fak
 \textbf{Class Distribution} & Balanced & Balanced & Balanced & Balanced & Fake Only \\
 \textbf{Regional Variability} & Spain/LatAm & International & Multiple & Spain & Mexico \\
 \textbf{Annotation Quality} & \begin{tabular}[t]{@{}c@{}}High\\(multi-annotator)\end{tabular} & \begin{tabular}[t]{@{}c@{}}High\\(manual)\end{tabular} & \begin{tabular}[t]{@{}c@{}}Medium\\(source-based)\end{tabular} & \begin{tabular}[t]{@{}c@{}}High\\(specialized)\end{tabular} & \begin{tabular}[t]{@{}c@{}}Automatic\\(inherently fake)\end{tabular} \\
-\textbf{Primary Strength} & \begin{tabular}[t]{@{}c@{}}Deep linguistic\\analysis\end{tabular} & \begin{tabular}[t]{@{}c@{}}Methodological\\rigor\end{tabular} & \begin{tabular}[t]{@{}c@{}}ML-oriented\end{tabular} & \begin{tabular}[t]{@{}c@{}}Large\\scale\end{tabular} & Contemporaneity \\
-\textbf{Main Limitation} & Limited size & \begin{tabular}[t]{@{}c@{}}Very small\\size\end{tabular} & \begin{tabular}[t]{@{}c@{}}Only Castilian\\Spanish\end{tabular} & \begin{tabular}[t]{@{}c@{}}Specific\\domain\end{tabular} & \begin{tabular}[t]{@{}c@{}}Satirical\\content only\end{tabular} \\
 \textbf{Contribution to Final Corpus} & 1.6\% & 1.0\% & 3.2\% & 92.8\% & 14.6\% (added) \\
 \bottomrule
 \end{tabular}
 }
 \end{table}
 
-% Part 2
-\begin{figure}[H]
-\centering
-\includegraphics[width=\textwidth]{Figures/system_architecture_p2.png}
-\caption{Overview of the proposed research methodology (Part 2/3): Model Optimization and Comparative Evaluation.}
-\label{fig:metodologia_general_p2}
-\end{figure}
+To ensure data quality, a rigorous cleaning pipeline was implemented. Using content hashing on the 'text' field, we identified and removed \textbf{7,712} duplicate entries, resulting in \textbf{52,689} unique articles. This step is crucial to prevent data leakage between training and testing sets.
 
-% Part 3
-\begin{figure}[H]
-\centering
-\includegraphics[width=\textwidth]{Figures/system_architecture_p3.png}
-\caption{Overview of the proposed research methodology (Part 3/3): Web Application Deployment and Inference.}
-\label{fig:metodologia_general_p3}
-\end{figure}
-
-\subsubsection{Cleaning and Standardizing}
-A rigorous pipeline was implemented to homogenize the aggregated data. A crucial step in this phase was the detection and elimination of duplicate content. Using content hashing on the 'text' field, we identified a total of 15,211 records involved in duplications. After removing \textbf{7,712} redundant entries (retaining the first occurrence), the result was a cleaned dataset of \textbf{52,689} unique articles. Removing duplicates is essential to prevent data leakage, ensuring the model does not encounter identical content in both training and testing sets, which would otherwise yield inflated performance metrics.
-
-\subsubsection{Addressing Class Imbalance}
-Following the deduplication process, we analyzed the class distribution. The dataset exhibited a significant imbalance: 30,943 real news articles (58.7\%) versus 21,746 fake news articles (41.3\%). Such imbalance can bias machine learning models towards the majority class. To rectify this, approximately 9,200 additional fake news articles were required. Given the scarcity of academic Spanish datasets, we acquired additional data by scraping "El Deforma," a prominent Mexican satirical news website. Using a Python script with \texttt{BeautifulSoup} and \texttt{Requests}, we collected \textbf{9,000} articles. These were labeled as FAKE, as satirical content represents a specific category of misinformation that models must learn to identify \citep{aragon2020overview}. This augmentation resulted in a total of \textbf{61,674} articles, comprising 30,734 fake (49.8\%) and 30,940 real (50.2\%) articles, creating one of the most balanced and comprehensive Spanish fake news datasets currently available.
+Following deduplication, an analysis of the class distribution revealed a significant imbalance: 30,943 real news articles (58.7\%) versus 21,746 fake news articles (41.3\%). To rectify this bias, which could skew model performance, we acquired approximately 9,200 additional fake news articles by scraping "El Deforma," a prominent satirical news website. Satirical content was labeled as FAKE, consistent with literature treating satire as a specific category of misinformation \citep{aragon2020overview}. This augmentation resulted in a final balanced corpus of \textbf{61,674} articles (49.8\% fake, 50.2\% real), as visualized in Figure \ref{fig:corpus_balance}.
 
 \begin{figure}[H]
 \begin{adjustwidth}{-\extralength}{0cm}
@@ -236,16 +212,20 @@ Following the deduplication process, we analyzed the class distribution. The dat
 \label{fig:corpus_balance}
 \end{figure}
 
-\subsection{Traditional Machine Learning Experiments}
-We initially employed classical machine learning techniques to establish a performance baseline. Proceeding with established methods provides a necessary reference point before implementing complex architectures. This work builds upon our prior research with Bag-of-Words representations \citep{hurtado2024calibracion}; however, previous experiments were limited to smaller datasets as large-scale corpora like the Blanco-Fernández collection were unavailable until 2024.
+\subsection{Model Development and Optimization}
+The core experimental phase focused on comparing classical approaches against modern transformer architectures (Figure \ref{fig:metodologia_general_p2}).
 
-In this study, we utilized TF-IDF features and evaluated five distinct optimization algorithms: Multi-Start Simulated Annealing (MSA), Scatter Search (SS), Variable Neighborhood Search (VNS), Genetic Algorithm (GA), and Particle Swarm Optimization (PSO). To ensure computational feasibility, dimensionality was reduced from an 8,000-word vocabulary to the 800 most relevant features (10\%) using a Chi-squared test. Each algorithm was tasked with optimizing the hyperparameters of a logistic regression model, using the F1-Score as the objective function.
+% Part 2 (Image)
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{Figures/system_architecture_p2.png}
+\caption{Overview of the proposed research methodology (Part 2/3): Model Optimization and Comparative Evaluation.}
+\label{fig:metodologia_general_p2}
+\end{figure}
 
-\subsection{Deep Learning with Transformers}
-In the second experimental phase, we evaluated whether modern transformer architectures could surpass the performance of classical approaches.
+\textbf{Classical Machine Learning Baseline.} We initially established a baseline using TF-IDF feature representation, building upon prior work \citep{hurtado2024calibracion}. Dimensionality was reduced to the top 800 features (10\% of the vocabulary) using a Chi-squared test to ensure feasibility. Five metaheuristic algorithms—Multi-Start Simulated Annealing (MSA), Scatter Search (SS), Variable Neighborhood Search (VNS), Genetic Algorithm (GA), and Particle Swarm Optimization (PSO)—were employed to optimize the hyperparameters of a logistic regression model, maximizing the F1-Score.
 
-\subsubsection{Model Selection}
-Transformer models, such as BERT, have revolutionized text classification \citep{devlin2018bert}. After evaluating several candidates, we selected \texttt{distilbert-base-multilingual-cased} \citep{sanh2019distilbert}. We also tested the full \texttt{BERT-base-multilingual-cased} model; however, it was approximately four times slower in both training and inference than DistilBERT. Additionally, TinyBERT \citep{jiao2019tinybert} was considered for its speed but was excluded due to limited support for Spanish text. Experiments were conducted on NVIDIA RTX 4060 and RTX 2060 Super GPUs, yielding consistent results. DistilBERT offered the optimal balance between computational efficiency and performance for the Spanish language.
+\textbf{Deep Learning with Transformers.} To overcome the semantic limitations of classical methods, we selected \texttt{distilbert-base-multilingual-cased} \citep{sanh2019distilbert}. While we evaluated the full BERT model and TinyBERT, DistilBERT offered the optimal trade-off between performance and computational efficiency for Spanish text, being approximately four times faster than BERT while maintaining competitive accuracy (Table \ref{tab:comparacion_modelos_bert}).
 
 \begin{table}[H]
 \centering
@@ -264,18 +244,19 @@ Transformer models, such as BERT, have revolutionized text classification \citep
 }
 \end{table}
 
-\subsubsection{Hyperparameter Fine-tuning}
-Training transformer models requires precise configuration. The primary challenge lies in identifying hyperparameters that facilitate effective learning while preventing overfitting—a phenomenon where the model memorizes training data rather than generalizing to unseen examples. We addressed this systematically using Keras Tuner to evaluate various combinations of learning rates, dropout values, and regularization parameters. We conducted over 30 experiments organized into seven major versions (detailed in Table \ref{tab:hyperparam_evolution}), consuming over 500 GPU hours. The objective was to maximize accuracy while minimizing the generalization gap. We monitored the divergence between training and validation loss to detect overfitting. Figure \ref{fig:overfitting_underfitting_examples} illustrates these concepts.
+\textbf{Hyperparameter Fine-tuning.} We conducted a systematic optimization process involving over 30 experiments and 500 GPU hours to identify configurations that mitigate overfitting—a common challenge where the model memorizes training data (decreasing training loss) but fails to generalize (increasing validation loss), as illustrated in Figure \ref{fig:overfitting_underfitting_examples}.
 
 \begin{figure}[H]
 \centering
-% Usamos 0.49\textwidth para que cada una ocupe la mitad del ancho del TEXTO (no de la página completa)
+% Usamos 0.49\textwidth para que cada una ocupe la mitad del ancho del TEXTO
 \subfloat[Overfitting scenario: Validation loss diverges while training loss decreases.]{\includegraphics[width=0.49\textwidth]{Figures/overfitting_example.png} \label{fig:overfitting_example}}
 \hfill
 \subfloat[Underfitting scenario: Both training and validation losses remain high without convergence.]{\includegraphics[width=0.49\textwidth]{Figures/underfitting_example.png} \label{fig:underfitting_example}}
 \caption{Visual comparison of model training behaviors plotted on identical scales for direct comparability. The horizontal axis represents the number of Epochs, and the vertical axis indicates the Loss value. (a) Illustrates \textbf{overfitting}, where the model memorizes the training data (blue line decreases) but fails to generalize to new data (red validation line increases). (b) Illustrates \textbf{underfitting}, characterized by the inability of the model to capture underlying patterns, resulting in high loss values for both curves.}
 \label{fig:overfitting_underfitting_examples}
 \end{figure}
+
+Using Keras Tuner, we evolved the model through seven major versions (Table \ref{tab:hyperparam_evolution}). The final rigorous regularization strategy (Version 11) included: an ultra-low learning rate ($5 \times 10^{-6}$) for stable convergence, a high dropout rate (0.7), strong L2 regularization (0.5 with weight decay 0.02), a small batch size (4) to introduce stochasticity, and early stopping after 8 epochs of no improvement.
 
 \begin{table}[H]
 \caption{Evolution of Hyperparameter Configurations Across Experimental Versions.}
@@ -299,34 +280,26 @@ V6 & $1 \times 10^{-5}$ & 0.5 & 0.5 & 8 & 0.051 & 94.8 \\
 }
 \end{table}
 
-\subsubsection{Training Configuration Results}
-The experimental results indicated that mitigating overfitting required a significantly more rigorous regularization strategy than initially anticipated. The optimal configuration included:
-\begin{itemize}
-    \item \textbf{Learning rate of $5 \times 10^{-6}$:} A reduced learning rate ensured stable and reliable convergence.
-    \item \textbf{Dropout at 0.7:} We deactivated 70\% of neurons randomly during training to enforce redundancy and robustness.
-    \item \textbf{L2 regularization at 0.5 with weight decay at 0.02:} These techniques constrained the growth of model weights.
-    \item \textbf{Batch size of 4:} A small batch size introduced stochasticity, which aided the optimization process.
-    \item \textbf{Early stopping after 8 epochs:} Training was terminated if validation performance did not improve for 8 consecutive epochs.
-\end{itemize}
+\subsection{Real-World Application Deployment}
+The final stage of the methodology involved implementing the optimized DistilBERT model into a production-ready web application (Figure \ref{fig:metodologia_general_p3}).
 
-\subsection{Web Application Implementation}
-To validate the model in practice, we developed a Dockerized web application comprising four modules: user interface, Flask API, DistilBERT inference engine, and deployment environment. The system accepts article URLs and outputs authenticity predictions.
+% Part 3 (Image)
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{Figures/system_architecture_p3.png}
+\caption{Overview of the proposed research methodology (Part 3/3): Web Application Deployment and Inference.}
+\label{fig:metodologia_general_p3}
+\end{figure}
 
-
-Figure \ref{fig:system_components} shows the static structure of the system, while Figure \ref{fig:system_sequence} illustrates its dynamic workflow.
-
+The system is architected as a containerized microservice stack, shown in Figure \ref{fig:system_components}. It consists of four integrated components:
 \begin{enumerate}
-    \item \textbf{User Interface:} Simple web page where users input article URLs. It is served as a static file by the backend.
-    \item \textbf{API Backend:} Flask-based service that processes analysis requests via the \texttt{/analizar} endpoint which accepts POST requests containing the URL to be analyzed.
-    \item \textbf{Model Inference Engine:} Handles the actual AI processing. Upon startup, the pre-trained DistilBERT model and its corresponding tokenizer are loaded into memory from local files. The inference logic involves:
-    \begin{itemize}
-        \item Extracting headlines from \texttt{<h1>} tags and article text from \texttt{<p>} tags using the \texttt{requests} and \texttt{BeautifulSoup} libraries
-        \item Formatting the combined content for our DistilBERT model by combining the title and body with a \texttt{[SEP]} token
-        \item Processing the text through our trained classifier to obtain logits
-        \item Converting model outputs into user-friendly probability scores by applying a softmax function over the two classes (FAKE/REAL)
-    \end{itemize}
-    \item \textbf{Containerized Deployment:} Complete Docker setup that gets the entire system running with a single command. The entire application, including the Python environment, all dependencies listed in \texttt{requirements.txt}, and the model files, is encapsulated in a Docker image defined by a \texttt{Dockerfile}.
+    \item \textbf{User Interface:} A static web frontend where users submit URLs for analysis.
+    \item \textbf{API Backend:} A Flask-based service exposing an \texttt{/analizar} endpoint to handle requests.
+    \item \textbf{Inference Engine:} This component loads the trained DistilBERT model and tokenizer. It scrapes the content of the submitted URL (extracting \texttt{<h1>} and \texttt{<p>} tags via \texttt{BeautifulSoup}), tokenizes the text combining title and body with a \texttt{[SEP]} token, and computes the probability scores using a softmax function.
+    \item \textbf{Docker Deployment:} The entire environment, including Python dependencies and model artifacts, is encapsulated in a Docker image to ensure reproducibility and ease of deployment.
 \end{enumerate}
+
+The interaction flow, from user request to final verdict, is detailed in the sequence diagram (Figure \ref{fig:system_sequence}).
 
 \begin{figure}[H]
 \begin{adjustwidth}{-\extralength}{0cm}
@@ -345,6 +318,7 @@ Figure \ref{fig:system_components} shows the static structure of the system, whi
 \caption{Sequence diagram illustrating the dynamic step-by-step workflow of a prediction request from the user to the final verdict.}
 \label{fig:system_sequence}
 \end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Results}
 
