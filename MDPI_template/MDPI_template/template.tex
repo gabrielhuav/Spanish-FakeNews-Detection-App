@@ -213,7 +213,16 @@ Following deduplication, an analysis of the class distribution revealed a signif
 \end{figure}
 
 \subsection{Model Development and Optimization}
-The core experimental phase focused on comparing classical approaches against modern transformer architectures (Figure \ref{fig:metodologia_general_p2}).
+The core experimental phase focused on comparing classical approaches against modern transformer architectures.
+
+\subsubsection{Data Partitioning and Generalization Strategy}
+To ensure the statistical reliability of our results and guarantee model generalization to unseen data, we implemented a rigorous data splitting protocol, as illustrated in Figure \ref{fig:metodologia_general_p2}. The unified balanced corpus ($N=61,674$) was partitioned into three disjoint subsets using \textbf{stratified random sampling}. This strategy was crucial to preserve the approximately 50/50 class distribution across all partitions, preventing bias during training. The split proportions were defined as follows:
+\begin{itemize}
+    \item \textbf{Training Set (70\%, $\approx$43,171 articles):} Used for model fitting and gradient updates.
+    \item \textbf{Validation Set (10\%, $\approx$6,167 articles):} Used exclusively for hyperparameter tuning, model selection, and monitoring for early stopping.
+    \item \textbf{Test Set (20\%, $\approx$12,335 articles):} Strictly isolated during the entire optimization process and used solely for the final performance evaluation reported in Section 4.
+\end{itemize}
+Furthermore, to maximize generalization and prevent overfitting, we applied a "hold-out" validation strategy combined with the aggressive regularization techniques detailed in Section 3.2.3 (high dropout and L2 regularization). This approach ensures that the reported metrics reflect the model's true ability to handle novel, real-world misinformation rather than memorized patterns.
 
 % Part 2 (Image)
 \begin{figure}[H]
