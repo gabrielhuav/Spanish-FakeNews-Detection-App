@@ -164,14 +164,12 @@ A persistent issue in the academic NLP community is the "deployment gap"—the s
 \section{Materials and Methods}
 
 \subsection{Proposed Methodology Overview}
-The methodology of this research is structured as a unified and integrated pipeline to address the problem of fake news detection in Spanish. It is based on an evolutionary development and evaluation process, progressing from classical techniques to state-of-the-art language models. This allows for a systematic and objective comparison of different artificial intelligence paradigms on a common data foundation. The methodological design adopts a phased experimental approach that includes: (1) unified data acquisition and processing, (2) implementation of a common data processing workflow, (3) parallel development of classification models using metaheuristic algorithms and Transformer models, and (4) a comprehensive comparative evaluation under a unified metrics framework. This process culminates in the implementation of the most effective solution in a functional web application, as depicted in Figure \ref{fig:metodologia_general}.
+The methodology of this research is structured as a unified and integrated pipeline to address the problem of fake news detection in Spanish. It is based on an evolutionary development and evaluation process, progressing from classical techniques to state-of-the-art language models. This allows for a systematic and objective comparison of different artificial intelligence paradigms on a common data foundation. The methodological design adopts a phased experimental approach that includes: (1) unified data acquisition and processing, (2) implementation of a common data processing workflow, (3) parallel development of classification models using metaheuristic algorithms and Transformer models, and (4) a comprehensive comparative evaluation under a unified metrics framework. This process culminates in the implementation of the most effective solution in a functional web application, as depicted in Figure \ref{fig:metodologia_general_p3}.
 
 % Part 1
 \begin{figure}[H]
-\begin{adjustwidth}{-\extralength}{0cm}
 \centering
-\includegraphics[width=\linewidth]{Figures/system_architecture_p1.png}
-\end{adjustwidth}
+\includegraphics[width=\textwidth]{Figures/system_architecture_p1.png}
 \caption{Overview of the proposed research methodology (Part 1/3): Data Unification and Processing.}
 \label{fig:metodologia_general_p1}
 \end{figure}
@@ -209,20 +207,16 @@ We started by gathering four publicly available Spanish corpora: the Spanish Fak
 
 % Part 2
 \begin{figure}[H]
-\begin{adjustwidth}{-\extralength}{0cm}
 \centering
-\includegraphics[width=\linewidth]{Figures/system_architecture_p2.png}
-\end{adjustwidth}
+\includegraphics[width=\textwidth]{Figures/system_architecture_p2.png}
 \caption{Overview of the proposed research methodology (Part 2/3): Model Optimization and Comparative Evaluation.}
 \label{fig:metodologia_general_p2}
 \end{figure}
 
 % Part 3
 \begin{figure}[H]
-\begin{adjustwidth}{-\extralength}{0cm}
 \centering
-\includegraphics[width=\linewidth]{Figures/system_architecture_p3.png}
-\end{adjustwidth}
+\includegraphics[width=\textwidth]{Figures/system_architecture_p3.png}
 \caption{Overview of the proposed research methodology (Part 3/3): Web Application Deployment and Inference.}
 \label{fig:metodologia_general_p3}
 \end{figure}
@@ -275,10 +269,11 @@ Training transformer models requires precise configuration. The primary challeng
 
 \begin{figure}[H]
 \centering
-\subfloat[Overfitting scenario: Validation loss increases while training loss continues to decrease.]{\includegraphics[width=0.45\textwidth]{Figures/overfitting_example.png} \label{fig:overfitting_example}}
+% Usamos 0.49\textwidth para que cada una ocupe la mitad del ancho del TEXTO (no de la página completa)
+\subfloat[Overfitting scenario: Validation loss diverges while training loss decreases.]{\includegraphics[width=0.49\textwidth]{Figures/overfitting_example.png} \label{fig:overfitting_example}}
 \hfill
-\subfloat[Underfitting scenario: Both training and validation losses remain high and fail to converge.]{\includegraphics[width=0.45\textwidth]{Figures/underfitting_example.png} \label{fig:underfitting_example}}
-\caption{Visual comparison of training behaviors. The horizontal axis represents the number of epochs, while the vertical axis indicates the Loss value. (a) Illustrates overfitting, characterized by the divergence of the validation curve (red) from the training curve (blue). (b) Illustrates underfitting, where the model fails to capture underlying patterns effectively.}
+\subfloat[Underfitting scenario: Both training and validation losses remain high without convergence.]{\includegraphics[width=0.49\textwidth]{Figures/underfitting_example.png} \label{fig:underfitting_example}}
+\caption{Visual comparison of model training behaviors plotted on identical scales for direct comparability. The horizontal axis represents the number of Epochs, and the vertical axis indicates the Loss value. (a) Illustrates \textbf{overfitting}, where the model memorizes the training data (blue line decreases) but fails to generalize to new data (red validation line increases). (b) Illustrates \textbf{underfitting}, characterized by the inability of the model to capture underlying patterns, resulting in high loss values for both curves.}
 \label{fig:overfitting_underfitting_examples}
 \end{figure}
 
@@ -426,10 +421,8 @@ Specificity & 94.5 \\
 And there’s a confusion matrix for this DistilBERT model too.
 
 \begin{figure}[H]
-\begin{adjustwidth}{-\extralength}{0cm}
 \centering
-\includegraphics[width=\linewidth]{Figures/DistilBERT_confusion_matrix.png} 
-\end{adjustwidth}
+\includegraphics[width=\textwidth]{Figures/DistilBERT_confusion_matrix.png} 
 \caption{Confusion matrix for the final DistilBERT model on the test set.}
 \label{fig:distilbert_confusion_matrix}
 \end{figure}
@@ -468,7 +461,7 @@ The implementation of a rigorous regularization strategy successfully mitigated 
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.8\textwidth]{Figures/training_curves.png}
+\includegraphics[width=\textwidth]{Figures/training_curves.png}
 \caption{Evolution of performance metrics during the fine-tuning of the final model (V7). The x-axis represents the training epochs, while the y-axes represent Loss (left) and Accuracy (right). The blue lines denote training performance, and the red lines denote validation performance. The gold star identifies the optimal checkpoint at Epoch 13, where the generalization gap (0.058) was minimized before the onset of overfitting.}
 \label{fig:training_curves}
 \end{figure}
@@ -478,9 +471,9 @@ The deployed web application demonstrated robustness in real-world scenarios. It
 
 \begin{figure}[H]
 \centering
-\subfloat[Correctly identifying a real news article with 93.59\% confidence.]{\includegraphics[width=0.8\linewidth]{Figures/app_real1.png} \label{fig:sub1}} \\
+\subfloat[Correctly identifying a real news article with 93.59\% confidence.]{\includegraphics[width=\textwidth]{Figures/app_real1.png} \label{fig:sub1}} \\
 \vspace{1em}
-\subfloat[Successfully identifying a misleading fake news piece with 94.31\% confidence.]{\includegraphics[width=0.8\linewidth]{Figures/app_falsa1.png} \label{fig:sub2}}
+\subfloat[Successfully identifying a misleading fake news piece with 94.31\% confidence.]{\includegraphics[width=\textwidth]{Figures/app_falsa1.png} \label{fig:sub2}}
 \caption{Screenshots of the deployed web application analyzing different types of URLs.}
 \label{fig:app_screenshots}
 \end{figure}
