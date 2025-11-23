@@ -351,15 +351,15 @@
                 <div class="stat-label">Initial Fake<br>(41.3%)</div>
             </div>
             <div class="stat-card initial-real">
-                <div class="stat-number" id="initialRealCount">30,943</div>
+                <div class="stat-number" id="initialRealCount">30,940</div>
                 <div class="stat-label">Initial Real<br>(58.7%)</div>
             </div>
             <div class="stat-card final-fake">
-                <div class="stat-number" id="finalFakeCount">30,746</div>
+                <div class="stat-number" id="finalFakeCount">30,734</div>
                 <div class="stat-label">Final Fake<br>(49.8%)</div>
             </div>
             <div class="stat-card final-real">
-                <div class="stat-number" id="finalRealCount">30,943</div>
+                <div class="stat-number" id="finalRealCount">30,940</div>
                 <div class="stat-label">Final Real<br>(50.2%)</div>
             </div>
             <div class="stat-card scraped">
@@ -367,7 +367,7 @@
                 <div class="stat-label">Web Scraped<br>Articles</div>
             </div>
             <div class="stat-card total">
-                <div class="stat-number" id="totalCount">61,689</div>
+                <div class="stat-number" id="totalCount">61,674</div>
                 <div class="stat-label">Final Total<br>Corpus</div>
             </div>
         </div>
@@ -383,7 +383,7 @@
                     <div class="corpus-item">Tretiakov <span class="cite">[8]</span>: 1,958 records</div>
                     <div class="corpus-item">Blanco-Fernández <span class="cite">[7]</span>: 57,231 records</div>
                     <div class="corpus-item" style="background: rgba(255,255,255,0.2); font-weight: bold;">
-                        Total: 60,758 → 52,689 unique
+                        Total: 60,758 → 52,686 unique
                     </div>
                 </div>
                 <div class="process-step">
@@ -460,21 +460,22 @@
         Chart.register(ChartDataLabels);
 
         // Initial unified corpus data (Real)
+        // Updated real count to match the final correct number: 30,940
         const initialData = {
             labels: ['Real News', 'Fake News'],
             datasets: [{
-                data: [30943, 21746], // Real data from unified corpus
+                data: [30940, 21746], 
                 backgroundColor: ['#f39c12', '#e74c3c'],
                 borderColor: ['#e67e22', '#c0392b'],
                 borderWidth: 2
             }]
         };
 
-        // Final data after web scraping
+        // Final data after web scraping - UPDATED
         const finalData = {
             labels: ['Real News', 'Fake News'],
             datasets: [{
-                data: [30943, 30746], // Final balanced data
+                data: [30940, 30734], // Updated to specific numbers requested
                 backgroundColor: ['#27ae60', '#e74c3c'],
                 borderColor: ['#2ecc71', '#c0392b'],
                 borderWidth: 2
@@ -546,13 +547,14 @@
         }
 
         function animateCounters() {
+            // Updated counters to match the requested totals
             const counters = [
                 { element: document.getElementById('initialFakeCount'), target: 21746 },
-                { element: document.getElementById('initialRealCount'), target: 30943 },
-                { element: document.getElementById('finalFakeCount'), target: 30746 },
-                { element: document.getElementById('finalRealCount'), target: 30943 },
+                { element: document.getElementById('initialRealCount'), target: 30940 },
+                { element: document.getElementById('finalFakeCount'), target: 30734 },
+                { element: document.getElementById('finalRealCount'), target: 30940 },
                 { element: document.getElementById('scrapedCount'), target: 9000 },
-                { element: document.getElementById('totalCount'), target: 61689 }
+                { element: document.getElementById('totalCount'), target: 61674 }
             ];
 
             counters.forEach(counter => {
