@@ -307,7 +307,18 @@ The final stage of the methodology involved implementing the optimized DistilBER
 \label{fig:metodologia_general_p3}
 \end{figure}
 
-The system is architected as a containerized microservice stack, shown in Figure \ref{fig:system_components}. It consists of four integrated components:
+To guarantee scalability and reproducibility, the system was architected as a containerized microservice stack. This modular approach (Figure \ref{fig:system_components}) separates the frontend interface from the backend inference tasks, allowing for independent scaling and easier maintenance.
+
+\begin{figure}[H]
+\begin{adjustwidth}{-\extralength}{0cm}
+\centering
+\includegraphics[width=\linewidth]{Figures/component_diagram.png}
+\end{adjustwidth}
+\caption{System architecture of the deployed web application, showing the static components and their dependencies.}
+\label{fig:system_components}
+\end{figure}
+
+The system consists of four integrated components:
 \begin{enumerate}
     \item \textbf{User Interface:} A static web frontend where users submit URLs for analysis.
     \item \textbf{API Backend:} A Flask-based service exposing an \texttt{/analizar} endpoint to handle requests.
@@ -320,20 +331,12 @@ The interaction flow, from user request to final verdict, is detailed in the seq
 \begin{figure}[H]
 \begin{adjustwidth}{-\extralength}{0cm}
 \centering
-\includegraphics[width=\linewidth]{Figures/component_diagram.png}
-\end{adjustwidth}
-\caption{System architecture of the deployed web application, showing the static components and their dependencies.}
-\label{fig:system_components}
-\end{figure}
-
-\begin{figure}[H]
-\begin{adjustwidth}{-\extralength}{0cm}
-\centering
 \includegraphics[width=\linewidth]{Figures/sequence_diagram.png}
 \end{adjustwidth}
 \caption{Sequence diagram illustrating the dynamic step-by-step workflow of a prediction request from the user to the final verdict.}
 \label{fig:system_sequence}
 \end{figure}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Results}
@@ -449,19 +452,21 @@ Particle Swarm Opt. (PSO) & 57.67 & 0.489 & 0.736 & 0.575 & 16.3 & 6th \\
 \end{table}
 
 \subsection{Overfitting Control Analysis}
-The implementation of a rigorous regularization strategy successfully mitigated overfitting. Training concluded after 23 epochs due to early stopping, with the optimal checkpoint identified at epoch 17. At this point, training accuracy was 98.6\% and validation accuracy was 95.36\%. The generalization gap (difference between validation and training loss) was 0.058, approaching our target of <0.04 and remaining well below the 0.10 threshold typically indicating overfitting. Figure \ref{fig:training_curves} illustrates the evolution of accuracy and loss for the final model (V7).
+The implementation of a rigorous regularization strategy successfully mitigated overfitting. Training concluded after 23 epochs due to early stopping, with the optimal checkpoint identified at epoch 17. At this point, training accuracy was 98.6\% and validation accuracy was 95.36\%. Figure \ref{fig:training_curves} illustrates the evolution of accuracy and loss for the final model (V7). 
 
 \begin{figure}[H]
-\begin{adjustwidth}{-\extralength}{0cm}
 \centering
-\includegraphics[width=\linewidth]{Figures/training_curves.png}
-\end{adjustwidth}
+\includegraphics[width=\textwidth]{Figures/training_curves.png}
 \caption{Evolution of performance metrics during the fine-tuning of the final model (V7). The x-axis represents the training epochs, while the y-axes represent Loss (left) and Accuracy (right). The blue lines denote training performance, and the red lines denote validation performance. The gold star identifies the optimal checkpoint at Epoch 13, where the generalization gap (0.058) was minimized before the onset of overfitting.}
 \label{fig:training_curves}
 \end{figure}
 
+The generalization gap (difference between validation and training loss) was 0.058, approaching our target of <0.04 and remaining well below the 0.10 threshold typically indicating overfitting.
+
 \subsection{Real-World Application Performance}
-The deployed web application demonstrated robustness in real-world scenarios. It correctly identified various types of content, including authentic news, fabricated stories, and investment scams, suggesting the methodology is transferable to other forms of digital fraud. Screenshots of the application analyzing URLs are presented in Figure \ref{fig:app_screenshots}.
+The deployed web application demonstrated robustness in real-world scenarios. 
+
+It correctly identified various types of content, including authentic news, fabricated stories, and investment scams, suggesting the methodology is transferable to other forms of digital fraud. Screenshots of the application analyzing URLs are presented in Figure \ref{fig:app_screenshots}.
 
 \begin{figure}[H]
 \centering
