@@ -452,12 +452,12 @@ Particle Swarm Opt. (PSO) & 57.67 & 0.489 & 0.736 & 0.575 & 16.3 & 6th \\
 \end{table}
 
 \subsection{Overfitting Control Analysis}
-The implementation of a rigorous regularization strategy successfully mitigated overfitting. Training concluded after 23 epochs due to early stopping, with the optimal checkpoint identified at epoch 17. At this point, training accuracy was 98.6\% and validation accuracy was 95.36\%. Figure \ref{fig:training_curves} illustrates the evolution of accuracy and loss for the final model (V7). 
+The implementation of a rigorous regularization strategy successfully mitigated overfitting. Training concluded after 23 epochs due to early stopping, with the optimal checkpoint identified at epoch 17. At this point, training accuracy was 98.6\% and validation accuracy was 95.36\%. Figure \ref{fig:training_curves} illustrates the evolution of accuracy and loss for the final model (V11). 
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=\textwidth]{Figures/training_curves.png}
-\caption{Evolution of performance metrics during the fine-tuning of the final model (V7). The x-axis represents the training epochs, while the y-axes represent Loss (left) and Accuracy (right). The blue lines denote training performance, and the red lines denote validation performance. The gold star identifies the optimal checkpoint at Epoch 13, where the generalization gap (0.058) was minimized before the onset of overfitting.}
+\caption{Evolution of performance metrics during the fine-tuning of the final model (V11). The x-axis represents the training epochs, while the y-axes represent Loss (left) and Accuracy (right). The blue lines denote training performance, and the red lines denote validation performance. The gold star identifies the optimal checkpoint at Epoch 13, where the generalization gap (0.058) was minimized before the onset of overfitting.}
 \label{fig:training_curves}
 \end{figure}
 
@@ -492,11 +492,11 @@ Regarding extensibility to other languages, although this specific model is mono
 Future work will focus on three critical areas to address these limitations and expand the system's utility. First, we aim to implement Continuous Learning (CL) pipelines to update the model with fresh data periodically without catastrophic forgetting, mitigating the issue of concept drift. Second, rather than limiting the scope to news, we plan to apply this detection framework to broader categories of digital fraud, such as phishing pages, fraudulent e-commerce sites, and identity theft schemes. This will involve establishing a new methodology and constructing a specialized corpus for these domains. Finally, we intend to expand the web application's API to support browser extensions, bringing the detection capability directly to the user's browsing experience.
 
 \section{Conclusions}
-This study presents a comprehensive end-to-end framework for Spanish fake news detection, spanning from data acquisition to the deployment of a real-world application. A significant contribution is the creation of a unified corpus of 61,674 articles, which addresses a critical deficiency in Spanish NLP resources and establishes a robust foundation for future research.
+This study addresses the critical need for robust misinformation detection tools in the Spanish-speaking world, offering a comprehensive end-to-end framework that bridges the gap between theoretical NLP research and practical societal application. A cornerstone of this contribution is the construction of a unified corpus of 61,674 articles, which not only rectifies the historic scarcity of balanced Spanish datasets but also establishes a standardized benchmark for future investigations.
 
-We invested over 500 GPU hours in hyperparameter optimization, identifying effective strategies to mitigate overfitting in transformer training. The results indicate that a multi-layered regularization strategy was decisive, enabling the final model to achieve 95.36\% accuracy. This represents a 23.33 percentage point improvement over traditional methods, establishing a new benchmark for this task.
+Through a rigorous experimental process involving over 500 GPU hours, we demonstrated that a systematically fine-tuned DistilBERT model significantly outperforms classical metaheuristic-optimized approaches, achieving 95.36\% accuracy. The implementation of a multi-layered regularization strategy proved decisive in controlling overfitting, confirming that modern transformer architectures are essential for capturing the semantic nuances of deceptive content that traditional methods miss.
 
-A notable outcome is the development of the Docker-based web application, which translates theoretical research into a practical, accessible tool for digital fraud prevention. The entire framework—comprising the corpus, the optimized model, and the application code—has been made publicly available to facilitate reproducibility and adaptation. Future work will focus on integrating multilingual support, implementing real-time learning mechanisms, and connecting with fact-checking APIs to further strengthen the digital information ecosystem.
+Beyond technical metrics, the deployment of the model into a Dockerized web application represents a tangible step towards digital self-defense for Spanish speakers. By converting a complex predictive model into an accessible tool, this work empowers citizens to verify information in real-time, serving as a cultural safeguard against the erosion of truth. The open-source availability of the entire framework facilitates further adaptation, paving the way for more resilient and culturally aware AI systems in the fight against digital fraud.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \vspace{6pt} 
@@ -505,13 +505,13 @@ A notable outcome is the development of the Docker-based web application, which 
 \authorcontributions{Conceptualization, G.H.A. and J.A.R.-O.; Data Curation, G.H.A. and R.A.M.-G.; Formal Analysis, J.P.C.; Funding Acquisition, J.A.R.-O.; Investigation, G.H.A.; Methodology, G.H.A., J.A.R.-O., R.A.M.-G. and J.P.C.; Project Administration, J.A.R.-O.; Resources, G.H.A. and J.A.R.-O.; Software, G.H.A.; Supervision, J.A.R.-O. and R.A.M.-G.; Validation, J.P.C. and R.A.M.-G.; Visualization, G.H.A., J.A.R.-O., R.A.M.-G. and J.P.C.; Writing—Original Draft, G.H.A.; Writing—Review and Editing, J.A.R.-O., R.A.M.-G. and J.P.C. All authors have read and agreed to the published version of the manuscript.}
 
 \funding{The present work was funded by the Consejo Nacional de Humanidades, Ciencia y
- Tecnologia (CONAHCYT) Mexico under scholarship No. 1313870.}
+ Tecnologia (CONAHCYT, currently SECIHTI), Mexico, under scholarship No. 1313870.}
 
 \institutionalreview{Not applicable.}
 
 \informedconsent{Not applicable.}
 
-\dataavailability{The unified corpus and trained models used in this study are publicly available at: \url{https://github.com/gabrielhuav/Spanish-Fake-News-Detection-Training}. The source code of the web application is available at: \url{https://github.com/gabrielhuav/Spanish-Fake-News-Detection-Web-App}.}
+\dataavailability{The unified corpus and trained models used in this study are publicly available at: \url{https://huggingface.co/datasets/gabrielhuav/Unified-and-Balanced-Spanish-Fake-News-Corpus} and \url{https://github.com/gabrielhuav/Spanish-Fake-News-Detection-Training} respectively. The source code of the web application is available at: \url{https://github.com/gabrielhuav/Spanish-Fake-News-Detection-Web-App}.}
 
 \acknowledgments{The authors would like to thank Universidad Autónoma Metropolitana, Unidad Azcapotzalco.}
 
