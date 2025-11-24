@@ -68,7 +68,11 @@ $^{1}$ \quad Department of Systems, Autonomous Metropolitan University (UAM), Az
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Introduction}
-The proliferation of digital misinformation represents a critical threat to information integrity \citep{bondielli2019survey}. In recent years, the rapid expansion of the internet has transformed how millions of people consume information, with social media and digital platforms becoming primary news sources. However, this growth has been accompanied by a surge in deceptive content, ranging from politically motivated fake news to fraudulent schemes such as phishing sites mimicking popular e-commerce platforms and investment scams. This phenomenon disproportionately affects vulnerable demographics, particularly older adults and individuals with lower digital literacy, who are often targeted by these sophisticated digital frauds. With over 500 million native speakers, the Spanish-speaking world is particularly exposed to these risks, yet it remains significantly underserved by the scientific community compared to English \citep{posadas2019detection, acosta2019construccion}. This technological gap is defined by three interconnected challenges: (1) the scarcity of large-scale, balanced datasets for training robust models; (2) insufficient research on systematic hyperparameter optimization for Spanish transformer models; and (3) a significant disconnection between academic research and the cultural tools available to the public.
+The proliferation of digital misinformation represents a critical threat to information integrity \citep{bondielli2019survey}. In recent years, the rapid expansion of the internet has transformed how millions of people consume information, with social media and digital platforms becoming primary news sources. However, this growth has been accompanied by a surge in deceptive content, ranging from politically motivated fake news to fraudulent schemes such as phishing sites mimicking popular e-commerce platforms and investment scams. This phenomenon disproportionately affects vulnerable demographics, particularly older adults and individuals with lower digital literacy, who are often targeted by these sophisticated digital frauds. Globally, the scientific community has responded to this threat with a plethora of detection strategies, evolving from feature-based machine learning models \citep{shu2017fake} to sophisticated deep learning architectures. Early approaches relied heavily on manual feature engineering using Support Vector Machines (SVM) or Naïve Bayes. However, the paradigm has shifted towards automated feature extraction using Convolutional Neural Networks (CNNs) and Recurrent Neural Networks (RNNs) \citep{zhou2020survey}. Recently, the advent of Transformer architectures, such as BERT, has established new state-of-the-art benchmarks by capturing bidirectional contextual dependencies \citep{kaliyar2021fakebert}.
+
+This evolution is not limited to English. In the French linguistic domain, researchers have moved towards localized transformer models (e.g., CamemBERT) to capture specific syntactic nuances, while studies in Asian languages like Chinese and Japanese have explored cross-lingual transfer learning to mitigate data scarcity \citep{hu2022deep}. A common technique across these diverse languages is the reliance on translated English datasets or small, domain-specific corpora, which often fails to capture the cultural subtleties of local misinformation.
+
+Despite these global advancements, the Spanish-speaking world—with over 500 million native speakers—remains significantly underserved. While models like FakeBERT \citep{kaliyar2021fakebert} achieve high accuracy in English, and localized efforts exist for French or Chinese, the direct application of these methods to Spanish is hindered by the lack of comparable, large-scale training resources. Consequently, Spanish research often relies on smaller, fragmented datasets \citep{posadas2019detection}, creating a technological gap defined by three interconnected challenges: (1) the scarcity of large-scale, balanced datasets for training robust models; (2) insufficient research on systematic hyperparameter optimization for Spanish transformer models; and (3) a significant disconnection between academic research and the cultural tools available to the public.
 
 From a cultural perspective, the development of a real-world application serves a broader objective than mere technical demonstration. In a digital landscape where misinformation erodes trust in public institutions and fragments social cohesion \citep{bondielli2019survey}, technical accuracy alone is insufficient. There is an urgent need for accessible tools that can be integrated into the daily digital routine of citizens, serving as cultural safeguards that reinforce critical thinking and digital literacy. Therefore, the primary motivation for optimizing this model extends beyond achieving a high F1-score; the goal is to enable a production-ready system capable of operating effectively in the real world, providing a tangible defense mechanism for the Spanish-speaking community.
 
@@ -101,9 +105,9 @@ The scholarly approach to fake news detection has evolved through several distin
 \midrule
 \begin{tabular}[t]{@{}l@{}}\textbf{Classical Machine}\\\textbf{Learning} \citep{thota2018fake, garcia2024fake}\end{tabular} & \begin{tabular}[t]{@{}l@{}}Use statistical features\\from text to classify\\content.\end{tabular} & \begin{tabular}[t]{@{}l@{}}Bag-of-Words, TF-IDF,\\Naive Bayes, SVM,\\Logistic Regression.\end{tabular} & \begin{tabular}[t]{@{}l@{}}Highly interpretable,\\computationally efficient,\\strong baseline.\end{tabular} & \begin{tabular}[t]{@{}l@{}}Fails to capture semantic\\meaning, word order,\\and context.\end{tabular} \\
 \midrule
-\begin{tabular}[t]{@{}l@{}}\textbf{Deep Learning}\\\textbf{(Transformers)} \citep{blanco2024enhancing, martinez2021fake}\end{tabular} & \begin{tabular}[t]{@{}l@{}}Leverage deep contextual\\embeddings to understand\\semantic nuances.\end{tabular} & \begin{tabular}[t]{@{}l@{}}BERT, RoBERTa,\\DistilBERT with\\fine-tuning.\end{tabular} & \begin{tabular}[t]{@{}l@{}}State-of-the-art performance,\\understands context\\and semantics.\end{tabular} & \begin{tabular}[t]{@{}l@{}}Computationally expensive,\\often a "black box",\\requires large datasets.\end{tabular} \\
+\begin{tabular}[t]{@{}l@{}}\textbf{Deep Learning}\\\textbf{(Transformers)} \citep{blanco2024enhancing, martinez2021fake, gomez2021overview}\end{tabular} & \begin{tabular}[t]{@{}l@{}}Leverage deep contextual\\embeddings to understand\\semantic nuances.\end{tabular} & \begin{tabular}[t]{@{}l@{}}BERT, RoBERTa,\\DistilBERT with\\fine-tuning.\end{tabular} & \begin{tabular}[t]{@{}l@{}}State-of-the-art performance,\\understands context\\and semantics.\end{tabular} & \begin{tabular}[t]{@{}l@{}}Computationally expensive,\\often a "black box",\\requires large datasets.\end{tabular} \\
 \midrule
-\begin{tabular}[t]{@{}l@{}}\textbf{Metaheuristic}\\\textbf{Optimization} \citep{yildirim2023novel, hurtado2024calibracion, padilla2024medicobert}\end{tabular} & \begin{tabular}[t]{@{}l@{}}Employ intelligent search\\algorithms to find optimal\\model parameters.\end{tabular} & \begin{tabular}[t]{@{}l@{}}GA, PSO, SA used to\\tune classifiers or\\select features.\end{tabular} & \begin{tabular}[t]{@{}l@{}}Finds superior hyperparameter\\configurations compared to\\manual or grid search.\end{tabular} & \begin{tabular}[t]{@{}l@{}}Can be computationally\\intensive; improves the model\\but not the underlying\\feature representation.\end{tabular} \\
+\begin{tabular}[t]{@{}l@{}}\textbf{Metaheuristic}\\\textbf{Optimization} \citep{yildirim2023novel, shu2017fake, padilla2024medicobert}\end{tabular} & \begin{tabular}[t]{@{}l@{}}Employ intelligent search\\algorithms to find optimal\\model parameters.\end{tabular} & \begin{tabular}[t]{@{}l@{}}GA, PSO, SA used to\\tune classifiers or\\select features.\end{tabular} & \begin{tabular}[t]{@{}l@{}}Finds superior hyperparameter\\configurations compared to\\manual or grid search.\end{tabular} & \begin{tabular}[t]{@{}l@{}}Can be computationally\\intensive; improves the model\\but not the underlying\\feature representation.\end{tabular} \\
 \bottomrule
 \end{tabular}
 }
@@ -115,7 +119,7 @@ A significant bottleneck for advancing fake news detection in Spanish has been t
 \subsection{Hyperparameter Optimization in Transformers and Metaheuristics}
 BERT and similar transformer models achieve strong results in NLP tasks, but require careful hyperparameter tuning. Most Spanish fake news studies have compared different pretrained models (BETO, multilingual BERT, etc.) without systematically optimizing the hyperparameters for any single model \citep{martinez2021fake}. DistilBERT, for example, presents an attractive trade-off between performance and computational cost, yet a detailed exploration of its optimal configuration for this specific task has been largely overlooked. The critical role of hyperparameter calibration is not a new problem; it has been well-documented in other specialized NLP tasks for Spanish, such as in the medical domain \citep{padilla2024medicobert}.
 
-Concurrently, classical machine learning models have been pushed to their limits through the use of metaheuristic algorithms. For instance, approaches using genetic algorithms or particle swarm optimization have been explored to fine-tune classifiers. Our own prior work established a baseline using five different metaheuristics on Spanish data \citep{hurtado2024calibracion}. Nevertheless, a direct and rigorous comparison between a systematically optimized Transformer and a suite of metaheuristic-optimized classical models on a large-scale Spanish corpus has been notably absent from the literature. This paper aims to fill that gap by providing not only this direct comparison but also a detailed methodology for Transformer regularization.
+Concurrently, classical machine learning models have been pushed to their limits through the use of metaheuristic algorithms. For instance, approaches using genetic algorithms or particle swarm optimization have been explored to fine-tune classifiers. While foundational studies have established baselines using classical representations on fake news data \citep{shu2017fake}, a direct and rigorous comparison between a systematically optimized Transformer and a suite of metaheuristic-optimized classical models on a large-scale Spanish corpus has been notably absent from the literature. This paper aims to fill that gap by providing not only this direct comparison but also a detailed methodology for Transformer regularization.
 
 \subsection{Deployment of NLP Models}
 A persistent issue in the academic NLP community is the "deployment gap"—the significant divide between models achieving high accuracy in research papers and the scarcity of practical, usable tools available to the public. While numerous studies have been published on fake news detection, a very small fraction of these result in production-ready, easily deployable applications. This gap severely limits the real-world impact of valuable research. Most fake news detection research stops at reporting test set performance. Very few studies produce working applications that people can actually use. We built a web application that analyzes URLs in real-time, demonstrating how research models can be deployed for practical use.
@@ -132,7 +136,7 @@ A persistent issue in the academic NLP community is the "deployment gap"—the s
 \midrule
 \begin{tabular}[t]{@{}l@{}}Posadas-Durán\\et al. \citep{posadas2019detection}\end{tabular} & \begin{tabular}[t]{@{}l@{}}Created a pioneering Spanish\\corpus (971 articles) with\\a stylometric focus.\end{tabular} & \begin{tabular}[t]{@{}l@{}}Stylometric features are useful\\for detection tasks, providing\\competitive results in IberLEF\\competitions with F1-scores\\around 0.85.\end{tabular} & \begin{tabular}[t]{@{}l@{}}Small, isolated dataset.\\Our work \textbf{unifies} it with\\others to create a\\large-scale resource.\end{tabular} \\
 \midrule
-\begin{tabular}[t]{@{}l@{}}Acosta \citep{acosta2019construccion}\end{tabular} & \begin{tabular}[t]{@{}l@{}}Established a rigorous\\manual verification\\methodology for a\\598-article corpus.\end{tabular} & \begin{tabular}[t]{@{}l@{}}High-quality manual verification\\is key for reliable ground truth\\establishment, achieving precision\\>95\% in annotation consistency.\end{tabular} & \begin{tabular}[t]{@{}l@{}}Very small scale. Our work\\\textbf{scales up} the data\\volume by over 100x.\end{tabular} \\
+\begin{tabular}[t]{@{}l@{}}Kaliyar et al. \citep{kaliyar2021fakebert}\end{tabular} & \begin{tabular}[t]{@{}l@{}}Proposed FakeBERT, a\\deep learning model combining\\BERT with CNN layers.\end{tabular} & \begin{tabular}[t]{@{}l@{}}Demonstrated that integrating\\BERT embeddings with\\convolutional networks achieves\\state-of-the-art accuracy (98.9\%)\\on English datasets.\end{tabular} & \begin{tabular}[t]{@{}l@{}}English-focused. Our work\\adapts and \textbf{optimizes}\\transformers specifically\\for the \textbf{Spanish language}.\end{tabular} \\
 \midrule
 \begin{tabular}[t]{@{}l@{}}Blanco-Fernández\\et al. \citep{blanco2024enhancing}\end{tabular} & \begin{tabular}[t]{@{}l@{}}Applied BERT/RoBERTa\\to a large, politically-focused\\dataset (57k articles).\end{tabular} & \begin{tabular}[t]{@{}l@{}}Transformers achieve 90-98\%\\accuracy on Spanish political\\fake news detection tasks\\with RoBERTa showing\\superior performance.\end{tabular} & \begin{tabular}[t]{@{}l@{}}Domain-specific. Our work\\uses a \textbf{multi-domain corpus}\\and performs \textbf{systematic}\\\textbf{optimization}.\end{tabular} \\
 \midrule
@@ -235,7 +239,7 @@ Furthermore, to maximize generalization and prevent overfitting, we applied a "h
 \label{fig:metodologia_general_p2}
 \end{figure}
 
-\textbf{Classical Machine Learning Baseline.} We initially established a baseline using TF-IDF feature representation, building upon prior work \citep{hurtado2024calibracion}. Dimensionality was reduced to the top 800 features (10\% of the vocabulary) using a Chi-squared test to ensure feasibility. Five metaheuristic algorithms—Multi-Start Simulated Annealing (MSA), Scatter Search (SS), Variable Neighborhood Search (VNS), Genetic Algorithm (GA), and Particle Swarm Optimization (PSO)—were employed to optimize the hyperparameters of a logistic regression model, maximizing the F1-Score.
+\textbf{Classical Machine Learning Baseline.} We initially established a baseline using TF-IDF feature representation, a standard approach validated in the fake news detection literature \citep{shu2017fake}. Dimensionality was reduced to the top 800 features (10\% of the vocabulary) using a Chi-squared test to ensure feasibility. Five metaheuristic algorithms—Multi-Start Simulated Annealing (MSA), Scatter Search (SS), Variable Neighborhood Search (VNS), Genetic Algorithm (GA), and Particle Swarm Optimization (PSO)—were employed to optimize the hyperparameters of a logistic regression model, maximizing the F1-Score.
 
 \textbf{Deep Learning with Transformers.} To overcome the semantic limitations of classical methods, we selected \texttt{distilbert-base-multilingual-cased} \citep{sanh2019distilbert}. While we evaluated the full BERT model and TinyBERT, DistilBERT offered the optimal trade-off between performance and computational efficiency for Spanish text, being approximately four times faster than BERT while maintaining competitive accuracy (Table \ref{tab:comparacion_modelos_bert}).
 
@@ -516,64 +520,71 @@ A notable outcome is the development of the Docker-based web application, which 
 
 \begin{thebibliography}{999}
 
+% --- INTRODUCTION ---
 \bibitem[1]{bondielli2019survey}
 Bondielli, A.; Marcelloni, F. A survey on fake news and rumour detection techniques. \textit{Information Sciences} \textbf{2019}, \textit{497}, 38--55. \href{https://doi.org/10.1016/j.ins.2019.05.035}{doi:10.1016/j.ins.2019.05.035}.
 
-\bibitem[2]{posadas2019detection}
-Posadas-Durán, J.P.; Gómez-Adorno, H.; Sidorov, G.; Escobar, J.J.M. Detection of fake news in a new corpus for the Spanish language. \textit{J. Intell. Fuzzy Syst.} \textbf{2019}, \textit{36}, 4869--4876. \href{https://doi.org/10.3233/jifs-179034}{doi:10.3233/jifs-179034}.
+\bibitem[2]{shu2017fake}
+Shu, K.; Sliva, A.; Wang, S.; Tang, J.; Liu, H. Fake News Detection on Social Media: A Data Mining Perspective. \textit{SIGKDD Explor. Newsl.} \textbf{2017}, \textit{19}, 22--36. \href{https://doi.org/10.1145/3137597.3137600}{doi:10.1145/3137597.3137600}.
 
-\bibitem[3]{acosta2019construccion}
-Acosta, F.A.Z. Construcción de un dataset de noticias para el entrenamiento y evaluación de clasificadores automatizados. Master's Thesis, Universidad Politécnica de Madrid, Madrid, Spain, 2019. Available online: \href{https://doi.org/10.13140/RG.2.2.31181.49126}{https://doi.org/10.13140/RG.2.2.31181.49126} (accessed on 7 October 2025).
+\bibitem[3]{zhou2020survey}
+Zhou, X.; Zafarani, R. A Survey of Fake News: Fundamental Theories, Detection Methods, and Opportunities. \textit{ACM Comput. Surv.} \textbf{2020}, \textit{53}, 1--40. \href{https://doi.org/10.1145/3395046}{doi:10.1145/3395046}.
 
-\bibitem[4]{hurtado2024calibracion}
-Hurtado Avilés, G.; Mora-Gutiérrez, R.A.; Reyes-Ortiz, J.A. Calibración de hiper-parámetros en algoritmos metaheurísticos para la detección de fraude digital. In Avances Recientes en Procesamiento de Lenguaje Natural y Otras Áreas Afines; Tovar Vidal, M., Lezama Sánchez, A.L., Contreras González, M., Eds.; Benemérita Universidad Autónoma de Puebla: Puebla, Mexico, 2024; pp. 14--26. ISBN 978-607-5914-56-5.
+\bibitem[4]{kaliyar2021fakebert}
+Kaliyar, R.K.; Goswami, A.; Narang, P. FakeBERT: Fake news detection in social media with a BERT-based deep learning approach. \textit{Multimed. Tools Appl.} \textbf{2021}, \textit{80}, 11765--11788. \href{https://doi.org/10.1007/s11042-020-10183-2}{doi:10.1007/s11042-020-10183-2}.
 
-\bibitem[5]{vaswani2017attention}
-Vaswani, A.; Shazeer, N.; Parmar, N.; Uszkoreit, J.; Jones, L.; Gomez, A.N.; Kaiser, L.; Polosukhin, I. Attention is All You Need. \textit{arXiv} \textbf{2017}, arXiv:1706.03762. \href{https://doi.org/10.48550/arXiv.1706.03762}{doi:10.48550/arXiv.1706.03762}.
-
-\bibitem[6]{hu2022deep}
+\bibitem[5]{hu2022deep}
 Hu, L.; Wei, S.; Zhao, Z.; Wu, B. Deep learning for fake news detection: A comprehensive survey. \textit{AI Open} \textbf{2022}, \textit{3}, 133--155. \href{https://doi.org/10.1016/j.aiopen.2022.09.001}{doi:10.1016/j.aiopen.2022.09.001}.
 
-\bibitem[7]{blanco2024enhancing}
+\bibitem[6]{posadas2019detection}
+Posadas-Durán, J.P.; Gómez-Adorno, H.; Sidorov, G.; Escobar, J.J.M. Detection of fake news in a new corpus for the Spanish language. \textit{J. Intell. Fuzzy Syst.} \textbf{2019}, \textit{36}, 4869--4876. \href{https://doi.org/10.3233/jifs-179034}{doi:10.3233/jifs-179034}.
+
+\bibitem[7]{acosta2019construccion}
+Acosta, F.A.Z. Construcción de un dataset de noticias para el entrenamiento y evaluación de clasificadores automatizados. Master's Thesis, Universidad Politécnica de Madrid, Madrid, Spain, 2019. Available online: \href{https://doi.org/10.13140/RG.2.2.31181.49126}{https://doi.org/10.13140/RG.2.2.31181.49126} (accessed on 7 October 2025).
+
+\bibitem[8]{blanco2024enhancing}
 Blanco-Fernández, Y.; Otero-Vizoso, J.; Gil-Solla, A.; García-Duque, J. Enhancing Misinformation Detection in Spanish Language with Deep Learning: BERT and RoBERTa Transformer Models. \textit{Appl. Sci.} \textbf{2024}, \textit{14}, 9729. \href{https://doi.org/10.3390/app14219729}{doi:10.3390/app14219729}.
 
-\bibitem[8]{tretiakov2022detection}
+\bibitem[9]{tretiakov2022detection}
 Tretiakov, A.; Martín García, A.; Camacho, D. Detection of false information in Spanish using machine learning techniques. In Intelligent Data Engineering and Automated Learning -- IDEAL 2022; Yin, H., Camacho, D., Tino, P., Eds.; Lecture Notes in Computer Science, vol. 13756; Springer International Publishing: Cham, Switzerland, 2022; pp. 42--53. ISBN 978-3-031-21753-1. \href{https://doi.org/10.1007/978-3-031-21753-1_5}{doi:10.1007/978-3-031-21753-1\_5}.
 
-
-\bibitem[9]{sanh2019distilbert}
-Sanh, V.; Debut, L.; Chaumond, J.; Wolf, T. DistilBERT, a distilled version of BERT: smaller, faster, cheaper and lighter. \textit{arXiv} \textbf{2019}, arXiv:1910.01108. \href{https://doi.org/10.48550/arXiv.1910.01108}{doi:10.48550/arXiv.1910.01108}. Model available online: \url{https://huggingface.co/distilbert-base-multilingual-cased} (accessed on 23 November 2025). Apache-2.0 License.
-
-\bibitem[10]{gomez2021overview}
-Gómez-Adorno, H.; Posadas-Durán, J.P.; Enguix, G.B.; Capetillo, C.P. Overview of FakeDeS at IberLEF 2021: Fake news detection in Spanish shared task. \textit{Procesamiento del Lenguaje Natural} \textbf{2021}, \textit{67}, 223--231. \href{https://doi.org/10.26342/2021-67-19}{doi:10.26342/2021-67-19}.
-
-\bibitem[11]{devlin2018bert}
-Devlin, J.; Chang, M.; Lee, K.; Toutanova, K. BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding. \textit{arXiv} \textbf{2018}, arXiv:1810.04805. \href{https://doi.org/10.48550/arXiv.1810.04805}{doi:10.48550/arXiv.1810.04805}.
-
-\bibitem[12]{thota2018fake}
-Thota, A.; Tilak, P.; Ahluwalia, S.; Lohia, N. Fake news detection: A deep learning approach. \textit{SMU Data Science Review} \textbf{2018}, \textit{1}(3). Available online: \href{https://scholar.smu.edu/datasciencereview/vol1/iss3/10/}{https://scholar.smu.edu/datasciencereview/vol1/iss3/10/} (accessed on 7 October 2025).
-
-\bibitem[13]{aragon2020overview}
-Aragón, M.E.; Jarquín-Vásquez, H.J.; Montes-y-Gómez, M.; Escalante, H.J.; Villaseñor-Pineda, L.; Gómez-Adorno, H.; Posadas-Durán, J.P.; Bel-Enguix, G. Overview of MEX-A3T at IberLEF 2020: Fake news and aggressiveness analysis in Mexican Spanish. In Notebook Papers of 2nd SEPLN Workshop on Iberian Languages Evaluation Forum (IberLEF); CEUR Workshop Proceedings, vol. 2664; 2020; pp. 222--235. Available online: \href{https://ceur-ws.org/Vol-2664/mex-a3t_overview.pdf}{https://ceur-ws.org/Vol-2664/mex-a3t\_overview.pdf}.
-
-
-\bibitem[14]{yildirim2023novel}
-Yildirim, G. A novel hybrid multi-thread metaheuristic approach for fake news detection in social media. \textit{Applied Intelligence} \textbf{2023}, \textit{53}, 11182--11202. \href{https://doi.org/10.1007/s10489-022-03972-9}{doi:10.1007/s10489-022-03972-9}.
-
-\bibitem[15]{tsai2023stylometric}
+% --- RELATED WORK ---
+\bibitem[10]{tsai2023stylometric}
 Tsai, C.M. Stylometric fake news detection based on natural language processing using named entity recognition: In-Domain and Cross-Domain analysis. \textit{Electronics} \textbf{2023}, \textit{12}, 3676. \href{https://doi.org/10.3390/electronics12173676}{doi:10.3390/electronics12173676}.
 
-\bibitem[16]{martinez2021fake}
-Martínez-Gallego, K.; Álvarez-Ortiz, A.M.; Arias-Londoño, J.D. Fake news detection in Spanish using deep learning techniques. \textit{arXiv} \textbf{2021}, arXiv:2110.06461. \href{https://doi.org/10.48550/arXiv.2110.06461}{doi:10.48550/arXiv.2110.06461}.
+\bibitem[11]{thota2018fake}
+Thota, A.; Tilak, P.; Ahluwalia, S.; Lohia, N. Fake news detection: A deep learning approach. \textit{SMU Data Science Review} \textbf{2018}, \textit{1}(3). Available online: \href{https://scholar.smu.edu/datasciencereview/vol1/iss3/10/}{https://scholar.smu.edu/datasciencereview/vol1/iss3/10/} (accessed on 7 October 2025).
 
-\bibitem[17]{jiao2019tinybert}
-Jiao, X.; Yin, Y.; Shang, L.; Jiang, X.; Chen, X.; Li, L.; Wang, F.; Liu, Q. TinyBERT: Distilling BERT for natural language understanding. \textit{arXiv} \textbf{2019}, arXiv:1909.10351. \href{https://doi.org/10.48550/arXiv.1909.10351}{doi:10.48550/arXiv.1909.10351}.
-
-\bibitem[18]{garcia2024fake}
+\bibitem[12]{garcia2024fake}
 García-Lozano, M.; García-Valls, M.; Iglesias, C.A. Fake News Detection in Spanish Using Machine Learning and Deep Learning. \textit{Electronics} \textbf{2024}, \textit{13}, 3361. \href{https://doi.org/10.3390/electronics13173361}{doi:10.3390/electronics13173361}.
 
-\bibitem[19]{padilla2024medicobert}
+\bibitem[13]{martinez2021fake}
+Martínez-Gallego, K.; Álvarez-Ortiz, A.M.; Arias-Londoño, J.D. Fake news detection in Spanish using deep learning techniques. \textit{arXiv} \textbf{2021}, arXiv:2110.06461. \href{https://doi.org/10.48550/arXiv.2110.06461}{doi:10.48550/arXiv.2110.06461}.
+
+\bibitem[14]{gomez2021overview}
+Gómez-Adorno, H.; Posadas-Durán, J.P.; Enguix, G.B.; Capetillo, C.P. Overview of FakeDeS at IberLEF 2021: Fake news detection in Spanish shared task. \textit{Procesamiento del Lenguaje Natural} \textbf{2021}, \textit{67}, 223--231. \href{https://doi.org/10.26342/2021-67-19}{doi:10.26342/2021-67-19}.
+
+\bibitem[15]{yildirim2023novel}
+Yildirim, G. A novel hybrid multi-thread metaheuristic approach for fake news detection in social media. \textit{Applied Intelligence} \textbf{2023}, \textit{53}, 11182--11202. \href{https://doi.org/10.1007/s10489-022-03972-9}{doi:10.1007/s10489-022-03972-9}.
+
+\bibitem[16]{padilla2024medicobert}
 Padilla Cuevas, J.; Reyes-Ortiz, J.A.; Cuevas-Rasgado, A.D.; Mora-Gutiérrez, R.A.; Bravo, M. MédicoBERT: A Medical Language Model for Spanish Natural Language Processing Tasks with a Question-Answering Application Using Hyperparameter Optimization. \textit{Appl. Sci.} \textbf{2024}, \textit{14}, 7031. \href{https://doi.org/10.3390/app14167031}{doi:10.3390/app14167031}.
+
+% --- METHODOLOGY & RESULTS ---
+\bibitem[17]{aragon2020overview}
+Aragón, M.E.; Jarquín-Vásquez, H.J.; Montes-y-Gómez, M.; Escalante, H.J.; Villaseñor-Pineda, L.; Gómez-Adorno, H.; Posadas-Durán, J.P.; Bel-Enguix, G. Overview of MEX-A3T at IberLEF 2020: Fake news and aggressiveness analysis in Mexican Spanish. In Notebook Papers of 2nd SEPLN Workshop on Iberian Languages Evaluation Forum (IberLEF); CEUR Workshop Proceedings, vol. 2664; 2020; pp. 222--235. Available online: \href{https://ceur-ws.org/Vol-2664/mex-a3t_overview.pdf}{https://ceur-ws.org/Vol-2664/mex-a3t\_overview.pdf}.
+
+\bibitem[18]{vaswani2017attention}
+Vaswani, A.; Shazeer, N.; Parmar, N.; Uszkoreit, J.; Jones, L.; Gomez, A.N.; Kaiser, L.; Polosukhin, I. Attention is All You Need. \textit{arXiv} \textbf{2017}, arXiv:1706.03762. \href{https://doi.org/10.48550/arXiv.1706.03762}{doi:10.48550/arXiv.1706.03762}.
+
+\bibitem[19]{devlin2018bert}
+Devlin, J.; Chang, M.; Lee, K.; Toutanova, K. BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding. \textit{arXiv} \textbf{2018}, arXiv:1810.04805. \href{https://doi.org/10.48550/arXiv.1810.04805}{doi:10.48550/arXiv.1810.04805}.
+
+\bibitem[20]{sanh2019distilbert}
+Sanh, V.; Debut, L.; Chaumond, J.; Wolf, T. DistilBERT, a distilled version of BERT: smaller, faster, cheaper and lighter. \textit{arXiv} \textbf{2019}, arXiv:1910.01108. \href{https://doi.org/10.48550/arXiv.1910.01108}{doi:10.48550/arXiv.1910.01108}. Model available online: \url{https://huggingface.co/distilbert-base-multilingual-cased} (accessed on 23 November 2025). Apache-2.0 License.
+
+\bibitem[21]{jiao2019tinybert}
+Jiao, X.; Yin, Y.; Shang, L.; Jiang, X.; Chen, X.; Li, L.; Wang, F.; Liu, Q. TinyBERT: Distilling BERT for natural language understanding. \textit{arXiv} \textbf{2019}, arXiv:1909.10351. \href{https://doi.org/10.48550/arXiv.1909.10351}{doi:10.48550/arXiv.1909.10351}.
 
 \end{thebibliography}
 
