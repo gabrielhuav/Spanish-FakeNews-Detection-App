@@ -360,10 +360,6 @@ The interaction flow, from user request to final verdict, is detailed in the seq
 \label{fig:system_sequence}
 \end{figure}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\section{Results}
-
 \subsection{Evaluation Metrics}
 We evaluated the models using standard metrics derived from the confusion matrix, which categorizes predictions into true positives (TP), true negatives (TN), false positives (FP), and false negatives (FN). In this context, the "positive" class represents real news (label 1), and the "negative" class represents fake news (label 0). These metrics are widely used in fake news detection literature, facilitating comparison with related work.
 
@@ -391,6 +387,12 @@ We evaluated the models using standard metrics derived from the confusion matrix
 \end{itemize}
 
 For the multiclass comparison, we utilized macro-averaged scores, calculating metrics for each class independently and then averaging them to ensure equitable representation.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Results}
+
+The following subsections present the experimental results obtained by applying the evaluation metrics defined in Section 3.4 to both the metaheuristic baseline and the fine-tuned transformer model.
 
 \subsection{Performance of the Metaheuristic Approach}
 The initial experimental phase established a baseline using classical machine learning algorithms optimized via metaheuristics on TF-IDF representations. Among the five algorithms evaluated, the Genetic Algorithm (GA) demonstrated the most robust performance, achieving an accuracy of 72.03\% and a macro F1-score of 0.714 (Table \ref{tab:final_comparison_all_models}). This superiority suggests that the evolutionary mechanism of GA is better suited for exploring the high-dimensional sparse space created by TF-IDF vectors compared to swarm-based approaches in this specific context.
