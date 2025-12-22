@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1763957102.17273 "c:/Users/gabri/Documents/GitHub Desktop/Spanish-FakeNews-Detection-App/MDPI_template/MDPI_template/template.tex" "template.pdf" "template" 1763957107.45535 0
+["pdflatex"] 1766377784.51992 "c:/Users/gabri/Documents/GitHub Desktop/Spanish-FakeNews-Detection-App/MDPI_template/MDPI_template/template.tex" "template.pdf" "template" 1766377790.63307 2
   "C:/Users/gabri/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1758413357 82507 a9eef8696c92627b87e9975edea03b2a ""
   "C:/Users/gabri/AppData/Local/MiKTeX/fonts/pk/ljfour/jknappen/ec/dpi375/ecss0800.pk" 1758412880 10028 12d55aac02b97f6cefc824f871aa4060 ""
   "C:/Users/gabri/AppData/Local/MiKTeX/fonts/pk/ljfour/jknappen/ec/dpi600/ectt1000.pk" 1754545168 20028 7815e30666db75f445558da507563fd8 ""
@@ -281,10 +281,10 @@
   "Figures/system_architecture_p3.png" 1763688476 141759 d6f006a79fa04b0a2aefee4b31767f9e ""
   "Figures/training_curves.png" 1763685137 305037 307b4cf609c98f844ae3164a1fe6e884 ""
   "Figures/underfitting_example.png" 1763772744 64322 9ff95c35c997ae1254fff9121d71386a ""
-  "c:/Users/gabri/Documents/GitHub Desktop/Spanish-FakeNews-Detection-App/MDPI_template/MDPI_template/template.tex" 1763957101 60482 c111b7650f6323fa6ba1d45abce9cb9d ""
-  "template.aux" 1763957107 18678 2bc50874126f01dc5ccfccda914aa2d3 "pdflatex"
-  "template.out" 1763957107 4231 2f3877edc3e81f0193c4eb2c3a7ca17f "pdflatex"
-  "template.tex" 1763957101 60482 c111b7650f6323fa6ba1d45abce9cb9d ""
+  "c:/Users/gabri/Documents/GitHub Desktop/Spanish-FakeNews-Detection-App/MDPI_template/MDPI_template/template.tex" 1766377770 68166 bd9cd110b5be22f14625657803881633 ""
+  "template.aux" 1766377790 19920 d180be7b6710f52a92796e36736c205f "pdflatex"
+  "template.out" 1766377790 4574 b4949db4cbf4ada65ff5aa9243324abf "pdflatex"
+  "template.tex" 1766377770 68166 bd9cd110b5be22f14625657803881633 ""
   (generated)
   "template.aux"
   "template.log"
