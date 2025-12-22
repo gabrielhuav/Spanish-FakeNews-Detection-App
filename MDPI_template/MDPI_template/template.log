@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.5.25)  21 DEC 2025 22:29
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.5.25)  21 DEC 2025 22:43
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1543,23 +1543,6 @@ LaTeX Font Info:    Overwriting symbol font `AMSb' in version `normal'
 (Font)                  U/msb/m/n --> U/msb/m/n on input line 67.
 LaTeX Font Info:    Overwriting symbol font `AMSb' in version `bold'
 (Font)                  U/msb/m/n --> U/msb/m/n on input line 67.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 67.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\times' on input line 67.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `superscript' on input line 67.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 67.
-
 Package marginnote Info: Margin note 1.1 is on absolute page 1 on input line 67
 .
 Package marginnote Info: right page because not two side mode on input line 67.
@@ -1605,6 +1588,7 @@ LaTeX Font Info:    Font shape `U/msb/m/n' will be
 (Font)              scaled to size 8.33606pt on input line 67.
 LaTeX Font Info:    Trying to load font information for T1+cmss on input line 6
 7.
+
 (C:\Users\gabri\AppData\Local\Programs\MiKTeX\tex/latex/base\t1cmss.fd
 File: t1cmss.fd 2023/04/13 v2.5m Standard LaTeX font definitions
 )
@@ -1662,7 +1646,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-12.18796pt}.
 
 [5]
-<Figures/system_architecture_p1.png, id=220, 451.4466pt x 224.5188pt>
+<Figures/system_architecture_p1.png, id=219, 451.4466pt x 224.5188pt>
 File: Figures/system_architecture_p1.png Graphic file (type png)
 <use Figures/system_architecture_p1.png>
 Package pdftex.def Info: Figures/system_architecture_p1.png  used on input line
@@ -1677,7 +1661,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-12.18796pt}.
 
 [6 <./Figures/system_architecture_p1.png>]
-<Figures/corpus_balance.png, id=237, 1348.28719pt x 587.94656pt>
+<Figures/corpus_balance.png, id=236, 1348.28719pt x 587.94656pt>
 File: Figures/corpus_balance.png Graphic file (type png)
 <use Figures/corpus_balance.png>
 Package pdftex.def Info: Figures/corpus_balance.png  used on input line 237.
@@ -1929,13 +1913,13 @@ Package rerunfilecheck Info: File `template.out' has not changed.
 (rerunfilecheck)             Checksum: B4949DB4CBF4ADA65FF5AA9243324ABF;4574.
  ) 
 Here is how much of TeX's memory you used:
- 38932 strings out of 474486
- 772930 string characters out of 5743755
+ 38929 strings out of 474486
+ 772903 string characters out of 5743755
  1958542 words of memory out of 5000000
  59936 multiletter control sequences out of 15000+600000
- 642066 words of font info for 485 fonts, out of 8000000 for 9000
+ 641917 words of font info for 483 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 123i,17n,124p,1759b,1347s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 123i,17n,124p,1938b,1347s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\gabri\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt
 1000.pk> <C:\Users\gabri\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi37
 5\ecss0800.pk><C:/Users/gabri/AppData/Local/Programs/MiKTeX/fonts/type1/public/
@@ -1945,7 +1929,7 @@ onts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/gabri/AppData/Local/Programs
 /MiKTeX/fonts/type1/urw/palatino/uplb8a.pfb><C:/Users/gabri/AppData/Local/Progr
 ams/MiKTeX/fonts/type1/urw/palatino/uplr8a.pfb><C:/Users/gabri/AppData/Local/Pr
 ograms/MiKTeX/fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on template.pdf (20 pages, 2317034 bytes).
+Output written on template.pdf (20 pages, 2317945 bytes).
 PDF statistics:
  516 PDF objects out of 1000 (max. 8388607)
  108 named destinations out of 1000 (max. 500000)

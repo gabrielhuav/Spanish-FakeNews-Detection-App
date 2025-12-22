@@ -390,10 +390,10 @@ INPUT .\template.out
 INPUT .\template.out
 INPUT template.out
 INPUT template.out
+OUTPUT template.pdf
 INPUT .\template.out
 INPUT .\template.out
 OUTPUT template.out
-OUTPUT template.pdf
 INPUT C:\Users\gabri\AppData\Local\Programs\MiKTeX\fonts\tfm\adobe\palatino\pplr8t.tfm
 INPUT C:\Users\gabri\AppData\Local\Programs\MiKTeX\fonts\tfm\adobe\palatino\pplb8t.tfm
 INPUT C:\Users\gabri\AppData\Local\Programs\MiKTeX\fonts\tfm\adobe\palatino\pplri8t.tfm
@@ -562,15 +562,6 @@ INPUT C:\Users\gabri\AppData\Local\Programs\MiKTeX\fonts\vf\adobe\palatino\pplb8
 INPUT C:\Users\gabri\AppData\Local\Programs\MiKTeX\fonts\tfm\adobe\palatino\pplb8r.tfm
 INPUT C:\Users\gabri\AppData\Local\Programs\MiKTeX\fonts\vf\adobe\palatino\pplr8t.vf
 INPUT C:\Users\gabri\AppData\Local\Programs\MiKTeX\fonts\tfm\adobe\palatino\pplr8r.tfm
-INPUT C:\Users\gabri\AppData\Local\Programs\MiKTeX\fonts\vf\adobe\palatino\pplr7t.vf
-INPUT C:\Users\gabri\AppData\Local\Programs\MiKTeX\fonts\vf\public\mathpazo\zplmr7y.vf
-INPUT C:\Users\gabri\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmsy10.tfm
-INPUT C:\Users\gabri\AppData\Local\Programs\MiKTeX\fonts\tfm\public\mathpazo\fplmr.tfm
-INPUT C:\Users\gabri\AppData\Local\Programs\MiKTeX\fonts\vf\public\mathpazo\zplmr7y.vf
-INPUT C:\Users\gabri\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmsy10.tfm
-INPUT C:\Users\gabri\AppData\Local\Programs\MiKTeX\fonts\tfm\public\mathpazo\fplmr.tfm
-INPUT C:\Users\gabri\AppData\Local\Programs\MiKTeX\fonts\tfm\adobe\palatino\pplr8r.tfm
-INPUT C:\Users\gabri\AppData\Local\Programs\MiKTeX\fonts\vf\adobe\palatino\pplr7t.vf
 INPUT C:\Users\gabri\AppData\Local\Programs\MiKTeX\fonts\vf\adobe\palatino\pplb8t.vf
 INPUT C:\Users\gabri\AppData\Local\Programs\MiKTeX\fonts\tfm\adobe\palatino\pplb8r.tfm
 INPUT C:\Users\gabri\AppData\Local\Programs\MiKTeX\fonts\vf\adobe\palatino\pplri8t.vf
@@ -579,6 +570,7 @@ INPUT C:\Users\gabri\AppData\Local\Programs\MiKTeX\fonts\tfm\adobe\palatino\pplr
 INPUT C:\Users\gabri\AppData\Local\Programs\MiKTeX\fonts\tfm\adobe\palatino\pplb8t.tfm
 INPUT C:\Users\gabri\AppData\Local\Programs\MiKTeX\fonts\tfm\adobe\palatino\pplr8t.tfm
 INPUT C:\Users\gabri\AppData\Local\Programs\MiKTeX\fonts\vf\adobe\palatino\pplr8c.vf
+INPUT C:\Users\gabri\AppData\Local\Programs\MiKTeX\fonts\tfm\public\mathpazo\fplmr.tfm
 INPUT C:\Users\gabri\AppData\Local\Programs\MiKTeX\fonts\vf\adobe\palatino\pplb8t.vf
 INPUT C:\Users\gabri\AppData\Local\Programs\MiKTeX\fonts\tfm\adobe\palatino\pplb8r.tfm
 INPUT C:\Users\gabri\AppData\Local\Programs\MiKTeX\fonts\vf\adobe\palatino\pplr8t.vf
@@ -610,6 +602,9 @@ INPUT C:\Users\gabri\AppData\Local\Programs\MiKTeX\fonts\tfm\public\mathpazo\fpl
 INPUT C:\Users\gabri\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmmi10.tfm
 INPUT C:\Users\gabri\AppData\Local\Programs\MiKTeX\fonts\vf\public\mathpazo\zplmr7t.vf
 INPUT C:\Users\gabri\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmr10.tfm
+INPUT C:\Users\gabri\AppData\Local\Programs\MiKTeX\fonts\vf\adobe\palatino\pplr7t.vf
+INPUT C:\Users\gabri\AppData\Local\Programs\MiKTeX\fonts\vf\public\mathpazo\zplmr7y.vf
+INPUT C:\Users\gabri\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmsy10.tfm
 INPUT .\Figures\system_architecture_p2.png
 INPUT .\Figures\system_architecture_p2.png
 INPUT .\Figures\system_architecture_p2.png
@@ -646,6 +641,11 @@ INPUT C:\Users\gabri\AppData\Local\Programs\MiKTeX\fonts\tfm\public\mathpazo\zpl
 INPUT C:\Users\gabri\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\euler\eurb10.tfm
 INPUT C:\Users\gabri\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\euler\eurb7.tfm
 INPUT C:\Users\gabri\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\euler\eurb5.tfm
+INPUT C:\Users\gabri\AppData\Local\Programs\MiKTeX\fonts\vf\public\mathpazo\zplmr7y.vf
+INPUT C:\Users\gabri\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmsy10.tfm
+INPUT C:\Users\gabri\AppData\Local\Programs\MiKTeX\fonts\tfm\public\mathpazo\fplmr.tfm
+INPUT C:\Users\gabri\AppData\Local\Programs\MiKTeX\fonts\tfm\adobe\palatino\pplr8r.tfm
+INPUT C:\Users\gabri\AppData\Local\Programs\MiKTeX\fonts\vf\adobe\palatino\pplr7t.vf
 INPUT .\Figures\system_architecture_p3.png
 INPUT .\Figures\system_architecture_p3.png
 INPUT .\Figures\system_architecture_p3.png
