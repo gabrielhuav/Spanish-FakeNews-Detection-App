@@ -390,10 +390,10 @@ INPUT .\template.out
 INPUT .\template.out
 INPUT template.out
 INPUT template.out
-OUTPUT template.pdf
 INPUT .\template.out
 INPUT .\template.out
 OUTPUT template.out
+OUTPUT template.pdf
 INPUT C:\Users\gabri\AppData\Local\Programs\MiKTeX\fonts\tfm\adobe\palatino\pplr8t.tfm
 INPUT C:\Users\gabri\AppData\Local\Programs\MiKTeX\fonts\tfm\adobe\palatino\pplb8t.tfm
 INPUT C:\Users\gabri\AppData\Local\Programs\MiKTeX\fonts\tfm\adobe\palatino\pplri8t.tfm
