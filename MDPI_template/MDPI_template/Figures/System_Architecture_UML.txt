@@ -1,0 +1,80 @@
+@startuml
+!define RECTANGLE class
+
+' --- Configuration for International Standard ---
+skinparam {
+    DefaultFontSize 14
+    DefaultFontName Arial
+    TitleFontSize 18
+    Padding 8
+    BoxPadding 15
+    ArrowThickness 2
+    Shadowing false
+    ArrowColor #660066
+}
+
+' Professional Purple/Pink Palette
+skinparam package {
+    BackgroundColor #F1C1F0
+    BorderColor #660066
+    BorderThickness 2
+    FontSize 15
+    FontStyle bold
+    FontColor #660066
+}
+
+skinparam component {
+    BackgroundColor #FFFFFF
+    BorderColor #660066
+    BorderThickness 2
+    FontSize 13
+}
+
+' Blue Accents for External Data
+skinparam cloud {
+    BackgroundColor #E6F0FF
+    BorderColor #006BCC
+    FontColor #006BCC
+}
+
+skinparam database {
+    BackgroundColor #E6F0FF
+    BorderColor #006BCC
+    FontColor #006BCC
+}
+
+title Figure 6. System Architecture of the Deployed Web Application
+
+actor "User" as User #006BCC
+
+package "Client Layer" {
+    component "**Web Interface**\n(HTML/Flask Templates)" as UI
+}
+
+package "Docker Container Environment" #F9F0F9 {
+    
+    component "**Flask API Backend**\n(Endpoint: /analyze)" as API
+    
+    package "Inference Processing Pipeline" #FFFFFF {
+        component "**Web Scraper**\n(BeautifulSoup)" as Scraper
+        component "**Tokenizer**\n(DistilBERT)" as Token
+        component "**Classifier Model**\n(Binary Prediction)" as Model
+    }
+    
+    database "**Model Artifacts**\n(Weights & Config)" as Artifacts
+}
+
+cloud "External\nNews Sources" as Web
+
+' Vertical Logic Flow with Extended Scraper-to-Web arrow
+User -down-> UI : Submit URL
+UI -down-> API : POST Request
+API -down-> Scraper : Extract Content
+Scraper -right-------> Web : HTTP GET Request
+Scraper -down-> Token : Raw Text
+Token -down-> Model : Token IDs
+Model -left-> Artifacts : Load Weights
+Model -up-> API : Prediction\n+ Confidence
+API -up-> UI : JSON Response
+UI -up-> User : Display Verdict
+@enduml

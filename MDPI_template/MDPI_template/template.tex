@@ -204,7 +204,7 @@ The methodology of this research is structured as a unified pipeline designed to
 \end{figure}
 
 \subsection{Data Acquisition and Processing}
-Creating a comprehensive dataset was the primary challenge addressed in this study. Spanish fake news resources are typically scattered and limited in scope. To overcome this, a unified corpus was constructed by aggregating three publicly available academic datasets: the Spanish Fake News Corpus (971 articles) \citep{posadas2019detection}, the Tretiakov Dataset (2,000 articles) \citep{tretiakov2022detection}, and the Spanish Political Dataset (57,231 articles) \citep{blanco2024enhancing}. This initial aggregation yielded a total of \textbf{60,202} articles. Table \ref{tab:comparacion_exhaustiva_corpus} details the characteristics of each source.
+Creating a comprehensive dataset was the primary challenge addressed in this study. Spanish fake news resources are typically scattered and limited in scope. To overcome this, a unified corpus was constructed by aggregating three publicly available academic datasets: the Spanish Fake News Corpus (971 articles) \citep{posadas2019detection}, the Tretiakov Dataset (1,958 articles) \citep{tretiakov2022detection}, and the Spanish Political Dataset (57,231 articles) \citep{blanco2024enhancing}. This initial aggregation yielded a total of \textbf{60,160} articles. Table \ref{tab:comparacion_exhaustiva_corpus} details the characteristics of each source.
 
 \begin{table}[H]
 \centering
@@ -223,7 +223,7 @@ Creating a comprehensive dataset was the primary challenge addressed in this stu
 \textbf{Class Distribution} & Balanced & Balanced & Balanced & Fake Only \\
 \textbf{Regional Variability} & Spain/LatAm & Multiple & Spain & Mexico \\
 \textbf{Annotation Quality} & \begin{tabular}[t]{@{}c@{}}High\\(multi-annotator)\end{tabular} & \begin{tabular}[t]{@{}c@{}}Medium\\(source-based)\end{tabular} & \begin{tabular}[t]{@{}c@{}}High\\(specialized)\end{tabular} & \begin{tabular}[t]{@{}c@{}}Automatic\\(inherently fake)\end{tabular} \\
-\textbf{Contribution to Final Corpus} & 1.6\% & 3.3\% & 95.3\% & 14.6\% (added) \\
+	extbf{Contribution to Final Corpus} & 1.4\% & 2.8\% & 81.2\% & 14.6\% (added) \\
 \bottomrule
 \end{tabular}
 }
@@ -330,35 +330,31 @@ The final stage of the methodology involved implementing the optimized DistilBER
 \label{fig:metodologia_general_p3}
 \end{figure}
 
-To guarantee scalability and reproducibility, the system was architected as a containerized microservice stack. This modular approach (Figure \ref{fig:system_components}) separates the frontend interface from the backend inference tasks, allowing for independent scaling and easier maintenance.
+The interaction flow, from user request to final verdict, is detailed in the sequence diagram (Figure \ref{fig:system_sequence}).
 
 \begin{figure}[H]
-\begin{adjustwidth}{-\extralength}{0cm}
 \centering
-\includegraphics[width=\linewidth]{Figures/component_diagram.png}
-\end{adjustwidth}
-\caption{System architecture of the deployed web application, showing the static components and their dependencies.}
-\label{fig:system_components}
+\includegraphics[width=\textwidth]{Figures/sequence_diagram.png}
+\caption{Sequence diagram illustrating the dynamic step-by-step workflow of a prediction request from the user to the final verdict.}
+\label{fig:system_sequence}
 \end{figure}
 
 The system consists of four integrated components:
 \begin{enumerate}
     \item \textbf{User Interface:} A static web frontend where users submit URLs for analysis.
-    \item \textbf{API Backend:} A Flask-based service exposing an \texttt{/analizar} endpoint to handle requests.
+    \item \textbf{API Backend:} A Flask-based service exposing an \texttt{/analyze} endpoint to handle requests.
     \item \textbf{Inference Engine:} This component loads the trained DistilBERT model and tokenizer. It scrapes the content of the submitted URL (extracting \texttt{<h1>} and \texttt{<p>} tags via \texttt{BeautifulSoup}), tokenizes the text combining title and body with a \texttt{[SEP]} token, and computes the probability scores using a softmax function.
     \item \textbf{Docker Deployment:} The entire environment, including Python dependencies and model artifacts, is encapsulated in a Docker image to ensure reproducibility and ease of deployment.
 \end{enumerate}
 
-The interaction flow, from user request to final verdict, is detailed in the sequence diagram (Figure \ref{fig:system_sequence}).
-
 \begin{figure}[H]
-\begin{adjustwidth}{-\extralength}{0cm}
 \centering
-\includegraphics[width=\linewidth]{Figures/sequence_diagram.png}
-\end{adjustwidth}
-\caption{Sequence diagram illustrating the dynamic step-by-step workflow of a prediction request from the user to the final verdict.}
-\label{fig:system_sequence}
+\includegraphics[width=0.75\textwidth]{Figures/component_diagram.png}
+\caption{System architecture of the deployed web application, showing the static components and their dependencies.}
+\label{fig:system_components}
 \end{figure}
+
+To guarantee scalability and reproducibility, the system was architected as a containerized microservice stack. This modular approach (Figure \ref{fig:system_components}) separates the frontend interface from the backend inference tasks, allowing for independent scaling and easier maintenance.
 
 \subsection{Evaluation Metrics}
 To assess model performance, standard metrics derived from the confusion matrix were employed, which categorizes predictions into true positives (TP), true negatives (TN), false positives (FP), and false negatives (FN). In this context, the "positive" class represents real news (label 1), and the "negative" class represents fake news (label 0). These metrics are widely used in fake news detection literature, facilitating comparison with related work.
@@ -398,18 +394,16 @@ The initial experimental phase established a baseline using classical machine le
 Conversely, Particle Swarm Optimization (PSO) exhibited the lowest performance (57.67\% accuracy) and failed to converge effectively. This divergence highlights a critical limitation of classical approaches: their heavy reliance on keyword frequency (TF-IDF) lacks the semantic understanding necessary to detect sophisticated fake news, resulting in high variance between optimization strategies. The confusion matrices in Figure \ref{fig:metaheuristic_confusion_matrices} visually confirm this instability, showing significant misclassification rates across the board for the metaheuristic models.
 
 \begin{figure}[H]
-\begin{adjustwidth}{-\extralength}{0cm}
 \centering
-\subfloat[GA Confusion Matrix]{\includegraphics[width=0.48\linewidth]{Figures/confusion_matrix_ga.png}}
+\subfloat[GA Confusion Matrix]{\includegraphics[width=0.48\textwidth]{Figures/confusion_matrix_ga.png}}
 \hfill
-\subfloat[VNS Confusion Matrix]{\includegraphics[width=0.48\linewidth]{Figures/confusion_matrix_vns.png}}
+\subfloat[VNS Confusion Matrix]{\includegraphics[width=0.48\textwidth]{Figures/confusion_matrix_vns.png}}
 \\
-\subfloat[SS Confusion Matrix]{\includegraphics[width=0.48\linewidth]{Figures/confusion_matrix_ss.png}}
+\subfloat[SS Confusion Matrix]{\includegraphics[width=0.48\textwidth]{Figures/confusion_matrix_ss.png}}
 \hfill
-\subfloat[MSA Confusion Matrix]{\includegraphics[width=0.48\linewidth]{Figures/confusion_matrix_msa.png}}
+\subfloat[MSA Confusion Matrix]{\includegraphics[width=0.48\textwidth]{Figures/confusion_matrix_msa.png}}
 \\
-\subfloat[PSO Confusion Matrix]{\includegraphics[width=0.48\linewidth]{Figures/confusion_matrix_pso.png}}
-\end{adjustwidth}
+\subfloat[PSO Confusion Matrix]{\includegraphics[width=0.48\textwidth]{Figures/confusion_matrix_pso.png}}
 \caption{Confusion matrices for the five metaheuristic algorithms on the test set.}
 \label{fig:metaheuristic_confusion_matrices}
 \end{figure}
@@ -475,7 +469,7 @@ Particle Swarm Opt. (PSO) & 57.67 & 0.489 & 0.736 & 0.575 & 16.3 & 6th \\
 \end{table}
 
 \subsection{Overfitting Control Analysis}
-The implementation of a rigorous regularization strategy successfully mitigated overfitting. Training concluded after 23 epochs due to early stopping, with the optimal checkpoint identified at epoch 17. At this point, training accuracy was 98.6\% and validation accuracy was 95.36\%. Figure \ref{fig:training_curves} illustrates the evolution of accuracy and loss for the final model (V11). 
+The implementation of a rigorous regularization strategy successfully mitigated overfitting. Training concluded after 23 epochs due to early stopping, with the optimal checkpoint identified at epoch 17. At this point, training accuracy was 98.6\% and validation accuracy was 95.36\%{}. Figure \ref{fig:training_curves} illustrates the evolution of accuracy and loss for the final model (V11). 
 
 \begin{figure}[H]
 \centering

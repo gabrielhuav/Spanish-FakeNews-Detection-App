@@ -1,61 +1,54 @@
 @startuml
-!theme vibrant
+' --- Configuración de Estilo Internacional ---
+skinparam shadowing false
+skinparam ArrowColor #006BCC
+skinparam ArrowThickness 2
+skinparam DefaultFontName Arial
+skinparam DefaultFontSize 13
+skinparam TitleFontSize 16
+skinparam SequenceMessageAlignment center
 
-title URL Analysis Request Flow
+' Colores de Participantes
+skinparam participant {
+    BackgroundColor #FFFFFF
+    BorderColor #006BCC
+    FontStyle bold
+}
 
-actor User
-participant "Frontend\n(HTML Form)" as Frontend
-participant "Flask API\n(main.py)" as Backend
-participant "Web Scraper\n(extract_url_text)" as Scraper
-participant "DistilBERT Model\n(predict_news)" as Model
-entity "External\nWebsite" as Web
+title Figure 7. Fake News Detection Sequence Flow
 
 autonumber
 
-== System Initialization ==
-note over Backend : At startup:\nLoads model and tokenizer\ninto memory
+actor "User" as U #F1C1F0
 
-== User Request ==
-User -> Frontend : Enters URL and clicks "Analyze"
-Frontend -> Backend : POST "/" with form data (url)
-activate Backend
+box "Frontend Tier" #F9F0F9
+    participant "Web Interface" as F
+end box
 
-== Content Extraction ==
-Backend -> Scraper : extract_url_text(url)
-activate Scraper
+box "Processing Tier" #E6F0FF
+    participant "Backend API" as S
+    participant "AI Model" as E
+end box
 
-Scraper -> Web : HTTP GET with User-Agent headers
-Web --> Scraper : Returns HTML content
+participant "External Source" as I #F1C1F0
 
-Scraper -> Scraper : BeautifulSoup parsing:\n• Extracts <h1> for title\n• Extracts <p> with stripped_strings
-Scraper --> Backend : (title, text, complete_html)
-deactivate Scraper
+' Flujo de Procesamiento
+U -> F : Submit URL
+F -> S : POST /analyze
+activate S
 
-== Processing and Inference ==
-Backend -> Model : predict_news(title, text)
-activate Model
+S -> I : Extract Content
+activate I
+I --> S : Raw Text Data
+deactivate I
 
-Model -> Model : Combines: title + [SEP] + text
-Model -> Model : Tokenizes (max_length=256, truncation=True)
-Model -> Model : Executes inference:\n• Forward pass\n• Softmax over logits
-Model -> Model : Calculates confidence and prediction
+S -> E : Classify Text
+activate E
+E --> S : Prediction Result
+deactivate E
 
-Model --> Backend : (verdict, confidence, analyzed_text)
-deactivate Model
+S --> F : Verdict & Confidence
+deactivate S
 
-== Response ==
-Backend -> Backend : Prepares template data:\n• verdict (REAL/FAKE)\n• confidence (percentage)\n• complete HTML content
-
-Backend --> Frontend : render_template("index.html", data)
-deactivate Backend
-
-Frontend -> User : Shows result with:\n• Colored verdict\n• Confidence percentage\n• Site preview (iframe)\n• Expandable details
-
-note over Frontend
-Visual result:
-• Green: REAL
-• Red: FAKE  
-• Orange: ERROR
-end note
-
+F --> U : Display Results
 @enduml
