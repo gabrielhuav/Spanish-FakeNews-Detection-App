@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.5.25)  21 DEC 2025 22:58
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.5.25)  23 DEC 2025 23:31
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1755,31 +1755,39 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-12.18796pt}.
 
 [12 <./Figures/sequence_diagram.png (PNG copy)>]
-<Figures/confusion_matrix_ga.png, id=321, 463.7325pt x 389.2944pt>
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 24.18796pt, for example:
+(fancyhdr)                \setlength{\headheight}{24.18796pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-12.18796pt}.
+
+[13]
+<Figures/confusion_matrix_ga.png, id=333, 463.7325pt x 389.2944pt>
 File: Figures/confusion_matrix_ga.png Graphic file (type png)
 <use Figures/confusion_matrix_ga.png>
 Package pdftex.def Info: Figures/confusion_matrix_ga.png  used on input line 40
 3.
 (pdftex.def)             Requested size: 252.24852pt x 211.76027pt.
-<Figures/confusion_matrix_vns.png, id=322, 463.7325pt x 389.2944pt>
+<Figures/confusion_matrix_vns.png, id=334, 463.7325pt x 389.2944pt>
 File: Figures/confusion_matrix_vns.png Graphic file (type png)
 <use Figures/confusion_matrix_vns.png>
 Package pdftex.def Info: Figures/confusion_matrix_vns.png  used on input line 4
 05.
 (pdftex.def)             Requested size: 252.24852pt x 211.76027pt.
-<Figures/confusion_matrix_ss.png, id=323, 463.7325pt x 389.2944pt>
+<Figures/confusion_matrix_ss.png, id=335, 463.7325pt x 389.2944pt>
 File: Figures/confusion_matrix_ss.png Graphic file (type png)
 <use Figures/confusion_matrix_ss.png>
 Package pdftex.def Info: Figures/confusion_matrix_ss.png  used on input line 40
 7.
 (pdftex.def)             Requested size: 252.24852pt x 211.76027pt.
-<Figures/confusion_matrix_msa.png, id=324, 463.7325pt x 389.2944pt>
+<Figures/confusion_matrix_msa.png, id=336, 463.7325pt x 389.2944pt>
 File: Figures/confusion_matrix_msa.png Graphic file (type png)
 <use Figures/confusion_matrix_msa.png>
 Package pdftex.def Info: Figures/confusion_matrix_msa.png  used on input line 4
 09.
 (pdftex.def)             Requested size: 252.24852pt x 211.76027pt.
-<Figures/confusion_matrix_pso.png, id=325, 463.7325pt x 389.2944pt>
+<Figures/confusion_matrix_pso.png, id=337, 463.7325pt x 389.2944pt>
 File: Figures/confusion_matrix_pso.png Graphic file (type png)
 <use Figures/confusion_matrix_pso.png>
 Package pdftex.def Info: Figures/confusion_matrix_pso.png  used on input line 4
@@ -1793,7 +1801,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-12.18796pt}.
 
-[13]
+[14]
 Overfull \vbox (26.57796pt too high) has occurred while \output is active []
 
 
@@ -1804,10 +1812,10 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-12.18796pt}.
 
-[14 <./Figures/confusion_matrix_ga.png> <./Figures/confusion_matrix_vns.png> <.
+[15 <./Figures/confusion_matrix_ga.png> <./Figures/confusion_matrix_vns.png> <.
 /Figures/confusion_matrix_ss.png> <./Figures/confusion_matrix_msa.png> <./Figur
 es/confusion_matrix_pso.png>]
-<Figures/DistilBERT_confusion_matrix.png, id=354, 579.6054pt x 503.9628pt>
+<Figures/DistilBERT_confusion_matrix.png, id=358, 579.6054pt x 503.9628pt>
 File: Figures/DistilBERT_confusion_matrix.png Graphic file (type png)
 <use Figures/DistilBERT_confusion_matrix.png>
 Package pdftex.def Info: Figures/DistilBERT_confusion_matrix.png  used on input
@@ -1821,8 +1829,8 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-12.18796pt}.
 
-[15 <./Figures/DistilBERT_confusion_matrix.png>]
-<Figures/training_curves.png, id=364, 1051.5285pt x 552.1428pt>
+[16 <./Figures/DistilBERT_confusion_matrix.png>]
+<Figures/training_curves.png, id=368, 1051.5285pt x 552.1428pt>
 File: Figures/training_curves.png Graphic file (type png)
 <use Figures/training_curves.png>
 Package pdftex.def Info: Figures/training_curves.png  used on input line 482.
@@ -1835,8 +1843,8 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-12.18796pt}.
 
-[16 <./Figures/training_curves.png>]
-<Figures/app_real1.png, id=372, 1419.80438pt x 686.565pt>
+[17 <./Figures/training_curves.png>]
+<Figures/app_real1.png, id=376, 1419.80438pt x 686.565pt>
 File: Figures/app_real1.png Graphic file (type png)
 <use Figures/app_real1.png>
 Package pdftex.def Info: Figures/app_real1.png  used on input line 496.
@@ -1846,7 +1854,7 @@ Overfull \hbox (2.5pt too wide) in paragraph at lines 496--496
  [][] 
  []
 
-<Figures/app_falsa1.png, id=373, 1419.05156pt x 694.09312pt>
+<Figures/app_falsa1.png, id=377, 1419.05156pt x 694.09312pt>
 File: Figures/app_falsa1.png Graphic file (type png)
 <use Figures/app_falsa1.png>
 Package pdftex.def Info: Figures/app_falsa1.png  used on input line 498.
@@ -1863,7 +1871,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-12.18796pt}.
 
-[17 <./Figures/app_real1.png> <./Figures/app_falsa1.png>]
+[18 <./Figures/app_real1.png> <./Figures/app_falsa1.png>]
 Overfull \hbox (3.68687pt too wide) in paragraph at lines 513--514
 \T1/ppl/m/n/10 (-20) lan-guages such as Por-tuguese or Ital-ian. The use of \T1
 /cmtt/m/n/10 distilbert-base-multilingual-cased
@@ -1876,7 +1884,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-12.18796pt}.
 
-[18]
+[19]
 Underfull \hbox (badness 2564) in paragraph at lines 571--572
 []\T1/ppl/m/n/9 (+20) Acosta, F.A.Z. Con-struc-ción de un dataset de noti-cias 
 para el en-tre-namiento y eval-u-ación de clasi-fi-cadores au-
@@ -1895,7 +1903,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-12.18796pt}.
 
-[19] 
+[20] 
 AED: lastpage setting LastPage
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -1904,22 +1912,22 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-12.18796pt}.
 
-[20] (template.aux)
+[21] (template.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-04>
  ***********
 Package rerunfilecheck Info: File `template.out' has not changed.
-(rerunfilecheck)             Checksum: B4949DB4CBF4ADA65FF5AA9243324ABF;4574.
+(rerunfilecheck)             Checksum: 23B666395B6EA009596FC9C0D0C95D17;4574.
  ) 
 Here is how much of TeX's memory you used:
- 38935 strings out of 474486
- 772957 string characters out of 5743755
+ 38933 strings out of 474486
+ 772940 string characters out of 5743755
  1958542 words of memory out of 5000000
  59936 multiletter control sequences out of 15000+600000
- 642087 words of font info for 487 fonts, out of 8000000 for 9000
+ 642002 words of font info for 485 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 123i,17n,124p,2503b,1347s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 123i,17n,124p,2512b,1347s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\gabri\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt
 1000.pk> <C:\Users\gabri\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi37
 5\ecss0800.pk><C:/Users/gabri/AppData/Local/Programs/MiKTeX/fonts/type1/public/
@@ -1929,9 +1937,9 @@ onts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/gabri/AppData/Local/Programs
 /MiKTeX/fonts/type1/urw/palatino/uplb8a.pfb><C:/Users/gabri/AppData/Local/Progr
 ams/MiKTeX/fonts/type1/urw/palatino/uplr8a.pfb><C:/Users/gabri/AppData/Local/Pr
 ograms/MiKTeX/fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on template.pdf (20 pages, 2324392 bytes).
+Output written on template.pdf (21 pages, 2325567 bytes).
 PDF statistics:
- 535 PDF objects out of 1000 (max. 8388607)
- 108 named destinations out of 1000 (max. 500000)
+ 541 PDF objects out of 1000 (max. 8388607)
+ 109 named destinations out of 1000 (max. 500000)
  118548 words of extra memory for PDF output out of 128383 (max. 10000000)
 
