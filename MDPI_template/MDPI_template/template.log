@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.5.25)  24 DEC 2025 03:07
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.5.25)  24 DEC 2025 16:17
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1646,7 +1646,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-12.18796pt}.
 
 [5]
-<Figures/system_architecture_p1.png, id=238, 439.8834pt x 289.5618pt>
+<Figures/system_architecture_p1.png, id=240, 439.8834pt x 289.5618pt>
 File: Figures/system_architecture_p1.png Graphic file (type png)
 <use Figures/system_architecture_p1.png>
 Package pdftex.def Info: Figures/system_architecture_p1.png  used on input line
@@ -1669,12 +1669,12 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-12.18796pt}.
 
 [7 <./Figures/system_architecture_p1.png>]
-<Figures/corpus_balance.png, id=258, 1348.28719pt x 587.94656pt>
+<Figures/corpus_balance.png, id=260, 1348.28719pt x 587.94656pt>
 File: Figures/corpus_balance.png Graphic file (type png)
 <use Figures/corpus_balance.png>
 Package pdftex.def Info: Figures/corpus_balance.png  used on input line 239.
 (pdftex.def)             Requested size: 525.52245pt x 229.16367pt.
-<Figures/system_architecture_p2.png, id=260, 411.939pt x 542.9886pt>
+<Figures/system_architecture_p2.png, id=262, 411.939pt x 542.9886pt>
 File: Figures/system_architecture_p2.png Graphic file (type png)
 <use Figures/system_architecture_p2.png>
 Package pdftex.def Info: Figures/system_architecture_p2.png  used on input line
@@ -1697,13 +1697,13 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-12.18796pt}.
 
 [9 <./Figures/system_architecture_p2.png>]
-<Figures/overfitting_example.png, id=282, 992.70876pt x 792.9625pt>
+<Figures/overfitting_example.png, id=284, 992.70876pt x 792.9625pt>
 File: Figures/overfitting_example.png Graphic file (type png)
 <use Figures/overfitting_example.png>
 Package pdftex.def Info: Figures/overfitting_example.png  used on input line 29
 1.
 (pdftex.def)             Requested size: 193.23622pt x 154.35481pt.
-<Figures/underfitting_example.png, id=283, 992.70876pt x 792.9625pt>
+<Figures/underfitting_example.png, id=285, 992.70876pt x 792.9625pt>
 File: Figures/underfitting_example.png Graphic file (type png)
 <use Figures/underfitting_example.png>
 Package pdftex.def Info: Figures/underfitting_example.png  used on input line 2
@@ -1719,17 +1719,17 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 [10 <./Figures/overfitting_example.png (PNG copy)> <./Figures/underfitting_exam
 ple.png (PNG copy)>]
-<Figures/system_architecture_p3.png, id=296, 504.4446pt x 253.4268pt>
+<Figures/system_architecture_p3.png, id=298, 504.4446pt x 253.4268pt>
 File: Figures/system_architecture_p3.png Graphic file (type png)
 <use Figures/system_architecture_p3.png>
 Package pdftex.def Info: Figures/system_architecture_p3.png  used on input line
  328.
 (pdftex.def)             Requested size: 394.35522pt x 198.12067pt.
-<Figures/sequence_diagram.png, id=298, 519.9425pt x 452.69125pt>
+<Figures/sequence_diagram.png, id=300, 682.55pt x 456.70625pt>
 File: Figures/sequence_diagram.png Graphic file (type png)
 <use Figures/sequence_diagram.png>
 Package pdftex.def Info: Figures/sequence_diagram.png  used on input line 337.
-(pdftex.def)             Requested size: 394.35522pt x 343.34436pt.
+(pdftex.def)             Requested size: 394.35522pt x 263.87236pt.
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -1740,7 +1740,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 [11 <./Figures/system_architecture_p3.png> <./Figures/sequence_diagram.png (PNG
  copy)>]
-<Figures/component_diagram.png, id=306, 726.715pt x 1190.4475pt>
+<Figures/component_diagram.png, id=310, 726.715pt x 1190.4475pt>
 File: Figures/component_diagram.png Graphic file (type png)
 <use Figures/component_diagram.png>
 Package pdftex.def Info: Figures/component_diagram.png  used on input line 352.
@@ -1763,31 +1763,31 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-12.18796pt}.
 
 [13]
-<Figures/confusion_matrix_ga.png, id=330, 463.7325pt x 389.2944pt>
+<Figures/confusion_matrix_ga.png, id=333, 463.7325pt x 389.2944pt>
 File: Figures/confusion_matrix_ga.png Graphic file (type png)
 <use Figures/confusion_matrix_ga.png>
 Package pdftex.def Info: Figures/confusion_matrix_ga.png  used on input line 39
 8.
 (pdftex.def)             Requested size: 189.28882pt x 158.90485pt.
-<Figures/confusion_matrix_vns.png, id=331, 463.7325pt x 389.2944pt>
+<Figures/confusion_matrix_vns.png, id=334, 463.7325pt x 389.2944pt>
 File: Figures/confusion_matrix_vns.png Graphic file (type png)
 <use Figures/confusion_matrix_vns.png>
 Package pdftex.def Info: Figures/confusion_matrix_vns.png  used on input line 4
 00.
 (pdftex.def)             Requested size: 189.28882pt x 158.90485pt.
-<Figures/confusion_matrix_ss.png, id=332, 463.7325pt x 389.2944pt>
+<Figures/confusion_matrix_ss.png, id=335, 463.7325pt x 389.2944pt>
 File: Figures/confusion_matrix_ss.png Graphic file (type png)
 <use Figures/confusion_matrix_ss.png>
 Package pdftex.def Info: Figures/confusion_matrix_ss.png  used on input line 40
 2.
 (pdftex.def)             Requested size: 189.28882pt x 158.90485pt.
-<Figures/confusion_matrix_msa.png, id=333, 463.7325pt x 389.2944pt>
+<Figures/confusion_matrix_msa.png, id=336, 463.7325pt x 389.2944pt>
 File: Figures/confusion_matrix_msa.png Graphic file (type png)
 <use Figures/confusion_matrix_msa.png>
 Package pdftex.def Info: Figures/confusion_matrix_msa.png  used on input line 4
 04.
 (pdftex.def)             Requested size: 189.28882pt x 158.90485pt.
-<Figures/confusion_matrix_pso.png, id=334, 463.7325pt x 389.2944pt>
+<Figures/confusion_matrix_pso.png, id=337, 463.7325pt x 389.2944pt>
 File: Figures/confusion_matrix_pso.png Graphic file (type png)
 <use Figures/confusion_matrix_pso.png>
 Package pdftex.def Info: Figures/confusion_matrix_pso.png  used on input line 4
@@ -1804,7 +1804,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 [14 <./Figures/confusion_matrix_ga.png> <./Figures/confusion_matrix_vns.png> <.
 /Figures/confusion_matrix_ss.png> <./Figures/confusion_matrix_msa.png> <./Figur
 es/confusion_matrix_pso.png>]
-<Figures/DistilBERT_confusion_matrix.png, id=353, 579.6054pt x 503.9628pt>
+<Figures/DistilBERT_confusion_matrix.png, id=355, 579.6054pt x 503.9628pt>
 File: Figures/DistilBERT_confusion_matrix.png Graphic file (type png)
 <use Figures/DistilBERT_confusion_matrix.png>
 Package pdftex.def Info: Figures/DistilBERT_confusion_matrix.png  used on input
@@ -1819,7 +1819,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-12.18796pt}.
 
 [15 <./Figures/DistilBERT_confusion_matrix.png>]
-<Figures/training_curves.png, id=362, 1051.5285pt x 552.1428pt>
+<Figures/training_curves.png, id=364, 1051.5285pt x 552.1428pt>
 File: Figures/training_curves.png Graphic file (type png)
 <use Figures/training_curves.png>
 Package pdftex.def Info: Figures/training_curves.png  used on input line 476.
@@ -1833,7 +1833,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-12.18796pt}.
 
 [16 <./Figures/training_curves.png>]
-<Figures/app_real1.png, id=370, 1419.80438pt x 686.565pt>
+<Figures/app_real1.png, id=372, 1419.80438pt x 686.565pt>
 File: Figures/app_real1.png Graphic file (type png)
 <use Figures/app_real1.png>
 Package pdftex.def Info: Figures/app_real1.png  used on input line 490.
@@ -1843,7 +1843,7 @@ Overfull \hbox (2.5pt too wide) in paragraph at lines 490--490
  [][] 
  []
 
-<Figures/app_falsa1.png, id=371, 1419.05156pt x 694.09312pt>
+<Figures/app_falsa1.png, id=373, 1419.05156pt x 694.09312pt>
 File: Figures/app_falsa1.png Graphic file (type png)
 <use Figures/app_falsa1.png>
 Package pdftex.def Info: Figures/app_falsa1.png  used on input line 492.
@@ -1899,13 +1899,13 @@ Package rerunfilecheck Info: File `template.out' has not changed.
 (rerunfilecheck)             Checksum: 23B666395B6EA009596FC9C0D0C95D17;4574.
  ) 
 Here is how much of TeX's memory you used:
- 38925 strings out of 474486
- 772792 string characters out of 5743755
+ 38913 strings out of 474486
+ 772491 string characters out of 5743755
  1958542 words of memory out of 5000000
- 59933 multiletter control sequences out of 15000+600000
- 641917 words of font info for 483 fonts, out of 8000000 for 9000
+ 59924 multiletter control sequences out of 15000+600000
+ 641843 words of font info for 483 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 123i,17n,124p,2512b,1353s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 123i,17n,124p,2512b,1357s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\gabri\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt
 1000.pk> <C:\Users\gabri\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi37
 5\ecss0800.pk><C:/Users/gabri/AppData/Local/Programs/MiKTeX/fonts/type1/public/
@@ -1915,9 +1915,9 @@ onts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/gabri/AppData/Local/Programs
 /MiKTeX/fonts/type1/urw/palatino/uplb8a.pfb><C:/Users/gabri/AppData/Local/Progr
 ams/MiKTeX/fonts/type1/urw/palatino/uplr8a.pfb><C:/Users/gabri/AppData/Local/Pr
 ograms/MiKTeX/fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on template.pdf (20 pages, 2165185 bytes).
+Output written on template.pdf (20 pages, 2179205 bytes).
 PDF statistics:
- 533 PDF objects out of 1000 (max. 8388607)
- 107 named destinations out of 1000 (max. 500000)
+ 529 PDF objects out of 1000 (max. 8388607)
+ 104 named destinations out of 1000 (max. 500000)
  118548 words of extra memory for PDF output out of 128383 (max. 10000000)
 
