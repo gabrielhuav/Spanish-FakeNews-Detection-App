@@ -40,7 +40,7 @@
 \newcommand{\orcidauthorD}{0000-0002-3156-3231} % Josué Padilla Cuevas (Placeholder)
 
 % Authors, for the paper
-\Author{Gabriel Hurtado Avilés $^{1}$\orcidA{}, José A. Reyes-Ortiz $^{1}$*\orcidB{}, Román A. Mora-Gutiérrez $^{1}$\orcidC{} and Josué Padilla Cuevas $^{1}$\orcidD{}}
+\Author{Gabriel Hurtado Avilés $^{1}$*\orcidA{}, José A. Reyes-Ortiz $^{1}$*\orcidB{}, Román A. Mora-Gutiérrez $^{1}$\orcidC{} and Josué Padilla Cuevas $^{1}$\orcidD{}}
 
 % MDPI internal command: Authors, for metadata in PDF
 \AuthorNames{Gabriel Hurtado Avilés, José Alejandro Reyes Ortiz, Román Anselmo Mora Gutiérrez, and Josué Padilla Cuevas}
@@ -50,10 +50,10 @@
 
 % Affiliations / Addresses
 \address{%
-$^{1}$ \quad Department of Systems, Autonomous Metropolitan University (UAM), Azcapotzalco Unit, Mexico City 02200, Mexico; al2232800343@azc.uam.mx (G.H.A.); jaro@azc.uam.mx (J.A.R.-O.); mgra@azc.uam.mx (R.A.M.-G.); jpc@azc.uam.mx (J.P.C.)}
+$^{1}$ \quad Department of Systems, Autonomous Metropolitan University (UAM), Azcapotzalco Unit, Mexico City 02200, Mexico; gabrielhuav@gmail.com (G.H.A.); jaro@azc.uam.mx (J.A.R.-O.); mgra@azc.uam.mx (R.A.M.-G.); jpc@azc.uam.mx (J.P.C.)}
 
 % Contact information of the corresponding author
-\corres{Correspondence: jaro@azc.uam.mx}
+\corres{Correspondence: gabrielhuav@gmail.com (G.H.A.); jaro@azc.uam.mx (J.A.R.-O.)}
 
 %=================================================================
 % Abstract
@@ -68,35 +68,35 @@ $^{1}$ \quad Department of Systems, Autonomous Metropolitan University (UAM), Az
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Introduction}
-The proliferation of deceptive content on social media platforms represents one of the most pressing challenges at the intersection of machine learning and digital society \citep{bondielli2019survey}. The rapid expansion of social networks has transformed how information is created, disseminated, and consumed, creating unprecedented opportunities for the spread of misinformation, fraudulent schemes, and manipulative content.  This phenomenon disproportionately affects vulnerable demographics with limited media literacy skills \citep{higdon2022agree, higdon2025constructive}, undermining public trust in journalism, distorting democratic processes, and threatening public health outcomes \citep{tsfati2020causes}. Critically, the problem extends far beyond traditional fake news: social media platforms are increasingly exploited for investment scams, fraudulent e-commerce impersonations, phishing campaigns, and other forms of digital deception that disproportionately target elderly and digitally illiterate populations.
+The proliferation of deceptive content on social media platforms represents one of the most pressing challenges at the intersection of machine learning and digital society \citep{bondielli2019survey}. The rapid expansion of social networks has transformed how information is created, disseminated, and consumed, creating unprecedented opportunities for the spread of misinformation, fraudulent schemes, and manipulative content.  This phenomenon disproportionately affects vulnerable demographics with limited media literacy skills \citep{higdon2022agree, higdon2025constructive}, undermining public trust in journalism, distorting democratic processes, and threatening public health outcomes \citep{tsfati2020causes, allcott2017social}. Critically, the problem extends far beyond traditional fake news: social media platforms are increasingly exploited for investment scams—such as pages impersonating state-owned enterprises with fabricated profit schemes \citep{scam2025investment}—fraudulent e-commerce impersonations featuring fake testimonials and artificial urgency \citep{scam2025cosmetics, scam2025ecommerce}, and an alarming proliferation of fake storefronts impersonating major retail chains with fabricated liquidation sales \citep{scam2026aurrera1, scam2026aurrera2, scam2026aurrera3, scam2026celulares}. Celebrity health misinformation—such as pages exploiting public figures' names to promote fraudulent medical products \citep{scam2025health}—further compounds the problem.  These diverse forms of digital deception disproportionately target elderly and digitally illiterate populations, and their sheer volume on social media feeds underscores the urgent need for automated, scalable detection systems.
 
-While transformer-based models have achieved state-of-the-art performance in English-language misinformation detection \citep{kaliyar2021fakebert, singh2024comprehensive}, a fundamental methodological gap persists: the absence of systematic, reproducible frameworks for adapting these general-purpose models to \textit{domain-specific} deceptive content detection tasks. Most existing studies focus on reporting end-task accuracy without providing a transferable methodology that practitioners can apply to new domains, languages, or content types \citep{alghamdi2024comprehensive}. This gap is particularly acute for non-English languages and for emerging forms of social media fraud that lack established benchmark datasets.
+While transformer-based models have achieved state-of-the-art performance in English-language misinformation detection \citep{kaliyar2021fakebert, singh2024comprehensive, rout2025reliable}, a fundamental methodological gap persists: the absence of systematic, reproducible frameworks for adapting these general-purpose models to \textit{domain-specific} deceptive content detection tasks. Most existing studies focus on reporting end-task accuracy without providing a transferable methodology that practitioners can apply to new domains, languages, or content types \citep{alghamdi2024comprehensive}. This gap is particularly acute for non-English languages and for emerging forms of social media fraud that lack established benchmark datasets.
 
-The field of automated deceptive content detection has evolved through distinct methodological paradigms, reflecting advances in machine learning and natural language processing.  Early research in the 2010s relied on classical machine learning approaches—Support Vector Machines (SVMs), Naïve Bayes, Random Forests—combined with hand-crafted linguistic features such as Term Frequency-Inverse Document Frequency (TF-IDF) and Bag-of-Words (BoW) representations \citep{shu2017fake, ali2022fake}. While computationally efficient, these methods struggled to capture semantic nuances, sarcasm, and contextual meaning, limiting their effectiveness against sophisticated misinformation tactics. 
+The field of automated deceptive content detection has evolved through distinct methodological paradigms, reflecting advances in machine learning and natural language processing.  Early research in the 2010s relied on classical machine learning approaches—Support Vector Machines (SVMs), Naïve Bayes, Random Forests—combined with hand-crafted linguistic features such as Term Frequency-Inverse Document Frequency (TF-IDF) and Bag-of-Words (BoW) representations \citep{shu2017fake, ali2022fake, perez2018automatic}. While computationally efficient, these methods struggled to capture semantic nuances, sarcasm, and contextual meaning, limiting their effectiveness against sophisticated misinformation tactics. 
 
 The mid-2010s witnessed a paradigm shift toward deep learning architectures.  Convolutional Neural Networks (CNNs) and Recurrent Neural Networks (RNNs) enabled automatic feature extraction from text, eliminating the need for manual feature engineering \citep{nasir2021fake, zhou2020survey}. However, these models were constrained by their inability to process long-range dependencies and bidirectional context effectively. 
 
-The introduction of transformer architectures—particularly Bidirectional Encoder Representations from Transformers (BERT) \citep{devlin2018bert} and its variants—revolutionized the field by capturing bidirectional contextual representations through self-attention mechanisms \citep{vaswani2017attention}. Recent comprehensive surveys \citep{singh2024comprehensive, alghamdi2024comprehensive} have documented the superiority of transformer-based approaches across multiple languages and datasets, achieving state-of-the-art performance in deceptive content detection.  Models such as FakeBERT \citep{kaliyar2021fakebert} benefit from extensive datasets like LIAR and FakeNewsNet, as well as advanced techniques including emotion-aware multitask learning \citep{choudhry2024emotion} and hybrid CNN-RNN architectures \citep{nasir2021fake}. 
+The introduction of transformer architectures—particularly BERT \citep{devlin2018bert} and its variants—revolutionized the field by capturing bidirectional contextual representations through self-attention mechanisms \citep{vaswani2017attention}. Recent surveys \citep{singh2024comprehensive, alghamdi2024comprehensive} have documented the superiority of transformer-based approaches across multiple languages, with models such as FakeBERT \citep{kaliyar2021fakebert} leveraging datasets like LIAR \citep{wang2017liar} and FakeNewsNet alongside techniques including emotion-aware multitask learning \citep{choudhry2024emotion} and hybrid CNN-RNN architectures \citep{nasir2021fake}. 
 
 However, despite these architectural advances, three interconnected challenges remain largely unaddressed in the literature. First, there is a \textbf{lack of systematic fine-tuning methodologies}: most studies report results from a narrow hyperparameter search without documenting the optimization trajectory or providing reproducible regularization strategies that can be transferred to new tasks \citep{blanco2024enhancing, martinez2021fake}. Second, there is a \textbf{scarcity of domain-specific resources for non-English languages}, particularly for Spanish—a language with over 500 million native speakers—where datasets are fragmented and incompatible \citep{singh2024comprehensive, posadas2019detection}. Third, a \textbf{persistent deployment gap} separates academic models from practical tools \citep{ali2022fake}: while papers report high accuracy, there is a striking absence of production-ready applications that communities can use for real-time verification.
 
 This paper addresses these challenges by proposing a \textbf{systematic and transferable framework} for fine-tuning pretrained transformer models for domain-specific misinformation detection on social media. The framework is structured as a three-stage pipeline—corpus unification, systematic regularization, and production deployment—and is designed to be domain-agnostic: while validated here on Spanish-language fake news detection, the same methodology can be applied to detect other forms of social media deception, such as investment scams (e.g., fraudulent cryptocurrency or petroleum investment pages), fake e-commerce sites impersonating legitimate retailers, phishing campaigns, and other digital fraud targeting vulnerable populations.
 
-A progressive research design was followed, first establishing a robust performance baseline with classical Natural Language Processing (NLP) methods—specifically Bag-of-Words (BoW) and Term Frequency-Inverse Document Frequency (TF-IDF) representations—optimized via five distinct metaheuristic algorithms.  Subsequently, the transition to a fine-tuned Transformer model is detailed to empirically demonstrate the significant leap in efficacy that modern architectures provide and, more importantly, to document the systematic regularization methodology that made this performance possible.
+A progressive research design was adopted: a baseline is first established with classical NLP methods (TF-IDF representations optimized via five metaheuristic algorithms), followed by a fine-tuned transformer model whose systematic regularization methodology is documented in full.
 
 The main contributions of this work are:
 \begin{itemize}
     \item \textbf{A Transferable Fine-Tuning Framework:} A systematic three-stage pipeline (corpus unification, aggressive regularization, containerized deployment) is proposed for adapting pretrained transformer models to domain-specific deceptive content detection. The framework is explicitly designed to be transferable across languages, content domains, and social media platforms.
     \item \textbf{A Systematic Regularization Methodology:} Through over 500 GPU hours of experimentation across 30+ configurations, an aggressive regularization strategy for fine-tuning DistilBERT (Distilled Bidirectional Encoder Representations from Transformers) is documented, achieving 95.36\% accuracy while maintaining a validation-training loss gap of 0.058. This represents a 23.33 percentage point improvement over metaheuristic-optimized classical methods and provides a reproducible recipe for practitioners facing similar optimization challenges.
-    \item \textbf{A Unified Spanish Corpus:} As part of the framework validation, a standardized corpus of 61,674 Spanish news articles was constructed by integrating three academic datasets \citep{posadas2019detection, blanco2024enhancing, tretiakov2022detection} and enhancing it with web-scraped satirical content, achieving near-perfect class balance (49.8\% fake, 50.2\% real)—one of the largest resources for this task, directly addressing the dataset scarcity identified in recent surveys \citep{singh2024comprehensive, alghamdi2024comprehensive}.
+    \item \textbf{A Unified Spanish Corpus:} A standardized corpus of 61,674 Spanish news articles was constructed from three academic datasets \citep{posadas2019detection, blanco2024enhancing, tretiakov2022detection} enhanced with web-scraped satirical content, achieving near-perfect balance (49.8\% fake, 50.2\% real)—one of the largest resources for this task.
     \item \textbf{A Production-Ready Web Application:} The optimized model was deployed as a Docker-containerized web application capable of real-time URL analysis, demonstrating that the framework extends beyond academic benchmarks to deliver practical tools for digital self-defense \citep{ali2022fake}.
 \end{itemize}
 
-The complete framework—corpus, model, and application—is made publicly available to encourage reproducibility and further research. Crucially, the proposed methodology is not limited to fake news: by substituting the training corpus, the same pipeline can be specialized to detect investment scams, phishing pages, fraudulent e-commerce sites, and other forms of deceptive content proliferating on social media—an extensibility that constitutes the core technical contribution of this work.
+The complete framework is publicly available to encourage reproducibility. Crucially, by substituting the training corpus, the same pipeline can detect investment scams, phishing pages, fraudulent e-commerce sites, and other forms of social media deception—an extensibility that constitutes the core technical contribution.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Related Work: Detection Paradigms and Methodological Gaps}
-The scholarly approach to deceptive content detection on social media has evolved through several distinct paradigms, from classical machine learning to modern deep learning architectures. To properly situate the contributions of this work, this section first examines the broader landscape of misinformation detection and its extension to other forms of social media deception, then analyzes the state of resources and optimization methodologies, and finally addresses the persistent gap between research and real-world application. Table \ref{tab:methodological_paradigms} provides a summary of these key paradigms, including the shift towards deep learning architectures like Bidirectional Encoder Representations from Transformers (BERT).
+The scholarly approach to deceptive content detection has evolved through several paradigms—from classical machine learning to deep learning architectures. This section examines the detection landscape, analyzes resources and optimization methodologies, and addresses the gap between research and deployment. Table \ref{tab:methodological_paradigms} summarizes these paradigms.
 
 \begin{table}[H]
 \centering
@@ -114,24 +114,24 @@ The scholarly approach to deceptive content detection on social media has evolve
 \midrule
 \begin{tabular}[t]{@{}l@{}}\textbf{Deep Learning}\\\textbf{(CNN/RNN)}\end{tabular} & \begin{tabular}[t]{@{}l@{}}Automatic feature\\extraction via\\neural networks\end{tabular} & \begin{tabular}[t]{@{}l@{}}Nasir et al. \citep{nasir2021fake},\\Zhou \& Zafarani \citep{zhou2020survey}\end{tabular} & \begin{tabular}[t]{@{}l@{}}Better feature\\learning, reduced\\manual engineering\end{tabular} & \begin{tabular}[t]{@{}l@{}}Limited handling of\\long-range dependencies\end{tabular} \\
 \midrule
-\begin{tabular}[t]{@{}l@{}}\textbf{Transformers}\\\textbf{(BERT-based)}\end{tabular} & \begin{tabular}[t]{@{}l@{}}Bidirectional context\\via self-attention\\mechanisms\end{tabular} & \begin{tabular}[t]{@{}l@{}}Singh et al. \citep{singh2024comprehensive},\\Alghamdi et al. \citep{alghamdi2024comprehensive},\\Kaliyar et al. \citep{kaliyar2021fakebert}\end{tabular} & \begin{tabular}[t]{@{}l@{}}State-of-the-art\\performance, captures\\semantic nuances\end{tabular} & \begin{tabular}[t]{@{}l@{}}Computationally\\expensive, requires\\large datasets\end{tabular} \\
+\begin{tabular}[t]{@{}l@{}}\textbf{Transformers}\\\textbf{(BERT-based)}\end{tabular} & \begin{tabular}[t]{@{}l@{}}Bidirectional context\\via self-attention\\mechanisms\end{tabular} & \begin{tabular}[t]{@{}l@{}}Singh et al. \citep{singh2024comprehensive},\\Alghamdi et al. \citep{alghamdi2024comprehensive},\\Kaliyar et al. \citep{kaliyar2021fakebert},\\Rout et al. \citep{rout2025reliable}\end{tabular} & \begin{tabular}[t]{@{}l@{}}State-of-the-art\\performance, captures\\semantic nuances\end{tabular} & \begin{tabular}[t]{@{}l@{}}Computationally\\expensive, requires\\large datasets\end{tabular} \\
 \midrule
-\begin{tabular}[t]{@{}l@{}}\textbf{Multimodal \&}\\\textbf{Emotion-Aware}\end{tabular} & \begin{tabular}[t]{@{}l@{}}Integrates text, images,\\and emotional features\end{tabular} & \begin{tabular}[t]{@{}l@{}}Choudhry et al. \citep{choudhry2024emotion}\end{tabular} & \begin{tabular}[t]{@{}l@{}}Holistic analysis,\\improved accuracy\end{tabular} & \begin{tabular}[t]{@{}l@{}}Complex architectures,\\limited Spanish resources\end{tabular} \\
+\begin{tabular}[t]{@{}l@{}}\textbf{Multimodal \&}\\\textbf{Emotion-Aware}\end{tabular} & \begin{tabular}[t]{@{}l@{}}Integrates text, images,\\and emotional features\end{tabular} & \begin{tabular}[t]{@{}l@{}}Choudhry et al. \citep{choudhry2024emotion},\\Zhen \& Li \citep{zhen2026csteer},\\Shang et al. \citep{shang2025eticd}\end{tabular} & \begin{tabular}[t]{@{}l@{}}Holistic analysis,\\improved accuracy\end{tabular} & \begin{tabular}[t]{@{}l@{}}Complex architectures,\\limited Spanish resources\end{tabular} \\
 \bottomrule
 \end{tabular}
 }
 \end{table}
 
 \subsection{Language Resources for Deceptive Content Detection}
-A significant bottleneck for advancing deceptive content detection—whether fake news, scam pages, or fraudulent content—is the availability of large-scale, comprehensive datasets, particularly for non-English languages. In the Spanish-language domain, several research groups have created fake news datasets \citep{posadas2019detection, blanco2024enhancing, tretiakov2022detection}, but each used different annotation schemes and focused on different content types. These datasets cannot easily be combined for training because they use incompatible formats. This fragmentation problem is not unique to fake news; it is a recurring challenge whenever practitioners attempt to build detection systems for any new domain of deceptive content on social media. This work addresses this problem by proposing a systematic corpus unification methodology and demonstrating it by standardizing and merging three existing Spanish datasets into a single large corpus.
+A significant bottleneck for advancing deceptive content detection—whether fake news, scam pages, or fraudulent content—is the availability of large-scale, comprehensive datasets, particularly for non-English languages. Reis et al. \citep{reis2019supervised} systematically evaluated supervised learning approaches for fake news detection, establishing that the quality and comprehensiveness of training datasets are critical determinants of classifier performance—a finding that is amplified in non-English settings where resources are scarce. In the Spanish-language domain, several research groups have created fake news datasets \citep{posadas2019detection, blanco2024enhancing, tretiakov2022detection}, but each used different annotation schemes and focused on different content types. These datasets cannot easily be combined for training because they use incompatible formats. This fragmentation problem is not unique to fake news; it is a recurring challenge whenever practitioners attempt to build detection systems for any new domain of deceptive content on social media. This work addresses this problem by proposing a systematic corpus unification methodology and demonstrating it by standardizing and merging three existing Spanish datasets into a single large corpus.
 
 \subsection{Systematic Fine-Tuning and Hyperparameter Optimization}
-BERT and similar transformer models achieve strong results in NLP tasks, but require careful hyperparameter tuning—a process that is rarely documented systematically in the literature. Most studies report a single final configuration without detailing the optimization trajectory, the failed configurations, or the rationale behind regularization choices \citep{martinez2021fake}. This lack of transparency severely limits reproducibility and transferability to new domains. DistilBERT, for example, presents an attractive trade-off between performance and computational cost, yet a detailed exploration of its optimal fine-tuning configuration for domain-specific tasks has been largely overlooked. The critical role of hyperparameter calibration is not a new problem; it has been well-documented in other specialized NLP tasks for Spanish, such as in the medical domain \citep{padilla2024medicobert}.
+BERT and similar transformer models achieve strong results in NLP tasks, but require careful hyperparameter tuning—a process that is rarely documented systematically in the literature. Most studies report a single final configuration without detailing the optimization trajectory, the failed configurations, or the rationale behind regularization choices \citep{martinez2021fake}. This lack of transparency severely limits reproducibility and transferability to new domains. DistilBERT, for example, presents an attractive trade-off between performance and computational cost, yet a detailed exploration of its optimal fine-tuning configuration for domain-specific tasks has been largely overlooked. The critical role of hyperparameter calibration is not a new problem; it has been well-documented in other specialized NLP tasks for Spanish, such as in the medical domain \citep{padilla2024medicobert, garcia2025relation}, where deep learning techniques have been successfully applied to relation extraction and knowledge representation tasks, further demonstrating the broader applicability of systematic fine-tuning methodologies across NLP domains.
 
 Concurrently, classical machine learning models have been pushed to their limits through the use of metaheuristic algorithms. For instance, approaches using genetic algorithms or particle swarm optimization have been explored to fine-tune classifiers. While foundational studies have established baselines using classical representations on fake news data \citep{shu2017fake}, a direct and rigorous comparison between a systematically optimized Transformer and a suite of metaheuristic-optimized classical models on a large-scale corpus has been notably absent from the literature. This paper aims to fill that gap by providing not only this direct comparison but also a detailed, reproducible methodology for Transformer regularization that can serve as a blueprint for practitioners in other detection domains.
 
 \subsection{Deployment of Detection Models for Social Media}
-A persistent issue in the academic NLP community is the ``deployment gap''—the significant divide between models achieving high accuracy in research papers and the scarcity of practical, usable tools available to the public. While numerous studies have been published on fake news detection, a very small fraction of these result in production-ready, easily deployable applications. This gap severely limits the real-world impact of valuable research and is even more pronounced for non-English languages and for emerging forms of social media deception such as investment scams or fraudulent e-commerce pages. Most detection research stops at reporting test set performance. Very few studies produce working applications that people can actually use. In this work, a web application was developed that analyzes URLs in real-time, demonstrating how the proposed framework can bridge the gap from research to deployment—a stage that is explicitly designed to be reusable for any domain-specific detection model produced by the framework.
+A persistent issue in the academic NLP community is the ``deployment gap''—the divide between models achieving high accuracy in research and the scarcity of practical tools available to the public. While numerous studies address fake news detection, very few result in production-ready applications—a gap that is even more pronounced for non-English languages and emerging forms of social media deception. In this work, a web application was developed that analyzes URLs in real-time, demonstrating how the proposed framework bridges the gap from research to deployment—a stage designed to be reusable for any detection model produced by the framework.
 
 \begin{table}[H]
 \centering
@@ -150,6 +150,10 @@ A persistent issue in the academic NLP community is the ``deployment gap''—the
 \begin{tabular}[t]{@{}l@{}}Blanco-Fernández\\et al. \citep{blanco2024enhancing}\end{tabular} & \begin{tabular}[t]{@{}l@{}}Applied BERT/RoBERTa\\to a large, politically-focused\\dataset (57k articles).\end{tabular} & \begin{tabular}[t]{@{}l@{}}Transformers achieve 90-98\%\\accuracy on Spanish political\\fake news detection tasks\\with RoBERTa showing\\superior performance.\end{tabular} & \begin{tabular}[t]{@{}l@{}}Domain-specific. This work\\uses a \textbf{multi-domain corpus}\\and performs \textbf{systematic}\\\textbf{optimization}.\end{tabular} \\
 \midrule
 \begin{tabular}[t]{@{}l@{}}Martínez-Gallego\\et al. \citep{martinez2021fake}\end{tabular} & \begin{tabular}[t]{@{}l@{}}Explored different BERT\\variants (including BETO)\\for Spanish fake news\\detection.\end{tabular} & \begin{tabular}[t]{@{}l@{}}Spanish-specific models perform\\well for this classification task,\\with BETO achieving 94\%\\accuracy on balanced datasets.\end{tabular} & \begin{tabular}[t]{@{}l@{}}Lack of systematic optimization\\or a deployed application.\\This work provides a\\\textbf{transferable framework}\\and the \textbf{deployed application}.\end{tabular} \\
+\midrule
+\begin{tabular}[t]{@{}l@{}}Rout et al. \citep{rout2025reliable}\end{tabular} & \begin{tabular}[t]{@{}l@{}}Proposed an enhanced\\attention-based transformer\\model for reliable fake\\news detection.\end{tabular} & \begin{tabular}[t]{@{}l@{}}Architectural modifications to\\the attention mechanism improve\\detection robustness and\\classification reliability.\end{tabular} & \begin{tabular}[t]{@{}l@{}}English-focused. This work\\proposes a \textbf{transferable}\\\textbf{framework} validated on\\Spanish with systematic\\regularization.\end{tabular} \\
+\midrule
+\begin{tabular}[t]{@{}l@{}}García-Robledo\\et al. \citep{garcia2025relation}\end{tabular} & \begin{tabular}[t]{@{}l@{}}Applied deep learning for\\relation extraction in Spanish\\medical texts for knowledge\\representation.\end{tabular} & \begin{tabular}[t]{@{}l@{}}Demonstrated that deep learning\\fine-tuning is effective for\\specialized Spanish NLP tasks\\beyond fake news detection.\end{tabular} & \begin{tabular}[t]{@{}l@{}}Medical domain only. This work\\demonstrates a \textbf{transferable}\\framework applicable across\\multiple NLP domains.\end{tabular} \\
 \bottomrule
 \end{tabular}
 }
@@ -170,7 +174,7 @@ A persistent issue in the academic NLP community is the ``deployment gap''—the
 \midrule
 \begin{tabular}[t]{@{}l@{}}Thota et al. \citep{thota2018fake}\end{tabular} & \begin{tabular}[t]{@{}l@{}}Early deep learning approach\\using traditional neural networks\\for fake news detection.\end{tabular} & \begin{tabular}[t]{@{}l@{}}Deep learning outperforms\\classical ML approaches for text\\classification tasks, showing\\15-20\% improvement over\\SVM baselines.\end{tabular} & \begin{tabular}[t]{@{}l@{}}Pre-transformer era,\\English only. This work uses\\\textbf{state-of-the-art transformers}\\for Spanish.\end{tabular} \\
 \midrule
-\begin{tabular}[t]{@{}l@{}}García-Lozano\\et al. \citep{garcia2024fake}\end{tabular} & \begin{tabular}[t]{@{}l@{}}Compared classical ML and\\Deep Learning models for\\Spanish fake news detection.\end{tabular} & \begin{tabular}[t]{@{}l@{}}Confirmed that Deep Learning\\(LSTM, BiLSTM) outperforms\\classical models (SVM, LR),\\achieving up to 93\% accuracy.\end{tabular} & \begin{tabular}[t]{@{}l@{}}Focus on model comparison, less\\on systematic optimization or\\the creation of a large, unified\\corpus. This work provides both.\end{tabular} \\
+\begin{tabular}[t]{@{}l@{}}Gravanis et al.  \citep{gravanis2019behind}\end{tabular} & \begin{tabular}[t]{@{}l@{}}Systematic benchmarking of\\classical ML classifiers and\\feature representations for\\fake news detection.\end{tabular} & \begin{tabular}[t]{@{}l@{}}SVM and ensemble methods with\\TF-IDF/word embeddings achieve\\strongest results among 15\\classifier--feature combinations.\end{tabular} & \begin{tabular}[t]{@{}l@{}}English-only, no transformer\\models. This work applies\\\textbf{systematic transformer}\\\textbf{optimization} on Spanish data.\end{tabular} \\
 \bottomrule
 \end{tabular}
 }
@@ -179,20 +183,24 @@ A persistent issue in the academic NLP community is the ``deployment gap''—the
 \subsection{Recent Advances and Comprehensive Surveys (2020-2025)}
 The period from 2020 to 2025 has witnessed an explosion of scholarly attention to fake news detection, driven by the societal urgency of combating misinformation and the maturation of deep learning technologies. Several comprehensive surveys have synthesized the state of the field, providing critical perspectives that inform the approach presented herein. 
 
-\textbf{Comprehensive Technical Reviews. } Singh et al. \citep{singh2024comprehensive} conducted a systematic review of automatic fake news detection techniques on social media, highlighting the dominance of transformer-based architectures and the critical importance of large-scale, high-quality datasets. Similarly, Alghamdi et al. \citep{alghamdi2024comprehensive} surveyed machine learning approaches, emphasizing the trade-offs between model complexity, interpretability, and performance. Both studies identified the scarcity of non-English resources—particularly for Spanish—as a major bottleneck for global fake news detection efforts.
+\textbf{Comprehensive Technical Reviews. } Singh et al. \citep{singh2024comprehensive} and Alghamdi et al. \citep{alghamdi2024comprehensive} conducted comprehensive surveys of fake news detection, highlighting transformer dominance and identifying the scarcity of non-English resources—particularly for Spanish—as a major bottleneck. Earlier surveys by Oshikawa et al. \citep{oshikawa2020survey} and Hu et al. \citep{hu2022deep} provided foundational overviews of NLP and deep learning techniques, establishing the taxonomies upon which subsequent work has built.
 
-\textbf{Multimodal and Emotion-Aware Approaches.} Choudhry et al. \citep{choudhry2024emotion} introduced an emotion-aware multitask framework that leverages transfer learning to detect both fake news and rumors, demonstrating that incorporating affective features significantly improves classification accuracy. This work underscores the potential of integrating psychological and linguistic dimensions in detection systems, a direction that remains underexplored in Spanish-language contexts.
+\textbf{Multimodal and Emotion-Aware Approaches.} Choudhry et al. \citep{choudhry2024emotion} introduced an emotion-aware multitask framework leveraging transfer learning, demonstrating that affective features significantly improve detection accuracy. Building on this direction, Zhen and Li \citep{zhen2026csteer} proposed C-STEER, a sentiment-aware framework modeling the lifecycle emotional evolution of fake news, while Shang et al. \citep{shang2025eticd} introduced ETICD-Net, a multimodal network integrating emotion-topic injection with consistency modeling. These advances highlight the growing sophistication of detection architectures, though their reliance on multimodal features limits applicability to text-only scenarios—a gap that the present text-based approach can complement.
 
-\textbf{Hybrid Architectures. } Nasir et al. \citep{nasir2021fake} proposed a hybrid CNN-RNN model that combines convolutional layers for local feature extraction with recurrent layers for sequential modeling, achieving competitive performance on English datasets.  While effective, such hybrid approaches have seen limited application to Spanish due to the lack of standardized corpora and computational resources.
+\textbf{Hybrid Architectures. } Nasir et al. \citep{nasir2021fake} proposed a hybrid CNN-RNN model combining convolutional and recurrent layers, achieving competitive performance on English datasets, though such approaches remain limited for Spanish due to the lack of standardized corpora.
 
-\textbf{Societal and Cultural Perspectives.} Beyond technical methodologies, recent work has emphasized the cultural and societal dimensions of misinformation. Tsfati et al. \citep{tsfati2020causes} synthesized literature on the causes and consequences of mainstream media dissemination of fake news, arguing that technological solutions must be complemented by media literacy interventions.  Higdon and Huff \citep{higdon2022agree} provided a critical thinking framework for conflict management and critical media literacy, while Higdon \citep{higdon2025constructive} extended this work to examine constructive conflict in the context of social and political discord.  These perspectives reinforce a key motivation of the proposed framework: developing not only accurate models but accessible, deployable tools that empower communities—particularly those underserved by existing English-centric solutions—to combat diverse forms of deceptive content on social media.
+\textbf{Attention-Enhanced Transformers.} Rout et al. \citep{rout2025reliable} proposed an enhanced attention-based transformer for reliable fake news detection, reinforcing that properly configured transformers consistently outperform alternative approaches—a finding motivating the systematic regularization proposed here. Sun and Yu \citep{sun2025hierarchical} proposed a hierarchical detection model based on multi-task learning and adversarial training, sharing this work's emphasis on systematic optimization while focusing on architectural rather than regularization innovation.
 
-\textbf{Gaps Addressed by This Work.} Despite the proliferation of surveys and technical advances, two fundamental gaps persist. First, at the \textit{methodological level}, there is no established, reproducible framework for systematically adapting pretrained transformers to domain-specific deceptive content detection tasks—whether fake news, scam pages, or fraudulent content on social media. Existing studies tend to be task-specific and do not document the optimization process in sufficient detail for replication. Second, at the \textit{resource level}, the Spanish-language domain remains critically underserved. Ali et al. \citep{ali2022fake} surveyed fake news detection techniques on social media but focused predominantly on English datasets.  The surveys by Singh et al. \citep{singh2024comprehensive} and Alghamdi et al. \citep{alghamdi2024comprehensive}, while comprehensive, do not address the unique challenges of Spanish—including regional dialectal variations, satirical content disambiguation, and the fragmentation of available corpora.  The present work directly addresses both gaps: it proposes a transferable three-stage framework (corpus unification, systematic regularization, containerized deployment) and validates it through a comprehensive case study on Spanish fake news detection, while demonstrating its extensibility to other social media deception domains.
+\textbf{Domain-Specific Deep Learning for Spanish NLP.} The transferability of deep learning techniques to specialized Spanish-language tasks has been demonstrated by García-Robledo et al. \citep{garcia2025relation} for medical relation extraction and Padilla Cuevas et al. \citep{padilla2024medicobert} for medical question-answering. These works confirm that the fine-tuning challenges addressed here—hyperparameter sensitivity, overfitting, and the need for systematic optimization—are shared across multiple Spanish NLP applications.
+
+\textbf{Societal and Cultural Perspectives.} Beyond technical methodologies, recent work has emphasized the cultural dimensions of misinformation. Tsfati et al. \citep{tsfati2020causes} argued that technological solutions must be complemented by media literacy interventions, while Higdon and Huff \citep{higdon2022agree} and Higdon \citep{higdon2025constructive} provided critical thinking frameworks for conflict management and media literacy. Valencia-Arias et al. \citep{valencia2023understanding} identified key factors influencing young people's susceptibility to misinformation, highlighting the need for both technological and educational interventions. These perspectives reinforce a key motivation of the proposed framework: developing not only accurate models but accessible, deployable tools that empower communities to combat diverse forms of deceptive content.
+
+\textbf{Gaps Addressed by This Work.} Despite these advances, two fundamental gaps persist. First, at the \textit{methodological level}, no established framework exists for systematically adapting pretrained transformers to domain-specific deceptive content detection; existing studies are task-specific and lack reproducible optimization documentation. Second, at the \textit{resource level}, the Spanish-language domain remains critically underserved—the surveys by Singh et al. \citep{singh2024comprehensive} and Alghamdi et al. \citep{alghamdi2024comprehensive}, while comprehensive, do not address Spanish-specific challenges including dialectal variations and corpus fragmentation. The present work directly addresses both gaps through a transferable three-stage framework validated on Spanish fake news detection with demonstrated extensibility to other deception domains.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Materials and Methods}
 
-This section describes the proposed framework in detail. The methodology is structured as a transferable three-stage pipeline designed to systematically adapt pretrained transformer models for domain-specific deceptive content detection on social media. While the framework is validated here through a case study on Spanish fake news, each stage is designed to be domain-agnostic and reusable. As illustrated in Figure \ref{fig:metodologia_general_p1}, the pipeline follows three stages: (1) \textbf{Corpus Unification}—aggregating, deduplicating, and balancing heterogeneous datasets into a standardized resource; (2) \textbf{Systematic Model Optimization}—comparing classical and deep learning paradigms through a documented regularization trajectory; and (3) \textbf{Production Deployment}—containerizing the optimal model as a web application for real-time inference.
+The methodology is structured as a transferable three-stage pipeline for adapting pretrained transformers to domain-specific deceptive content detection. While validated on Spanish fake news, each stage is domain-agnostic and reusable. As illustrated in Figure \ref{fig:metodologia_general_p1}, the pipeline comprises: (1) \textbf{Corpus Unification}—aggregating and balancing heterogeneous datasets; (2) \textbf{Systematic Model Optimization}—comparing classical and deep learning paradigms through a documented regularization trajectory; and (3) \textbf{Production Deployment}—containerizing the optimal model for real-time inference.
 
 % Part 1 (Image)
 \begin{figure}[H]
@@ -203,7 +211,7 @@ This section describes the proposed framework in detail. The methodology is stru
 \end{figure}
 
 \subsection{Stage 1: Corpus Unification and Processing}
-The first stage of the framework addresses a challenge common to any domain-specific detection task: constructing a comprehensive, balanced dataset from fragmented sources. This stage is generalizable—the same unification methodology (schema standardization, content-based deduplication, targeted augmentation for class balance) can be applied whenever a practitioner needs to build a training corpus for a new detection domain (e.g., social media scams, phishing, or fraudulent e-commerce). Here, the methodology is demonstrated on Spanish fake news resources, which are typically scattered and limited in scope. A unified corpus was constructed by aggregating three publicly available academic datasets: the Spanish Fake News Corpus (971 articles) \citep{posadas2019detection}, the Tretiakov Dataset (1,958 articles) \citep{tretiakov2022detection}, and the Spanish Political Dataset (57,231 articles) \citep{blanco2024enhancing}. This initial aggregation yielded a total of \textbf{60,160} articles. Table \ref{tab:comparacion_exhaustiva_corpus} details the characteristics of each source.
+The first stage addresses a common challenge: constructing a balanced dataset from fragmented sources. The unification methodology (schema standardization, content-based deduplication, targeted augmentation) is generalizable to any detection domain. A unified corpus was constructed by aggregating three publicly available datasets: the Spanish Fake News Corpus (971 articles) \citep{posadas2019detection}, the Tretiakov Dataset (1,958 articles) \citep{tretiakov2022detection}, and the Spanish Political Dataset (57,231 articles) \citep{blanco2024enhancing}, yielding \textbf{60,160} articles. Table \ref{tab:comparacion_exhaustiva_corpus} details each source.
 
 \begin{table}[H]
 \centering
@@ -228,9 +236,7 @@ The first stage of the framework addresses a challenge common to any domain-spec
 }
 \end{table}
 
-To ensure data quality, a rigorous cleaning pipeline was implemented. Using content hashing on the 'text' field, \textbf{7,712} duplicate entries were identified and removed, resulting in \textbf{52,689} unique articles. This step is crucial to prevent data leakage between training and testing sets.
-
-Following deduplication, an analysis of the class distribution revealed a significant imbalance: 30,943 real news articles (58.7\%) versus 21,746 fake news articles (41.3\%). Such skewness predisposes machine learning models to favor the majority class, thereby reducing sensitivity to deceptive content. Rectifying this imbalance presented a challenge, as the repository of academic Spanish fake news datasets was exhausted by the sources already included. Rather than resorting to synthetic data generation techniques, which often fail to capture the linguistic complexity of human-written disinformation, a targeted acquisition of satirical content was pursued. A scraper was developed for "El Deforma," a leading Mexican satirical news site, collecting \textbf{9,000} articles. The inclusion of satire is methodologically grounded; while not maliciously deceptive, satirical texts share key rhetorical devices with fake news—such as absurdity, exaggeration, and logical inconsistencies—making them an excellent proxy for training robust detection models \citep{aragon2020overview}. These articles were labeled as FAKE, effectively balancing the corpus to \textbf{61,674} total articles (49.8\% fake, 50.2\% real), as visualized in Figure \ref{fig:corpus_balance}.
+To ensure data quality, content hashing on the 'text' field identified and removed \textbf{7,712} duplicates, yielding \textbf{52,689} unique articles—a step crucial to prevent data leakage between training and testing sets. The resulting class distribution revealed a significant imbalance: 30,943 real articles (58.7\%) versus 21,746 fake articles (41.3\%). Rather than resorting to synthetic data generation, a targeted acquisition of satirical content was pursued from ``El Deforma,'' a leading Mexican satirical news site, collecting \textbf{9,000} articles. The inclusion of satire is methodologically grounded: satirical texts share key rhetorical devices with fake news—absurdity, exaggeration, and logical inconsistencies—making them an excellent proxy for training robust detection models \citep{aragon2020overview}. These articles were labeled as FAKE, balancing the corpus to \textbf{61,674} total articles (49.8\% fake, 50.2\% real), as visualized in Figure \ref{fig:corpus_balance}.
 
 \begin{figure}[H]
 \begin{adjustwidth}{-\extralength}{0cm}
@@ -242,16 +248,10 @@ Following deduplication, an analysis of the class distribution revealed a signif
 \end{figure}
 
 \subsection{Stage 2: Systematic Model Optimization}
-The second stage of the framework focuses on the systematic fine-tuning of a pretrained transformer model, documented as a reproducible optimization trajectory. This stage is the core technical contribution: rather than reporting a single final configuration, the full evolution of hyperparameter decisions is recorded (Table \ref{tab:hyperparam_evolution}), providing a transferable recipe for practitioners facing similar challenges in other detection domains. The optimization begins by establishing a classical baseline to quantify the performance ceiling of non-contextual approaches.
+The second stage focuses on systematic fine-tuning documented as a reproducible optimization trajectory. Rather than reporting a single configuration, the full evolution of hyperparameter decisions is recorded (Table \ref{tab:hyperparam_evolution}), providing a transferable recipe for practitioners. The optimization begins by establishing a classical baseline.
 
 \subsubsection{Data Partitioning and Generalization Strategy}
-To ensure the statistical reliability of the results and guarantee model generalization to unseen data, a rigorous data splitting protocol was implemented, as illustrated in Figure \ref{fig:metodologia_general_p2}. The unified balanced corpus ($N=61,674$) was partitioned into three disjoint subsets using \textbf{stratified random sampling}. This strategy was crucial to preserve the approximately 50/50 class distribution across all partitions, preventing bias during training. The split proportions were defined as follows:
-\begin{itemize}
-    \item \textbf{Training Set (70\%, $\approx$43,171 articles):} Used for model fitting and gradient updates.
-    \item \textbf{Validation Set (10\%, $\approx$6,167 articles):} Used exclusively for hyperparameter tuning, model selection, and monitoring for early stopping.
-    \item \textbf{Test Set (20\%, $\approx$12,335 articles):} Strictly isolated during the entire optimization process and used solely for the final performance evaluation reported in Section 4.
-\end{itemize}
-Furthermore, to maximize generalization and prevent overfitting, a "hold-out" validation strategy was applied, combined with the aggressive regularization techniques detailed in Section 3.2.3 (high dropout and L2 regularization). This approach ensures that the reported metrics reflect the model's true ability to handle novel, real-world misinformation rather than memorized patterns.
+To ensure the statistical reliability of the results and guarantee model generalization to unseen data, a rigorous data splitting protocol was implemented, as illustrated in Figure \ref{fig:metodologia_general_p2}. 
 
 % Part 2 (Image)
 \begin{figure}[H]
@@ -261,9 +261,17 @@ Furthermore, to maximize generalization and prevent overfitting, a "hold-out" va
 \label{fig:metodologia_general_p2}
 \end{figure}
 
-\textbf{Classical Machine Learning Baseline.} A baseline was initially established using TF-IDF feature representation, a standard approach validated in the fake news detection literature \citep{shu2017fake}. Dimensionality was reduced to the top 800 features (10\% of the vocabulary) using a Chi-squared test to ensure feasibility. Five metaheuristic algorithms—Multi-Start Simulated Annealing (MSA), Scatter Search (SS), Variable Neighborhood Search (VNS), Genetic Algorithm (GA), and Particle Swarm Optimization (PSO)—were employed to optimize the hyperparameters of a logistic regression model, maximizing the F1-Score.
+The unified balanced corpus ($N=61,674$) was partitioned into three disjoint subsets using \textbf{stratified random sampling} to preserve the approximately 50/50 class distribution across all partitions:
+\begin{itemize}
+    \item \textbf{Training Set (70\%, $\approx$43,171 articles):} Used for model fitting and gradient updates.
+    \item \textbf{Validation Set (10\%, $\approx$6,167 articles):} Used for hyperparameter tuning, model selection, and early stopping monitoring.
+    \item \textbf{Test Set (20\%, $\approx$12,335 articles):} Strictly isolated and used solely for the final evaluation reported in Section 4.
+\end{itemize}
+A ``hold-out'' validation strategy combined with aggressive regularization (Section 3.2.3) ensures that reported metrics reflect the model's true generalization ability rather than memorized patterns.
 
-\textbf{Deep Learning with Transformers.} To overcome the semantic limitations of classical methods, \texttt{distilbert-base-multilingual-cased} was selected \citep{sanh2019distilbert}. While the full BERT model and TinyBERT were also evaluated, DistilBERT offered the optimal trade-off between performance and computational efficiency for Spanish text, being approximately four times faster than BERT while maintaining competitive accuracy (Table \ref{tab:comparacion_modelos_bert}).
+\textbf{Classical Machine Learning Baseline.} A baseline was established using TF-IDF feature representation \citep{shu2017fake}, with dimensionality reduced to 800 features via Chi-squared test. Five metaheuristic algorithms—Multi-Start Simulated Annealing (MSA), Scatter Search (SS), Variable Neighborhood Search (VNS), Genetic Algorithm (GA), and Particle Swarm Optimization (PSO)—optimized the hyperparameters of a logistic regression model, maximizing F1-Score.
+
+\textbf{Deep Learning with Transformers.} To overcome classical methods' semantic limitations, \texttt{distilbert-base-multilingual-cased} was selected \citep{sanh2019distilbert}, offering the optimal trade-off between performance and efficiency—approximately four times faster than BERT with competitive accuracy (Table \ref{tab:comparacion_modelos_bert}).
 
 \begin{table}[H]
 \centering
@@ -282,7 +290,7 @@ Furthermore, to maximize generalization and prevent overfitting, a "hold-out" va
 }
 \end{table}
 
-\textbf{Hyperparameter Fine-tuning.} A systematic optimization process was conducted, involving over 30 experiments and 500 GPU hours to identify configurations that mitigate overfitting—a common challenge where the model memorizes training data (decreasing training loss) but fails to generalize (increasing validation loss), as illustrated in Figure \ref{fig:overfitting_underfitting_examples}.
+\textbf{Hyperparameter Fine-tuning.} Over 30 experiments and 500 GPU hours were conducted to identify configurations that mitigate overfitting—where the model memorizes training data but fails to generalize—as illustrated in Figure \ref{fig:overfitting_underfitting_examples}.
 
 \begin{figure}[H]
 \centering
@@ -319,7 +327,7 @@ V6 & $1 \times 10^{-5}$ & 0.5 & 0.5 & 8 & 0.051 & 94.8 \\
 \end{table}
 
 \subsection{Stage 3: Production Deployment}
-The final stage of the framework addresses the deployment gap by implementing the optimized model into a production-ready, containerized web application (Figure \ref{fig:metodologia_general_p3}). This stage is designed to be model-agnostic: the same containerized architecture can host any transformer model produced by Stage 2, regardless of the specific detection domain.
+The final stage of the framework addresses the deployment gap by implementing the optimized model into a production-ready, containerized web application (Figure \ref{fig:metodologia_general_p3}). This stage is designed to be model-agnostic: the same containerized architecture can host any transformer model produced by Stage 2, regardless of the specific detection domain. A critical design principle was to minimize the technical barrier for end users: the application requires no machine learning expertise, no local model installation, and no command-line interaction—users simply submit a URL through a web browser. This accessibility is essential for the framework's stated goal of empowering communities with limited technical resources to combat deceptive content on social media.
 
 % Part 3 (Image)
 \begin{figure}[H]
@@ -329,7 +337,7 @@ The final stage of the framework addresses the deployment gap by implementing th
 \label{fig:metodologia_general_p3}
 \end{figure}
 
-The interaction flow, from user request to final verdict, is detailed in the sequence diagram (Figure \ref{fig:system_sequence}).
+The interaction flow, from user request to final verdict, follows a well-defined pipeline that ensures both reliability and transparency. When a user submits a URL, the system performs content extraction, text preprocessing, tokenization, model inference, and result presentation in a single automated pass. The complete workflow is detailed in the sequence diagram (Figure \ref{fig:system_sequence}). Notably, the system provides not only a binary classification (real or fake) but also a confidence score derived from the softmax output layer, enabling users to assess the certainty of each prediction. This probabilistic output is particularly valuable in edge cases where the content may contain a mix of factual and misleading information.
 
 \begin{figure}[H]
 \centering
@@ -338,12 +346,12 @@ The interaction flow, from user request to final verdict, is detailed in the seq
 \label{fig:system_sequence}
 \end{figure}
 
-The system consists of four integrated components:
+The system consists of four integrated components, each designed for modularity and replaceability:
 \begin{enumerate}
-    \item \textbf{User Interface:} A static web frontend where users submit URLs for analysis.
-    \item \textbf{API Backend:} A Flask-based service exposing an \texttt{/analyze} endpoint to handle requests.
-    \item \textbf{Inference Engine:} This component loads the trained DistilBERT model and tokenizer. It scrapes the content of the submitted URL (extracting \texttt{<h1>} and \texttt{<p>} tags via \texttt{BeautifulSoup}), tokenizes the text combining title and body with a \texttt{[SEP]} token, and computes the probability scores using a softmax function.
-    \item \textbf{Docker Deployment:} The entire environment, including Python dependencies and model artifacts, is encapsulated in a Docker image to ensure reproducibility and ease of deployment.
+    \item \textbf{User Interface:} A responsive static web frontend built with HTML, CSS, and JavaScript where users submit URLs for analysis. The interface provides real-time visual feedback during the analysis process—including loading indicators and color-coded results (green for real, red for fake)—to ensure an intuitive user experience for non-technical users.
+    \item \textbf{API Backend:} A Flask-based RESTful service exposing an \texttt{/analyze} endpoint that receives POST requests containing the target URL. The backend implements error handling for common failure scenarios such as unreachable URLs, non-textual content, and pages with insufficient text for meaningful classification.
+    \item \textbf{Inference Engine:} The core analytical component loads the trained DistilBERT model and tokenizer at startup to minimize per-request latency. Upon receiving a URL, it scrapes the page content by extracting \texttt{<h1>} and \texttt{<p>} tags via \texttt{BeautifulSoup}, applies text cleaning (removing HTML artifacts, normalizing whitespace), tokenizes the combined title and body with a \texttt{[SEP]} separator token, and computes probability scores through a softmax function. The engine truncates inputs exceeding 512 tokens—DistilBERT's maximum sequence length—ensuring graceful handling of long-form articles.
+    \item \textbf{Docker Deployment:} The entire runtime environment—including Python 3.10 dependencies, PyTorch, the Hugging Face Transformers library, and the serialized model artifacts—is encapsulated in a Docker image built from a minimal base to ensure reproducibility, portability, and ease of deployment across platforms.
 \end{enumerate}
 
 \begin{figure}[H]
@@ -353,7 +361,7 @@ The system consists of four integrated components:
 \label{fig:system_components}
 \end{figure}
 
-To guarantee scalability and reproducibility, the system was architected as a containerized microservice stack. This modular approach (Figure \ref{fig:system_components}) separates the frontend interface from the backend inference tasks, allowing for independent scaling and easier maintenance.
+To guarantee scalability and reproducibility, the system was architected as a containerized microservice stack. This modular approach (Figure \ref{fig:system_components}) separates the frontend interface from the backend inference tasks, allowing for independent scaling and easier maintenance. The containerized design also facilitates continuous integration workflows: when the model is retrained on an updated corpus (e.g., incorporating new forms of deceptive content such as deepfake-related misinformation or emerging scam patterns), only the model artifacts within the Docker image need to be replaced—no changes to the application code, API endpoints, or frontend interface are required. This decoupling between the detection model and the serving infrastructure is a deliberate architectural choice that reinforces the framework's transferability across detection domains. Furthermore, the Docker-based deployment enables rapid replication in diverse hosting environments, from local machines for individual researchers to cloud-based virtual machines for institutional deployments, ensuring that the framework remains accessible regardless of the user's computational infrastructure.
 
 \subsection{Evaluation Metrics}
 To assess model performance, standard metrics derived from the confusion matrix were employed, which categorizes predictions into true positives (TP), true negatives (TN), false positives (FP), and false negatives (FN). In this context, the "positive" class represents real news (label 1), and the "negative" class represents fake news (label 0). These metrics are widely used in fake news detection literature, facilitating comparison with related work.
@@ -508,8 +516,8 @@ The resulting DistilBERT model demonstrates strong semantic robustness. Unlike t
 A central claim of this work is that the proposed three-stage framework is transferable beyond fake news detection. The architecture of the pipeline—corpus unification, systematic regularization, containerized deployment—is explicitly domain-agnostic. To illustrate this transferability, consider the following concrete scenarios where the same framework could be applied by substituting only the training corpus:
 
 \begin{itemize}
-    \item \textbf{Investment Scam Detection:} Social media platforms, particularly Facebook and Instagram, are inundated with fraudulent pages promoting fake investment opportunities (e.g., petroleum investments, cryptocurrency schemes). These pages use persuasive language patterns that share rhetorical features with fake news—urgency, emotional manipulation, and fabricated testimonials. A corpus of labeled scam pages could be constructed using the Stage 1 unification methodology, and the Stage 2 regularization recipe applied directly to fine-tune a detection model.
-    \item \textbf{Fraudulent E-Commerce Detection:} Fake retail pages impersonating legitimate brands (e.g., fraudulent Walmart, Amazon, or electronics stores offering unrealistic discounts) represent a growing threat that disproportionately affects elderly and digitally illiterate populations. The textual patterns of these pages—exaggerated discounts, pressure tactics, suspicious return policies—are amenable to the same transformer-based classification approach.
+    \item \textbf{Investment Scam Detection:} Social media platforms, particularly Facebook and Instagram, are inundated with fraudulent pages promoting fake investment opportunities (e.g., petroleum investments, cryptocurrency schemes). These pages use persuasive language patterns that share rhetorical features with fake news—urgency, emotional manipulation, and fabricated testimonials. A concrete example is a page impersonating PEMEX (Mexico's state oil company) that claims citizens can ``earn 100,000 pesos'' by joining a fictitious ``social project'' \citep{scam2025investment}—a classic social engineering tactic combining authority impersonation with unrealistic financial promises. A corpus of labeled scam pages could be constructed using the Stage 1 unification methodology, and the Stage 2 regularization recipe applied directly to fine-tune a detection model.
+    \item \textbf{Fraudulent E-Commerce Detection:} Fake retail pages impersonating legitimate brands or promoting non-existent products represent a growing threat that disproportionately affects elderly and digitally illiterate populations. Real-world examples include pages selling fraudulent ``anti-aging cosmetics'' using fabricated before-and-after photos, fake WhatsApp testimonials, and artificial urgency tactics (e.g., countdown timers and ``order now'' buttons) \citep{scam2025cosmetics}, as well as pages advertising implausible products such as ``smart radiation-proof reading glasses'' claiming to sell over 100,000 units per day \citep{scam2025ecommerce}. The textual patterns of these pages—exaggerated claims, pressure tactics, and suspicious product descriptions—are amenable to the same transformer-based classification approach.
     \item \textbf{Phishing Content Detection:} Phishing campaigns disseminated through social media messaging share linguistic features with misinformation: impersonation of authority, urgency, and deceptive intent. The framework's containerized deployment stage (Stage 3) is particularly valuable here, as it enables real-time URL analysis that could be extended to phishing detection with minimal architectural changes.
 \end{itemize}
 
@@ -534,8 +542,7 @@ Beyond the case study, the framework's core technical contribution lies in its t
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \authorcontributions{Conceptualization, G.H.A. and J.A.R.-O.; Data Curation, G.H.A. and R.A.M.-G.; Formal Analysis, J.P.C.; Funding Acquisition, J.A.R.-O.; Investigation, G.H.A.; Methodology, G.H.A., J.A.R.-O., R.A.M.-G. and J.P.C.; Project Administration, J.A.R.-O.; Resources, G.H.A. and J.A.R.-O.; Software, G.H.A.; Supervision, J.A.R.-O. and R.A.M.-G.; Validation, J.P.C. and R.A.M.-G.; Visualization, G.H.A., J.A.R.-O., R.A.M.-G. and J.P.C.; Writing—Original Draft, G.H.A.; Writing—Review and Editing, J.A.R.-O., R.A.M.-G. and J.P.C. All authors have read and agreed to the published version of the manuscript.}
 
-\funding{The present work was funded by the Consejo Nacional de Humanidades, Ciencia y
- Tecnologia (CONAHCYT, currently SECIHTI), Mexico, under scholarship No. 1313870.}
+\funding{This research received no external funding.}
 
 \institutionalreview{Not applicable.}
 
@@ -543,7 +550,7 @@ Beyond the case study, the framework's core technical contribution lies in its t
 
 \dataavailability{The unified corpus and trained models used in this study are publicly available at: \url{https://huggingface.co/datasets/gabrielhuav/Unified-and-Balanced-Spanish-Fake-News-Corpus} and \url{https://github.com/gabrielhuav/Spanish-Fake-News-Detection-Training} respectively. The source code of the web application is available at: \url{https://github.com/gabrielhuav/Spanish-Fake-News-Detection-Web-App}.}
 
-\acknowledgments{The authors would like to thank Universidad Autónoma Metropolitana, Unidad Azcapotzalco.}
+\acknowledgments{The authors would like to thank Universidad Autónoma Metropolitana, Unidad Azcapotzalco, and the \textit{Secretaría de Ciencia, Humanidades, Tecnología e Innovación del Gobierno de México (SECIHTI)}, Mexico, for scholarship No. 1313870, granted to support the development of this research.}
 
 \conflictsofinterest{The authors declare no conflicts of interest.} 
 
@@ -555,7 +562,7 @@ Beyond the case study, the framework's core technical contribution lies in its t
 
 \begin{thebibliography}{999}
 
-% References ordered by order of appearance in the text
+% References ordered by order of first appearance in the text
 
 \bibitem[1]{bondielli2019survey}
 Bondielli, A.; Marcelloni, F. A survey on fake news and rumour detection techniques. \textit{Information Sciences} \textbf{2019}, \textit{497}, 38--55. \href{https://doi.org/10.1016/j.ins.2019.05.035}{doi:10.1016/j.ins.2019.05.035}.
@@ -569,68 +576,125 @@ Higdon, N. Constructive Conflict and Critical Media Literacy.  In \textit{The Ha
 \bibitem[4]{tsfati2020causes}
 Tsfati, Y.; Boomgaarden, H.G.; Strömbäck, J.; Vliegenthart, R.; Damstra, A.; Lindgren, E.  Causes and Consequences of Mainstream Media Dissemination of Fake News: Literature Review and Synthesis. \textit{Ann. Int. Commun.  Assoc.} \textbf{2020}, \textit{44}, 157--173. \href{https://doi.org/10.1080/23808985.2020.1759443}{https://doi.org/10.1080/23808985.2020.1759443}. 
 
-\bibitem[5]{shu2017fake}
-Shu, K.; Sliva, A.; Wang, S.; Tang, J.; Liu, H. Fake News Detection on Social Media: A Data Mining Perspective. \textit{SIGKDD Explor. Newsl.} \textbf{2017}, \textit{19}, 22--36. \href{https://doi.org/10.1145/3137597.3137600}{doi:10.1145/3137597.3137600}.
+\bibitem[5]{allcott2017social}
+Allcott, H.; Gentzkow, M. Social Media and Fake News in the 2016 Election. \textit{J. Econ. Perspect.} \textbf{2017}, \textit{31}, 211--236. \href{https://doi.org/10.1257/jep.31.2.211}{doi:10.1257/jep.31.2.211}.
 
-\bibitem[6]{ali2022fake}
-Ali, I.; Ayub, M. N. B.; Shivakumara, P.; Noor, N. F.B. M.  Fake News Detection Techniques on Social Media: A Survey. \textit{Wirel. Commun. Mob. Comput.} \textbf{2022}, \textit{2022}, 6072084. \href{https://doi.org/10.1155/2022/6072084}{https://doi.org/10.1155/2022/6072084}.
+\bibitem[6]{scam2025investment}
+PEMEX Investment Scam Landing Page. Available online: \url{https://web.archive.org/web/20250720083802/https://artcanvas.digital/v1vBtq9ye} (accessed on 18 February 2026).
 
-\bibitem[7]{nasir2021fake}
-Nasir, J.A.; Khan, O.S.; Varlamis, I.  Fake news detection: A hybrid CNN-RNN based deep learning approach.  \textit{Int. J.  Inf. Manag. Data Insights} \textbf{2021}, \textit{1}, 100007. \href{https://doi.org/10.1016/j.jjimei. 2020.100007}{https://doi.org/10.1016/j.jjimei. 2020.100007}.
+\bibitem[7]{scam2025cosmetics}
+Fraudulent Anti-Aging Cosmetics Scam Page. Available online: \url{https://web.archive.org/web/20250720090808/http://web.archive.org/screenshot/https://beauty-plus365.com/ox-mx-ext/} (accessed on 18 February 2026).
 
-\bibitem[8]{zhou2020survey}
-Zhou, X.; Zafarani, R. A Survey of Fake News: Fundamental Theories, Detection Methods, and Opportunities. \textit{ACM Comput. Surv.} \textbf{2020}, \textit{53}, 1--40. \href{https://doi.org/10.1145/3395046}{doi:10.1145/3395046}.
+\bibitem[8]{scam2025ecommerce}
+Fraudulent Smart Glasses E-Commerce Scam Page. Available online: \url{https://web.archive.org/web/20250722220434/https://aabbkl.com/detail/5nuf776U53YKCdjArvdT} (accessed on 18 February 2026).
 
-\bibitem[9]{devlin2018bert}
-Devlin, J.; Chang, M.; Lee, K.; Toutanova, K. BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding. \textit{arXiv} \textbf{2018}, arXiv:1810.04805. \href{https://doi.org/10.48550/arXiv.1810.04805}{doi:10.48550/arXiv.1810.04805}.
+\bibitem[9]{scam2026aurrera1}
+Fraudulent Bodega Aurrera Liquidation Sale Impersonation Page (variant 1). Available online: \url{https://web.archive.org/web/20260218001617/https://mgluckly-mx.shop/collections/\%C2\%A1gran-liquidaci\%C3\%B3n-en-bodega-aurrera!-solo-72-horas} (accessed on 18 February 2026).
 
-\bibitem[10]{vaswani2017attention}
-Vaswani, A.; Shazeer, N.; Parmar, N.; Uszkoreit, J.; Jones, L.; Gomez, A.N.; Kaiser, L.; Polosukhin, I. Attention is All You Need. \textit{arXiv} \textbf{2017}, arXiv:1706.03762. \href{https://doi.org/10.48550/arXiv.1706.03762}{doi:10.48550/arXiv.1706.03762}.
+\bibitem[10]{scam2026aurrera2}
+Fraudulent Bodega Aurrera Liquidation Sale Impersonation Page (variant 2). Available online: \url{https://web.archive.org/web/20260218002025/https://mexico-promocion.shop/collections/bodega-aurrera-venta-de-liquidaci\%C3\%B3n} (accessed on 18 February 2026).
 
-\bibitem[11]{singh2024comprehensive}
-Singh, M.K.; Ahmed, J.; Alam, M.A.; et al. A comprehensive review on automatic detection of fake news on social media. \textit{Multimed. Tools Appl.} \textbf{2024}, \textit{83}, 47319--47352. \href{https://doi.org/10.1007/s11042-023-17377-4}{https://doi.org/10.1007/s11042-023-17377-4}.
+\bibitem[11]{scam2026aurrera3}
+Fraudulent Bodega Aurrera Liquidation Sale Impersonation Page (variant 3). Available online: \url{https://web.archive.org/web/20260218013806/https://bodgaavrrera.shop/collections/} (accessed on 18 February 2026).
 
-\bibitem[12]{alghamdi2024comprehensive}
-Alghamdi, J.; Luo, S.; Lin, Y. A comprehensive survey on machine learning approaches for fake news detection. \textit{Multimed. Tools Appl.} \textbf{2024}, \textit{83}, 51009--51067. \href{https://doi.org/10.1007/s11042-023-17470-8}{https://doi.org/10.1007/s11042-023-17470-8}.
+\bibitem[12]{scam2026celulares}
+Fraudulent Electronics Liquidation E-Commerce Scam Page. Available online: \url{https://web.archive.org/web/20260218002729/https://mercadocelulares.store/} (accessed on 18 February 2026).
 
-\bibitem[13]{kaliyar2021fakebert}
+\bibitem[13]{scam2025health}
+Celebrity Health Misinformation Clickbait Page Promoting Fraudulent Medical Products. Available online: \url{https://web.archive.org/web/20250720091118/https://k-m-kalash.space/} (accessed on 18 February 2026).
+
+\bibitem[14]{kaliyar2021fakebert}
 Kaliyar, R.K.; Goswami, A.; Narang, P. FakeBERT: Fake news detection in social media with a BERT-based deep learning approach. \textit{Multimed. Tools Appl.} \textbf{2021}, \textit{80}, 11765--11788. \href{https://doi.org/10.1007/s11042-020-10183-2}{doi:10.1007/s11042-020-10183-2}.
 
-\bibitem[14]{choudhry2024emotion}
+\bibitem[15]{singh2024comprehensive}
+Singh, M.K.; Ahmed, J.; Alam, M.A.; et al. A comprehensive review on automatic detection of fake news on social media. \textit{Multimed. Tools Appl.} \textbf{2024}, \textit{83}, 47319--47352. \href{https://doi.org/10.1007/s11042-023-17377-4}{https://doi.org/10.1007/s11042-023-17377-4}.
+
+\bibitem[16]{rout2025reliable}
+Rout, J.; Mishra, M.; Saikia, M.J. Towards Reliable Fake News Detection: Enhanced Attention-Based Transformer Model. \textit{J. Cybersecur. Priv.} \textbf{2025}, \textit{5}, 43. \href{https://doi.org/10.3390/jcp5030043}{doi:10.3390/jcp5030043}.
+
+\bibitem[17]{alghamdi2024comprehensive}
+Alghamdi, J.; Luo, S.; Lin, Y. A comprehensive survey on machine learning approaches for fake news detection. \textit{Multimed. Tools Appl.} \textbf{2024}, \textit{83}, 51009--51067. \href{https://doi.org/10.1007/s11042-023-17470-8}{https://doi.org/10.1007/s11042-023-17470-8}.
+
+\bibitem[18]{shu2017fake}
+Shu, K.; Sliva, A.; Wang, S.; Tang, J.; Liu, H. Fake News Detection on Social Media: A Data Mining Perspective. \textit{SIGKDD Explor. Newsl.} \textbf{2017}, \textit{19}, 22--36. \href{https://doi.org/10.1145/3137597.3137600}{doi:10.1145/3137597.3137600}.
+
+\bibitem[19]{ali2022fake}
+Ali, I.; Ayub, M. N. B.; Shivakumara, P.; Noor, N. F.B. M.  Fake News Detection Techniques on Social Media: A Survey. \textit{Wirel. Commun. Mob. Comput.} \textbf{2022}, \textit{2022}, 6072084. \href{https://doi.org/10.1155/2022/6072084}{https://doi.org/10.1155/2022/6072084}.
+
+\bibitem[20]{perez2018automatic}
+Pérez-Rosas, V.; Kleinberg, B.; Lefevre, A.; Mihalcea, R. Automatic Detection of Fake News. In Proceedings of the 27th International Conference on Computational Linguistics (COLING 2018); Association for Computational Linguistics: Santa Fe, NM, USA, 2018; pp. 3391--3401. Available online: \href{https://aclanthology.org/C18-1287}{https://aclanthology.org/C18-1287}.
+
+\bibitem[21]{nasir2021fake}
+Nasir, J.A.; Khan, O.S.; Varlamis, I.  Fake news detection: A hybrid CNN-RNN based deep learning approach.  \textit{Int. J.  Inf. Manag. Data Insights} \textbf{2021}, \textit{1}, 100007. \href{https://doi.org/10.1016/j.jjimei.2020.100007}{doi:10.1016/j.jjimei.2020.100007}.
+
+\bibitem[22]{zhou2020survey}
+Zhou, X.; Zafarani, R. A Survey of Fake News: Fundamental Theories, Detection Methods, and Opportunities. \textit{ACM Comput. Surv.} \textbf{2020}, \textit{53}, 1--40. \href{https://doi.org/10.1145/3395046}{doi:10.1145/3395046}.
+
+\bibitem[23]{devlin2018bert}
+Devlin, J.; Chang, M.; Lee, K.; Toutanova, K. BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding. \textit{arXiv} \textbf{2018}, arXiv:1810.04805. \href{https://doi.org/10.48550/arXiv.1810.04805}{doi:10.48550/arXiv.1810.04805}.
+
+\bibitem[24]{vaswani2017attention}
+Vaswani, A.; Shazeer, N.; Parmar, N.; Uszkoreit, J.; Jones, L.; Gomez, A.N.; Kaiser, L.; Polosukhin, I. Attention is All You Need. \textit{arXiv} \textbf{2017}, arXiv:1706.03762. \href{https://doi.org/10.48550/arXiv.1706.03762}{doi:10.48550/arXiv.1706.03762}.
+
+\bibitem[25]{wang2017liar}
+Wang, W.Y. ``Liar, Liar Pants on Fire'': A New Benchmark Dataset for Fake News Detection and Verification. In Proceedings of the 55th Annual Meeting of the Association for Computational Linguistics (Volume 2: Short Papers); Association for Computational Linguistics: Vancouver, BC, Canada, 2017; pp. 422--426. \href{https://doi.org/10.18653/v1/P17-2067}{doi:10.18653/v1/P17-2067}.
+
+\bibitem[26]{choudhry2024emotion}
 Choudhry, I.; Khatri, M.; Jain; Vishwakarma, D. K. An Emotion-Aware Multitask Approach to Fake News and Rumor Detection Using Transfer Learning.  \textit{IEEE Trans. Comput.  Soc. Syst.} \textbf{2024}, \textit{11}, 588--599. \href{https://doi.org/10.1109/TCSS.2022.3228312}{https://doi.org/10.1109/TCSS.2022.3228312}.
 
-\bibitem[15]{hu2022deep}
-Hu, L.; Wei, S.; Zhao, Z.; Wu, B. Deep learning for fake news detection: A comprehensive survey. \textit{AI Open} \textbf{2022}, \textit{3}, 133--155. \href{https://doi.org/10.1016/j.aiopen.2022.09.001}{doi:10.1016/j.aiopen.2022.09.001}.
-
-\bibitem[16]{posadas2019detection}
-Posadas-Durán, J.P.; Gómez-Adorno, H.; Sidorov, G.; Escobar, J.J.M. Detection of fake news in a new corpus for the Spanish language. \textit{J. Intell. Fuzzy Syst.} \textbf{2019}, \textit{36}, 4869--4876. \href{https://doi.org/10.3233/jifs-179034}{doi:10.3233/jifs-179034}.
-
-\bibitem[17]{blanco2024enhancing}
+\bibitem[27]{blanco2024enhancing}
 Blanco-Fernández, Y.; Otero-Vizoso, J.; Gil-Solla, A.; García-Duque, J. Enhancing Misinformation Detection in Spanish Language with Deep Learning: BERT and RoBERTa Transformer Models. \textit{Appl. Sci.} \textbf{2024}, \textit{14}, 9729. \href{https://doi.org/10.3390/app14219729}{doi:10.3390/app14219729}.
 
-\bibitem[18]{martinez2021fake}
+\bibitem[28]{martinez2021fake}
 Martínez-Gallego, K.; Álvarez-Ortiz, A.M.; Arias-Londoño, J.D. Fake news detection in Spanish using deep learning techniques. \textit{arXiv} \textbf{2021}, arXiv:2110.06461. \href{https://doi.org/10.48550/arXiv.2110.06461}{doi:10.48550/arXiv.2110.06461}.
 
-\bibitem[19]{tretiakov2022detection}
+\bibitem[29]{posadas2019detection}
+Posadas-Durán, J.P.; Gómez-Adorno, H.; Sidorov, G.; Escobar, J.J.M. Detection of fake news in a new corpus for the Spanish language. \textit{J. Intell. Fuzzy Syst.} \textbf{2019}, \textit{36}, 4869--4876. \href{https://doi.org/10.3233/jifs-179034}{doi:10.3233/jifs-179034}.
+
+\bibitem[30]{tretiakov2022detection}
 Tretiakov, A.; Martín García, A.; Camacho, D. Detection of false information in Spanish using machine learning techniques. In Intelligent Data Engineering and Automated Learning -- IDEAL 2022; Yin, H., Camacho, D., Tino, P., Eds.; Lecture Notes in Computer Science, vol. 13756; Springer International Publishing: Cham, Switzerland, 2022; pp. 42--53. ISBN 978-3-031-21753-1. \href{https://doi.org/10.1007/978-3-031-21753-1_5}{doi:10.1007/978-3-031-21753-1\_5}.
 
-\bibitem[20]{thota2018fake}
-Thota, A.; Tilak, P.; Ahluwalia, S.; Lohia, N. Fake news detection: A deep learning approach. \textit{SMU Data Science Review} \textbf{2018}, \textit{1}(3). Available online: \href{https://scholar.smu.edu/datasciencereview/vol1/iss3/10/}{https://scholar.smu.edu/datasciencereview/vol1/iss3/10/} (accessed on 24 December 2025).
+\bibitem[31]{thota2018fake}
+Thota, A.; Tilak, P.; Ahluwalia, S.; Lohia, N. Fake news detection: A deep learning approach. \textit{SMU Data Science Review} \textbf{2018}, \textit{1}(3). Available online: \href{https://scholar.smu.edu/datasciencereview/vol1/iss3/10/}{https://scholar.smu.edu/datasciencereview/vol1/iss3/10/} (accessed on 18 February 2026).
 
-\bibitem[21]{yildirim2023novel}
-Yildirim, G. A novel hybrid multi-thread metaheuristic approach for fake news detection in social media. \textit{Applied Intelligence} \textbf{2023}, \textit{53}, 11182--11202. \href{https://doi.org/10.1007/s10489-022-03972-9}{doi:10.1007/s10489-022-03972-9}.
+\bibitem[32]{zhen2026csteer}
+Zhen, Z.; Li, Y. C-STEER: A Dynamic Sentiment-Aware Framework for Fake News Detection with Lifecycle Emotional Evolution. \textit{Informatics} \textbf{2026}, \textit{13}, 4. \href{https://doi.org/10.3390/informatics13010004}{doi:10.3390/informatics13010004}.
 
-\bibitem[22]{garcia2024fake}
-García-Lozano, M.; García-Valls, M.; Iglesias, C.A. Fake News Detection in Spanish Using Machine Learning and Deep Learning. \textit{Electronics} \textbf{2024}, \textit{13}, 3361. \href{https://doi.org/10.3390/electronics13173361}{doi:10.3390/electronics13173361}.
+\bibitem[33]{shang2025eticd}
+Shang, W.; Yang, J.; Zhang, L.; Yi, T.; Liu, P. ETICD-Net: A Multimodal Fake News Detection Network via Emotion-Topic Injection and Consistency Modeling. \textit{Informatics} \textbf{2025}, \textit{12}, 129. \href{https://doi.org/10.3390/informatics12040129}{doi:10.3390/informatics12040129}.
 
-\bibitem[23]{padilla2024medicobert}
+\bibitem[34]{reis2019supervised}
+Reis, J.C.S.; Correia, A.; Murai, F.; Veloso, A.; Benevenuto, F. Supervised Learning for Fake News Detection. \textit{IEEE Intell. Syst.} \textbf{2019}, \textit{34}, 76--81. \href{https://doi.org/10.1109/MIS.2019.2899143}{doi:10.1109/MIS.2019.2899143}.
+
+\bibitem[35]{padilla2024medicobert}
 Padilla Cuevas, J.; Reyes-Ortiz, J.A.; Cuevas-Rasgado, A.D.; Mora-Gutiérrez, R.A.; Bravo, M. MédicoBERT: A Medical Language Model for Spanish Natural Language Processing Tasks with a Question-Answering Application Using Hyperparameter Optimization. \textit{Appl. Sci.} \textbf{2024}, \textit{14}, 7031. \href{https://doi.org/10.3390/app14167031}{doi:10.3390/app14167031}.
 
-\bibitem[24]{aragon2020overview}
+\bibitem[36]{garcia2025relation}
+García-Robledo, G.A.; Bravo, M.; Cuevas-Rasgado, A.D.; Reyes-Ortiz, J.A.; Padilla-Cuevas, J. Relation Extraction in Spanish Medical Texts Using Deep Learning Techniques for Medical Knowledge Representation. \textit{Appl. Sci.} \textbf{2025}, \textit{15}, 11352. \href{https://doi.org/10.3390/app152111352}{doi:10.3390/app152111352}.
+
+\bibitem[37]{yildirim2023novel}
+Yildirim, G. A novel hybrid multi-thread metaheuristic approach for fake news detection in social media. \textit{Applied Intelligence} \textbf{2023}, \textit{53}, 11182--11202. \href{https://doi.org/10.1007/s10489-022-03972-9}{doi:10.1007/s10489-022-03972-9}.
+
+\bibitem[38]{gravanis2019behind}
+Gravanis, G.; Vakali, A.; Diamantaras, K.; Karadais, P. Behind the Cues: A Benchmarking Study for Fake News Detection. \textit{Expert Syst. Appl.} \textbf{2019}, \textit{128}, 201--213. \href{https://doi.org/10.1016/j.eswa.2019.03.036}{doi:10.1016/j.eswa.2019.03.036}.
+
+\bibitem[39]{oshikawa2020survey}
+Oshikawa, R.; Qian, J.; Wang, W.Y. A Survey on Natural Language Processing for Fake News Detection. In Proceedings of the 12th Language Resources and Evaluation Conference (LREC 2020); European Language Resources Association: Marseille, France, 2020; pp. 6086--6093. Available online: \href{https://aclanthology.org/2020.lrec-1.747}{https://aclanthology.org/2020.lrec-1.747}.
+
+\bibitem[40]{hu2022deep}
+Hu, L.; Wei, S.; Zhao, Z.; Wu, B. Deep learning for fake news detection: A comprehensive survey. \textit{AI Open} \textbf{2022}, \textit{3}, 133--155. \href{https://doi.org/10.1016/j.aiopen.2022.09.001}{doi:10.1016/j.aiopen.2022.09.001}.
+
+\bibitem[41]{sun2025hierarchical}
+Sun, Y.; Yu, D. Hierarchical Fake News Detection Model Based on Multi-Task Learning and Adversarial Training. \textit{Informatics} \textbf{2025}, \textit{12}, 131. \href{https://doi.org/10.3390/informatics12040131}{doi:10.3390/informatics12040131}.
+
+\bibitem[42]{valencia2023understanding}
+Valencia-Arias, A.; Arango-Botero, D.M.; Cardona-Acevedo, S.; Paredes Delgado, S.S.; Gallegos, A. Understanding the Spread of Fake News: An Approach from the Perspective of Young People. \textit{Informatics} \textbf{2023}, \textit{10}, 38. \href{https://doi.org/10.3390/informatics10020038}{doi:10.3390/informatics10020038}.
+
+\bibitem[43]{aragon2020overview}
 Aragón, M.E.; Jarquín-Vásquez, H.J.; Montes-y-Gómez, M.; Escalante, H.J.; Villaseñor-Pineda, L.; Gómez-Adorno, H.; Posadas-Durán, J.P.; Bel-Enguix, G. Overview of MEX-A3T at IberLEF 2020: Fake news and aggressiveness analysis in Mexican Spanish. In Notebook Papers of 2nd SEPLN Workshop on Iberian Languages Evaluation Forum (IberLEF); CEUR Workshop Proceedings, vol. 2664; 2020; pp. 222--235. Available online: \href{https://ceur-ws.org/Vol-2664/mex-a3t_overview.pdf}{https://ceur-ws.org/Vol-2664/mex-a3t\_overview.pdf}.
 
-\bibitem[25]{sanh2019distilbert}
-Sanh, V.; Debut, L.; Chaumond, J.; Wolf, T. DistilBERT, a distilled version of BERT: smaller, faster, cheaper and lighter. \textit{arXiv} \textbf{2019}, arXiv:1910.01108. \href{https://doi.org/10.48550/arXiv.1910.01108}{doi:10.48550/arXiv.1910.01108}. Model available online: \url{https://huggingface.co/distilbert-base-multilingual-cased} (accessed on 24 December 2025). Apache-2.0 License.
+\bibitem[44]{sanh2019distilbert}
+Sanh, V.; Debut, L.; Chaumond, J.; Wolf, T. DistilBERT, a distilled version of BERT: smaller, faster, cheaper and lighter. \textit{arXiv} \textbf{2019}, arXiv:1910.01108. \href{https://doi.org/10.48550/arXiv.1910.01108}{doi:10.48550/arXiv.1910.01108}. Model available online: \url{https://huggingface.co/distilbert-base-multilingual-cased} (accessed on 18 February 2026). Apache-2.0 License.
 
 \end{thebibliography}
 
