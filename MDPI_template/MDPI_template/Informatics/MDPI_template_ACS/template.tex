@@ -38,22 +38,23 @@
 \newcommand{\orcidauthorB}{0000-0003-2111-4982} % José Alejandro Reyes Ortiz (Placeholder)
 \newcommand{\orcidauthorC}{0000-0002-2112-7049} % Román Anselmo Mora Gutiérrez (Placeholder)
 \newcommand{\orcidauthorD}{0000-0002-3156-3231} % Josué Padilla Cuevas (Placeholder)
+\newcommand{\orcidauthorE}{0000-0002-7488-0333} % Óscar Herrera Alcántara (Placeholder)
 
 % Authors, for the paper
-\Author{Gabriel Hurtado Avilés $^{1}$*\orcidA{}, José A. Reyes-Ortiz $^{1}$*\orcidB{}, Román A. Mora-Gutiérrez $^{1}$\orcidC{} and Josué Padilla Cuevas $^{1}$\orcidD{}}
+\Author{Gabriel Hurtado Avilés $^{1}$\orcidA{}, José A. Reyes-Ortiz $^{1}$*\orcidB{}, Román A. Mora-Gutiérrez $^{1}$\orcidC{}, Josué Padilla Cuevas $^{1}$\orcidD{} and Óscar Herrera Alcántara $^{1}$\orcidE{}}
 
 % MDPI internal command: Authors, for metadata in PDF
-\AuthorNames{Gabriel Hurtado Avilés, José Alejandro Reyes Ortiz, Román Anselmo Mora Gutiérrez, and Josué Padilla Cuevas}
+\AuthorNames{Gabriel Hurtado Avilés, José Alejandro Reyes Ortiz, Román Anselmo Mora Gutiérrez, Josué Padilla Cuevas, and Óscar Herrera Alcántara}
 
 % MDPI internal command: Authors, for citation in the left column
 %\AuthorCitation{Hurtado Avilés, G.; Reyes-Ortiz, J.A.; Mora-Gutiérrez, R.A.; Padilla Cuevas, J.}
 
 % Affiliations / Addresses
 \address{%
-$^{1}$ \quad Department of Systems, Autonomous Metropolitan University (UAM), Azcapotzalco Unit, Mexico City 02200, Mexico; gabrielhuav@gmail.com (G.H.A.); jaro@azc.uam.mx (J.A.R.-O.); mgra@azc.uam.mx (R.A.M.-G.); jpc@azc.uam.mx (J.P.C.)}
+$^{1}$ \quad Department of Systems, Autonomous Metropolitan University (UAM), Azcapotzalco Unit, Mexico City 02200, Mexico; gabrielhuav@gmail.com (G.H.A.); jaro@azc.uam.mx (J.A.R.-O.); mgra@azc.uam.mx (R.A.M.-G.); jpc@azc.uam.mx (J.P.C.); oha@azc.uam.mx (Ó.H.A.)}
 
 % Contact information of the corresponding author
-\corres{Correspondence: gabrielhuav@gmail.com (G.H.A.); jaro@azc.uam.mx (J.A.R.-O.)}
+\corres{Correspondence: jaro@azc.uam.mx (J.A.R.-O.)}
 
 %=================================================================
 % Abstract
@@ -239,10 +240,8 @@ The first stage addresses a common challenge: constructing a balanced dataset fr
 To ensure data quality, content hashing on the 'text' field identified and removed \textbf{7,712} duplicates, yielding \textbf{52,689} unique articles—a step crucial to prevent data leakage between training and testing sets. The resulting class distribution revealed a significant imbalance: 30,943 real articles (58.7\%) versus 21,746 fake articles (41.3\%). Rather than resorting to synthetic data generation, a targeted acquisition of satirical content was pursued from ``El Deforma,'' a leading Mexican satirical news site, collecting \textbf{9,000} articles. The inclusion of satire is methodologically grounded: satirical texts share key rhetorical devices with fake news—absurdity, exaggeration, and logical inconsistencies—making them an excellent proxy for training robust detection models \citep{aragon2020overview}. These articles were labeled as FAKE, balancing the corpus to \textbf{61,674} total articles (49.8\% fake, 50.2\% real), as visualized in Figure \ref{fig:corpus_balance}.
 
 \begin{figure}[H]
-\begin{adjustwidth}{-\extralength}{0cm}
 \centering
 \includegraphics[width=\linewidth]{Figures/corpus_balance.png}
-\end{adjustwidth}
 \caption{Visual representation of the corpus balancing process. The initial imbalanced distribution (left) was corrected by strategically adding 9,000 FAKE articles via web scraping, resulting in a nearly 50/50 final distribution (right). Source: Authors' own elaboration based on study data.}
 \label{fig:corpus_balance}
 \end{figure}
@@ -439,7 +438,7 @@ Specificity & 94.5 \\
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=\textwidth]{Figures/DistilBERT_confusion_matrix.png} 
+\includegraphics[width=0.9\textwidth]{Figures/DistilBERT_confusion_matrix.png} 
 \caption{Confusion matrix for the final DistilBERT model on the test set.}
 \label{fig:distilbert_confusion_matrix}
 \end{figure}
@@ -540,7 +539,7 @@ Beyond the case study, the framework's core technical contribution lies in its t
 \vspace{6pt} 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\authorcontributions{Conceptualization, G.H.A. and J.A.R.-O.; Data Curation, G.H.A. and R.A.M.-G.; Formal Analysis, J.P.C.; Funding Acquisition, J.A.R.-O.; Investigation, G.H.A.; Methodology, G.H.A., J.A.R.-O., R.A.M.-G. and J.P.C.; Project Administration, J.A.R.-O.; Resources, G.H.A. and J.A.R.-O.; Software, G.H.A.; Supervision, J.A.R.-O. and R.A.M.-G.; Validation, J.P.C. and R.A.M.-G.; Visualization, G.H.A., J.A.R.-O., R.A.M.-G. and J.P.C.; Writing—Original Draft, G.H.A.; Writing—Review and Editing, J.A.R.-O., R.A.M.-G. and J.P.C. All authors have read and agreed to the published version of the manuscript.}
+\authorcontributions{Conceptualization, G.H.A. and J.A.R.-O.; Data Curation, G.H.A. and R.A.M.-G.; Formal Analysis, J.P.C. and Ó.H.A.; Funding Acquisition, J.A.R.-O.; Investigation, G.H.A.; Methodology, G.H.A., J.A.R.-O., R.A.M.-G., J.P.C. and Ó.H.A.; Project Administration, J.A.R.-O.; Resources, G.H.A., J.A.R.-O and Ó.H.A.; Software, G.H.A.; Supervision, J.A.R.-O., R.A.M.-G. and Ó.H.A.; Validation, J.P.C., R.A.M.-G. and Ó.H.A.; Visualization, G.H.A., J.A.R.-O., R.A.M.-G. and J.P.C.; Writing—Original Draft, G.H.A.; Writing—Review and Editing, J.A.R.-O., R.A.M.-G., J.P.C. and Ó.H.A. All authors have read and agreed to the published version of the manuscript.}
 
 \funding{This research received no external funding.}
 

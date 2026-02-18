@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.9.8)  18 FEB 2026 01:26
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.9.8)  18 FEB 2026 16:28
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1200,7 +1200,7 @@ Package: varwidth 2009/03/30 ver 0.92;  Variable-width minipages
 \@vwid@roff=\dimen351
 ))
 Package translations Info: No language package found. I am going to use `englis
-h' as default language. on input line 67.
+h' as default language. on input line 68.
 
 (C:\Users\gabri\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\hyperref.sty
 Package: hyperref 2023-11-26 v7.01g Hypertext links for LaTeX
@@ -1339,7 +1339,7 @@ Package cleveref Info: always capitalise cross-reference names on input line 78
 52.
 Package cleveref Info: no abbreviation of names on input line 7852.
 )
-LaTeX Font Info:    Trying to load font information for T1+ppl on input line 67
+LaTeX Font Info:    Trying to load font information for T1+ppl on input line 68
 .
 
 (C:\Users\gabri\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\t1ppl.fd
@@ -1348,24 +1348,24 @@ File: t1ppl.fd 2001/06/04 font definitions for T1/ppl.
 (template.aux)
 \openout1 = `template.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 67.
-LaTeX Font Info:    ... okay on input line 67.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 67.
-LaTeX Font Info:    ... okay on input line 67.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 67.
-LaTeX Font Info:    ... okay on input line 67.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 67.
-LaTeX Font Info:    ... okay on input line 67.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 67.
-LaTeX Font Info:    ... okay on input line 67.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 67.
-LaTeX Font Info:    ... okay on input line 67.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 67.
-LaTeX Font Info:    ... okay on input line 67.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 67.
-LaTeX Font Info:    ... okay on input line 67.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 67.
-LaTeX Font Info:    ... okay on input line 67.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 68.
+LaTeX Font Info:    ... okay on input line 68.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 68.
+LaTeX Font Info:    ... okay on input line 68.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 68.
+LaTeX Font Info:    ... okay on input line 68.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 68.
+LaTeX Font Info:    ... okay on input line 68.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 68.
+LaTeX Font Info:    ... okay on input line 68.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 68.
+LaTeX Font Info:    ... okay on input line 68.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 68.
+LaTeX Font Info:    ... okay on input line 68.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 68.
+LaTeX Font Info:    ... okay on input line 68.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 68.
+LaTeX Font Info:    ... okay on input line 68.
 
 (C:\Users\gabri\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mk
 ii
@@ -1385,13 +1385,13 @@ ii
 Package microtype Info: Patching varwidth to enable character protrusion.
 \MT@vwid@leftmargin=\dimen358
 \MT@vwid@rightmargin=\dimen359
-LaTeX Info: Redefining \microtypecontext on input line 67.
-Package microtype Info: Applying patch `item' on input line 67.
-Package microtype Info: Applying patch `toc' on input line 67.
-Package microtype Info: Applying patch `eqnum' on input line 67.
-Package microtype Info: Applying patch `footnote' on input line 67.
-Package microtype Info: Applying patch `verbatim' on input line 67.
-LaTeX Info: Redefining \microtypesetup on input line 67.
+LaTeX Info: Redefining \microtypecontext on input line 68.
+Package microtype Info: Applying patch `item' on input line 68.
+Package microtype Info: Applying patch `toc' on input line 68.
+Package microtype Info: Applying patch `eqnum' on input line 68.
+Package microtype Info: Applying patch `footnote' on input line 68.
+Package microtype Info: Applying patch `verbatim' on input line 68.
+LaTeX Info: Redefining \microtypesetup on input line 68.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
@@ -1411,7 +1411,7 @@ File: translations-basic-dictionary-english.trsl (english translation file `tra
 nslations-basic-dictionary')
 )
 Package translations Info: loading dictionary `translations-basic-dictionary' f
-or `english'. on input line 67.
+or `english'. on input line 68.
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: subfig package v1.3 is loaded.
 Package caption Info: hyperref package is loaded.
@@ -1454,63 +1454,63 @@ Package caption Info: End \AtBeginDocument code.
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 Package newfloat Info: `float' package detected.
-Package hyperref Info: Link coloring ON on input line 67.
+Package hyperref Info: Link coloring ON on input line 68.
 (template.out) (template.out)
 \@outlinefile=\write4
 \openout4 = `template.out'.
 
 LaTeX Font Info:    Trying to load font information for TS1+ppl on input line 6
-7.
+8.
 
 (C:\Users\gabri\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\ts1ppl.fd
 File: ts1ppl.fd 2001/06/04 font definitions for TS1/ppl.
 )
 LaTeX Font Info:    Trying to load font information for OT1+ppl on input line 6
-7.
+8.
 
 (C:\Users\gabri\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\ot1ppl.fd
 File: ot1ppl.fd 2001/06/04 font definitions for OT1/ppl.
 )
 LaTeX Font Info:    Trying to load font information for OML+zplm on input line 
-67.
+68.
 
 (C:\Users\gabri\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\omlzplm.fd
 File: omlzplm.fd 2002/09/08 Fontinst v1.914 font definitions for OML/zplm.
 )
 LaTeX Font Info:    Trying to load font information for OMS+zplm on input line 
-67.
+68.
 
 (C:\Users\gabri\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\omszplm.fd
 File: omszplm.fd 2002/09/08 Fontinst v1.914 font definitions for OMS/zplm.
 )
 LaTeX Font Info:    Trying to load font information for OMX+zplm on input line 
-67.
+68.
 
 (C:\Users\gabri\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\omxzplm.fd
 File: omxzplm.fd 2002/09/08 Fontinst v1.914 font definitions for OMX/zplm.
 )
 LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 10.42007pt on input line 67.
+(Font)              scaled to size 10.42007pt on input line 68.
 
 (C:\Users\gabri\AppData\Local\Programs\MiKTeX\tex/latex/microtype\mt-msa.cfg
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
 LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 7.91925pt on input line 67.
+(Font)              scaled to size 7.91925pt on input line 68.
 LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 6.25204pt on input line 67.
+(Font)              scaled to size 6.25204pt on input line 68.
 LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 10.42007pt on input line 67.
+(Font)              scaled to size 10.42007pt on input line 68.
 
 (C:\Users\gabri\AppData\Local\Programs\MiKTeX\tex/latex/microtype\mt-msb.cfg
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 )
 LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 7.91925pt on input line 67.
+(Font)              scaled to size 7.91925pt on input line 68.
 LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 6.25204pt on input line 67.
+(Font)              scaled to size 6.25204pt on input line 68.
 LaTeX Font Info:    Trying to load font information for OT1+zplm on input line 
-67.
+68.
 
 (C:\Users\gabri\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\ot1zplm.fd
 File: ot1zplm.fd 2002/09/08 Fontinst v1.914 font definitions for OT1/zplm.
@@ -1523,16 +1523,16 @@ Package microtype Info: Loading generic protrusion settings for font family
 (C:\Users\gabri\AppData\Local\Programs\MiKTeX\tex/latex/microtype\mt-eur.cfg
 File: mt-eur.cfg 2006/07/31 v1.1 microtype config. file: AMS Euler Roman (RS)
 )
-LaTeX Font Info:    Redeclaring symbol font `AMSb' on input line 67.
+LaTeX Font Info:    Redeclaring symbol font `AMSb' on input line 68.
 LaTeX Font Info:    Overwriting symbol font `AMSb' in version `normal'
-(Font)                  U/msb/m/n --> U/msb/m/n on input line 67.
+(Font)                  U/msb/m/n --> U/msb/m/n on input line 68.
 LaTeX Font Info:    Overwriting symbol font `AMSb' in version `bold'
-(Font)                  U/msb/m/n --> U/msb/m/n on input line 67.
-Package marginnote Info: Margin note 1.1 is on absolute page 1 on input line 67
+(Font)                  U/msb/m/n --> U/msb/m/n on input line 68.
+Package marginnote Info: Margin note 1.1 is on absolute page 1 on input line 68
 .
-Package marginnote Info: right page because not two side mode on input line 67.
+Package marginnote Info: right page because not two side mode on input line 68.
 
-Package marginnote Info: xpos seems to be 167.01753pt on input line 67.
+Package marginnote Info: xpos seems to be 167.01753pt on input line 68.
 Package epstopdf Info: Source file: <Definitions/logo-mdpi.eps>
 (epstopdf)                    date: 2026-02-03 15:33:27
 (epstopdf)                    size: 563678 bytes
@@ -1542,41 +1542,45 @@ Package epstopdf Info: Source file: <Definitions/logo-mdpi.eps>
 (epstopdf)                    size: 13253 bytes
 (epstopdf)             Command: <miktex-epstopdf --outfile=Definitions/logo-mdp
 i-eps-converted-to.pdf Definitions/logo-mdpi.eps>
-(epstopdf)             \includegraphics on input line 67.
+(epstopdf)             \includegraphics on input line 68.
 Package epstopdf Info: Output file is already uptodate.
 <Definitions/logo-mdpi-eps-converted-to.pdf, id=109, 74.2775pt x 49.18375pt>
 File: Definitions/logo-mdpi-eps-converted-to.pdf Graphic file (type pdf)
 <use Definitions/logo-mdpi-eps-converted-to.pdf>
 Package pdftex.def Info: Definitions/logo-mdpi-eps-converted-to.pdf  used on in
-put line 67.
+put line 68.
 (pdftex.def)             Requested size: 42.96877pt x 28.45274pt.
 <Definitions/logo-orcid.pdf, id=111, 102.3825pt x 102.3825pt>
 File: Definitions/logo-orcid.pdf Graphic file (type pdf)
 <use Definitions/logo-orcid.pdf>
-Package pdftex.def Info: Definitions/logo-orcid.pdf  used on input line 67.
+Package pdftex.def Info: Definitions/logo-orcid.pdf  used on input line 68.
 (pdftex.def)             Requested size: 9.10509pt x 9.10466pt.
 File: Definitions/logo-orcid.pdf Graphic file (type pdf)
 <use Definitions/logo-orcid.pdf>
-Package pdftex.def Info: Definitions/logo-orcid.pdf  used on input line 67.
+Package pdftex.def Info: Definitions/logo-orcid.pdf  used on input line 68.
 (pdftex.def)             Requested size: 9.10509pt x 9.10466pt.
 File: Definitions/logo-orcid.pdf Graphic file (type pdf)
 <use Definitions/logo-orcid.pdf>
-Package pdftex.def Info: Definitions/logo-orcid.pdf  used on input line 67.
+Package pdftex.def Info: Definitions/logo-orcid.pdf  used on input line 68.
 (pdftex.def)             Requested size: 9.10509pt x 9.10466pt.
 File: Definitions/logo-orcid.pdf Graphic file (type pdf)
 <use Definitions/logo-orcid.pdf>
-Package pdftex.def Info: Definitions/logo-orcid.pdf  used on input line 67.
+Package pdftex.def Info: Definitions/logo-orcid.pdf  used on input line 68.
+(pdftex.def)             Requested size: 9.10509pt x 9.10466pt.
+File: Definitions/logo-orcid.pdf Graphic file (type pdf)
+<use Definitions/logo-orcid.pdf>
+Package pdftex.def Info: Definitions/logo-orcid.pdf  used on input line 68.
 (pdftex.def)             Requested size: 9.10509pt x 9.10466pt.
 LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 8.33606pt on input line 67.
+(Font)              scaled to size 8.33606pt on input line 68.
 LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 5.21004pt on input line 67.
+(Font)              scaled to size 5.21004pt on input line 68.
 LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 8.33606pt on input line 67.
+(Font)              scaled to size 8.33606pt on input line 68.
 LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 5.21004pt on input line 67.
+(Font)              scaled to size 5.21004pt on input line 68.
 LaTeX Font Info:    Trying to load font information for T1+cmss on input line 6
-7.
+8.
 
 (C:\Users\gabri\AppData\Local\Programs\MiKTeX\tex/latex/base\t1cmss.fd
 File: t1cmss.fd 2023/04/13 v2.5m Standard LaTeX font definitions
@@ -1607,9 +1611,9 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 [2]
 LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 7.29405pt on input line 107.
+(Font)              scaled to size 7.29405pt on input line 108.
 LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 7.29405pt on input line 107.
+(Font)              scaled to size 7.29405pt on input line 108.
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -1628,9 +1632,9 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 [4]
 LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 9.37807pt on input line 142.
+(Font)              scaled to size 9.37807pt on input line 143.
 LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 9.37807pt on input line 142.
+(Font)              scaled to size 9.37807pt on input line 143.
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -1648,11 +1652,11 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-6.18796pt}.
 
 [6]
-<Figures/system_architecture_p1.png, id=289, 439.8834pt x 289.5618pt>
+<Figures/system_architecture_p1.png, id=290, 439.8834pt x 289.5618pt>
 File: Figures/system_architecture_p1.png Graphic file (type png)
 <use Figures/system_architecture_p1.png>
 Package pdftex.def Info: Figures/system_architecture_p1.png  used on input line
- 208.
+ 209.
 (pdftex.def)             Requested size: 394.35522pt x 259.59581pt.
 
 
@@ -1663,25 +1667,16 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-6.18796pt}.
 
 [7 <./Figures/system_architecture_p1.png>]
-<Figures/corpus_balance.png, id=306, 1348.28719pt x 587.94656pt>
+<Figures/corpus_balance.png, id=307, 1348.28719pt x 587.94656pt>
 File: Figures/corpus_balance.png Graphic file (type png)
 <use Figures/corpus_balance.png>
 Package pdftex.def Info: Figures/corpus_balance.png  used on input line 244.
-(pdftex.def)             Requested size: 525.52245pt x 229.16367pt.
-
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 18.18796pt, for example:
-(fancyhdr)                \setlength{\headheight}{18.18796pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-6.18796pt}.
-
-[8 <./Figures/corpus_balance.png>]
-<Figures/system_architecture_p2.png, id=318, 411.939pt x 542.9886pt>
+(pdftex.def)             Requested size: 394.35522pt x 171.96246pt.
+<Figures/system_architecture_p2.png, id=310, 411.939pt x 542.9886pt>
 File: Figures/system_architecture_p2.png Graphic file (type png)
 <use Figures/system_architecture_p2.png>
 Package pdftex.def Info: Figures/system_architecture_p2.png  used on input line
- 259.
+ 258.
 (pdftex.def)             Requested size: 394.35522pt x 519.80492pt.
 
 
@@ -1691,9 +1686,17 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-6.18796pt}.
 
+[8 <./Figures/corpus_balance.png>]
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 18.18796pt, for example:
+(fancyhdr)                \setlength{\headheight}{18.18796pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-6.18796pt}.
+
 [9 <./Figures/system_architecture_p2.png>]
 LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 2
-74.
+73.
 
 (C:\Users\gabri\AppData\Local\Programs\MiKTeX\tex/latex/base\t1cmtt.fd
 File: t1cmtt.fd 2023/04/13 v2.5m Standard LaTeX font definitions
@@ -1702,17 +1705,17 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `cmtt' (encoding: T1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
-<Figures/overfitting_example.png, id=332, 992.70876pt x 792.9625pt>
+<Figures/overfitting_example.png, id=333, 992.70876pt x 792.9625pt>
 File: Figures/overfitting_example.png Graphic file (type png)
 <use Figures/overfitting_example.png>
 Package pdftex.def Info: Figures/overfitting_example.png  used on input line 29
-8.
+7.
 (pdftex.def)             Requested size: 193.23622pt x 154.35481pt.
-<Figures/underfitting_example.png, id=333, 992.70876pt x 792.9625pt>
+<Figures/underfitting_example.png, id=334, 992.70876pt x 792.9625pt>
 File: Figures/underfitting_example.png Graphic file (type png)
 <use Figures/underfitting_example.png>
-Package pdftex.def Info: Figures/underfitting_example.png  used on input line 3
-00.
+Package pdftex.def Info: Figures/underfitting_example.png  used on input line 2
+99.
 (pdftex.def)             Requested size: 193.23622pt x 154.35481pt.
 
 
@@ -1724,16 +1727,16 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 [10 <./Figures/overfitting_example.png (PNG copy)> <./Figures/underfitting_exam
 ple.png (PNG copy)>]
-<Figures/system_architecture_p3.png, id=347, 504.4446pt x 253.4268pt>
+<Figures/system_architecture_p3.png, id=348, 504.4446pt x 253.4268pt>
 File: Figures/system_architecture_p3.png Graphic file (type png)
 <use Figures/system_architecture_p3.png>
 Package pdftex.def Info: Figures/system_architecture_p3.png  used on input line
- 335.
+ 334.
 (pdftex.def)             Requested size: 394.35522pt x 198.12067pt.
-<Figures/sequence_diagram.png, id=349, 682.55pt x 456.70625pt>
+<Figures/sequence_diagram.png, id=350, 682.55pt x 456.70625pt>
 File: Figures/sequence_diagram.png Graphic file (type png)
 <use Figures/sequence_diagram.png>
-Package pdftex.def Info: Figures/sequence_diagram.png  used on input line 344.
+Package pdftex.def Info: Figures/sequence_diagram.png  used on input line 343.
 (pdftex.def)             Requested size: 394.35522pt x 263.87236pt.
 
 
@@ -1744,10 +1747,10 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-6.18796pt}.
 
 [11 <./Figures/system_architecture_p3.png>]
-<Figures/component_diagram.png, id=359, 726.715pt x 1190.4475pt>
+<Figures/component_diagram.png, id=360, 726.715pt x 1190.4475pt>
 File: Figures/component_diagram.png Graphic file (type png)
 <use Figures/component_diagram.png>
-Package pdftex.def Info: Figures/component_diagram.png  used on input line 359.
+Package pdftex.def Info: Figures/component_diagram.png  used on input line 358.
 
 (pdftex.def)             Requested size: 295.76642pt x 484.50818pt.
 
@@ -1775,35 +1778,35 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-6.18796pt}.
 
 [14]
-<Figures/confusion_matrix_ga.png, id=390, 463.7325pt x 389.2944pt>
+<Figures/confusion_matrix_ga.png, id=391, 463.7325pt x 389.2944pt>
 File: Figures/confusion_matrix_ga.png Graphic file (type png)
 <use Figures/confusion_matrix_ga.png>
 Package pdftex.def Info: Figures/confusion_matrix_ga.png  used on input line 40
-5.
+4.
 (pdftex.def)             Requested size: 189.28882pt x 158.90485pt.
-<Figures/confusion_matrix_vns.png, id=391, 463.7325pt x 389.2944pt>
+<Figures/confusion_matrix_vns.png, id=392, 463.7325pt x 389.2944pt>
 File: Figures/confusion_matrix_vns.png Graphic file (type png)
 <use Figures/confusion_matrix_vns.png>
 Package pdftex.def Info: Figures/confusion_matrix_vns.png  used on input line 4
-07.
+06.
 (pdftex.def)             Requested size: 189.28882pt x 158.90485pt.
-<Figures/confusion_matrix_ss.png, id=392, 463.7325pt x 389.2944pt>
+<Figures/confusion_matrix_ss.png, id=393, 463.7325pt x 389.2944pt>
 File: Figures/confusion_matrix_ss.png Graphic file (type png)
 <use Figures/confusion_matrix_ss.png>
 Package pdftex.def Info: Figures/confusion_matrix_ss.png  used on input line 40
-9.
+8.
 (pdftex.def)             Requested size: 189.28882pt x 158.90485pt.
-<Figures/confusion_matrix_msa.png, id=393, 463.7325pt x 389.2944pt>
+<Figures/confusion_matrix_msa.png, id=394, 463.7325pt x 389.2944pt>
 File: Figures/confusion_matrix_msa.png Graphic file (type png)
 <use Figures/confusion_matrix_msa.png>
 Package pdftex.def Info: Figures/confusion_matrix_msa.png  used on input line 4
-11.
+10.
 (pdftex.def)             Requested size: 189.28882pt x 158.90485pt.
-<Figures/confusion_matrix_pso.png, id=394, 463.7325pt x 389.2944pt>
+<Figures/confusion_matrix_pso.png, id=395, 463.7325pt x 389.2944pt>
 File: Figures/confusion_matrix_pso.png Graphic file (type png)
 <use Figures/confusion_matrix_pso.png>
 Package pdftex.def Info: Figures/confusion_matrix_pso.png  used on input line 4
-13.
+12.
 (pdftex.def)             Requested size: 189.28882pt x 158.90485pt.
 
 
@@ -1816,12 +1819,12 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 [15 <./Figures/confusion_matrix_ga.png> <./Figures/confusion_matrix_vns.png> <.
 /Figures/confusion_matrix_ss.png> <./Figures/confusion_matrix_msa.png> <./Figur
 es/confusion_matrix_pso.png>]
-<Figures/DistilBERT_confusion_matrix.png, id=414, 579.6054pt x 503.9628pt>
+<Figures/DistilBERT_confusion_matrix.png, id=415, 579.6054pt x 503.9628pt>
 File: Figures/DistilBERT_confusion_matrix.png Graphic file (type png)
 <use Figures/DistilBERT_confusion_matrix.png>
 Package pdftex.def Info: Figures/DistilBERT_confusion_matrix.png  used on input
- line 442.
-(pdftex.def)             Requested size: 394.35522pt x 342.8901pt.
+ line 441.
+(pdftex.def)             Requested size: 354.91728pt x 308.60109pt.
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -1831,10 +1834,10 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-6.18796pt}.
 
 [16 <./Figures/DistilBERT_confusion_matrix.png>]
-<Figures/training_curves.png, id=424, 1051.5285pt x 552.1428pt>
+<Figures/training_curves.png, id=425, 1051.5285pt x 552.1428pt>
 File: Figures/training_curves.png Graphic file (type png)
 <use Figures/training_curves.png>
-Package pdftex.def Info: Figures/training_curves.png  used on input line 483.
+Package pdftex.def Info: Figures/training_curves.png  used on input line 482.
 (pdftex.def)             Requested size: 394.35522pt x 207.06989pt.
 
 
@@ -1845,23 +1848,23 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-6.18796pt}.
 
 [17 <./Figures/training_curves.png>]
-<Figures/app_real1.png, id=433, 1419.80438pt x 686.565pt>
+<Figures/app_real1.png, id=434, 1419.80438pt x 686.565pt>
 File: Figures/app_real1.png Graphic file (type png)
 <use Figures/app_real1.png>
-Package pdftex.def Info: Figures/app_real1.png  used on input line 497.
+Package pdftex.def Info: Figures/app_real1.png  used on input line 496.
 (pdftex.def)             Requested size: 394.35522pt x 190.6969pt.
 
-Overfull \hbox (2.5pt too wide) in paragraph at lines 497--497
+Overfull \hbox (2.5pt too wide) in paragraph at lines 496--496
  [][] 
  []
 
-<Figures/app_falsa1.png, id=434, 1419.05156pt x 694.09312pt>
+<Figures/app_falsa1.png, id=435, 1419.05156pt x 694.09312pt>
 File: Figures/app_falsa1.png Graphic file (type png)
 <use Figures/app_falsa1.png>
-Package pdftex.def Info: Figures/app_falsa1.png  used on input line 499.
+Package pdftex.def Info: Figures/app_falsa1.png  used on input line 498.
 (pdftex.def)             Requested size: 394.35522pt x 192.8832pt.
 
-Overfull \hbox (2.5pt too wide) in paragraph at lines 499--500
+Overfull \hbox (2.5pt too wide) in paragraph at lines 498--499
  [][] 
  []
 
@@ -1922,13 +1925,13 @@ Package rerunfilecheck Info: File `template.out' has not changed.
 (rerunfilecheck)             Checksum: 830115FCA366D94A2F2CC3A21210C2BD;6140.
  ) 
 Here is how much of TeX's memory you used:
- 39116 strings out of 474486
- 776631 string characters out of 5743756
- 1961542 words of memory out of 5000000
+ 39119 strings out of 474486
+ 776655 string characters out of 5743756
+ 1960542 words of memory out of 5000000
  60061 multiletter control sequences out of 15000+600000
- 643558 words of font info for 507 fonts, out of 8000000 for 9000
+ 643717 words of font info for 509 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 123i,17n,124p,2128b,1397s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 123i,17n,124p,2128b,1399s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\gabri\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt
 1000.pk> <C:\Users\gabri\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi37
 5\ecss0800.pk><C:/Users/gabri/AppData/Local/Programs/MiKTeX/fonts/type1/public/
@@ -1938,9 +1941,9 @@ onts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/gabri/AppData/Local/Programs
 /MiKTeX/fonts/type1/urw/palatino/uplb8a.pfb><C:/Users/gabri/AppData/Local/Progr
 ams/MiKTeX/fonts/type1/urw/palatino/uplr8a.pfb><C:/Users/gabri/AppData/Local/Pr
 ograms/MiKTeX/fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on template.pdf (23 pages, 2211185 bytes).
+Output written on template.pdf (23 pages, 2211575 bytes).
 PDF statistics:
- 650 PDF objects out of 1000 (max. 8388607)
+ 651 PDF objects out of 1000 (max. 8388607)
  130 named destinations out of 1000 (max. 500000)
  118068 words of extra memory for PDF output out of 128383 (max. 10000000)
 
