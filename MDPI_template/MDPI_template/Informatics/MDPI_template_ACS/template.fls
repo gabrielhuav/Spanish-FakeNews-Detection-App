@@ -1,6 +1,6 @@
-PWD c:\Users\gabri\OneDrive\Imágenes\Documentos\GitHubDesktop\Spanish-FakeNews-Detection-App\MDPI_template\MDPI_template\Informatics\MDPI_template_ACS
+PWD c:\Users\gabri\Documents\GitHub Desktop\Spanish-FakeNews-Detection-App\MDPI_template\MDPI_template\Informatics\MDPI_template_ACS
 INPUT C:\Users\gabri\AppData\Local\MiKTeX\miktex\data\le\pdftex\pdflatex.fmt
-INPUT c:\Users\gabri\OneDrive\Imágenes\Documentos\GitHubDesktop\Spanish-FakeNews-Detection-App\MDPI_template\MDPI_template\Informatics\MDPI_template_ACS\template.tex
+INPUT c:\Users\gabri\Documents\GitHub Desktop\Spanish-FakeNews-Detection-App\MDPI_template\MDPI_template\Informatics\MDPI_template_ACS\template.tex
 OUTPUT template.log
 INPUT .\Definitions\mdpi.cls
 INPUT Definitions\mdpi.cls
@@ -61,8 +61,8 @@ INPUT C:\Users\gabri\AppData\Local\Programs\MiKTeX\tex\latex\lastpage\lastpage.s
 INPUT C:\Users\gabri\AppData\Local\Programs\MiKTeX\tex\latex\lastpage\lastpage.sty
 INPUT C:\Users\gabri\AppData\Local\Programs\MiKTeX\tex\latex\lastpage\lastpage2e.sty
 INPUT C:\Users\gabri\AppData\Local\Programs\MiKTeX\tex\latex\lastpage\lastpage2e.sty
-INPUT C:\Users\gabri\AppData\Local\Programs\MiKTeX\tex\latex\lastpage\lastpageclassic.sty
-INPUT C:\Users\gabri\AppData\Local\Programs\MiKTeX\tex\latex\lastpage\lastpageclassic.sty
+INPUT C:\Users\gabri\AppData\Local\Programs\MiKTeX\tex\latex\lastpage\lastpagemodern.sty
+INPUT C:\Users\gabri\AppData\Local\Programs\MiKTeX\tex\latex\lastpage\lastpagemodern.sty
 INPUT C:\Users\gabri\AppData\Local\Programs\MiKTeX\tex\latex\base\ifthen.sty
 INPUT C:\Users\gabri\AppData\Local\Programs\MiKTeX\tex\latex\base\ifthen.sty
 INPUT C:\Users\gabri\AppData\Local\Programs\MiKTeX\tex\latex\float\float.sty
@@ -336,14 +336,12 @@ INPUT C:\Users\gabri\AppData\Local\Programs\MiKTeX\tex\generic\pdfescape\pdfesca
 INPUT C:\Users\gabri\AppData\Local\Programs\MiKTeX\tex\generic\pdfescape\pdfescape.sty
 INPUT C:\Users\gabri\AppData\Local\Programs\MiKTeX\tex\latex\hycolor\hycolor.sty
 INPUT C:\Users\gabri\AppData\Local\Programs\MiKTeX\tex\latex\hycolor\hycolor.sty
-INPUT C:\Users\gabri\AppData\Local\Programs\MiKTeX\tex\latex\letltxmacro\letltxmacro.sty
-INPUT C:\Users\gabri\AppData\Local\Programs\MiKTeX\tex\latex\letltxmacro\letltxmacro.sty
-INPUT C:\Users\gabri\AppData\Local\Programs\MiKTeX\tex\latex\auxhook\auxhook.sty
-INPUT C:\Users\gabri\AppData\Local\Programs\MiKTeX\tex\latex\auxhook\auxhook.sty
 INPUT C:\Users\gabri\AppData\Local\Programs\MiKTeX\tex\latex\hyperref\nameref.sty
 INPUT C:\Users\gabri\AppData\Local\Programs\MiKTeX\tex\latex\hyperref\nameref.sty
 INPUT C:\Users\gabri\AppData\Local\Programs\MiKTeX\tex\generic\gettitlestring\gettitlestring.sty
 INPUT C:\Users\gabri\AppData\Local\Programs\MiKTeX\tex\generic\gettitlestring\gettitlestring.sty
+INPUT C:\Users\gabri\AppData\Local\Programs\MiKTeX\tex\generic\stringenc\stringenc.sty
+INPUT C:\Users\gabri\AppData\Local\Programs\MiKTeX\tex\generic\stringenc\stringenc.sty
 INPUT C:\Users\gabri\AppData\Local\Programs\MiKTeX\tex\latex\hyperref\pd1enc.def
 INPUT C:\Users\gabri\AppData\Local\Programs\MiKTeX\tex\latex\hyperref\pd1enc.def
 INPUT C:\Users\gabri\AppData\Local\Programs\MiKTeX\tex\latex\hyperref\pd1enc.def
@@ -356,15 +354,9 @@ INPUT C:\Users\gabri\AppData\Local\Programs\MiKTeX\tex\generic\bitset\bitset.sty
 INPUT C:\Users\gabri\AppData\Local\Programs\MiKTeX\tex\generic\bitset\bitset.sty
 INPUT C:\Users\gabri\AppData\Local\Programs\MiKTeX\tex\generic\bigintcalc\bigintcalc.sty
 INPUT C:\Users\gabri\AppData\Local\Programs\MiKTeX\tex\generic\bigintcalc\bigintcalc.sty
-INPUT C:\Users\gabri\AppData\Local\Programs\MiKTeX\tex\generic\atbegshi\atbegshi.sty
-INPUT C:\Users\gabri\AppData\Local\Programs\MiKTeX\tex\latex\base\atbegshi-ltx.sty
-INPUT C:\Users\gabri\AppData\Local\Programs\MiKTeX\tex\latex\base\atbegshi-ltx.sty
 INPUT C:\Users\gabri\AppData\Local\Programs\MiKTeX\tex\latex\hyperref\hpdftex.def
 INPUT C:\Users\gabri\AppData\Local\Programs\MiKTeX\tex\latex\hyperref\hpdftex.def
 INPUT C:\Users\gabri\AppData\Local\Programs\MiKTeX\tex\latex\hyperref\hpdftex.def
-INPUT C:\Users\gabri\AppData\Local\Programs\MiKTeX\tex\latex\atveryend\atveryend.sty
-INPUT C:\Users\gabri\AppData\Local\Programs\MiKTeX\tex\latex\base\atveryend-ltx.sty
-INPUT C:\Users\gabri\AppData\Local\Programs\MiKTeX\tex\latex\base\atveryend-ltx.sty
 INPUT C:\Users\gabri\AppData\Local\Programs\MiKTeX\tex\latex\rerunfilecheck\rerunfilecheck.sty
 INPUT C:\Users\gabri\AppData\Local\Programs\MiKTeX\tex\latex\rerunfilecheck\rerunfilecheck.sty
 INPUT C:\Users\gabri\AppData\Local\Programs\MiKTeX\tex\generic\uniquecounter\uniquecounter.sty
@@ -523,9 +515,6 @@ INPUT C:\Users\gabri\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\eul
 INPUT C:\Users\gabri\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\euler\eurm5.tfm
 INPUT C:\Users\gabri\AppData\Local\Programs\MiKTeX\fonts\tfm\adobe\palatino\pplb8t.tfm
 INPUT C:\Users\gabri\AppData\Local\Programs\MiKTeX\fonts\tfm\adobe\palatino\pplr8t.tfm
-INPUT C:\Users\gabri\AppData\Local\Programs\MiKTeX\tex\latex\base\t1cmss.fd
-INPUT C:\Users\gabri\AppData\Local\Programs\MiKTeX\tex\latex\base\t1cmss.fd
-INPUT C:\Users\gabri\AppData\Local\Programs\MiKTeX\tex\latex\base\t1cmss.fd
 INPUT C:\Users\gabri\AppData\Local\Programs\MiKTeX\fonts\tfm\jknappen\ec\ecss0800.tfm
 INPUT C:\Users\gabri\AppData\Local\Programs\MiKTeX\fonts\tfm\adobe\palatino\pplr8t.tfm
 INPUT C:\Users\gabri\AppData\Local\Programs\MiKTeX\fonts\tfm\adobe\palatino\pplb8t.tfm
@@ -614,9 +603,6 @@ INPUT C:\Users\gabri\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmr10.tfm
 INPUT C:\Users\gabri\AppData\Local\Programs\MiKTeX\fonts\vf\adobe\palatino\pplr7t.vf
 INPUT C:\Users\gabri\AppData\Local\Programs\MiKTeX\fonts\vf\public\mathpazo\zplmr7y.vf
 INPUT C:\Users\gabri\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmsy10.tfm
-INPUT C:\Users\gabri\AppData\Local\Programs\MiKTeX\tex\latex\base\t1cmtt.fd
-INPUT C:\Users\gabri\AppData\Local\Programs\MiKTeX\tex\latex\base\t1cmtt.fd
-INPUT C:\Users\gabri\AppData\Local\Programs\MiKTeX\tex\latex\base\t1cmtt.fd
 INPUT .\Figures\overfitting_example.png
 INPUT .\Figures\overfitting_example.png
 INPUT .\Figures\overfitting_example.png
