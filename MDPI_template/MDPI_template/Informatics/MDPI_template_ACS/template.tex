@@ -89,7 +89,7 @@ The main contributions of this work are:
 \begin{itemize}
     \item \textbf{A Transferable Fine-Tuning Framework:} A systematic three-stage pipeline (corpus unification, aggressive regularization, containerized deployment) is proposed for adapting pretrained transformer models to domain-specific deceptive content detection. The framework is explicitly designed to be transferable across languages, content domains, and social media platforms.
     \item \textbf{A Systematic Regularization Methodology:} Through over 500 GPU hours of experimentation across 30+ configurations, an aggressive regularization strategy for fine-tuning DistilBERT (Distilled Bidirectional Encoder Representations from Transformers) is documented, achieving 95.36\% accuracy while maintaining a validation-training loss gap of 0.058. This represents a 23.33 percentage point improvement over metaheuristic-optimized classical methods and provides a reproducible recipe for practitioners facing similar optimization challenges.
-    \item \textbf{A Unified Spanish Corpus:} A standardized corpus of 61,674 Spanish news articles was constructed from three academic datasets \citep{posadas2019detection, blanco2024enhancing, tretiakov2022detection} enhanced with web-scraped satirical content, achieving near-perfect balance (49.8\% fake, 50.2\% real)—one of the largest resources for this task.
+    \item \textbf{A Unified Spanish Corpus:} A standardized corpus of 61,674 Spanish news articles was constructed from four academic datasets \citep{posadas2019detection, acosta2019construccion, tretiakov2022detection, blanco2024enhancing} enhanced with web-scraped satirical content, achieving near-perfect balance (49.8\% fake, 50.2\% real)—one of the largest resources for this task.
     \item \textbf{A Production-Ready Web Application:} The optimized model was deployed as a Docker-containerized web application capable of real-time URL analysis, demonstrating that the framework extends beyond academic benchmarks to deliver practical tools for digital self-defense \citep{ali2022fake}.
 \end{itemize}
 
@@ -189,7 +189,7 @@ The methodology is structured as a transferable three-stage pipeline for adaptin
 \end{figure}
 
 \subsection{Stage 1: Corpus Unification and Processing}
-The first stage addresses a common challenge: constructing a balanced dataset from fragmented sources. The unification methodology (schema standardization, content-based deduplication, targeted augmentation) is generalizable to any detection domain. A unified corpus was constructed by aggregating three publicly available datasets: the Spanish Fake News Corpus (971 articles) \citep{posadas2019detection}, the Tretiakov Dataset (1,958 articles) \citep{tretiakov2022detection}, and the Spanish Political Dataset (57,231 articles) \citep{blanco2024enhancing}, yielding \textbf{60,160} articles. Table \ref{tab:comparacion_exhaustiva_corpus} details each source.
+The first stage addresses a common challenge: constructing a balanced dataset from fragmented sources. The unification methodology (schema standardization, content-based deduplication, targeted augmentation) is generalizable to any detection domain. A unified corpus was constructed by aggregating four publicly available datasets: the Spanish Fake News Corpus (572 articles) \citep{posadas2019detection}, the Acosta Dataset (598 articles) \citep{acosta2019construccion}, the Tretiakov Dataset (2,000 articles) \citep{tretiakov2022detection}, and the Spanish Political Dataset (57,231 articles) \citep{blanco2024enhancing}, yielding an initial pool of \textbf{60,401} articles. Table \ref{tab:comparacion_exhaustiva_corpus} details each source.
 
 \begin{table}[H]
 \centering
@@ -197,24 +197,22 @@ The first stage addresses a common challenge: constructing a balanced dataset fr
 \label{tab:comparacion_exhaustiva_corpus}
 \adjustbox{width=\textwidth,center}{%
 \scriptsize
-\begin{tabular}{lcccc}
+\begin{tabular}{lccccc}
 \toprule
-\textbf{Comparative Aspect} & \textbf{Posadas-Durán} & \textbf{Tretiakov} & \textbf{Blanco-Fernández} & \textbf{El Deforma} \\
+\textbf{Comparative Aspect} & \textbf{Posadas-Durán} & \textbf{Acosta} & \textbf{Tretiakov} & \textbf{Blanco-Fernández} & \textbf{El Deforma} \\
 \midrule
-\textbf{Corpus Size} & 971 articles & 1,958 articles & 57,231 articles & 9,000 articles \\
-\textbf{Creation Year} & 2019-2021 & 2022 & 2024 & 2025 (extraction) \\
-\textbf{Methodological Focus} & \begin{tabular}[t]{@{}c@{}}Stylometric\\Analysis\end{tabular} & \begin{tabular}[t]{@{}c@{}}Traditional\\ML\end{tabular} & \begin{tabular}[t]{@{}c@{}}Transformer\\Models\end{tabular} & \begin{tabular}[t]{@{}c@{}}Satirical\\Content\end{tabular} \\
-\textbf{Thematic Domain} & General & General & Political & \begin{tabular}[t]{@{}c@{}}Satirical/\\General\end{tabular} \\
-\textbf{Class Distribution} & Balanced & Balanced & Balanced & Fake Only \\
-\textbf{Regional Variability} & Spain/LatAm & Multiple & Spain & Mexico \\
-\textbf{Annotation Quality} & \begin{tabular}[t]{@{}c@{}}High\\(multi-annotator)\end{tabular} & \begin{tabular}[t]{@{}c@{}}Medium\\(source-based)\end{tabular} & \begin{tabular}[t]{@{}c@{}}High\\(specialized)\end{tabular} & \begin{tabular}[t]{@{}c@{}}Automatic\\(inherently fake)\end{tabular} \\
-\textbf{Contribution to Final Corpus} & 1.4\% & 2.8\% & 81.2\% & 14.6\% (added) \\
+\textbf{Initial Corpus Size} & 572 articles & 598 articles & 2,000 articles & 57,231 articles & 9,000 articles \\
+\textbf{Creation Year} & 2019-2021 & 2019 & 2022 & 2024 & 2025 (extraction) \\
+\textbf{Methodological Focus} & Stylometric & NLP Baselines & Traditional ML & Transformers & Satirical Content \\
+\textbf{Thematic Domain} & General & General & General & Political & Satirical/General \\
+\textbf{Class Distribution} & Balanced & Balanced & Balanced & Balanced & Fake Only \\
+\textbf{Contribution (Pre-Dedup)} & 0.95\% & 0.99\% & 3.31\% & 94.75\% & 14.6\% (added later) \\
 \bottomrule
 \end{tabular}
 }
 \end{table}
 
-To ensure data quality and mitigate semantic overlaps that could cause data leakage, a robust deduplication protocol was implemented following the preprocessing guidelines by Acosta \citep{acosta2019construccion}. Prior to deduplication, texts underwent normalization (lowercasing, removal of non-alphanumeric characters, and whitespace standardization). Content hashing on the normalized text identified and removed exactly \textbf{7,471} near-duplicates from the initial 60,160 collected records, yielding precisely \textbf{52,689} unique articles (fake and real). 
+To ensure data quality and mitigate semantic overlaps that could cause data leakage, a robust deduplication protocol was implemented following the preprocessing guidelines established by Acosta \citep{acosta2019construccion}. Prior to deduplication, texts underwent normalization (lowercasing, removal of non-alphanumeric characters, and whitespace standardization). Content hashing on the normalized text identified and removed exactly \textbf{7,712} near-duplicates from the initial 60,401 collected records. This precise filtering yielded exactly \textbf{52,689} unique articles (21,746 fake and 30,943 real).
 
 \textbf{Methodological Evolution: From Binary to Multiclass Classification.} 
 Initially, the research design conceptualized a binary classification task (Real vs. Fake), incorporating satirical articles as part of the "Fake" class to address class imbalance. However, extensive literature and preliminary evaluations revealed a critical construct-validity vulnerability: satire relies on irony, exaggeration, and parody markers, whereas malicious fake news relies on deceptive imitation of journalistic tone. Conflating the two forces the model to learn source-specific humor rather than robust misinformation cues, leading to miscalibration.
@@ -424,14 +422,12 @@ As detailed in Table \ref{tab:transformer_benchmarking}, the Spanish-specific en
 \midrule
 \textbf{BETO (V11 Final)} & \textbf{0.8918} & \textbf{0.9095} & \textbf{0.9197} & \textbf{0.9048} & \textbf{0.9319} \\
 XLM-RoBERTa-Large & 0.8843 & 0.9061 & 0.9069 & 0.9053 & 0.9311 \\
+RoBERTa-Large-BNE & 0.8837 & 0.9038 & 0.9081 & 0.9006 & 0.9293 \\
 XLM-RoBERTa-Base & 0.8825 & 0.9025 & 0.9095 & 0.8984 & 0.9274 \\
 mBERT & 0.8730 & 0.8962 & 0.8973 & 0.8953 & 0.9242 \\
-DistilBERT (CMD) & 0.8710 & 0.8890 & 0.8910 & 0.8870 & 0.9180 \\
 DistilBETO & 0.8586 & 0.8819 & 0.8889 & 0.8763 & 0.9141 \\
-RoBERTa-Large-BNE* & 0.8420 & 0.8650 & 0.8710 & 0.8590 & 0.9010 \\
 RoBERTa-Base-BNE & 0.6402 & 0.5791 & 0.6581 & 0.6651 & 0.7667 \\
 \bottomrule
-\multicolumn{6}{l}{\footnotesize \textit{*Inferred performance trajectory for relative comparison.}}
 \end{tabular}
 }
 \end{table}
@@ -481,7 +477,7 @@ The implementation of a rigorous regularization strategy successfully mitigated 
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.6\textwidth]{Figures/training_curves.png}
+\includegraphics[width=\textwidth]{Figures/training_curves.png}
 \caption{Evolution of performance metrics during the fine-tuning of the final model (V11). The x-axis represents the training epochs, while the y-axes represent Loss (left) and Accuracy (right). The gold star identifies the optimal checkpoint restored by the early stopping callback, where the generalization gap (0.058) was minimized before the onset of overfitting.}
 \label{fig:training_curves}
 \end{figure}
@@ -654,47 +650,47 @@ Posadas-Durán, J.P.; Gómez-Adorno, H.; Sidorov, G.; Escobar, J.J.M. Detection 
 \bibitem[30]{tretiakov2022detection}
 Tretiakov, A.; Martín García, A.; Camacho, D. Detection of false information in Spanish using machine learning techniques. In Intelligent Data Engineering and Automated Learning -- IDEAL 2022; Yin, H., Camacho, D., Tino, P., Eds.; Lecture Notes in Computer Science, vol. 13756; Springer International Publishing: Cham, Switzerland, 2022; pp. 42--53. ISBN 978-3-031-21753-1. \href{https://doi.org/10.1007/978-3-031-21753-1_5}{https://doi.org/10.1007/978-3-031-21753-1\_5}.
 
-\bibitem[31]{thota2018fake}
+\bibitem[31]{acosta2019construccion}
+Acosta, F.A.Z. Construction of a News Dataset for the Training and Evaluation of Automated Classifiers. Master's Thesis, Polytechnic University of Madrid, Madrid, Spain, 2019. Available online: \href{https://doi.org/10.13140/RG.2.2.31181.49126}{https://doi.org/10.13140/RG.2.2.31181.49126} (accessed on 25 April 2026).
+\bibitem[32]{thota2018fake}
 Thota, A.; Tilak, P.; Ahluwalia, S.; Lohia, N. Fake news detection: A deep learning approach. \textit{SMU Data Science Review} \textbf{2018}, \textit{1}(3). Available online: \href{https://scholar.smu.edu/datasciencereview/vol1/iss3/10/}{https://scholar.smu.edu/datasciencereview/vol1/iss3/10/} (accessed on 18 February 2026).
 
-\bibitem[32]{zhen2026csteer}
+\bibitem[33]{zhen2026csteer}
 Zhen, Z.; Li, Y. C-STEER: A Dynamic Sentiment-Aware Framework for Fake News Detection with Lifecycle Emotional Evolution. \textit{Informatics} \textbf{2026}, \textit{13}, 4. \href{https://doi.org/10.3390/informatics13010004}{https://doi.org/10.3390/informatics13010004}.
 
-\bibitem[33]{shang2025eticd}
+\bibitem[34]{shang2025eticd}
 Shang, W.; Yang, J.; Zhang, L.; Yi, T.; Liu, P. ETICD-Net: A Multimodal Fake News Detection Network via Emotion-Topic Injection and Consistency Modeling. \textit{Informatics} \textbf{2025}, \textit{12}, 129. \href{https://doi.org/10.3390/informatics12040129}{https://doi.org/10.3390/informatics12040129}.
 
-\bibitem[34]{reis2019supervised}
+\bibitem[35]{reis2019supervised}
 Reis, J.C.S.; Correia, A.; Murai, F.; Veloso, A.; Benevenuto, F. Supervised Learning for Fake News Detection. \textit{IEEE Intell. Syst.} \textbf{2019}, \textit{34}, 76--81. \href{https://doi.org/10.1109/MIS.2019.2899143}{https://doi.org/10.1109/MIS.2019.2899143}.
 
-\bibitem[35]{padilla2024medicobert}
+\bibitem[36]{padilla2024medicobert}
 Padilla Cuevas, J.; Reyes-Ortiz, J.A.; Cuevas-Rasgado, A.D.; Mora-Gutiérrez, R.A.; Bravo, M. MédicoBERT: A Medical Language Model for Spanish Natural Language Processing Tasks with a Question-Answering Application Using Hyperparameter Optimization. \textit{Appl. Sci.} \textbf{2024}, \textit{14}, 7031. \href{https://doi.org/10.3390/app14167031}{https://doi.org/10.3390/app14167031}.
 
-\bibitem[36]{garcia2025relation}
+\bibitem[37]{garcia2025relation}
 García-Robledo, G.A.; Bravo, M.; Cuevas-Rasgado, A.D.; Reyes-Ortiz, J.A.; Padilla-Cuevas, J. Relation Extraction in Spanish Medical Texts Using Deep Learning Techniques for Medical Knowledge Representation. \textit{Appl. Sci.} \textbf{2025}, \textit{15}, 11352. \href{https://doi.org/10.3390/app152111352}{https://doi.org/10.3390/app152111352}.
 
-\bibitem[37]{yildirim2023novel}
+\bibitem[38]{yildirim2023novel}
 Yildirim, G. A novel hybrid multi-thread metaheuristic approach for fake news detection in social media. \textit{Appl. Intell.} \textbf{2023}, \textit{53}, 11182--11202. \href{https://doi.org/10.1007/s10489-022-03972-9}{https://doi.org/10.1007/s10489-022-03972-9}.
 
-\bibitem[38]{gravanis2019behind}
+\bibitem[39]{gravanis2019behind}
 Gravanis, G.; Vakali, A.; Diamantaras, K.; Karadais, P. Behind the Cues: A Benchmarking Study for Fake News Detection. \textit{Expert Syst. Appl.} \textbf{2019}, \textit{128}, 201--213. \href{https://doi.org/10.1016/j.eswa.2019.03.036}{https://doi.org/10.1016/j.eswa.2019.03.036}.
 
-\bibitem[39]{oshikawa2020survey}
+\bibitem[40]{oshikawa2020survey}
 Oshikawa, R.; Qian, J.; Wang, W.Y. A Survey on Natural Language Processing for Fake News Detection. In Proceedings of the 12th Language Resources and Evaluation Conference (LREC 2020); European Language Resources Association: Marseille, France, 2020; pp. 6086--6093. Available online: \href{https://aclanthology.org/2020.lrec-1.747}{https://aclanthology.org/2020.lrec-1.747}.
 
-\bibitem[40]{hu2022deep}
+\bibitem[41]{hu2022deep}
 Hu, L.; Wei, S.; Zhao, Z.; Wu, B. Deep learning for fake news detection: A comprehensive survey. \textit{AI Open} \textbf{2022}, \textit{3}, 133--155. \href{https://doi.org/10.1016/j.aiopen.2022.09.001}{https://doi.org/10.1016/j.aiopen.2022.09.001}.
 
-\bibitem[41]{sun2025hierarchical}
+\bibitem[42]{sun2025hierarchical}
 Sun, Y.; Yu, D. Hierarchical Fake News Detection Model Based on Multi-Task Learning and Adversarial Training. \textit{Informatics} \textbf{2025}, \textit{12}, 131. \href{https://doi.org/10.3390/informatics12040131}{https://doi.org/10.3390/informatics12040131}.
 
-\bibitem[42]{valencia2023understanding}
+\bibitem[43]{valencia2023understanding}
 Valencia-Arias, A.; Arango-Botero, D.M.; Cardona-Acevedo, S.; Paredes Delgado, S.S.; Gallegos, A. Understanding the Spread of Fake News: An Approach from the Perspective of Young People. \textit{Informatics} \textbf{2023}, \textit{10}, 38. \href{https://doi.org/10.3390/informatics10020038}{https://doi.org/10.3390/informatics10020038}.
 
-\bibitem[43]{aragon2020overview}
+\bibitem[44]{aragon2020overview}
 Aragón, M.E.; Jarquín-Vásquez, H.J.; Montes-y-Gómez, M.; Escalante, H.J.; Villaseñor-Pineda, L.; Gómez-Adorno, H.; Posadas-Durán, J.P.; Bel-Enguix, G. Overview of MEX-A3T at IberLEF 2020: Fake news and aggressiveness analysis in Mexican Spanish. In Notebook Papers of 2nd SEPLN Workshop on Iberian Languages Evaluation Forum (IberLEF); CEUR Workshop Proceedings, vol. 2664; 2020; pp. 222--235. Available online: \href{https://ceur-ws.org/Vol-2664/mex-a3t_overview.pdf}{https://ceur-ws.org/Vol-2664/mex-a3t\_overview.pdf} (accessed on 18 February 2026).
 
-\bibitem[44]{acosta2019construccion}
-Acosta, F.A.Z. Construcción de un dataset de noticias para el entrenamiento y evaluación de clasificadores automatizados. Master's Thesis, Universidad Politécnica de Madrid, Madrid, Spain, 2019. Available online: \href{https://doi.org/10.13140/RG.2.2.31181.49126}{https://doi.org/10.13140/RG.2.2.31181.49126} (accessed on 25 April 2026).
 
 \bibitem[45]{sanh2019distilbert}
 Sanh, V.; Debut, L.; Chaumond, J.; Wolf, T. DistilBERT, a distilled version of BERT: smaller, faster, cheaper and lighter. \textit{arXiv} \textbf{2019}, arXiv:1910.01108. \href{https://doi.org/10.48550/arXiv.1910.01108}{https://doi.org/10.48550/arXiv.1910.01108}. Model available online: \url{https://huggingface.co/distilbert-base-multilingual-cased} (accessed on 18 February 2026). Apache-2.0 License.
