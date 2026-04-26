@@ -88,7 +88,8 @@ A progressive research design was adopted: a baseline is first established with 
 The main contributions of this work are:
 \begin{itemize}
     \item \textbf{A Transferable Fine-Tuning Framework:} A systematic three-stage pipeline (corpus unification, aggressive regularization, containerized deployment) is proposed for adapting pretrained transformer models to domain-specific deceptive content detection. The framework is explicitly designed to be transferable across languages, content domains, and social media platforms.
-    \item \textbf{A Systematic Regularization Methodology:} Through over 500 GPU hours of experimentation across 30+ configurations, an aggressive regularization strategy for fine-tuning DistilBERT (Distilled Bidirectional Encoder Representations from Transformers) is documented, achieving 95.36\% accuracy while maintaining a validation-training loss gap of 0.058. This represents a 23.33 percentage point improvement over metaheuristic-optimized classical methods and provides a reproducible recipe for practitioners facing similar optimization challenges.
+    \item \textbf{A Systematic Regularization Methodology:} Through over 500 GPU hours of experimentation across 30+ configurations, an aggressive regularization strategy for fine-tuning DistilBERT (Distilled Bidirectional Encoder Representations from Transformers) is documented, achieving 95.36\% accuracy while maintaining a validation-training loss gap of 0.058. The training and validation trajectories, demonstrating the effectiveness of the aggressive regularization strategy in preventing overfitting, are visually detailed in Figure \ref{fig:training_curves}.
+    This represents a 23.33 percentage point improvement over metaheuristic-optimized classical methods and provides a reproducible recipe for practitioners facing similar optimization challenges.
     \item \textbf{A Unified Spanish Corpus:} A standardized corpus of 61,674 Spanish news articles was constructed from four academic datasets \citep{posadas2019detection, acosta2019construccion, tretiakov2022detection, blanco2024enhancing} enhanced with web-scraped satirical content, achieving near-perfect balance (49.8\% fake, 50.2\% real)—one of the largest resources for this task.
     \item \textbf{A Production-Ready Web Application:} The optimized model was deployed as a Docker-containerized web application capable of real-time URL analysis, demonstrating that the framework extends beyond academic benchmarks to deliver practical tools for digital self-defense \citep{ali2022fake}.
 \end{itemize}
@@ -217,7 +218,9 @@ To ensure data quality and mitigate semantic overlaps that could cause data leak
 \textbf{Methodological Evolution: From Binary to Multiclass Classification.} 
 Initially, the research design conceptualized a binary classification task (Real vs. Fake), incorporating satirical articles as part of the "Fake" class to address class imbalance. However, extensive literature and preliminary evaluations revealed a critical construct-validity vulnerability: satire relies on irony, exaggeration, and parody markers, whereas malicious fake news relies on deceptive imitation of journalistic tone. Conflating the two forces the model to learn source-specific humor rather than robust misinformation cues, leading to miscalibration.
 
-To address this, the methodology evolved into a \textbf{three-class classification formulation}: FAKE (0), REAL (1), and SATIRE (2). The final, rigorously structured corpus consists of exactly \textbf{61,674 records}: the 52,689 deduplicated factual/deceptive articles, supplemented by an isolated class of \textbf{8,985} satirical articles extracted via web scraping from regional sources. This three-class architecture ensures the model learns to explicitly distinguish malicious disinformation from legitimate creative parody.
+To address this, the methodology evolved into a \textbf{three-class classification formulation}: FAKE (0), REAL (1), and SATIRE (2). The final, rigorously structured corpus consists of exactly \textbf{61,674 records}: the 52,689 deduplicated factual/deceptive articles, supplemented by an isolated class of \textbf{8,985} satirical articles extracted via web scraping from regional sources. This structural evolution and the resulting class distribution, which transitioned from a highly imbalanced binary setup to a three-class architecture, is visually summarized in Figure \ref{fig:corpus_balance}.
+
+This three-class architecture ensures the model learns to explicitly distinguish malicious disinformation from legitimate creative parody.
 
 Regarding sequence length, exploratory data analysis revealed that 87.4\% of the articles in the unified corpus fell within the 512-token limit of standard transformer architectures. Consequently, the remaining 12.6\% of articles were truncated. Empirical tests indicated that the most critical deceptive markers (e.g., clickbait headlines, urgency triggers in the opening paragraphs) are heavily concentrated in the first 256 tokens, negating the computational overhead that would be required to implement long-sequence encoders (such as Longformer or BigBird) for this specific domain.
 
@@ -393,9 +396,44 @@ Conversely, Particle Swarm Optimization (PSO) exhibited the lowest performance (
 \subfloat[MSA Confusion Matrix]{\includegraphics[width=0.48\textwidth]{Figures/confusion_matrix_msa.png}}
 \\
 \subfloat[PSO Confusion Matrix]{\includegraphics[width=0.48\textwidth]{Figures/confusion_matrix_pso.png}}
-\caption{Confusion matrices for the five metaheuristic algorithms on the test set.}
+\hfill
+\subfloat[DistilBERT Confusion Matrix]{\includegraphics[width=0.48\textwidth]{Figures/DistilBERT_confusion_matrix.png}}
+\caption{Confusion matrices evaluated on the test set. (a)-(e) show the performance of classical metaheuristic algorithms, while (f) demonstrates the superior classification capability of the fine-tuned DistilBERT model.}
 \label{fig:metaheuristic_confusion_matrices}
 \end{figure}
+
+\subsection{Final Comparative Analysis: Metaheuristics vs. Transformer}
+To quantify the impact of the architectural shift from classical ML to Deep Learning, a direct comparison of the best-performing models from each paradigm was performed. Table \ref{tab:final_comparison_all_models} presents the consolidated results.
+
+The DistilBERT model outperformed the best metaheuristic algorithm (GA) by a significant margin of \textbf{23.33 percentage points} in accuracy (95.36\% vs. 72.03\%). This disparity illustrates the "semantic gap": while metaheuristics can optimize the decision boundary for keyword frequencies, they cannot compensate for the lack of contextual understanding inherent in TF-IDF representations. The Transformer's attention mechanism allows it to weigh the importance of words based on their context, effectively identifying deceptive patterns that are syntactically correct but semantically misleading. Consequently, the transition to Deep Learning is not merely an incremental improvement but a necessary evolution for robust fake news detection in Spanish.
+
+\begin{table}[H] 
+\caption{Final performance comparison between all implemented models on the test set.}
+\label{tab:final_comparison_all_models}
+\centering
+\adjustbox{width=\textwidth,center}{%
+\small
+\begin{tabular}{lcccccc}
+\toprule
+\textbf{Algorithm} & \textbf{Accuracy (\%)} & \textbf{F1-Score (macro)} & \textbf{Precision (macro)} & \textbf{Recall (macro)} & \textbf{Specificity (\%)} & \textbf{Ranking} \\
+\midrule
+\multicolumn{7}{c}{\textit{Transformer-Based Approach}} \\
+\midrule
+\textbf{DistilBERT (Final)} & \textbf{95.36} & \textbf{0.954} & \textbf{0.954} & \textbf{0.954} & \textbf{94.5} & \textbf{1st} \\
+\midrule
+\multicolumn{7}{c}{\textit{Metaheuristic-Optimized Classical Approaches}} \\
+\midrule
+Genetic Algorithm (GA) & 72.03 & 0.714 & 0.740 & 0.720 & 57.6 & 2nd \\
+Scatter Search (SS) & 67.64 & 0.669 & 0.693 & 0.676 & 52.7 & 3rd \\
+VNS & 66.78 & 0.659 & 0.686 & 0.667 & 51.0 & 4th \\
+Simulated Annealing (MSA) & 60.86 & 0.586 & 0.638 & 0.608 & 37.4 & 5th \\
+Particle Swarm Opt. (PSO) & 57.67 & 0.489 & 0.736 & 0.575 & 16.3 & 6th \\
+\bottomrule
+\end{tabular}
+}
+\end{table}
+
+Given that the baseline transformer (DistilBERT) demonstrated absolute superiority over classical metaheuristic approaches, the study proceeded to rigorously evaluate an extended battery of state-of-the-art transformer architectures to identify the optimal encoder for Spanish-language deceptive content.
 
 \subsection{Performance of the Systematically Fine-Tuned Transformer (Stage 2b)}
 To rigorously validate the transformer architecture and address the limitations of classical baselines, a comprehensive benchmarking of eight state-of-the-art transformer models was conducted under the exact same three-class formulation (Real, Fake, Satire) and using the V11 regularization strategy. The evaluated models included multilingual encoders (mBERT, XLM-RoBERTa-base, XLM-RoBERTa-large), general Spanish encoders (BETO, RoBERTa-base-bne, RoBERTa-large-bne), and distilled versions (DistilBERT, DistilBETO).
@@ -434,37 +472,6 @@ A common criticism in automated deception detection is the risk of "source leaka
 To systematically test the chosen BETO V11 model against source leakage, an \textbf{Adversarial Robustness Test} was executed. Using a Named Entity Recognition (NER) masking technique, all specific entities (Person, Organization, Location) in a hold-out sample were masked and synthetic typographical errors were introduced. 
 
 Despite the removal of explicit publisher cues, the model maintained an F1-Score of \textbf{0.96} for the Satire class and \textbf{0.86} overall. This proves that the transformer learned deep stylistic and semantic signatures (e.g., exaggeration, urgency, syntactic structure) rather than memorizing vocabulary. This semantic resilience strongly supports the framework's transferability claims: because the model detects "deceptive style" rather than specific topics, the underlying methodology can be seamlessly transferred to detecting phishing or fraudulent e-commerce scams by swapping the training payload.
-
-\subsection{Final Comparative Analysis: Metaheuristics vs. Transformer}
-To quantify the impact of the architectural shift from classical ML to Deep Learning, a direct comparison of the best-performing models from each paradigm was performed. Table \ref{tab:final_comparison_all_models} presents the consolidated results.
-
-The DistilBERT model outperformed the best metaheuristic algorithm (GA) by a significant margin of \textbf{23.33 percentage points} in accuracy (95.36\% vs. 72.03\%). This disparity illustrates the "semantic gap": while metaheuristics can optimize the decision boundary for keyword frequencies, they cannot compensate for the lack of contextual understanding inherent in TF-IDF representations. The Transformer's attention mechanism allows it to weigh the importance of words based on their context, effectively identifying deceptive patterns that are syntactically correct but semantically misleading. Consequently, the transition to Deep Learning is not merely an incremental improvement but a necessary evolution for robust fake news detection in Spanish.
-
-\begin{table}[H] 
-\caption{Final performance comparison between all implemented models on the test set.}
-\label{tab:final_comparison_all_models}
-\centering
-\adjustbox{width=\textwidth,center}{%
-\small
-\begin{tabular}{lcccccc}
-\toprule
-\textbf{Algorithm} & \textbf{Accuracy (\%)} & \textbf{F1-Score (macro)} & \textbf{Precision (macro)} & \textbf{Recall (macro)} & \textbf{Specificity (\%)} & \textbf{Ranking} \\
-\midrule
-\multicolumn{7}{c}{\textit{Transformer-Based Approach}} \\
-\midrule
-\textbf{DistilBERT (Final)} & \textbf{95.36} & \textbf{0.954} & \textbf{0.954} & \textbf{0.954} & \textbf{94.5} & \textbf{1st} \\
-\midrule
-\multicolumn{7}{c}{\textit{Metaheuristic-Optimized Classical Approaches}} \\
-\midrule
-Genetic Algorithm (GA) & 72.03 & 0.714 & 0.740 & 0.720 & 57.6 & 2nd \\
-Scatter Search (SS) & 67.64 & 0.669 & 0.693 & 0.676 & 52.7 & 3rd \\
-VNS & 66.78 & 0.659 & 0.686 & 0.667 & 51.0 & 4th \\
-Simulated Annealing (MSA) & 60.86 & 0.586 & 0.638 & 0.608 & 37.4 & 5th \\
-Particle Swarm Opt. (PSO) & 57.67 & 0.489 & 0.736 & 0.575 & 16.3 & 6th \\
-\bottomrule
-\end{tabular}
-}
-\end{table}
 
 \subsection{Overfitting Control Analysis}
 The implementation of a rigorous regularization strategy successfully mitigated overfitting across all transformer architectures. Rather than relying on a fixed number of epochs—which inherently varies depending on the data subset and initial weight instantiation—training was dynamically governed by an early stopping criterion. Training concluded autonomously when the validation loss plateaued and ceased to improve for eight consecutive passes. The optimal model weights were then automatically restored from the checkpoint that minimized the generalization gap (validation vs. training loss), ensuring peak performance before the onset of memorization. 
