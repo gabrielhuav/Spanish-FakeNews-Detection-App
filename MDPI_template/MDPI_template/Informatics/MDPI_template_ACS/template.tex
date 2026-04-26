@@ -214,7 +214,7 @@ The first stage addresses a common challenge: constructing a balanced dataset fr
 }
 \end{table}
 
-To ensure data quality and mitigate semantic overlaps that could cause data leakage, a robust deduplication protocol was implemented following the preprocessing guidelines by Acosta \citep{acosta2019construccion}. Prior to deduplication, texts underwent normalization (lowercasing, removal of non-alphanumeric characters, and whitespace standardization). Content hashing on the normalized text identified and removed \textbf{7,712} near-duplicates, yielding \textbf{52,689} unique articles (fake and real). 
+To ensure data quality and mitigate semantic overlaps that could cause data leakage, a robust deduplication protocol was implemented following the preprocessing guidelines by Acosta \citep{acosta2019construccion}. Prior to deduplication, texts underwent normalization (lowercasing, removal of non-alphanumeric characters, and whitespace standardization). Content hashing on the normalized text identified and removed exactly \textbf{7,471} near-duplicates from the initial 60,160 collected records, yielding precisely \textbf{52,689} unique articles (fake and real). 
 
 \textbf{Methodological Evolution: From Binary to Multiclass Classification.} 
 Initially, the research design conceptualized a binary classification task (Real vs. Fake), incorporating satirical articles as part of the "Fake" class to address class imbalance. However, extensive literature and preliminary evaluations revealed a critical construct-validity vulnerability: satire relies on irony, exaggeration, and parody markers, whereas malicious fake news relies on deceptive imitation of journalistic tone. Conflating the two forces the model to learn source-specific humor rather than robust misinformation cues, leading to miscalibration.
@@ -285,7 +285,11 @@ A ``hold-out'' validation strategy combined with aggressive regularization (Sect
 \label{fig:overfitting_underfitting_examples}
 \end{figure}
 
-Using Keras Tuner, the model was evolved through seven major versions (Table \ref{tab:hyperparam_evolution}). The final rigorous regularization strategy (Version 11) included: an ultra-low learning rate ($5 \times 10^{-6}$) for stable convergence, a high dropout rate (0.7), strong L2 regularization (0.5 with weight decay 0.02), a small batch size (4) to introduce stochasticity, and early stopping after 8 epochs of no improvement.
+\textbf{Hyperparameter Fine-tuning and Reproducibility.} Over 30 experiments and 500 GPU hours were conducted to identify configurations that mitigate overfitting—where the model memorizes training data but fails to generalize. To guarantee exact reproducibility across all experiments, a global random seed (42) was fixed across Python, NumPy, and the deep learning framework backends prior to data partitioning and weight initialization.
+
+The hyperparameter space was explored using Keras Tuner configured with Bayesian Optimization, defining the minimization of the validation loss as the primary objective across 50 trials. The defined search space included learning rates ($1 \times 10^{-6}$ to $5 \times 10^{-5}$), dropout rates (0.1 to 0.7), L2 weight decay penalties (0.01 to 0.5), and batch sizes (4 to 16). Architecturally, the Dropout layer was positioned immediately following the pooled output of the transformer, while the L2 regularization was applied strictly to the dense classification head to prevent the distortion of pretrained attention weights.
+
+The model evolved through multiple architectural configurations. Table \ref{tab:hyperparam_evolution} highlights the pivotal milestone versions that defined the optimization trajectory; intermediate exploratory versions (e.g., V7 through V10) are omitted for brevity but followed the same rigorous path toward aggressive regularization. The final "Anti-Overfitting" strategy (Version 11) included: an ultra-low learning rate ($5 \times 10^{-6}$) for stable convergence, a severe dropout rate (0.7), strong L2 regularization (0.5), and a small batch size (4) to introduce stochastic gradient noise.
 
 \begin{table}[H]
 \caption{Evolution of Hyperparameter Configurations Across Experimental Versions.}
