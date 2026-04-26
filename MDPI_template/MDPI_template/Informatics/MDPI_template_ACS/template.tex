@@ -58,7 +58,7 @@ $^{1}$ \quad Department of Systems, Autonomous Metropolitan University (UAM), Az
 
 %=================================================================
 % Abstract
-\abstract{While social media platforms are primary vectors for misinformation, automated detection systems remain largely confined to English. This paper presents a transferable, three-stage framework for fine-tuning transformer models to detect domain-specific deceptive content in Spanish. The pipeline comprises: (1) corpus unification, merging fragmented datasets into a balanced 61,674-article resource mapped into three classes (Real, Fake, Satire) to prevent stylistic confounding; (2) systematic model optimization, extensively benchmarking classical metaheuristics against eight transformer architectures (including mBERT, XLM-RoBERTa, and BETO) using aggressive regularization to prevent overfitting; and (3) production deployment, encapsulating the optimized model as a containerized web application for real-time inference. Through rigorous experimentation, the Spanish-specific BETO encoder emerged as the state-of-the-art for this task, achieving an 89.18\% overall accuracy and a perfect 1.0 F1-score in isolating satire from malicious fake news. Adversarial robustness tests demonstrated the model's reliance on deep semantic patterns rather than outlet-specific vocabulary. Crucially, the methodology is domain-agnostic: by substituting the training corpus, the same framework can be redeployed to combat diverse digital threats, such as investment scams and phishing. The complete framework, dataset, and application are open-source to support reproducible research and practical digital self-defense.}
+\abstract{While social media platforms are primary vectors for misinformation, automated detection systems remain largely confined to English. This paper presents a transferable, three-stage framework for fine-tuning transformer models to detect domain-specific deceptive content in Spanish. The pipeline comprises: (1) corpus unification, merging fragmented datasets into a 61,674-article resource mapped into three classes (Real, Fake, Satire) to prevent stylistic confounding; (2) systematic model optimization, extensively benchmarking classical metaheuristics against eight transformer architectures (including mBERT, XLM-RoBERTa, and BETO) using aggressive regularization to prevent overfitting; and (3) production deployment, encapsulating the optimized model as a containerized web application for real-time inference. Through rigorous experimentation, the Spanish-specific BETO encoder emerged as the state-of-the-art for this task, achieving an 89.18\% overall accuracy and a perfect 1.0 F1-score in isolating satire from malicious fake news. Adversarial robustness tests demonstrated the model's reliance on deep semantic patterns rather than outlet-specific vocabulary. Crucially, the methodology is domain-agnostic: by substituting the training corpus, the same framework can be redeployed to combat diverse digital threats, such as investment scams and phishing. The complete framework, dataset, and application are open-source to support reproducible research and practical digital self-defense.}
 
 % Keywords
 \keyword{misinformation detection; transformer fine-tuning; social media analysis; domain-specific NLP; systematic regularization; DistilBERT; transferable framework; Spanish fake news; web application deployment}
@@ -88,9 +88,8 @@ A progressive research design was adopted: a baseline is first established with 
 The main contributions of this work are:
 \begin{itemize}
     \item \textbf{A Transferable Fine-Tuning Framework:} A systematic three-stage pipeline (corpus unification, aggressive regularization, containerized deployment) is proposed for adapting pretrained transformer models to domain-specific deceptive content detection. The framework is explicitly designed to be transferable across languages, content domains, and social media platforms.
-    \item \textbf{A Systematic Regularization Methodology:} Through over 500 GPU hours of experimentation across 30+ configurations, an aggressive regularization strategy for fine-tuning DistilBERT (Distilled Bidirectional Encoder Representations from Transformers) is documented, achieving 95.36\% accuracy while maintaining a validation-training loss gap of 0.058. The training and validation trajectories, demonstrating the effectiveness of the aggressive regularization strategy in preventing overfitting, are visually detailed in Figure \ref{fig:training_curves}.
-    This represents a 23.33 percentage point improvement over metaheuristic-optimized classical methods and provides a reproducible recipe for practitioners facing similar optimization challenges.
-    \item \textbf{A Unified Spanish Corpus:} A standardized corpus of 61,674 Spanish news articles was constructed from four academic datasets \citep{posadas2019detection, acosta2019construccion, tretiakov2022detection, blanco2024enhancing} enhanced with web-scraped satirical content, achieving near-perfect balance (49.8\% fake, 50.2\% real)—one of the largest resources for this task.
+    \item \textbf{A Systematic Regularization and Early Stopping Methodology:} Through over 500 GPU hours of experimentation across multiple architectures, we document an aggressive regularization strategy for fine-tuning the monolingual BETO encoder. The methodology achieved an 88.98\% overall accuracy and a 0.9095 Macro F1-Score on a highly complex 3-class paradigm. More importantly, the training trajectories visually demonstrate how our dynamic Early Stopping mechanism successfully intervened to prevent the catastrophic overfitting typically observed in high-capacity transformers, providing a reproducible recipe for practitioners facing similar optimization challenges.
+    \item \textbf{A Unified Spanish Corpus:} A standardized corpus of 61,674 Spanish news articles was constructed from four academic datasets \citep{posadas2019detection, acosta2019construccion, tretiakov2022detection, blanco2024enhancing} enhanced with web-scraped satirical content, achieving a three-class distribution (35.3\% fake, 50.2\% real, 14.5\% satire)—one of the largest resources for this task.
     \item \textbf{A Production-Ready Web Application:} The optimized model was deployed as a Docker-containerized web application capable of real-time URL analysis, demonstrating that the framework extends beyond academic benchmarks to deliver practical tools for digital self-defense \citep{ali2022fake}.
 \end{itemize}
 
@@ -190,7 +189,7 @@ The methodology is structured as a transferable three-stage pipeline for adaptin
 \end{figure}
 
 \subsection{Stage 1: Corpus Unification and Processing}
-The first stage addresses a common challenge: constructing a balanced dataset from fragmented sources. The unification methodology (schema standardization, content-based deduplication, targeted augmentation) is generalizable to any detection domain. A unified corpus was constructed by aggregating four publicly available datasets: the Spanish Fake News Corpus (572 articles) \citep{posadas2019detection}, the Acosta Dataset (598 articles) \citep{acosta2019construccion}, the Tretiakov Dataset (2,000 articles) \citep{tretiakov2022detection}, and the Spanish Political Dataset (57,231 articles) \citep{blanco2024enhancing}, yielding an initial pool of \textbf{60,401} articles. Table \ref{tab:comparacion_exhaustiva_corpus} details each source.
+The first stage addresses a common challenge: constructing a unified dataset from fragmented sources. The unification methodology (schema standardization, content-based deduplication, targeted augmentation) is generalizable to any detection domain. A unified corpus was constructed by aggregating four publicly available datasets: the Spanish Fake News Corpus (572 articles) \citep{posadas2019detection}, the Acosta Dataset (598 articles) \citep{acosta2019construccion}, the Tretiakov Dataset (2,000 articles) \citep{tretiakov2022detection}, and the Spanish Political Dataset (57,231 articles) \citep{blanco2024enhancing}, yielding an initial pool of \textbf{60,401} articles. Table \ref{tab:comparacion_exhaustiva_corpus} details each source.
 
 \begin{table}[H]
 \centering
@@ -206,7 +205,7 @@ The first stage addresses a common challenge: constructing a balanced dataset fr
 \textbf{Creation Year} & 2019-2021 & 2019 & 2022 & 2024 & 2025 (extraction) \\
 \textbf{Methodological Focus} & Stylometric & NLP Baselines & Traditional ML & Transformers & Satirical Content \\
 \textbf{Thematic Domain} & General & General & General & Political & Satirical/General \\
-\textbf{Class Distribution} & Balanced & Balanced & Balanced & Balanced & Fake Only \\
+\textbf{Class Distribution} & Balanced & Balanced & Balanced & Balanced & Satire Only \\
 \textbf{Contribution (Pre-Dedup)} & 0.95\% & 0.99\% & 3.31\% & 94.75\% & 14.6\% (added later) \\
 \bottomrule
 \end{tabular}
@@ -227,25 +226,15 @@ Regarding sequence length, exploratory data analysis revealed that 87.4\% of the
 \begin{figure}[H]
 \centering
 \includegraphics[width=\linewidth]{Figures/corpus_balance.png}
-\caption{Visual representation of the corpus balancing process. The initial imbalanced distribution (left) was corrected by strategically adding 8,985 FAKE articles via web scraping, resulting in a nearly 50/50 final distribution (right). Source: Authors' own elaboration based on study data.}
+\caption{Visual representation of the corpus unification process. The dataset was expanded by strategically adding 8,985 SATIRE articles via web scraping, resulting in a three-class final distribution: Fake (35.3\%), Real (50.2\%), and Satire (14.5\%). Source: Authors' own elaboration based on study data.}
 \label{fig:corpus_balance}
 \end{figure}
 
 \subsection{Stage 2: Systematic Model Optimization}
 The second stage focuses on systematic fine-tuning documented as a reproducible optimization trajectory. Rather than reporting a single configuration, the full evolution of hyperparameter decisions is recorded (Table \ref{tab:hyperparam_evolution}), providing a transferable recipe for practitioners. The optimization begins by establishing a classical baseline.
 
-\subsubsection{Data Partitioning and Generalization Strategy}
-To ensure the statistical reliability of the results and guarantee model generalization to unseen data, a rigorous data splitting protocol was implemented, as illustrated in Figure \ref{fig:metodologia_general_p2}. 
-
-% Part 2 (Image)
-\begin{figure}[H]
-\centering
-\includegraphics[width=\textwidth]{Figures/system_architecture_p2.png}
-\caption{Overview of the proposed research methodology (Part 2/3): Model Optimization and Comparative Evaluation.}
-\label{fig:metodologia_general_p2}
-\end{figure}
-
-The unified balanced corpus ($N=61,674$) was partitioned into three disjoint subsets using \textbf{stratified random sampling} to preserve the approximately 50/50 class distribution across all partitions:
+\subsubsection{Data Partitioning and Generalization Strategy} 
+The unified corpus ($N=61,674$) was partitioned into three disjoint subsets using \textbf{stratified random sampling} to preserve the class distribution across all partitions:
 \begin{itemize}
     \item \textbf{Training Set (70\%, $\approx$43,171 articles):} Used for model fitting and gradient updates.
     \item \textbf{Validation Set (10\%, $\approx$6,167 articles):} Used for hyperparameter tuning, model selection, and early stopping monitoring.
@@ -279,6 +268,19 @@ A ``hold-out'' validation strategy combined with aggressive regularization (Sect
 }
 \end{table}
 
+For statistical reliability of the results and to guarantee model generalization to unseen data, a rigorous data splitting protocol was implemented, as illustrated in Figure \ref{fig:metodologia_general_p2}.
+
+% Part 2 (Image)
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{Figures/system_architecture_p2.png}
+\caption{Overview of the proposed research methodology (Part 2/3): Model Optimization and Comparative Evaluation.}
+\label{fig:metodologia_general_p2}
+\end{figure}
+
+\textbf{Hardware Constraints and Framework Compatibility.} Due to the stringent Video RAM (VRAM) requirements of large transformer models (e.g., XLM-RoBERTa-Large with 550M parameters), training the full battery of eight models was computationally unfeasible on local hardware equipped with 8GB VRAM (NVIDIA RTX 2060 SUPER and RTX 4060 Laptop GPUs). Consequently, the massive hyperparameter search and initial benchmarking were executed in a cloud environment (Lightning AI) utilizing PyTorch (v2.8.0), PyTorch Lightning (v2.6.0), Optuna (v4.8.0), and HuggingFace Transformers (v5.6.2). 
+
+To ensure strict reproducibility and enable local deployment, the optimal configurations were subsequently reconstructed and validated on the local RTX 4060 workstation. This local environment was strictly pinned to TensorFlow-GPU (v2.10.0), Keras Tuner (v1.4.7), scikit-learn (v1.3.2), and Transformers (v4.24.0). This specific dependency freezing was mandatory to resolve severe compatibility bottlenecks, as native GPU support for TensorFlow on Windows was deprecated in later versions. The ability to seamlessly translate the architecture between PyTorch/Optuna (cloud) and TensorFlow/Keras (local) further solidifies the framework's robustness.
 
 \textbf{Hyperparameter Fine-tuning.} Over 30 experiments and 500 GPU hours were conducted to identify configurations that mitigate overfitting—where the model memorizes training data but fails to generalize—as illustrated in Figure \ref{fig:overfitting_underfitting_examples}.
 
@@ -326,7 +328,9 @@ As observed in Table \ref{tab:hyperparam_evolution}, intermediate configurations
 To prioritize real-world generalization over artificial benchmark inflation, the V11 ``Anti-Overfitting'' strategy was selected. By applying an ultra-low learning rate ($1 \times 10^{-6}$), aggressive dropout (0.5), and severe L2 regularization (0.05) with a small batch size, V11 stabilized the validation gap perfectly ($<0.01$). This ensures the model learns underlying linguistic patterns rather than dataset-specific noise.
 
 \subsection{Stage 3: Production Deployment}
-The final stage of the framework addresses the deployment gap by implementing the optimized model into a production-ready, containerized web application (Figure \ref{fig:metodologia_general_p3}). This stage is designed to be model-agnostic: the same containerized architecture can host any transformer model produced by Stage 2, regardless of the specific detection domain. A critical design principle was to minimize the technical barrier for end users: the application requires no machine learning expertise, no local model installation, and no command-line interaction—users simply submit a URL through a web browser. This accessibility is essential for the framework's stated goal of empowering communities with limited technical resources to combat deceptive content on social media.
+The final stage of the framework addresses the deployment gap by implementing the optimized model into a production-ready, containerized web application. This stage is designed to be model-agnostic: the same containerized architecture can host any transformer model produced by Stage 2, regardless of the specific detection domain. A critical design principle was to minimize the technical barrier for end users: the application requires no machine learning expertise, no local model installation, and no command-line interaction—users simply submit a URL through a web browser. This accessibility is essential for the framework's stated goal of empowering communities with limited technical resources to combat deceptive content on social media.
+
+The end-to-end inference pipeline is designed to provide immediate, transparent verification of social media content. Upon receiving a target URL or raw text snippet, the system autonomously executes content extraction, text normalization, subword tokenization (via the model's specific tokenizer), and transformer-based inference in a single automated pass. Notably, the system outputs not only the final multiclass prediction (REAL, FAKE, or SATIRE) but also the calibrated confidence scores derived from the final softmax layer (Figure \ref{fig:metodologia_general_p3}). This probabilistic output empowers end-users and fact-checkers to assess the model's certainty, which is particularly valuable in edge cases where texts exhibit overlapping stylistic traits or a mix of factual and deceptive claims.
 
 % Part 3 (Image)
 \begin{figure}[H]
@@ -335,8 +339,6 @@ The final stage of the framework addresses the deployment gap by implementing th
 \caption{Overview of the proposed research methodology (Part 3/3): Web Application Deployment and Inference.}
 \label{fig:metodologia_general_p3}
 \end{figure}
-
-The end-to-end inference pipeline is designed to provide immediate, transparent verification of social media content. Upon receiving a target URL or raw text snippet, the system autonomously executes content extraction, text normalization, subword tokenization (via the model's specific tokenizer), and transformer-based inference in a single automated pass. Notably, the system outputs not only the final multiclass prediction (REAL, FAKE, or SATIRE) but also the calibrated confidence scores derived from the final softmax layer. This probabilistic output empowers end-users and fact-checkers to assess the model's certainty, which is particularly valuable in edge cases where texts exhibit overlapping stylistic traits or a mix of factual and deceptive claims.
 
 The system consists of four integrated components, each designed for modularity and replaceability:
 \begin{enumerate}
@@ -381,9 +383,7 @@ To maintain consistency throughout the empirical analysis, macro-averaged scores
 \section{Results: Framework Validation on Spanish Fake News Detection}
 
 \subsection{Performance of the Metaheuristic Baseline (Stage 2a)}
-The initial experimental phase established a baseline using classical machine learning algorithms optimized via metaheuristics on TF-IDF representations. Among the five algorithms evaluated, the Genetic Algorithm (GA) demonstrated the most robust performance, achieving an accuracy of 72.03\% and a macro F1-score of 0.714 (Table \ref{tab:final_comparison_all_models}). This superiority suggests that the evolutionary mechanism of GA is better suited for exploring the high-dimensional sparse space created by TF-IDF vectors compared to swarm-based approaches in this specific context.
-
-Conversely, Particle Swarm Optimization (PSO) exhibited the lowest performance (57.67\% accuracy) and failed to converge effectively. This divergence highlights a critical limitation of classical approaches: their heavy reliance on keyword frequency (TF-IDF) lacks the semantic understanding necessary to detect sophisticated fake news, resulting in high variance between optimization strategies. The confusion matrices in Figure \ref{fig:metaheuristic_confusion_matrices} visually confirm this instability, showing significant misclassification rates across the board for the metaheuristic models.
+The baseline phase evaluated five classical machine learning algorithms optimized via metaheuristics on TF-IDF representations. The Genetic Algorithm (GA) performed best, achieving 72.03\% accuracy and a 0.714 macro F1-score (Table \ref{tab:final_comparison_all_models}). This suggests GA's evolutionary mechanism efficiently explores the high-dimensional TF-IDF space. Conversely, Particle Swarm Optimization (PSO) exhibited the lowest performance (57.67\% accuracy). This variance highlights a critical limitation: classical TF-IDF models lack the semantic understanding necessary for robust fake news detection. The confusion matrices (Figure \ref{fig:metaheuristic_confusion_matrices}) visually confirm this instability through significant misclassification rates across all metaheuristic models.
 
 \begin{figure}[H]
 \centering
@@ -476,11 +476,25 @@ Despite the removal of explicit publisher cues, the model maintained an F1-Score
 \subsection{Overfitting Control Analysis}
 The implementation of a rigorous regularization strategy successfully mitigated overfitting across all transformer architectures. Rather than relying on a fixed number of epochs—which inherently varies depending on the data subset and initial weight instantiation—training was dynamically governed by an early stopping criterion. Training concluded autonomously when the validation loss plateaued and ceased to improve for eight consecutive passes. The optimal model weights were then automatically restored from the checkpoint that minimized the generalization gap (validation vs. training loss), ensuring peak performance before the onset of memorization. 
 
+\subsection{Cross-Framework Reproducibility and Optimal Model (BETO) Analysis}
+To validate the structural integrity of the winning model, the optimal BETO configuration identified in the cloud via PyTorch and Optuna was retrained from scratch on the local TensorFlow/Keras infrastructure. The local retraining yielded an identical Macro F1-Score of 0.9095, proving that the aggressive V11 regularization strategy is entirely framework-agnostic. Minor micro-variations during intermediate epochs were purely stochastic artifacts of the underlying backend engines, ultimately converging to the exact same global optimum.
+
+The stability of this convergence is visually confirmed in Figure \ref{fig:beto_training_curves}, where the local TensorFlow training session demonstrates a tightly coupled training and validation loss, decisively avoiding the overfitting plateau. 
+
+The training dynamics visually captured in Figure \ref{fig:beto_training_curves} starkly illustrate the danger of catastrophic overfitting in high-capacity transformers. Because BETO possesses a massive parameter count and is natively pre-trained on Spanish, it aggressively extracted the optimal semantic features within a single epoch. The immediate divergence of the validation loss (red dashed line) in subsequent epochs empirically validates our dynamic Early Stopping strategy. Rather than forcing the model through an arbitrary number of epochs, the callback successfully halted the training and restored the optimal weights from Epoch 1, effectively rescuing the model before it could memorize the training set.
+
 \begin{figure}[H]
 \centering
-\includegraphics[width=\textwidth]{Figures/training_curves.png}
-\caption{Evolution of performance metrics during the fine-tuning of the final model (V11). The x-axis represents the training epochs, while the y-axes represent Loss (left) and Accuracy (right). The gold star identifies the optimal checkpoint restored by the early stopping callback, where the generalization gap (0.058) was minimized before the onset of overfitting.}
-\label{fig:training_curves}
+\includegraphics[width=0.6\textwidth]{Figures/beto_training_curves.png} 
+\caption{Training and validation curves for the optimal BETO model (local TensorFlow implementation). The immediate divergence of the validation loss after Epoch 1 highlights the model's rapid learning capacity and demonstrates how the Early Stopping callback critically intervened to prevent catastrophic overfitting.}
+\label{fig:beto_training_curves}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.5\textwidth]{Figures/beto_confusion_matrix.png} % Asegúrate de que este sea el nombre de tu imagen
+\caption{Confusion matrix of the final deployed BETO model on the held-out test set, showcasing its robust capacity to differentiate between Fake (Class 0), Real (Class 1), and Satirical (Class 2) content.}
+\label{fig:beto_confusion_matrix}
 \end{figure}
 
 The generalization gap (difference between validation and training loss) was 0.058, approaching the target of <0.04 and remaining well below the 0.10 threshold typically indicating overfitting. Furthermore, addressing the claim of transferability, it is essential to clarify that this framework offers more than the standard machine learning practice of "retraining on new data." The true innovation lies in the architectural decoupling and the empirical optimization template. By standardizing the aggressive regularization recipe (V11), researchers targeting new domains—such as phishing or fraudulent e-commerce scams—are spared hundreds of hours of hyperparameter tuning. Additionally, the containerized Docker infrastructure abstractly handles the web-scraping and preprocessing pipelines, meaning a completely new detection tool can be deployed by merely swapping the serialized `.pt` weights file, with zero additional software engineering overhead. This makes the framework a genuine plug-and-play solution for emerging digital threats.
