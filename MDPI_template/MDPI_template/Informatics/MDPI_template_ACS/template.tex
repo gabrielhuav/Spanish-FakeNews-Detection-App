@@ -58,7 +58,7 @@ $^{1}$ \quad Department of Systems, Autonomous Metropolitan University (UAM), Az
 
 %=================================================================
 % Abstract
-\abstract{While social media platforms are primary vectors for misinformation, automated detection systems remain largely confined to English. This paper presents a transferable, three-stage framework for fine-tuning transformer models to detect domain-specific deceptive content in Spanish. The pipeline comprises: (1) corpus unification, merging fragmented datasets into a 61,674-article resource mapped into three classes (Real, Fake, Satire) to prevent stylistic confounding; (2) systematic model optimization, extensively benchmarking classical metaheuristics against eight transformer architectures (including mBERT, XLM-RoBERTa, and BETO) using aggressive regularization to prevent overfitting; and (3) production deployment, encapsulating the optimized model as a containerized web application for real-time inference. Through rigorous experimentation, the Spanish-specific BETO encoder emerged as the state-of-the-art for this task, achieving an 89.18\% overall accuracy and a perfect 1.0 F1-score in isolating satire from malicious fake news. Adversarial robustness tests demonstrated the model's reliance on deep semantic patterns rather than outlet-specific vocabulary. Crucially, the methodology is domain-agnostic: by substituting the training corpus, the same framework can be redeployed to combat diverse digital threats, such as investment scams and phishing. The complete framework, dataset, and application are open-source to support reproducible research and practical digital self-defense.}
+\abstract{While social media platforms are primary vectors for misinformation, automated detection systems remain largely confined to English. This paper presents a transferable, three-stage framework for fine-tuning transformer models to detect domain-specific deceptive content in Spanish. The pipeline comprises: (1) corpus unification, merging fragmented datasets into a 61,674-article resource mapped into three classes (Real, Fake, Satire) to prevent stylistic confounding; (2) systematic model optimization, extensively benchmarking classical metaheuristics against eight transformer architectures (including mBERT, XLM-RoBERTa, and BETO) using aggressive regularization to prevent overfitting; and (3) production deployment, encapsulating the optimized model as a containerized web application for real-time inference. Through rigorous experimentation, the Spanish-specific BETO encoder emerged as the state-of-the-art for this task, achieving an 89.18\% overall accuracy and a perfect 1.0 F1-score in isolating satire from malicious fake news. Adversarial robustness tests—utilizing named entity masking and typo injection—demonstrated the model's reliance on deep semantic patterns rather than source memorization, maintaining a 0.96 F1-score on satirical content even under severe text degradation. Crucially, the methodology is domain-agnostic: by substituting the training corpus, the same framework can be redeployed to combat diverse digital threats, such as investment scams and phishing. The complete framework, dataset, and application are open-source to support reproducible research and practical digital self-defense.}
 
 % Keywords
 \keyword{misinformation detection; transformer fine-tuning; social media analysis; domain-specific NLP; systematic regularization; BETO; transferable framework; Spanish fake news; web application deployment}
@@ -467,11 +467,17 @@ RoBERTa-Base-BNE & 0.6402 & 0.5791 & 0.6581 & 0.6651 & 0.7667 \\
 The optimized BETO model exhibited exceptional discriminative power for the Satire class (F1-score = 1.00), confirming that separating satire from malicious fake news resolves the construct-validity conflicts observed in earlier binary models.
 
 \subsection{Adversarial Robustness and Source Leakage Mitigation}
-A common criticism in automated deception detection is the risk of "source leakage," where random dataset splits allow the model to memorize outlet-specific entities (e.g., names of politicians or satirical magazines) rather than learning transferable linguistic cues. 
+To directly address concerns regarding potential source leakage—where a model might trivially memorize specific publisher names, recurring political figures, or stylistic formatting rather than learning the underlying deceptive semantics—an aggressive adversarial robustness test was conducted on the completely held-out test set (12,336 records). 
 
-To systematically test the chosen BETO V11 model against source leakage, an \textbf{Adversarial Robustness Test} was executed. Using a Named Entity Recognition (NER) masking technique, all specific entities (Person, Organization, Location) in a hold-out sample were masked and synthetic typographical errors were introduced. 
+Using the optimal BETO (V11) model, a dual-perturbation pipeline was applied to the text prior to inference:
+\begin{enumerate}
+    \item \textbf{Named Entity Recognition (NER) Masking:} Utilizing the \texttt{es\_core\_news\_sm} SpaCy pipeline, all identified Persons (PER), Organizations (ORG), and Locations (LOC) were dynamically replaced with generic masking tags (e.g., \texttt{[ORG]}).
+    \item \textbf{Typographical Noise Injection:} To simulate real-world social media degradation, random character swaps and deletions were injected with a 5\% probability per word.
+\end{enumerate}
 
-Despite the removal of explicit publisher cues, the model maintained an F1-Score of \textbf{0.96} for the Satire class and \textbf{0.86} overall. This proves that the transformer learned deep stylistic and semantic signatures (e.g., exaggeration, urgency, syntactic structure) rather than memorizing vocabulary. This semantic resilience strongly supports the framework's transferability claims: because the model detects "deceptive style" rather than specific topics, the underlying methodology can be seamlessly transferred to detecting phishing or fraudulent e-commerce scams by swapping the training payload.
+Under this severe compound degradation, the model's overall accuracy naturally declined from 89.18\% to 63.40\%, yielding a Macro F1-score of 0.71. However, a class-wise analysis reveals critical insights into the transformer's learned representations. Strikingly, the SATIRE class remained phenomenally robust (F1-score: 0.96; Recall: 0.92). This conclusively proves that the model identifies satirical content through deep syntactic structures, irony markers, and stylistic exaggeration, completely independent of the specific entities or political figures mentioned. 
+
+Conversely, the boundary between REAL and FAKE content experienced expected degradation (FAKE F1: 0.60; REAL F1: 0.56; REAL Recall: 0.44). This specific drop validates a core NLP principle: factual verification inherently relies on the entities involved. Masking "who" did "what" and "where" removes the critical factual anchors necessary for distinguishing truth from deceptive fabrication. Nevertheless, maintaining a 63.40\% accuracy and a 0.71 Macro F1-score when entirely blinded to proper nouns and subjected to spelling noise demonstrates that the BETO architecture successfully captured baseline semantic deception cues, functioning far beyond random probability and mitigating the risk of trivial source memorization.
 
 \subsection{Overfitting Control Analysis}
 The implementation of a rigorous regularization strategy successfully mitigated overfitting across all transformer architectures. Rather than relying on a fixed number of epochs—which inherently varies depending on the data subset and initial weight instantiation—training was dynamically governed by an early stopping criterion. Training concluded autonomously when the validation loss plateaued and ceased to improve for eight consecutive passes. The optimal model weights were then automatically restored from the checkpoint that minimized the generalization gap (validation vs. training loss), ensuring peak performance before the onset of memorization. 
@@ -591,28 +597,28 @@ Tsfati, Y.; Boomgaarden, H.G.; Strömbäck, J.; Vliegenthart, R.; Damstra, A.; L
 Allcott, H.; Gentzkow, M. Social Media and Fake News in the 2016 Election. \textit{J. Econ. Perspect.} \textbf{2017}, \textit{31}, 211--236. \href{https://doi.org/10.1257/jep.31.2.211}{https://doi.org/10.1257/jep.31.2.211}.
  
 \bibitem[6]{scam2025investment}
-PEMEX Investment Scam Landing Page. Available online: \url{https://web.archive.org/web/20250720083802/https://artcanvas.digital/v1vBtq9ye} (accessed on 26 April 2026).
+PEMEX Investment Scam Landing Page. Available online: \url{https://web.archive.org/web/20250720083802/https://artcanvas.digital/v1vBtq9ye} (accessed on 27 April 2026).
  
 \bibitem[7]{scam2025cosmetics}
-Fraudulent Anti-Aging Cosmetics Scam Page. Available online: \url{https://web.archive.org/web/20250720090808/http://web.archive.org/screenshot/https://beauty-plus365.com/ox-mx-ext/} (accessed on 26 April 2026).
+Fraudulent Anti-Aging Cosmetics Scam Page. Available online: \url{https://web.archive.org/web/20250720090808/http://web.archive.org/screenshot/https://beauty-plus365.com/ox-mx-ext/} (accessed on 27 April 2026).
  
 \bibitem[8]{scam2025ecommerce}
-Fraudulent Smart Glasses E-Commerce Scam Page. Available online: \url{https://web.archive.org/web/20250722220434/https://aabbkl.com/detail/5nuf776U53YKCdjArvdT} (accessed on 26 April 2026).
+Fraudulent Smart Glasses E-Commerce Scam Page. Available online: \url{https://web.archive.org/web/20250722220434/https://aabbkl.com/detail/5nuf776U53YKCdjArvdT} (accessed on 27 April 2026).
  
 \bibitem[9]{scam2026aurrera1}
-Fraudulent Bodega Aurrera Liquidation Sale Impersonation Page (variant 1). Available online: \url{https://web.archive.org/web/20260218001617/https://mgluckly-mx.shop/collections/\%C2\%A1gran-liquidaci\%C3\%B3n-en-bodega-aurrera!-solo-72-horas} (accessed on 26 April 2026).
+Fraudulent Bodega Aurrera Liquidation Sale Impersonation Page (variant 1). Available online: \url{https://web.archive.org/web/20260218001617/https://mgluckly-mx.shop/collections/\%C2\%A1gran-liquidaci\%C3\%B3n-en-bodega-aurrera!-solo-72-horas} (accessed on 27 April 2026).
  
 \bibitem[10]{scam2026aurrera2}
-Fraudulent Bodega Aurrera Liquidation Sale Impersonation Page (variant 2). Available online: \url{https://web.archive.org/web/20260218002025/https://mexico-promocion.shop/collections/bodega-aurrera-venta-de-liquidaci\%C3\%B3n} (accessed on 26 April 2026).
+Fraudulent Bodega Aurrera Liquidation Sale Impersonation Page (variant 2). Available online: \url{https://web.archive.org/web/20260218002025/https://mexico-promocion.shop/collections/bodega-aurrera-venta-de-liquidaci\%C3\%B3n} (accessed on 27 April 2026).
  
 \bibitem[11]{scam2026aurrera3}
-Fraudulent Bodega Aurrera Liquidation Sale Impersonation Page (variant 3). Available online: \url{https://web.archive.org/web/20260218013806/https://bodgaavrrera.shop/collections/} (accessed on 26 April 2026).
+Fraudulent Bodega Aurrera Liquidation Sale Impersonation Page (variant 3). Available online: \url{https://web.archive.org/web/20260218013806/https://bodgaavrrera.shop/collections/} (accessed on 27 April 2026).
  
 \bibitem[12]{scam2026celulares}
-Fraudulent Electronics Liquidation E-Commerce Scam Page. Available online: \url{https://web.archive.org/web/20260218002729/https://mercadocelulares.store/} (accessed on 26 April 2026).
+Fraudulent Electronics Liquidation E-Commerce Scam Page. Available online: \url{https://web.archive.org/web/20260218002729/https://mercadocelulares.store/} (accessed on 27 April 2026).
  
 \bibitem[13]{scam2025health}
-Celebrity Health Misinformation Clickbait Page Promoting Fraudulent Medical Products. Available online: \url{https://web.archive.org/web/20250720091118/https://k-m-kalash.space/} (accessed on 26 April 2026).
+Celebrity Health Misinformation Clickbait Page Promoting Fraudulent Medical Products. Available online: \url{https://web.archive.org/web/20250720091118/https://k-m-kalash.space/} (accessed on 27 April 2026).
  
 \bibitem[14]{kaliyar2021fakebert}
 Kaliyar, R.K.; Goswami, A.; Narang, P. FakeBERT: Fake news detection in social media with a BERT-based deep learning approach. \textit{Multimed. Tools Appl.} \textbf{2021}, \textit{80}, 11765--11788. \href{https://doi.org/10.1007/s11042-020-10183-2}{https://doi.org/10.1007/s11042-020-10183-2}.
@@ -663,13 +669,13 @@ Martínez-Gallego, K.; Álvarez-Ortiz, A.M.; Arias-Londoño, J.D. Fake news dete
 Posadas-Durán, J.P.; Gómez-Adorno, H.; Sidorov, G.; Escobar, J.J.M. Detection of fake news in a new corpus for the Spanish language. \textit{J. Intell. Fuzzy Syst.} \textbf{2019}, \textit{36}, 4869--4876. \href{https://doi.org/10.3233/jifs-179034}{https://doi.org/10.3233/jifs-179034}.
  
 \bibitem[30]{acosta2019construccion}
-Acosta, F.A.Z. Construction of a News Dataset for the Training and Evaluation of Automated Classifiers. Master's Thesis, Polytechnic University of Madrid, Madrid, Spain, 2019. Available online: \href{https://doi.org/10.13140/RG.2.2.31181.49126}{https://doi.org/10.13140/RG.2.2.31181.49126} (accessed on 26 April 2026).
+Acosta, F.A.Z. Construction of a News Dataset for the Training and Evaluation of Automated Classifiers. Master's Thesis, Polytechnic University of Madrid, Madrid, Spain, 2019. Available online: \href{https://doi.org/10.13140/RG.2.2.31181.49126}{https://doi.org/10.13140/RG.2.2.31181.49126} (accessed on 27 April 2026).
  
 \bibitem[31]{tretiakov2022detection}
 Tretiakov, A.; Martín García, A.; Camacho, D. Detection of false information in Spanish using machine learning techniques. In Intelligent Data Engineering and Automated Learning -- IDEAL 2022; Yin, H., Camacho, D., Tino, P., Eds.; Lecture Notes in Computer Science, vol. 13756; Springer International Publishing: Cham, Switzerland, 2022; pp. 42--53. ISBN 978-3-031-21753-1. \href{https://doi.org/10.1007/978-3-031-21753-1_5}{https://doi.org/10.1007/978-3-031-21753-1\_5}.
  
 \bibitem[32]{thota2018fake}
-Thota, A.; Tilak, P.; Ahluwalia, S.; Lohia, N. Fake news detection: A deep learning approach. \textit{SMU Data Science Review} \textbf{2018}, \textit{1}(3). Available online: \href{https://scholar.smu.edu/datasciencereview/vol1/iss3/10/}{https://scholar.smu.edu/datasciencereview/vol1/iss3/10/} (accessed on 26 April 2026).
+Thota, A.; Tilak, P.; Ahluwalia, S.; Lohia, N. Fake news detection: A deep learning approach. \textit{SMU Data Science Review} \textbf{2018}, \textit{1}(3). Available online: \href{https://scholar.smu.edu/datasciencereview/vol1/iss3/10/}{https://scholar.smu.edu/datasciencereview/vol1/iss3/10/} (accessed on 27 April 2026).
  
 \bibitem[33]{zhen2026csteer}
 Zhen, Z.; Li, Y. C-STEER: A Dynamic Sentiment-Aware Framework for Fake News Detection with Lifecycle Emotional Evolution. \textit{Informatics} \textbf{2026}, \textit{13}, 4. \href{https://doi.org/10.3390/informatics13010004}{https://doi.org/10.3390/informatics13010004}.
@@ -681,10 +687,10 @@ Shang, W.; Yang, J.; Zhang, L.; Yi, T.; Liu, P. ETICD-Net: A Multimodal Fake New
 Conneau, A.; Khandelwal, K.; Goyal, N.; Chaudhary, V.; Wenzek, G.; Guzmán, F.; Grave, E.; Ott, M.; Zettlemoyer, L.; Stoyanov, V. Unsupervised Cross-lingual Representation Learning at Scale. \textit{arXiv} \textbf{2019}, arXiv:1911.02116. \href{https://doi.org/10.48550/arXiv.1911.02116}{https://doi.org/10.48550/arXiv.1911.02116}.
  
 \bibitem[36]{canete2020spanish}
-Cañete, J.; Chaperon, G.; Fuentes, R.; Ho, J.H.; Kang, H.; Pérez, J. Spanish Pre-Trained BERT Model and Evaluation Data. In Proceedings of the Practical ML for Developing Countries Workshop at ICLR 2020; Addis Ababa, Ethiopia, 2020. Available online: \href{https://users.dcc.uchile.cl/~jperez/papers/pml4dc2020.pdf}{https://users.dcc.uchile.cl/\~{}jperez/papers/pml4dc2020.pdf} (accessed on 26 April 2026).
+Cañete, J.; Chaperon, G.; Fuentes, R.; Ho, J.H.; Kang, H.; Pérez, J. Spanish Pre-Trained BERT Model and Evaluation Data. In Proceedings of the Practical ML for Developing Countries Workshop at ICLR 2020; Addis Ababa, Ethiopia, 2020. Available online: \href{https://users.dcc.uchile.cl/~jperez/papers/pml4dc2020.pdf}{https://users.dcc.uchile.cl/\~{}jperez/papers/pml4dc2020.pdf} (accessed on 27 April 2026).
  
 \bibitem[37]{gutierrez2022roberta}
-Gutiérrez-Fandiño, A.; Armengol-Estapé, J.; Pàmies, A.; Llorca, V.; Silveira-Ocampo, J.; Carrino, C.P.; Armentano-Oller, C.; Rodriguez-Penagos, C.; Gonzalez-Agirre, A.; Villegas, M. MarIA: Spanish Language Models. \textit{Proces. Leng. Nat.} \textbf{2022}, \textit{68}, 39--60. Available online: \href{http://journal.sepln.org/sepln/ojs/ojs/index.php/pln/article/view/6405}{http://journal.sepln.org/sepln/ojs/ojs/index.php/pln/article/view/6405} (accessed on 26 April 2026).
+Gutiérrez-Fandiño, A.; Armengol-Estapé, J.; Pàmies, A.; Llorca, V.; Silveira-Ocampo, J.; Carrino, C.P.; Armentano-Oller, C.; Rodriguez-Penagos, C.; Gonzalez-Agirre, A.; Villegas, M. MarIA: Spanish Language Models. \textit{Proces. Leng. Nat.} \textbf{2022}, \textit{68}, 39--60. Available online: \href{http://journal.sepln.org/sepln/ojs/ojs/index.php/pln/article/view/6405}{http://journal.sepln.org/sepln/ojs/ojs/index.php/pln/article/view/6405} (accessed on 27 April 2026).
  
 \bibitem[38]{padilla2024medicobert}
 Padilla Cuevas, J.; Reyes-Ortiz, J.A.; Cuevas-Rasgado, A.D.; Mora-Gutiérrez, R.A.; Bravo, M. MédicoBERT: A Medical Language Model for Spanish Natural Language Processing Tasks with a Question-Answering Application Using Hyperparameter Optimization. \textit{Appl. Sci.} \textbf{2024}, \textit{14}, 7031. \href{https://doi.org/10.3390/app14167031}{https://doi.org/10.3390/app14167031}.
@@ -696,7 +702,7 @@ Yildirim, G. A novel hybrid multi-thread metaheuristic approach for fake news de
 Gravanis, G.; Vakali, A.; Diamantaras, K.; Karadais, P. Behind the Cues: A Benchmarking Study for Fake News Detection. \textit{Expert Syst. Appl.} \textbf{2019}, \textit{128}, 201--213. \href{https://doi.org/10.1016/j.eswa.2019.03.036}{https://doi.org/10.1016/j.eswa.2019.03.036}.
  
 \bibitem[41]{sanh2019distilbert}
-Sanh, V.; Debut, L.; Chaumond, J.; Wolf, T. DistilBERT, a distilled version of BERT: smaller, faster, cheaper and lighter. \textit{arXiv} \textbf{2019}, arXiv:1910.01108. \href{https://doi.org/10.48550/arXiv.1910.01108}{https://doi.org/10.48550/arXiv.1910.01108}. Model available online: \url{https://huggingface.co/distilbert-base-multilingual-cased} (accessed on 26 April 2026). Apache-2.0 License.
+Sanh, V.; Debut, L.; Chaumond, J.; Wolf, T. DistilBERT, a distilled version of BERT: smaller, faster, cheaper and lighter. \textit{arXiv} \textbf{2019}, arXiv:1910.01108. \href{https://doi.org/10.48550/arXiv.1910.01108}{https://doi.org/10.48550/arXiv.1910.01108}. Model available online: \url{https://huggingface.co/distilbert-base-multilingual-cased} (accessed on 27 April 2026). Apache-2.0 License.
 
 \end{thebibliography}
 
