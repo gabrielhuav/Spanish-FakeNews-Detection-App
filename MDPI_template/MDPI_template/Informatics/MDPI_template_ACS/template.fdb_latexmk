@@ -1,6 +1,6 @@
 # Fdb version 4
-["pdflatex"] 1777259186.11731 "c:/Users/gabri/Documents/GitHub Desktop/Spanish-FakeNews-Detection-App/MDPI_template/MDPI_template/Informatics/MDPI_template_ACS/template.tex" "template.pdf" "template" 1777259191.06719 2
-  "C:/Users/gabri/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1770014926 82507 a9eef8696c92627b87e9975edea03b2a ""
+["pdflatex"] 1777309538.16756 "c:/Users/gabri/Documents/GitHub Desktop/Spanish-FakeNews-Detection-App/MDPI_template/MDPI_template/Informatics/MDPI_template_ACS/template.tex" "template.pdf" "template" 1777309542.83034 0
+  "C:/Users/gabri/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1777266892 82507 a9eef8696c92627b87e9975edea03b2a ""
   "C:/Users/gabri/AppData/Local/MiKTeX/fonts/pk/ljfour/jknappen/ec/dpi375/ecss0800.pk" 1758412880 10028 12d55aac02b97f6cefc824f871aa4060 ""
   "C:/Users/gabri/AppData/Local/MiKTeX/fonts/pk/ljfour/jknappen/ec/dpi600/ectt1000.pk" 1754545168 20028 7815e30666db75f445558da507563fd8 ""
   "C:/Users/gabri/AppData/Local/MiKTeX/miktex/data/le/pdftex/pdflatex.fmt" 1767938565 13333486 74f33b3421a44c344e27b83f086ce328 ""
@@ -272,10 +272,10 @@
   "Figures/system_architecture_p2.png" 1777245292 207687 6f7c1067810c3df56012d933223af168 ""
   "Figures/system_architecture_p3.png" 1777172750 240924 2c09c8a1ee6b4342d96a6848e21b053e ""
   "Figures/underfitting_example.png" 1763772744 64322 9ff95c35c997ae1254fff9121d71386a ""
-  "c:/Users/gabri/Documents/GitHub Desktop/Spanish-FakeNews-Detection-App/MDPI_template/MDPI_template/Informatics/MDPI_template_ACS/template.tex" 1777259175 87852 8907a6c0279c091656a7589ebd41c8e3 ""
-  "template.aux" 1777259190 20466 9d7f7ee561d0385e322b94c4d73cbdec "pdflatex"
-  "template.out" 1777259190 6846 20cdfde4504025ab5b2dedcde16c7116 "pdflatex"
-  "template.tex" 1777259175 87852 8907a6c0279c091656a7589ebd41c8e3 ""
+  "c:/Users/gabri/Documents/GitHub Desktop/Spanish-FakeNews-Detection-App/MDPI_template/MDPI_template/Informatics/MDPI_template_ACS/template.tex" 1777309534 89960 0254f5bedb3a2fb4d574d9b802d6bfa7 ""
+  "template.aux" 1777309542 20466 7f38db84564452b8b7011f6f676c23ed "pdflatex"
+  "template.out" 1777309542 6846 20cdfde4504025ab5b2dedcde16c7116 "pdflatex"
+  "template.tex" 1777309534 89960 0254f5bedb3a2fb4d574d9b802d6bfa7 ""
   (generated)
   "template.aux"
   "template.log"
