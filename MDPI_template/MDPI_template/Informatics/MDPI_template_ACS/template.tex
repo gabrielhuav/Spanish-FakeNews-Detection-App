@@ -233,14 +233,33 @@ Regarding sequence length, although the BERT-based architectures used here suppo
 \subsection{Stage 2: Systematic Model Optimization}
 The second stage focuses on systematic fine-tuning documented as a reproducible optimization trajectory. Rather than reporting a single configuration, the full evolution of hyperparameter decisions is recorded (Table \ref{tab:hyperparam_evolution}), providing a transferable recipe for practitioners. The optimization begins by establishing a classical baseline.
 
-\subsubsection{Data Partitioning and Generalization Strategy} 
-The unified corpus ($N=61,674$) was partitioned into three disjoint subsets using \textbf{stratified random sampling} to preserve the class distribution across all partitions:
-\begin{itemize}
-    \item \textbf{Training Set (70\%, $\approx$43,171 articles):} Used for model fitting and gradient updates.
-    \item \textbf{Validation Set (10\%, $\approx$6,167 articles):} Used for hyperparameter tuning, model selection, and early stopping monitoring.
-    \item \textbf{Test Set (20\%, $\approx$12,335 articles):} Strictly isolated and used solely for the final evaluation reported in Section 4.
-\end{itemize}
-A ``hold-out'' validation strategy combined with aggressive regularization (Section 3.2.3) ensures that reported metrics reflect the model's true generalization ability rather than memorized patterns.
+\subsubsection{Data Partitioning and Generalization Strategy}\label{sec:partitioning}
+The unified corpus ($N=61{,}674$) was partitioned into three disjoint subsets (70\% train, 10\% validation, 20\% test) using \textbf{stratified random sampling} to preserve the three-class distribution across all partitions. Concretely, the partition was produced by two successive calls to scikit-learn's \texttt{train\_test\_split} with a fixed seed: a first split separating 70\% for training from a 30\% temporary set, and a second split dividing that temporary set into validation (one third, i.e.\ 10\% of the total) and test (two thirds, i.e.\ 20\% of the total), with stratification on the class label at both steps. The resulting per-class sizes are reported in Table~\ref{tab:split_sizes}. The test-set class supports (4{,}350 / 6{,}189 / 1{,}797) are exact, as reported by the evaluation pipeline; the train and validation figures follow from the stratified 70/10/20 ratio.
+
+\begin{table}[H]
+\centering
+\caption{Per-class partition sizes of the unified three-class corpus under the stratified 70/10/20 split. The same fixed partition (global seed 42) was used for every transformer architecture to ensure comparability.}
+\label{tab:split_sizes}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Class} & \textbf{Train (70\%)} & \textbf{Validation (10\%)} & \textbf{Test (20\%)} & \textbf{Total} \\
+\midrule
+FAKE   & 15{,}225 & 2{,}175 & 4{,}350 & 21{,}750 \\
+REAL   & 21{,}662 & 3{,}094 & 6{,}189 & 30{,}945 \\
+SATIRE & 6{,}290  & 898    & 1{,}797 & 8{,}985  \\
+\midrule
+\textbf{Total} & 43{,}177 & 6{,}167 & 12{,}336 & 61{,}674 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+This hold-out strategy, combined with the regularization regime described above, is intended to ensure that the reported metrics reflect generalization to unseen examples rather than memorized patterns. We note, however, that this is a \emph{stratified random} split over the merged corpus and therefore does not by itself control for source- or style-level leakage; a complementary source-held-out evaluation is discussed as a limitation and direction for future work in Section~\ref{sec:limitations}.
+
+\textbf{Deduplication and split ordering.} Deduplication was performed \emph{before} partitioning and over the merged factual/deceptive pool, so that near-duplicate articles cannot be split across the train, validation, and test sets. After normalization (lowercasing, removal of non-alphanumeric characters, whitespace standardization), content hashing removed 7{,}712 near-duplicates from the 60{,}401 initial factual/deceptive records, yielding 52{,}689 unique articles, to which the 8{,}985 satirical articles were then added to form the final three-class corpus of 61{,}674 records.
+
+\textbf{Seeds and repetition.} To support reproducibility, a single global random seed (42) was fixed across Python, NumPy, and the deep learning backends prior to partitioning, weight initialization, and shuffling. We report results from this single seed; multi-seed runs with confidence intervals were not performed in this study due to the substantial cost of fine-tuning BETO, and are identified in Section~\ref{sec:limitations} as a direction for future work.
+
+A ``hold-out'' validation strategy combined with the regularization regime (Section~\ref{sec:final-beto-config-text}) is used so that reported metrics reflect generalization rather than memorization.
 
 \textbf{Classical Machine Learning Baseline.} A baseline was established using TF-IDF feature representation \citep{shu2017fake}, with dimensionality reduced to 800 features via Chi-squared test. Five metaheuristic algorithms—Multi-Start Simulated Annealing (MSA), Scatter Search (SS), Variable Neighborhood Search (VNS), Genetic Algorithm (GA), and Particle Swarm Optimization (PSO)—optimized the hyperparameters of a logistic regression model, maximizing F1-Score.
 
@@ -296,7 +315,7 @@ To ensure strict reproducibility and enable local deployment, the optimal config
 
 It is important to note that this hyperparameter optimization was carried out on the corpus in its original \textbf{binary formulation} (Real vs.\ Fake, prior to the introduction of the Satire class), using DistilBERT as the reference architecture. The resulting V11 regularization strategy was subsequently validated and confirmed on the final three-class corpus across all eight transformer architectures. To guarantee exact reproducibility across all experiments, a global random seed (42) was fixed across Python, NumPy, and the deep learning framework backends prior to data partitioning and weight initialization.
 
-The hyperparameter search for the final three-class BETO model was conducted independently in each framework, both minimizing the validation loss as the primary objective. In the cloud environment, Optuna explored the space via categorical sampling; in the local environment, Keras Tuner (\texttt{RandomSearch}) explored an equivalent space. Owing to the substantial cost of fine-tuning BETO (each trial requiring several GPU-hours), the search was deliberately focused on a compact, high-impact grid of three trials per backend. The search space comprised learning rates ($1 \times 10^{-6}$, $2 \times 10^{-6}$, $5 \times 10^{-6}$), dropout rates (0.3, 0.4, 0.5), L2 penalties (0.01, 0.02, 0.05), and a Gaussian weight-noise factor (0.005, 0.01), with a batch size of 8 in the local run and 8--16 in the cloud run. Architecturally, the dropout probability was applied to both the hidden and attention layers via the model configuration, while the L2 penalty and the manual weight-decay callback acted on the encoder kernels to constrain capacity without distorting the pretrained attention weights. The complete search configuration for both backends is released in the public repository.
+The hyperparameter search for the final three-class BETO model was conducted independently in each framework, both minimizing the validation loss as the primary objective. In the cloud environment, Optuna explored the space via categorical sampling; in the local environment, Keras Tuner (\texttt{RandomSearch}) explored an equivalent space. Owing to the substantial cost of fine-tuning BETO (each trial requiring several GPU-hours), the search was deliberately focused on a compact, high-impact grid of three trials per backend. The search space comprised learning rates ($1 \times 10^{-6}$, $2 \times 10^{-6}$, $5 \times 10^{-6}$), dropout rates (0.3, 0.4, 0.5), L2 penalties (0.01, 0.02, 0.05), and a Gaussian weight-noise factor (0.005, 0.01), with a batch size of 8 in the local run and 8--16 in the cloud run. Architecturally, the dropout probability was applied to both the hidden and attention layers via the model configuration, while the L2 penalty and the manual weight-decay callback acted on the encoder kernels to constrain capacity without distorting the pretrained attention weights. The complete search configuration for both backends is released in the public repository. The same fixed stratified partition (Table~\ref{tab:split_sizes}, seed 42) and the same regularization configuration were applied to all eight transformer architectures in the three-class benchmark, so that the comparison in Table~\ref{tab:transformer_benchmarking} is controlled. For completeness, the configurations and results of the omitted intermediate exploratory versions (V7--V10), as well as the per-class precision, recall, and F1 of every model in the three-class benchmark, are provided in the public repository accompanying this paper.
 
 The regularization strategy evolved through multiple configurations during an initial exploratory phase conducted on the \textbf{binary} corpus (Real vs.\ Fake) using DistilBERT as a fast, low-cost reference architecture. Table \ref{tab:hyperparam_evolution} documents the milestone versions of this exploratory trajectory; intermediate versions (e.g., V7 through V10) are omitted for brevity but followed the same path toward progressively stronger regularization. This exploratory phase established the qualitative ``Anti-Overfitting'' recipe later transferred to the final model: a low learning rate for stable convergence, elevated dropout, an explicit L2 penalty, a small batch size to inject stochastic gradient noise, and dynamic early stopping. We emphasize that the numerical values in Table \ref{tab:hyperparam_evolution} correspond to this preliminary binary exploration and not to the final three-class BETO model, whose validated configuration is reported separately below.
 
@@ -409,15 +428,15 @@ The baseline phase evaluated five classical machine learning algorithms optimize
 \label{fig:metaheuristic_confusion_matrices}
 \end{figure}
 
-\subsection{Final Comparative Analysis: Metaheuristics vs. Transformer}
-To quantify the impact of the architectural shift from classical ML to Deep Learning, a direct comparison of the best-performing models from each paradigm was performed. Table \ref{tab:final_comparison_all_models} presents the consolidated results.
+\subsection{Preliminary Analysis: Classical Baselines vs.\ a Transformer Reference (Binary Task)}
+Before conducting the final three-class benchmark, a preliminary analysis was performed on the initial \textbf{binary} formulation (Real vs.\ Fake) to motivate the shift from classical machine learning to transformer-based models. This analysis is \emph{not} the main comparison of the paper and is reported here only as a sanity check that justified investing in transformer fine-tuning; the definitive results are those obtained under the three-class formulation in Section~\ref{sec:transformer-results}.
 
-\textbf{Important methodological note:} the metaheuristic-optimized classical models and the DistilBERT reference baseline were trained and evaluated on the \textbf{binary corpus} (Real vs.\ Fake, two classes), which represents the initial phase of the research design. The comprehensive benchmark of eight transformer architectures (Table~\ref{tab:comparacion_modelos_bert}) was subsequently conducted on the \textbf{three-class corpus} (Real, Fake, Satire), reflecting the final and methodologically sound formulation. Consequently, the 95.36\% accuracy reported for DistilBERT corresponds to the binary task, whereas the results in Table~\ref{tab:transformer_benchmarking} correspond to the more challenging three-class setting.
+\textbf{Important methodological note.} All models in Table~\ref{tab:final_comparison_all_models} (the five metaheuristic-optimized classical models and the DistilBERT reference) were trained and evaluated on the \textbf{binary corpus} (Real vs.\ Fake), which corresponds to the initial phase of the research design. They therefore use a different task formulation from the final three-class benchmark and \emph{must not} be read as competing entries against the three-class results. Because the task, label space, and class priors differ, the binary and three-class numbers are not directly comparable, and we deliberately keep them in separate tables.
 
-The DistilBERT model outperformed the best metaheuristic algorithm (GA) by a significant margin of \textbf{23.33 percentage points} in accuracy (95.36\% vs. 72.03\%). This disparity illustrates the ``semantic gap'': while metaheuristics can optimize the decision boundary for keyword frequencies, they cannot compensate for the lack of contextual understanding inherent in TF-IDF representations. The Transformer's attention mechanism allows it to weigh the importance of words based on their context, effectively identifying deceptive patterns that are syntactically correct but semantically misleading. Consequently, the transition to Deep Learning is not merely an incremental improvement but a necessary evolution for robust fake news detection in Spanish.
+Within this preliminary binary setting, the DistilBERT reference outperformed the best metaheuristic algorithm (GA) by 23.33 percentage points in accuracy (95.36\% vs.\ 72.03\%). This gap illustrates the ``semantic gap'' of bag-of-words representations: while metaheuristics can optimize a decision boundary over keyword frequencies, they cannot compensate for the lack of contextual understanding inherent in TF-IDF features. This preliminary observation motivated the decision to adopt transformer fine-tuning, after which the task was reformulated into the methodologically sound three-class setting and a full eight-model benchmark was conducted (Section~\ref{sec:transformer-results}).
 
 \begin{table}[H] 
-\caption{Final performance comparison between all implemented models on the test set.}
+\caption{Preliminary performance comparison on the \textbf{binary} task (Real vs.\ Fake). These results correspond to the initial phase of the study and are not directly comparable to the three-class benchmark in Table~\ref{tab:transformer_benchmarking}.}
 \label{tab:final_comparison_all_models}
 \centering
 \adjustbox{width=\textwidth,center}{%
@@ -426,9 +445,9 @@ The DistilBERT model outperformed the best metaheuristic algorithm (GA) by a sig
 \toprule
 \textbf{Algorithm} & \textbf{Accuracy (\%)} & \textbf{F1-Score (macro)} & \textbf{Precision (macro)} & \textbf{Recall (macro)} & \textbf{Specificity (\%)} & \textbf{Ranking} \\
 \midrule
-\multicolumn{7}{c}{\textit{Transformer-Based Approach}} \\
+\multicolumn{7}{c}{\textit{Transformer Reference (binary task)}} \\
 \midrule
-\textbf{DistilBERT (Final)} & \textbf{95.36} & \textbf{0.954} & \textbf{0.954} & \textbf{0.954} & \textbf{94.5} & \textbf{1st} \\
+\textbf{DistilBERT (binary reference)} & \textbf{95.36} & \textbf{0.954} & \textbf{0.954} & \textbf{0.954} & \textbf{94.5} & \textbf{1st} \\
 \midrule
 \multicolumn{7}{c}{\textit{Metaheuristic-Optimized Classical Approaches}} \\
 \midrule
@@ -442,7 +461,7 @@ Particle Swarm Opt. (PSO) & 57.67 & 0.489 & 0.736 & 0.575 & 16.3 & 6th \\
 }
 \end{table}
 
-Given that the baseline transformer (DistilBERT) demonstrated absolute superiority over classical metaheuristic approaches, the study proceeded to rigorously evaluate an extended battery of state-of-the-art transformer architectures to identify the optimal encoder for Spanish-language deceptive content.
+Given that the transformer reference clearly outperformed the classical metaheuristic approaches in this preliminary binary analysis, the study proceeded to the methodologically sound three-class formulation and evaluated an extended battery of eight state-of-the-art transformer architectures to identify the optimal encoder for Spanish-language deceptive content.
 
 \subsection{Performance of the Systematically Fine-Tuned Transformer (Stage 2b)}\label{sec:transformer-results}
 To rigorously validate the transformer architecture and address the limitations of classical baselines, a comprehensive benchmarking of eight state-of-the-art transformer models was conducted under the exact same three-class formulation (Real, Fake, Satire) and using the same regularization strategy and stratified split. The evaluated models included multilingual encoders (mBERT, XLM-RoBERTa-base, XLM-RoBERTa-large), general Spanish encoders (BETO, RoBERTa-base-bne, RoBERTa-large-bne), and distilled versions (DistilBERT, DistilBETO).
