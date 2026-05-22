@@ -58,7 +58,7 @@ $^{1}$ \quad Department of Systems, Autonomous Metropolitan University (UAM), Az
 
 %=================================================================
 % Abstract
-\abstract{While social media platforms are primary vectors for misinformation, automated detection systems remain largely confined to English. This paper presents a transferable, three-stage framework for fine-tuning transformer models to detect domain-specific deceptive content in Spanish. The pipeline comprises: (1) corpus unification, merging fragmented datasets into a 61,674-article resource mapped into three classes (Real, Fake, Satire) to prevent stylistic confounding; (2) systematic model optimization, extensively benchmarking classical metaheuristics against eight transformer architectures (including mBERT, XLM-RoBERTa, and BETO) using aggressive regularization to prevent overfitting; and (3) production deployment, encapsulating the optimized model as a containerized web application for real-time inference. Through rigorous experimentation, the Spanish-specific BETO encoder emerged as the state-of-the-art for this task, achieving an 89.18\% overall accuracy and a perfect 1.0 F1-score in isolating satire from malicious fake news. Adversarial robustness tests—utilizing named entity masking and typo injection—demonstrated the model's reliance on deep semantic patterns rather than source memorization, maintaining a 0.96 F1-score on satirical content even under severe text degradation. Crucially, the methodology is domain-agnostic: by substituting the training corpus, the same framework can be redeployed to combat diverse digital threats, such as investment scams and phishing. The complete framework, dataset, and application are open-source to support reproducible research and practical digital self-defense.}
+\abstract{While social media platforms are primary vectors for misinformation, automated detection systems remain largely confined to English. This paper presents a transferable, three-stage framework for fine-tuning transformer models to detect domain-specific deceptive content in Spanish. The pipeline comprises: (1) corpus unification, merging fragmented datasets into a 61,674-article resource mapped into three classes (Real, Fake, Satire) to prevent stylistic confounding; (2) systematic model optimization, extensively benchmarking classical metaheuristics against eight transformer architectures (including mBERT, XLM-RoBERTa, and BETO) using aggressive regularization to prevent overfitting; and (3) production deployment, encapsulating the optimized model as a containerized web application for real-time inference. Through rigorous experimentation, the Spanish-specific BETO encoder emerged as the state-of-the-art for this task, achieving an 89.18\% overall accuracy and a near-perfect 1.00 F1-score in isolating satire from malicious fake news. Adversarial robustness tests—utilizing named entity masking and typo injection—demonstrated the model's reliance on deep semantic patterns rather than source memorization, maintaining a 0.96 F1-score on satirical content even under severe text degradation. Crucially, the methodology is domain-agnostic: by substituting the training corpus, the same framework can be redeployed to combat diverse digital threats, such as investment scams and phishing. The complete framework, dataset, and application are open-source to support reproducible research and practical digital self-defense.}
 
 % Keywords
 \keyword{misinformation detection; transformer fine-tuning; social media analysis; domain-specific NLP; systematic regularization; BETO; transferable framework; Spanish fake news; web application deployment}
@@ -353,32 +353,37 @@ The system consists of four integrated components, each designed for modularity 
 To guarantee scalability, reproducibility, and domain-agnostic transferability, the detection pipeline was encapsulated within a containerized microservice architecture. This modular approach logically separates the transformer inference engine from the client interface. Crucially, this design facilitates continuous integration workflows: when the framework is applied to a new domain (e.g., retraining the model on phishing data, investment scams, or emerging misinformation patterns), only the model weights and tokenizer artifacts within the Docker image need to be updated. No modifications to the API endpoints or serving infrastructure are required. This decoupling between the machine learning model and the deployment environment ensures that the framework can be rapidly replicated across diverse hardware setups—from local research workstations to cloud-based institutional servers—without environment-specific configuration errors.
 
 \subsection{Evaluation Metrics}
-To assess model performance, standard metrics derived from the confusion matrix were employed, which categorizes predictions into true positives (TP), true negatives (TN), false positives (FP), and false negatives (FN). In this context, the "positive" class represents real news (label 1), and the "negative" class represents fake news (label 0). These metrics are widely used in fake news detection literature, facilitating comparison with related work.
+The final task is a three-class classification problem (FAKE, REAL, SATIRE); we therefore evaluate the models using a multiclass formulation rather than the binary positive/negative convention. Per-class metrics are computed under a \textbf{one-vs-rest} scheme: for a given class $c$, a prediction is a true positive (TP$_c$) when both the predicted and true label are $c$; a false positive (FP$_c$) when the model predicts $c$ but the true label is another class; a false negative (FN$_c$) when the true label is $c$ but the model predicts another class; and a true negative (TN$_c$) when neither the prediction nor the true label is $c$. Aggregate scores are reported as \textbf{macro-averages}, i.e., the unweighted mean of the per-class values, so that the minority SATIRE class contributes equally to majority classes. We additionally report overall accuracy. Letting $K=3$ be the number of classes, the metrics are defined as follows.
 
 \begin{itemize}
-    \item \textbf{Accuracy}: Represents the overall proportion of correct predictions. While a useful general indicator, it can be misleading in imbalanced datasets.
+    \item \textbf{Accuracy}: The overall proportion of correctly classified instances across all three classes. While a useful global indicator, it can be misleading under class imbalance, which is why macro-averaged metrics are emphasized.
     \begin{equation}
-        \text{Accuracy} = \frac{\text{TP} + \text{TN}}{\text{TP} + \text{TN} + \text{FP} + \text{FN}}
+        \text{Accuracy} = \frac{\sum_{c=1}^{K}\text{TP}_c}{N}
     \end{equation}
-    \item \textbf{Precision}: Measures the accuracy of positive predictions. High precision is necessary to minimize the misclassification of fake content as real.
+    where $N$ is the total number of test instances.
+    \item \textbf{Macro Precision}: The unweighted mean, across classes, of the per-class precision (the proportion of instances predicted as class $c$ that truly belong to $c$).
     \begin{equation}
-        \text{Precision} = \frac{\text{TP}}{\text{TP} + \text{FP}}
+        \text{Precision}_c = \frac{\text{TP}_c}{\text{TP}_c + \text{FP}_c}, \qquad
+        \text{Macro-P} = \frac{1}{K}\sum_{c=1}^{K}\text{Precision}_c
     \end{equation}
-    \item \textbf{Recall (Sensitivity)}: Indicates the proportion of actual real news correctly identified by the model.
+    \item \textbf{Macro Recall}: The unweighted mean of the per-class recall (the proportion of instances truly belonging to class $c$ that are correctly identified).
     \begin{equation}
-        \text{Recall} = \frac{\text{TP}}{\text{TP} + \text{FN}}
+        \text{Recall}_c = \frac{\text{TP}_c}{\text{TP}_c + \text{FN}_c}, \qquad
+        \text{Macro-R} = \frac{1}{K}\sum_{c=1}^{K}\text{Recall}_c
     \end{equation}
-    \item \textbf{F1-Score}: The harmonic mean of precision and recall. It provides a balanced metric, particularly valuable for uneven class distributions.
+    \item \textbf{Macro F1-Score}: The unweighted mean of the per-class F1-scores, where each per-class F1 is the harmonic mean of that class's precision and recall. This is the primary metric for model selection, as it is robust to the class imbalance of the corpus.
     \begin{equation}
-        \text{F1-Score} = 2 \times \frac{\text{Precision} \times \text{Recall}}{\text{Precision} + \text{Recall}}
+        \text{F1}_c = 2 \cdot \frac{\text{Precision}_c \cdot \text{Recall}_c}{\text{Precision}_c + \text{Recall}_c}, \qquad
+        \text{Macro-F1} = \frac{1}{K}\sum_{c=1}^{K}\text{F1}_c
     \end{equation}
-    \item \textbf{Specificity}: Measures the proportion of fake news correctly identified. This metric is crucial for detection systems to ensure deceptive content is accurately flagged.
+    \item \textbf{Macro Specificity}: The unweighted mean of the per-class specificity, defined in the one-vs-rest setting as the proportion of instances \emph{not} belonging to class $c$ that the model correctly excludes from $c$. It quantifies the model's ability to avoid spuriously assigning instances to a given class.
     \begin{equation}
-        \text{Specificity} = \frac{\text{TN}}{\text{TN} + \text{FP}}
+        \text{Specificity}_c = \frac{\text{TN}_c}{\text{TN}_c + \text{FP}_c}, \qquad
+        \text{Macro-Spec} = \frac{1}{K}\sum_{c=1}^{K}\text{Specificity}_c
     \end{equation}
 \end{itemize}
 
-To maintain consistency throughout the empirical analysis, macro-averaged scores were utilized across all transformer and classical baseline evaluations. Macro-averaging calculates the metrics for each class independently and then averages them without weighting by class frequency, ensuring that performance on minority classes (e.g., the Satire class) is evaluated equitably against majority classes.
+Macro-averaging calculates each metric for every class independently and then averages without weighting by class frequency, ensuring that performance on minority classes (notably SATIRE) is evaluated equitably against majority classes. All transformer and classical baseline results are reported under this scheme; for completeness, per-class precision, recall, and F1 for the final model are also reported in Section~\ref{sec:transformer-results}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -439,8 +444,8 @@ Particle Swarm Opt. (PSO) & 57.67 & 0.489 & 0.736 & 0.575 & 16.3 & 6th \\
 
 Given that the baseline transformer (DistilBERT) demonstrated absolute superiority over classical metaheuristic approaches, the study proceeded to rigorously evaluate an extended battery of state-of-the-art transformer architectures to identify the optimal encoder for Spanish-language deceptive content.
 
-\subsection{Performance of the Systematically Fine-Tuned Transformer (Stage 2b)}
-To rigorously validate the transformer architecture and address the limitations of classical baselines, a comprehensive benchmarking of eight state-of-the-art transformer models was conducted under the exact same three-class formulation (Real, Fake, Satire) and using the V11 regularization strategy. The evaluated models included multilingual encoders (mBERT, XLM-RoBERTa-base, XLM-RoBERTa-large), general Spanish encoders (BETO, RoBERTa-base-bne, RoBERTa-large-bne), and distilled versions (DistilBERT, DistilBETO).
+\subsection{Performance of the Systematically Fine-Tuned Transformer (Stage 2b)}\label{sec:transformer-results}
+To rigorously validate the transformer architecture and address the limitations of classical baselines, a comprehensive benchmarking of eight state-of-the-art transformer models was conducted under the exact same three-class formulation (Real, Fake, Satire) and using the same regularization strategy and stratified split. The evaluated models included multilingual encoders (mBERT, XLM-RoBERTa-base, XLM-RoBERTa-large), general Spanish encoders (BETO, RoBERTa-base-bne, RoBERTa-large-bne), and distilled versions (DistilBERT, DistilBETO).
 
 As detailed in Table \ref{tab:transformer_benchmarking}, the Spanish-specific encoder \textbf{BETO} achieved the highest overall performance, proving that monolingual pretraining captures the morphological and syntactic nuances of Spanish deception better than massive multilingual models.
 
@@ -468,7 +473,27 @@ RoBERTa-Base-BNE & 0.6402 & 0.5791 & 0.6581 & 0.6651 & 0.7667 \\
 \end{table}
 
 
-The optimized BETO model exhibited exceptional discriminative power for the Satire class (F1-score = 1.00), confirming that separating satire from malicious fake news resolves the construct-validity conflicts observed in earlier binary models.
+The optimized BETO model exhibited exceptional discriminative power for the SATIRE class, confirming that separating satire from malicious fake news resolves the construct-validity conflicts observed in earlier binary models. Table~\ref{tab:beto_per_class} reports the per-class precision, recall, and F1-score of the final deployed BETO model on the held-out test set ($N=12{,}336$), providing the class-level detail requested for full transparency.
+
+\begin{table}[H]
+\centering
+\caption{Per-class performance of the final deployed BETO model on the three-class held-out test set (local TensorFlow run; overall accuracy 0.8918, Macro F1 0.9095).}
+\label{tab:beto_per_class}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Class} & \textbf{Precision} & \textbf{Recall} & \textbf{F1-Score} & \textbf{Support} \\
+\midrule
+FAKE   & 0.91 & 0.77 & 0.83 & 4{,}350 \\
+REAL   & 0.85 & 0.95 & 0.90 & 6{,}189 \\
+SATIRE & 0.99 & 1.00 & 1.00 & 1{,}797 \\
+\midrule
+\textbf{Macro avg}    & 0.92 & 0.90 & 0.91 & 12{,}336 \\
+\textbf{Weighted avg} & 0.89 & 0.89 & 0.89 & 12{,}336 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The per-class breakdown reveals that the residual error of the model is concentrated in the FAKE/REAL boundary—FAKE recall of 0.77 indicates that a portion of fake articles is classified as real—whereas the SATIRE class is recognized almost perfectly. This pattern is consistent with the confusion matrix in Figure~\ref{fig:beto_confusion_matrix} and supports the construct-validity rationale for isolating satire as a separate class.
 
 \subsection{Adversarial Robustness and Source Leakage Mitigation}
 To directly address concerns regarding potential source leakage—where a model might trivially memorize specific publisher names, recurring political figures, or stylistic formatting rather than learning the underlying deceptive semantics—an aggressive adversarial robustness test was conducted on the completely held-out test set (12,336 records). 
