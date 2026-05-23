@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1777309538.16756 "c:/Users/gabri/Documents/GitHub Desktop/Spanish-FakeNews-Detection-App/MDPI_template/MDPI_template/Informatics/MDPI_template_ACS/template.tex" "template.pdf" "template" 1777309542.83034 0
+["pdflatex"] 1779567870.34052 "c:/Users/gabri/Documents/GitHub Desktop/Spanish-FakeNews-Detection-App/MDPI_template/MDPI_template/Informatics/MDPI_template_ACS/template.tex" "template.pdf" "template" 1779567877.26887 0
   "C:/Users/gabri/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1777266892 82507 a9eef8696c92627b87e9975edea03b2a ""
   "C:/Users/gabri/AppData/Local/MiKTeX/fonts/pk/ljfour/jknappen/ec/dpi375/ecss0800.pk" 1758412880 10028 12d55aac02b97f6cefc824f871aa4060 ""
   "C:/Users/gabri/AppData/Local/MiKTeX/fonts/pk/ljfour/jknappen/ec/dpi600/ectt1000.pk" 1754545168 20028 7815e30666db75f445558da507563fd8 ""
@@ -26,6 +26,7 @@
   "C:/Users/gabri/AppData/Local/Programs/MiKTeX/fonts/tfm/public/amsfonts/symbols/msam10.tfm" 1233951854 916 f87d7c45f9c908e672703b83b72241a3 ""
   "C:/Users/gabri/AppData/Local/Programs/MiKTeX/fonts/tfm/public/amsfonts/symbols/msbm10.tfm" 1233951854 908 2921f8a10601f252058503cc6570e581 ""
   "C:/Users/gabri/AppData/Local/Programs/MiKTeX/fonts/tfm/public/cm/cmbsy10.tfm" 1136765053 1116 4e6ba9d7914baa6482fd69f67d126380 ""
+  "C:/Users/gabri/AppData/Local/Programs/MiKTeX/fonts/tfm/public/cm/cmex10.tfm" 1136765053 992 662f679a0b3d2d53c1b94050fdaa3f50 ""
   "C:/Users/gabri/AppData/Local/Programs/MiKTeX/fonts/tfm/public/cm/cmmi10.tfm" 1136765053 1528 abec98dbc43e172678c11b3b9031252a ""
   "C:/Users/gabri/AppData/Local/Programs/MiKTeX/fonts/tfm/public/cm/cmr10.tfm" 1136765053 1296 45809c5a464d5f32c8f98ba97c1bb47f ""
   "C:/Users/gabri/AppData/Local/Programs/MiKTeX/fonts/tfm/public/cm/cmsy10.tfm" 1136765053 1124 6c73e740cf17375f03eec0ee63599741 ""
@@ -40,9 +41,9 @@
   "C:/Users/gabri/AppData/Local/Programs/MiKTeX/fonts/tfm/public/mathpazo/zplmr7v.tfm" 1136793854 1012 955c4ca523d7827d33db91a33412b048 ""
   "C:/Users/gabri/AppData/Local/Programs/MiKTeX/fonts/tfm/public/mathpazo/zplmr7y.tfm" 1136793854 1316 b4037e9c09961a72f8476628774e1ec1 ""
   "C:/Users/gabri/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbsy10.pfb" 1247596666 34793 ae7a3e2775dc0ce90475eeabcb46f9f1 ""
-  "C:/Users/gabri/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb" 1247596667 36299 5f9df58c2139e7edcf37c8fca4bd384d ""
   "C:/Users/gabri/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb" 1247596667 35752 024fb6c41858982481f6968b5fc26508 ""
   "C:/Users/gabri/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb" 1247596667 32569 5e5ddc8df908dea60932f3c484a54c0d ""
+  "C:/Users/gabri/AppData/Local/Programs/MiKTeX/fonts/type1/public/mathpazo/fplmr.pfb" 1136874948 9356 3e1f7eacbb57d05d0b682da8d83eb600 ""
   "C:/Users/gabri/AppData/Local/Programs/MiKTeX/fonts/type1/urw/palatino/uplb8a.pfb" 1136874948 52406 dad2f72863a03727d5f536c64a69c452 ""
   "C:/Users/gabri/AppData/Local/Programs/MiKTeX/fonts/type1/urw/palatino/uplr8a.pfb" 1136874948 52665 661b1e6b26edb5f50dd491f8a701cb57 ""
   "C:/Users/gabri/AppData/Local/Programs/MiKTeX/fonts/type1/urw/palatino/uplri8a.pfb" 1136874948 50022 90249cba7e3e4e9845f80328d6f9bd13 ""
@@ -55,6 +56,7 @@
   "C:/Users/gabri/AppData/Local/Programs/MiKTeX/fonts/vf/public/mathpazo/zplmb7y.vf" 1136793854 1372 8c340b95a20bb8e065e57e55fde8c057 ""
   "C:/Users/gabri/AppData/Local/Programs/MiKTeX/fonts/vf/public/mathpazo/zplmr7m.vf" 1136793854 1812 de7624743c8bafe2ce204bec2f72ce7e ""
   "C:/Users/gabri/AppData/Local/Programs/MiKTeX/fonts/vf/public/mathpazo/zplmr7t.vf" 1136793854 1532 0ba0b316cfeb3df86c9701756c9a4b71 ""
+  "C:/Users/gabri/AppData/Local/Programs/MiKTeX/fonts/vf/public/mathpazo/zplmr7v.vf" 1136793854 1436 3cc3caf644d79936444909aaff6786a8 ""
   "C:/Users/gabri/AppData/Local/Programs/MiKTeX/fonts/vf/public/mathpazo/zplmr7y.vf" 1136793854 1372 31129ac1f6b6f62aaec24c8fed41b02b ""
   "C:/Users/gabri/AppData/Local/Programs/MiKTeX/tex/context/base/mkii/supp-pdf.mkii" 1580390158 71627 94eb9990bed73c364d7f53f960cc8c5b ""
   "C:/Users/gabri/AppData/Local/Programs/MiKTeX/tex/generic/alphalph/alphalph.sty" 1575926356 11516 2c693377218e7ce5418526bc70496cc1 ""
@@ -272,10 +274,10 @@
   "Figures/system_architecture_p2.png" 1777245292 207687 6f7c1067810c3df56012d933223af168 ""
   "Figures/system_architecture_p3.png" 1777172750 240924 2c09c8a1ee6b4342d96a6848e21b053e ""
   "Figures/underfitting_example.png" 1763772744 64322 9ff95c35c997ae1254fff9121d71386a ""
-  "c:/Users/gabri/Documents/GitHub Desktop/Spanish-FakeNews-Detection-App/MDPI_template/MDPI_template/Informatics/MDPI_template_ACS/template.tex" 1777309534 89960 0254f5bedb3a2fb4d574d9b802d6bfa7 ""
-  "template.aux" 1777309542 20466 7f38db84564452b8b7011f6f676c23ed "pdflatex"
-  "template.out" 1777309542 6846 20cdfde4504025ab5b2dedcde16c7116 "pdflatex"
-  "template.tex" 1777309534 89960 0254f5bedb3a2fb4d574d9b802d6bfa7 ""
+  "c:/Users/gabri/Documents/GitHub Desktop/Spanish-FakeNews-Detection-App/MDPI_template/MDPI_template/Informatics/MDPI_template_ACS/template.tex" 1779567866 109667 3f27b9ce0e9c71be4610d583d1f63899 ""
+  "template.aux" 1779567876 26650 07344654a2ed7a204bdc2db760c818a1 "pdflatex"
+  "template.out" 1779567876 7296 84b10b02b0f1a81739811675a30272bb "pdflatex"
+  "template.tex" 1779567866 109667 3f27b9ce0e9c71be4610d583d1f63899 ""
   (generated)
   "template.aux"
   "template.log"
