@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1779567870.34052 "c:/Users/gabri/Documents/GitHub Desktop/Spanish-FakeNews-Detection-App/MDPI_template/MDPI_template/Informatics/MDPI_template_ACS/template.tex" "template.pdf" "template" 1779567877.26887 0
+["pdflatex"] 1779737043.79721 "c:/Users/gabri/Documents/GitHub Desktop/Spanish-FakeNews-Detection-App/MDPI_template/MDPI_template/Informatics/MDPI_template_ACS/template.tex" "template.pdf" "template" 1779737048.5125 0
   "C:/Users/gabri/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1777266892 82507 a9eef8696c92627b87e9975edea03b2a ""
   "C:/Users/gabri/AppData/Local/MiKTeX/fonts/pk/ljfour/jknappen/ec/dpi375/ecss0800.pk" 1758412880 10028 12d55aac02b97f6cefc824f871aa4060 ""
   "C:/Users/gabri/AppData/Local/MiKTeX/fonts/pk/ljfour/jknappen/ec/dpi600/ectt1000.pk" 1754545168 20028 7815e30666db75f445558da507563fd8 ""
@@ -274,10 +274,10 @@
   "Figures/system_architecture_p2.png" 1777245292 207687 6f7c1067810c3df56012d933223af168 ""
   "Figures/system_architecture_p3.png" 1777172750 240924 2c09c8a1ee6b4342d96a6848e21b053e ""
   "Figures/underfitting_example.png" 1763772744 64322 9ff95c35c997ae1254fff9121d71386a ""
-  "c:/Users/gabri/Documents/GitHub Desktop/Spanish-FakeNews-Detection-App/MDPI_template/MDPI_template/Informatics/MDPI_template_ACS/template.tex" 1779567866 109667 3f27b9ce0e9c71be4610d583d1f63899 ""
-  "template.aux" 1779567876 26650 07344654a2ed7a204bdc2db760c818a1 "pdflatex"
-  "template.out" 1779567876 7296 84b10b02b0f1a81739811675a30272bb "pdflatex"
-  "template.tex" 1779567866 109667 3f27b9ce0e9c71be4610d583d1f63899 ""
+  "c:/Users/gabri/Documents/GitHub Desktop/Spanish-FakeNews-Detection-App/MDPI_template/MDPI_template/Informatics/MDPI_template_ACS/template.tex" 1779737041 109641 bf3520e28128951b59e6439c44709382 ""
+  "template.aux" 1779737048 26650 07344654a2ed7a204bdc2db760c818a1 "pdflatex"
+  "template.out" 1779737048 7296 84b10b02b0f1a81739811675a30272bb "pdflatex"
+  "template.tex" 1779737041 109641 bf3520e28128951b59e6439c44709382 ""
   (generated)
   "template.aux"
   "template.log"
