@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.1.9)  28 MAY 2026 00:18
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.1.9)  28 MAY 2026 01:18
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1865,12 +1865,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-6.18796pt}.
 
 [24]
-Overfull \hbox (117.4077pt too wide) in paragraph at lines 616--617
-[]\T1/ppl/m/n/10 (-20) For cross-lingual ex-ten-sion specif-i-cally, a mul-ti-l
-in-gual base en-coder (e.g., \T1/cmtt/m/n/10 distilbert-base-multilingual-cased
-
- []
-
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 18.18796pt, for example:
@@ -1920,7 +1914,7 @@ Package rerunfilecheck Info: File `template.out' has not changed.
 Here is how much of TeX's memory you used:
  38871 strings out of 467871
  766198 string characters out of 5418377
- 1241933 words of memory out of 5000000
+ 1240934 words of memory out of 5000000
  66391 multiletter control sequences out of 15000+600000
  716284 words of font info for 532 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -1935,7 +1929,7 @@ onts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/gabri/AppData/Local/Programs
 grams/MiKTeX/fonts/type1/urw/palatino/uplb8a.pfb><C:/Users/gabri/AppData/Local/
 Programs/MiKTeX/fonts/type1/urw/palatino/uplr8a.pfb><C:/Users/gabri/AppData/Loc
 al/Programs/MiKTeX/fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on template.pdf (28 pages, 1920096 bytes).
+Output written on template.pdf (28 pages, 1920102 bytes).
 PDF statistics:
  715 PDF objects out of 1000 (max. 8388607)
  136 named destinations out of 1000 (max. 500000)
