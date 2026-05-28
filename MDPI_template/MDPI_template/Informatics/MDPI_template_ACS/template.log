@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.1.9)  25 MAY 2026 13:24
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.1.9)  28 MAY 2026 00:18
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1512,11 +1512,11 @@ Package marginnote Info: right page because not two side mode on input line 68.
 
 Package marginnote Info: xpos seems to be 167.01753pt on input line 68.
 Package epstopdf Info: Source file: <Definitions/logo-mdpi.eps>
-(epstopdf)                    date: 2026-02-02 01:17:05
+(epstopdf)                    date: 2026-05-27 01:16:16
 (epstopdf)                    size: 563678 bytes
 (epstopdf)             Output file: <Definitions/logo-mdpi-eps-converted-to.pdf
 >
-(epstopdf)                    date: 2026-02-14 20:11:27
+(epstopdf)                    date: 2026-05-27 01:16:16
 (epstopdf)                    size: 13253 bytes
 (epstopdf)             Command: <miktex-epstopdf --outfile=Definitions/logo-mdp
 i-eps-converted-to.pdf Definitions/logo-mdpi.eps>
@@ -1630,11 +1630,20 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-6.18796pt}.
 
 [6 <./Figures/system_architecture_p1.png>]
-<Figures/corpus_balance.png, id=298, 1343.0175pt x 633.11531pt>
+<Figures/corpus_balance.png, id=299, 1343.0175pt x 633.11531pt>
 File: Figures/corpus_balance.png Graphic file (type png)
 <use Figures/corpus_balance.png>
-Package pdftex.def Info: Figures/corpus_balance.png  used on input line 228.
+Package pdftex.def Info: Figures/corpus_balance.png  used on input line 230.
 (pdftex.def)             Requested size: 394.35522pt x 185.89793pt.
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 18.18796pt, for example:
+(fancyhdr)                \setlength{\headheight}{18.18796pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-6.18796pt}.
+
+[7 <./Figures/corpus_balance.png>]
 Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `cmtt' (encoding: T1).
 (microtype)             For optimal results, create family-specific settings.
@@ -1647,20 +1656,12 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-6.18796pt}.
 
-[7 <./Figures/corpus_balance.png>]
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 18.18796pt, for example:
-(fancyhdr)                \setlength{\headheight}{18.18796pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-6.18796pt}.
-
 [8]
-<Figures/system_architecture_p2.png, id=336, 439.4016pt x 536.7252pt>
+<Figures/system_architecture_p2.png, id=335, 439.4016pt x 536.7252pt>
 File: Figures/system_architecture_p2.png Graphic file (type png)
 <use Figures/system_architecture_p2.png>
 Package pdftex.def Info: Figures/system_architecture_p2.png  used on input line
- 295.
+ 297.
 (pdftex.def)             Requested size: 394.35522pt x 481.72148pt.
 
 
@@ -1670,18 +1671,26 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-6.18796pt}.
 
-[9 <./Figures/system_architecture_p2.png>]
-<Figures/overfitting_example.png, id=345, 992.70876pt x 792.9625pt>
+[9]
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 18.18796pt, for example:
+(fancyhdr)                \setlength{\headheight}{18.18796pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-6.18796pt}.
+
+[10 <./Figures/system_architecture_p2.png>]
+<Figures/overfitting_example.png, id=351, 992.70876pt x 792.9625pt>
 File: Figures/overfitting_example.png Graphic file (type png)
 <use Figures/overfitting_example.png>
-Package pdftex.def Info: Figures/overfitting_example.png  used on input line 30
-9.
+Package pdftex.def Info: Figures/overfitting_example.png  used on input line 31
+1.
 (pdftex.def)             Requested size: 193.23622pt x 154.35481pt.
-<Figures/underfitting_example.png, id=346, 992.70876pt x 792.9625pt>
+<Figures/underfitting_example.png, id=352, 992.70876pt x 792.9625pt>
 File: Figures/underfitting_example.png Graphic file (type png)
 <use Figures/underfitting_example.png>
 Package pdftex.def Info: Figures/underfitting_example.png  used on input line 3
-11.
+13.
 (pdftex.def)             Requested size: 193.23622pt x 154.35481pt.
 
 
@@ -1691,7 +1700,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-6.18796pt}.
 
-[10 <./Figures/overfitting_example.png (PNG copy)> <./Figures/underfitting_exam
+[11 <./Figures/overfitting_example.png (PNG copy)> <./Figures/underfitting_exam
 ple.png (PNG copy)>]
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -1700,12 +1709,12 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-6.18796pt}.
 
-[11]
-<Figures/system_architecture_p3.png, id=369, 685.1196pt x 426.393pt>
+[12]
+<Figures/system_architecture_p3.png, id=375, 685.1196pt x 426.393pt>
 File: Figures/system_architecture_p3.png Graphic file (type png)
 <use Figures/system_architecture_p3.png>
 Package pdftex.def Info: Figures/system_architecture_p3.png  used on input line
- 359.
+ 361.
 (pdftex.def)             Requested size: 394.35522pt x 245.43431pt.
 
 
@@ -1715,7 +1724,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-6.18796pt}.
 
-[12 <./Figures/system_architecture_p3.png>]
+[13 <./Figures/system_architecture_p3.png>]
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 18.18796pt, for example:
@@ -1723,42 +1732,42 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-6.18796pt}.
 
-[13]
-<Figures/confusion_matrix_ga.png, id=393, 543.9522pt x 460.6008pt>
+[14]
+<Figures/confusion_matrix_ga.png, id=399, 543.9522pt x 460.6008pt>
 File: Figures/confusion_matrix_ga.png Graphic file (type png)
 <use Figures/confusion_matrix_ga.png>
 Package pdftex.def Info: Figures/confusion_matrix_ga.png  used on input line 41
-6.
+8.
 (pdftex.def)             Requested size: 189.28882pt x 160.28497pt.
-<Figures/confusion_matrix_vns.png, id=394, 543.9522pt x 460.6008pt>
+<Figures/confusion_matrix_vns.png, id=400, 543.9522pt x 460.6008pt>
 File: Figures/confusion_matrix_vns.png Graphic file (type png)
 <use Figures/confusion_matrix_vns.png>
 Package pdftex.def Info: Figures/confusion_matrix_vns.png  used on input line 4
-18.
+20.
 (pdftex.def)             Requested size: 189.28882pt x 160.28497pt.
-<Figures/confusion_matrix_ss.png, id=395, 543.9522pt x 460.6008pt>
+<Figures/confusion_matrix_ss.png, id=401, 543.9522pt x 460.6008pt>
 File: Figures/confusion_matrix_ss.png Graphic file (type png)
 <use Figures/confusion_matrix_ss.png>
 Package pdftex.def Info: Figures/confusion_matrix_ss.png  used on input line 42
-0.
+2.
 (pdftex.def)             Requested size: 189.28882pt x 160.28497pt.
-<Figures/confusion_matrix_msa.png, id=396, 543.9522pt x 460.6008pt>
+<Figures/confusion_matrix_msa.png, id=402, 543.9522pt x 460.6008pt>
 File: Figures/confusion_matrix_msa.png Graphic file (type png)
 <use Figures/confusion_matrix_msa.png>
 Package pdftex.def Info: Figures/confusion_matrix_msa.png  used on input line 4
-22.
+24.
 (pdftex.def)             Requested size: 189.28882pt x 160.28497pt.
-<Figures/confusion_matrix_pso.png, id=397, 543.9522pt x 460.6008pt>
+<Figures/confusion_matrix_pso.png, id=403, 543.9522pt x 460.6008pt>
 File: Figures/confusion_matrix_pso.png Graphic file (type png)
 <use Figures/confusion_matrix_pso.png>
 Package pdftex.def Info: Figures/confusion_matrix_pso.png  used on input line 4
-24.
+26.
 (pdftex.def)             Requested size: 189.28882pt x 160.28497pt.
-<Figures/DistilBERT_confusion_matrix.png, id=398, 557.4426pt x 460.6008pt>
+<Figures/DistilBERT_confusion_matrix.png, id=404, 557.4426pt x 460.6008pt>
 File: Figures/DistilBERT_confusion_matrix.png Graphic file (type png)
 <use Figures/DistilBERT_confusion_matrix.png>
 Package pdftex.def Info: Figures/DistilBERT_confusion_matrix.png  used on input
- line 426.
+ line 428.
 (pdftex.def)             Requested size: 189.28882pt x 156.40541pt.
 
 
@@ -1768,7 +1777,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-6.18796pt}.
 
-[14]
+[15]
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 18.18796pt, for example:
@@ -1776,17 +1785,9 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-6.18796pt}.
 
-[15 <./Figures/confusion_matrix_ga.png> <./Figures/confusion_matrix_vns.png> <.
+[16 <./Figures/confusion_matrix_ga.png> <./Figures/confusion_matrix_vns.png> <.
 /Figures/confusion_matrix_ss.png> <./Figures/confusion_matrix_msa.png> <./Figur
 es/confusion_matrix_pso.png> <./Figures/DistilBERT_confusion_matrix.png>]
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 18.18796pt, for example:
-(fancyhdr)                \setlength{\headheight}{18.18796pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-6.18796pt}.
-
-[16]
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 18.18796pt, for example:
@@ -1811,17 +1812,25 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-6.18796pt}.
 
 [19]
-<Figures/beto_training_curves.png, id=467, 3035.34pt x 1757.81718pt>
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 18.18796pt, for example:
+(fancyhdr)                \setlength{\headheight}{18.18796pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-6.18796pt}.
+
+[20]
+<Figures/beto_training_curves.png, id=473, 3035.34pt x 1757.81718pt>
 File: Figures/beto_training_curves.png Graphic file (type png)
 <use Figures/beto_training_curves.png>
 Package pdftex.def Info: Figures/beto_training_curves.png  used on input line 5
-65.
+67.
 (pdftex.def)             Requested size: 394.35522pt x 228.36333pt.
-<Figures/beto_confusion_matrix.png, id=469, 1940.24875pt x 1636.1125pt>
+<Figures/beto_confusion_matrix.png, id=475, 1940.24875pt x 1636.1125pt>
 File: Figures/beto_confusion_matrix.png Graphic file (type png)
 <use Figures/beto_confusion_matrix.png>
 Package pdftex.def Info: Figures/beto_confusion_matrix.png  used on input line 
-572.
+574.
 (pdftex.def)             Requested size: 197.17761pt x 166.26712pt.
 
 
@@ -1831,7 +1840,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-6.18796pt}.
 
-[20 <./Figures/beto_training_curves.png>]
+[21 <./Figures/beto_training_curves.png>]
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 18.18796pt, for example:
@@ -1839,15 +1848,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-6.18796pt}.
 
-[21 <./Figures/beto_confusion_matrix.png (PNG copy)>]
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 18.18796pt, for example:
-(fancyhdr)                \setlength{\headheight}{18.18796pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-6.18796pt}.
-
-[22]
+[22 <./Figures/beto_confusion_matrix.png (PNG copy)>]
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 18.18796pt, for example:
@@ -1864,6 +1865,12 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-6.18796pt}.
 
 [24]
+Overfull \hbox (117.4077pt too wide) in paragraph at lines 616--617
+[]\T1/ppl/m/n/10 (-20) For cross-lingual ex-ten-sion specif-i-cally, a mul-ti-l
+in-gual base en-coder (e.g., \T1/cmtt/m/n/10 distilbert-base-multilingual-cased
+
+ []
+
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 18.18796pt, for example:
@@ -1880,7 +1887,15 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-6.18796pt}.
 
 [26]
-Underfull \hbox (badness 1540) in paragraph at lines 764--765
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 18.18796pt, for example:
+(fancyhdr)                \setlength{\headheight}{18.18796pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-6.18796pt}.
+
+[27]
+Underfull \hbox (badness 1540) in paragraph at lines 766--767
 []\T1/ppl/m/n/9 (+20) Conneau, A.; Khan-del-wal, K.; Goyal, N.; Chaud-hary, V.;
  Wen-zek, G.; Guzmán, F.; Grave, E.; Ott, M.; Zettle-
  []
@@ -1892,7 +1907,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-6.18796pt}.
 
-[27] 
+[28] 
 enddocument/afterlastpage (AED): lastpage setting LastPage.
 (template.aux)
  ***********
@@ -1903,13 +1918,13 @@ Package rerunfilecheck Info: File `template.out' has not changed.
 (rerunfilecheck)             Checksum: 84B10B02B0F1A81739811675A30272BB;7296.
  ) 
 Here is how much of TeX's memory you used:
- 38870 strings out of 467871
- 766191 string characters out of 5418377
- 1240935 words of memory out of 5000000
+ 38871 strings out of 467871
+ 766198 string characters out of 5418377
+ 1241933 words of memory out of 5000000
  66391 multiletter control sequences out of 15000+600000
  716284 words of font info for 532 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 123i,17n,121p,2186b,1368s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 123i,17n,121p,2186b,1364s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\gabri\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt
 1000.pk> <C:\Users\gabri\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi37
 5\ecss0800.pk><C:/Users/gabri/AppData/Local/Programs/MiKTeX/fonts/type1/public/
@@ -1920,9 +1935,9 @@ onts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/gabri/AppData/Local/Programs
 grams/MiKTeX/fonts/type1/urw/palatino/uplb8a.pfb><C:/Users/gabri/AppData/Local/
 Programs/MiKTeX/fonts/type1/urw/palatino/uplr8a.pfb><C:/Users/gabri/AppData/Loc
 al/Programs/MiKTeX/fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on template.pdf (27 pages, 1917044 bytes).
+Output written on template.pdf (28 pages, 1920096 bytes).
 PDF statistics:
- 709 PDF objects out of 1000 (max. 8388607)
- 135 named destinations out of 1000 (max. 500000)
+ 715 PDF objects out of 1000 (max. 8388607)
+ 136 named destinations out of 1000 (max. 500000)
  118077 words of extra memory for PDF output out of 128383 (max. 10000000)
 
