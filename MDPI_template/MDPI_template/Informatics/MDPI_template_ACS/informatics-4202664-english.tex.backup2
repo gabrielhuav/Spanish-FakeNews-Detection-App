@@ -42,7 +42,7 @@
 \newcommand{\orcidauthorE}{0000-0002-7488-0333} % Óscar Herrera Alcántara (Placeholder)
 
 % Authors, for the paper
-\Author{\hl{Gabriel Hurtado Avilés} %MDPI: Please carefully check the accuracy of names and affiliations. %Response: Confirmed; all author names verified as correct.
+\Author{\hl{Gabriel Hurtado Avilés} %MDPI: Please carefully check the accuracy of names and affiliations.
 \orcidA{}, José A. Reyes-Ortiz *\orcidB{}, Román A. Mora-Gutiérrez \orcidC{}, Josué Padilla Cuevas \orcidD{} \linebreak  and {Óscar Herrera Alcántara}
  \orcidE{}}
 
@@ -54,7 +54,7 @@
 
 % Affiliations / Addresses
 \address[1]{%
-\hl{Department of Systems, Autonomous Metropolitan University (UAM), Azcapotzalco Unit,} %MDPI: Please arrange the authors’ address information from subordinate to superior. %Response: Confirmed; affiliation order verified (from subordinate to superior).
+\hl{Department of Systems, Autonomous Metropolitan University (UAM), Azcapotzalco Unit,} %MDPI: Please arrange the authors’ address information from subordinate to superior.
    Mexico City 02200, Mexico; gabrielhuav@gmail.com (G.H.A.); mgra@azc.uam.mx (R.A.M.-G.); jpc@azc.uam.mx (J.P.C.); oha@azc.uam.mx (Ó.H.A.)}
 
 % Contact information of the corresponding author
@@ -76,7 +76,7 @@
 \section{Introduction}
 The proliferation of deceptive content on social media platforms represents one of the most pressing challenges at the intersection of machine learning and digital \mbox{society \citep{bondielli2019survey}}. The rapid expansion of social networks has transformed how information is created, disseminated, and consumed, creating unprecedented opportunities for the spread of misinformation, fraudulent schemes, and manipulative content.  This phenomenon disproportionately affects vulnerable demographics with limited media literacy skills \citep{higdon2022agree, higdon2025constructive}, undermining public trust in journalism, distorting democratic processes, and threatening public health outcomes \citep{tsfati2020causes, allcott2017social}. Critically, the problem extends far beyond traditional fake news: social media platforms are increasingly exploited for investment scams—such as pages impersonating state-owned enterprises with fabricated profit schemes \citep{scam2025investment}—fraudulent e-commerce impersonations featuring fake testimonials and artificial urgency \citep{scam2025cosmetics, scam2025ecommerce}, and an alarming proliferation of fake storefronts impersonating major retail chains with fabricated liquidation sales \citep{scam2026aurrera1, scam2026aurrera2, scam2026aurrera3, scam2026celulares}. Celebrity health misinformation—such as pages exploiting public figures' names to promote fraudulent medical products \citep{scam2025health}—further compounds the problem.  These diverse forms of digital deception disproportionately target elderly and digitally illiterate populations, and their sheer volume on social media feeds underscores the urgent need for automated, scalable detection systems.
 
-While transformer-based models have achieved state-of-the-art performance in English-language misinformation detection \citep{kaliyar2021fakebert, singh2024comprehensive, rout2025reliable}, a fundamental methodological gap persists: the absence of systematic, reproducible frameworks for adapting these general-purpose models to \textit{\hl{domain-specific}%MDPI: Please confirm if the italics are necessary; if not, please remove them. The following highlights are the same. %Response: The italic emphasis is intentional and marks a key technical term; we confirm we wish to keep it.
+While transformer-based models have achieved state-of-the-art performance in English-language misinformation detection \citep{kaliyar2021fakebert, singh2024comprehensive, rout2025reliable}, a fundamental methodological gap persists: the absence of systematic, reproducible frameworks for adapting these general-purpose models to \textit{\hl{domain-specific}%MDPI: Please confirm if the italics are necessary; if not, please remove them. The following highlights are the same.
 } deceptive content detection tasks. Most existing studies focus on reporting end-task accuracy without providing a transferable methodology that practitioners can apply to new domains, languages, or content types \citep{alghamdi2024comprehensive}. This gap is particularly acute for non-English languages and for emerging forms of social media fraud that lack established benchmark datasets.
 
 The field of automated deceptive content detection has evolved through distinct methodological paradigms, reflecting advances in machine learning and natural language processing.  Early research in the 2010s relied on classical machine learning approaches—Support Vector Machines (SVMs), Naïve Bayes, Random Forests—combined with hand-crafted linguistic features such as Term Frequency-Inverse Document Frequency (TF-IDF) and Bag-of-Words (BoW) representations \citep{shu2017fake, ali2022fake, perez2018automatic}. While computationally efficient, these methods struggled to capture semantic nuances, sarcasm, and contextual meaning, limiting their effectiveness against sophisticated misinformation tactics. 
@@ -85,7 +85,7 @@ The mid-2010s witnessed a paradigm shift toward deep learning architectures.  Co
 
 The introduction of transformer architectures—particularly BERT \citep{devlin2018bert} and its variants—revolutionized the field by capturing bidirectional contextual representations through self-attention mechanisms \citep{vaswani2017attention}. Recent surveys \citep{singh2024comprehensive, alghamdi2024comprehensive} have documented the superiority of transformer-based approaches across multiple languages, with models such as \mbox{FakeBERT \citep{kaliyar2021fakebert}} leveraging datasets like LIAR \citep{wang2017liar} and FakeNewsNet alongside techniques including emotion-aware multitask learning \citep{choudhry2024emotion} and hybrid CNN-RNN architectures \citep{nasir2021fake}. 
 
-However, despite these architectural advances, three interconnected challenges remain largely unaddressed in the literature. First, there is a \textbf{\hl{lack of systematic fine-tuning methodologies}%MDPI: Please confirm if the bold formatting is necessary; if not, please remove it. The following highlights are the same. %Response: The bold emphasis is intentional and marks the key research gaps/contributions; we confirm we wish to keep it.
+However, despite these architectural advances, three interconnected challenges remain largely unaddressed in the literature. First, there is a \textbf{\hl{lack of systematic fine-tuning methodologies}%MDPI: Please confirm if the bold formatting is necessary; if not, please remove it. The following highlights are the same.
 }: most studies report results from a narrow hyperparameter search without documenting the optimization trajectory or providing reproducible regularization strategies that can be transferred to new tasks \citep{blanco2024enhancing, martinez2021fake}. Second, there is a \textbf{\hl{scarcity of domain-specific resources for non-English languages}}, particularly for Spanish—a language with over \mbox{500 million} native speakers—where datasets are fragmented and \mbox{incompatible \citep{singh2024comprehensive, posadas2019detection}}. Third, a \textbf{\hl{persistent deployment gap}} separates academic models from practical tools \citep{ali2022fake}: while papers report high accuracy, there is a striking absence of production-ready applications that communities can use for real-time verification.
 
 This paper addresses these challenges by proposing a \textbf{\hl{systematic and transferable framework}} for fine-tuning pretrained transformer models for domain-specific misinformation detection on social media. The framework is structured as a three-stage pipeline—corpus unification, systematic regularization, and production deployment—and is intended to be adaptable across domains: while validated here on Spanish-language fake news detection, the same methodology could in principle be applied to detect other forms of social media deception, such as investment scams (e.g., fraudulent cryptocurrency or petroleum investment pages), fake e-commerce sites impersonating legitimate retailers, and phishing campaigns, provided that appropriate labeled corpora are constructed for each target domain. We note that these additional domains are presented as motivating directions for future work rather than as empirically validated results in this study.
@@ -117,7 +117,7 @@ The scholarly approach to deceptive content detection has evolved through severa
 \toprule
 \textbf{Paradigm} & \textbf{Core Principle} & \textbf{Key Studies} & \textbf{Strengths} & \textbf{Limitations} \\
 \midrule
-\begin{tabular}[t]{@{}l@{}}\textbf{\hl{Media Literacy}%MDPI: Please add an explanation for the use of bold in the table footer. If the bold is unnecessary, please remove it. The following highlights are the same. %Response: The bold marks the category names in the table; we confirm we wish to keep it for readability.
+\begin{tabular}[t]{@{}l@{}}\textbf{\hl{Media Literacy}%MDPI: Please add an explanation for the use of bold in the table footer. If the bold is unnecessary, please remove it. The following highlights are the same.
 }\\\textbf{\hl{\& Societal Impact}}\end{tabular} & \begin{tabular}[t]{@{}l@{}}Address root causes\\through critical\\thinking education\end{tabular} & \begin{tabular}[t]{@{}l@{}}Higdon \citep{higdon2022agree},\\Higdon \citep{higdon2025constructive},\\Tsfati et al. \citep{tsfati2020causes}\end{tabular} & \begin{tabular}[t]{@{}l@{}}Addresses cultural\\and cognitive factors\end{tabular} & \begin{tabular}[t]{@{}l@{}}Does not provide\\automated detection\end{tabular} \\
 \midrule
 \begin{tabular}[t]{@{}l@{}}\textbf{\hl{Classical Machine}}\\\textbf{\hl{Learning}}\end{tabular} & \begin{tabular}[t]{@{}l@{}}Statistical features\\from text (TF-IDF, BoW)\end{tabular} & \begin{tabular}[t]{@{}l@{}}Shu et al. \citep{shu2017fake},\\Ali et al. \citep{ali2022fake},\\Thota et al. \citep{thota2018fake}\end{tabular} & \begin{tabular}[t]{@{}l@{}}Computationally\\efficient, interpretable\end{tabular} & \begin{tabular}[t]{@{}l@{}}Limited semantic\\understanding\end{tabular} \\
@@ -192,7 +192,7 @@ The methodology is structured as a transferable three-stage pipeline for adaptin
 \begin{figure}[H]
 \centering
 \includegraphics[width=\textwidth]{Figures/system_architecture_p1.png}
-\caption{\hl{Overview} %MDPI: 1. The contents of this figure are not legible. Please replace the image with one of a sufficiently high resolution (min. 1000 pixels width/height, or a resolution of 300 dpi or higher); 2. Please confirm whether an explanation of the colors needs to be added to the figure caption. %Response: [AUTHOR ACTION] Replace this figure with a high-resolution version (>=1000 px or 300 dpi); confirm whether a color explanation is needed in the caption.
+\caption{\hl{Overview} %MDPI: 1. The contents of this figure are not legible. Please replace the image with one of a sufficiently high resolution (min. 1000 pixels width/height, or a resolution of 300 dpi or higher); 2. Please confirm whether an explanation of the colors needs to be added to the figure caption.
  of the proposed research methodology (Part 1/3): Data Unification and \mbox{Processing}.}
 \label{fig:metodologia_general_p1}
 \end{figure}
@@ -242,19 +242,19 @@ In practical terms, this configuration reflects a deliberate efficiency choice r
 \begin{figure}[H]
 \centering
 \includegraphics[width=\linewidth]{Figures/corpus_balance.png}
-\caption{\hl{Visual} %MDPI: Commas are only used for numbers with five or more digits. Please remove them from the four-digit numbers in the figure, e.g., “1,200” should be “1200”. %Response: [AUTHOR ACTION] Edit the image to remove commas from four-digit numbers (e.g., 1,200 -> 1200).
-%MDPI: References in the form of "[XX]" are not allowed in the image. If necessary, "Author+Year" format can be used as invalid references, and all mentioned references should be cited in the caption. Please add them to the figure caption with reference numbers and place the numbers in square brackets (“[ ]”), e.g., [1], [1–3], or [1,3]. %Response: [AUTHOR ACTION] In the image, change [XX] references to Author+Year and add the bracketed reference numbers to the caption.
+\caption{\hl{Visual} %MDPI: Commas are only used for numbers with five or more digits. Please remove them from the four-digit numbers in the figure, e.g., “1,200” should be “1200”.
+%MDPI: References in the form of "[XX]" are not allowed in the image. If necessary, "Author+Year" format can be used as invalid references, and all mentioned references should be cited in the caption. Please add them to the figure caption with reference numbers and place the numbers in square brackets (“[ ]”), e.g., [1], [1–3], or [1,3].
 representation of the corpus unification process. The dataset was expanded by strategically adding 8985 SATIRE articles via web scraping, resulting in a three-class final distribution: Fake (35.3\%), Real (50.2\%), and Satire (14.5\%). Source: Authors' own elaboration based on study data.}
 \label{fig:corpus_balance}
 \end{figure}
 
 \subsection{Stage 2: Systematic Model Optimization}
-The second stage focuses on systematic fine-tuning documented as a reproducible optimization trajectory. Rather than reporting a single configuration, the full evolution of hyperparameter decisions is recorded, %MDPI: Tables should be numbered in order of appearance. The citation of Table 7 is before Table 5, please revised and ensure that the first citation of each table appears in numerical order. %Response: Removed the premature forward-reference to this table here; it is now first cited at its proper location, so the first citation of each table follows numerical order.
+The second stage focuses on systematic fine-tuning documented as a reproducible optimization trajectory. Rather than reporting a single configuration, the full evolution of hyperparameter decisions is recorded (\hl{Table} \ref{tab:hyperparam_evolution}), %MDPI: Tables should be numbered in order of appearance. The citation of Table 7 is before Table 5, please revised and ensure that the first citation of each table appears in numerical order.
 providing a transferable recipe for practitioners. The optimization begins by establishing a classical baseline.
 
-\subsubsection{\hl{Data Partitioning and Generalization Strategy}}\label{sec:partitioning}%MDPI: If there is only one subsection within a section, it should not be numbered. We have thus removed this section number. Please confirm. %Response: Confirmed.
+\subsubsection{\hl{Data Partitioning and Generalization Strategy}}\label{sec:partitioning}%MDPI: If there is only one subsection within a section, it should not be numbered. We have thus removed this section number. Please confirm.
 
-The unified corpus ($N=61{,}674$) was partitioned into three disjoint subsets (\mbox{70\% train}, 10\% validation, 20\% test) using \textbf{\hl{stratified random sampling}} to preserve the three-class distribution across all partitions. Concretely, partition was produced by two successive calls to scikit-learn's \texttt{\hl{train\_test\_split}} %MDPI: Please check the whole text whether keep the \texttt format. %Response: Confirmed; \texttt is used consistently only for code/technical identifiers (function/library names, HTML tags, special tokens, model names); we keep this monospace formatting.
+The unified corpus ($N=61{,}674$) was partitioned into three disjoint subsets (\mbox{70\% train}, 10\% validation, 20\% test) using \textbf{\hl{stratified random sampling}} to preserve the three-class distribution across all partitions. Concretely, partition was produced by two successive calls to scikit-learn's \texttt{\hl{train\_test\_split}} %MDPI: Please check the whole text whether keep the \texttt format.
 with a fixed seed: a first split separating 70\% for training from a 30\% temporary set and a second split dividing that temporary set into validation (one third, i.e.,\ 10\% of the total) and test (two thirds, i.e.,\ 20\% of the total), with stratification on the class label at both steps. The resulting per-class sizes are reported in Table~\ref{tab:split_sizes}. The test-set class supports (4350/6189/1797) are exact, as reported by the evaluation pipeline; the train and validation figures are derived from the stratified \linebreak  70/10/20 ratio.
 
 \begin{table}[H]
@@ -281,7 +281,7 @@ This hold-out strategy, combined with the regularization regime described above,
 
 \textbf{\hl{Seeds and repetition.}} To support reproducibility, a single global random seed (42) was fixed across Python, NumPy, and the deep learning backends prior to partitioning, weight initialization, and shuffling. We report results from this single seed; multi-seed runs with confidence intervals were not performed in this study due to the substantial cost of fine-tuning BETO, and are identified in Section~\ref{sec:limitations} as a direction for future work.
 
-\textls[-15]{A ``hold-out'' validation strategy combined with the regularization regime (the \emph{Final BETO configuration} described below) }is used so that reported metrics reflect generalization rather than memorization.
+\textls[-15]{A ``hold-out'' validation strategy combined with the regularization regime (\hl{\mbox{Section~\ref{sec:final-beto-config-text}}}) }is used so that reported metrics reflect generalization rather than memorization.
 
 \textbf{\hl{Classical Machine Learning Baseline.}} A baseline was established using TF-IDF feature representation \citep{shu2017fake}, with dimensionality reduced to 800 features via Chi-squared test. Five metaheuristic algorithms—Multi-Start Simulated Annealing (MSA), Scatter Search (SS), Variable Neighborhood Search (VNS), Genetic Algorithm (GA), and Particle Swarm Optimization (PSO)—optimized the hyperparameters of a logistic regression model, maximizing F1-Score.
 
@@ -335,14 +335,14 @@ It is important to note that this hyperparameter optimization was carried out on
 \begin{figure}[H]
 \centering
 \includegraphics[width=\textwidth]{Figures/system_architecture_p2.png}
-\caption{\hl{Overview} %MDPI: To reduce the blank space, we moved the Figure, please confirm. %Response: Confirmed.
-%MDPI: The contents of this figure are not legible. Please replace the image with one of a sufficiently high resolution (min. 1000 pixels width/height, or a resolution of 300 dpi or higher). %Response: [AUTHOR ACTION] Replace this figure with a high-resolution version (>=1000 px or 300 dpi).
+\caption{\hl{Overview} %MDPI: To reduce the blank space, we moved the Figure, please confirm.
+%MDPI: The contents of this figure are not legible. Please replace the image with one of a sufficiently high resolution (min. 1000 pixels width/height, or a resolution of 300 dpi or higher).
 of the proposed research methodology (Part 2/3): Model Optimization and Comparative Evaluation.}
 \label{fig:metodologia_general_p2}
 \end{figure}
 
 
-The hyperparameter search for the final three-class BETO model was conducted independently in each framework, both minimizing the validation loss as the primary objective. In the cloud environment, Optuna explored the space via categorical sampling; in the local environment, Keras Tuner (\texttt{RandomSearch}) explored an equivalent space. Owing to the substantial cost of fine-tuning BETO (each trial requiring several GPU-hours), the search was deliberately focused on a compact, high-impact grid of three trials per backend. The search space comprised learning rates ($1 \times 10^{-6}$, $2 \times 10^{-6}$, $5 \times 10^{-6}$), dropout rates (0.3, 0.4, 0.5), L2 penalties (0.01, 0.02, 0.05), and a Gaussian weight-noise factor (0.005, 0.01), with a batch size of 8 in the local run and 8--16 in the cloud run. Architecturally, the dropout probability was applied to both the hidden and attention layers via the model configuration, while the L2 penalty and the manual weight-decay callback acted on the encoder kernels to constrain capacity without distorting the pretrained attention weights. The complete search configuration for both backends is released in the public repository. The same fixed stratified partition (Table~\ref{tab:split_sizes}, seed 42) and the same regularization configuration were applied to all eight transformer architectures in the three-class benchmark, so that the comparison %MDPI: Tables should be numbered in order of appearance. The citation of Table 9 is before Table 7, please revised and ensure that the first citation of each table appears in numerical order, citation and Table body also can not cross section title. %Response: Removed the premature forward-reference; the table is now first cited within the same results subsection where it appears, so the numbering follows order of appearance and the citation no longer crosses a section title.
+The hyperparameter search for the final three-class BETO model was conducted independently in each framework, both minimizing the validation loss as the primary objective. In the cloud environment, Optuna explored the space via categorical sampling; in the local environment, Keras Tuner (\texttt{RandomSearch}) explored an equivalent space. Owing to the substantial cost of fine-tuning BETO (each trial requiring several GPU-hours), the search was deliberately focused on a compact, high-impact grid of three trials per backend. The search space comprised learning rates ($1 \times 10^{-6}$, $2 \times 10^{-6}$, $5 \times 10^{-6}$), dropout rates (0.3, 0.4, 0.5), L2 penalties (0.01, 0.02, 0.05), and a Gaussian weight-noise factor (0.005, 0.01), with a batch size of 8 in the local run and 8--16 in the cloud run. Architecturally, the dropout probability was applied to both the hidden and attention layers via the model configuration, while the L2 penalty and the manual weight-decay callback acted on the encoder kernels to constrain capacity without distorting the pretrained attention weights. The complete search configuration for both backends is released in the public repository. The same fixed stratified partition (Table~\ref{tab:split_sizes}, seed 42) and the same regularization configuration were applied to all eight transformer architectures in the three-class benchmark, so that the comparison in \hl{Table}~\ref{tab:transformer_benchmarking} %MDPI: Tables should be numbered in order of appearance. The citation of Table 9 is before Table 7, please revised and ensure that the first citation of each table appears in numerical order, citation and Table body also can not cross section title.
  is controlled. For completeness, the configurations and results of the omitted intermediate exploratory versions (V7--V10), as well as the per-class precision, recall, and F1 of every model in the three-class benchmark, are provided in the public repository accompanying this paper.
 
 \vspace{-9pt}
@@ -354,7 +354,7 @@ The hyperparameter search for the final three-class BETO model was conducted ind
 \subfloat[\centering ]{\includegraphics[width=0.49\textwidth]{Figures/overfitting_example.png} \label{fig:overfitting_example}}
 \hfill
 \subfloat[\centering ]{\includegraphics[width=0.49\textwidth]{Figures/underfitting_example.png} \label{fig:underfitting_example}}
-\caption{{Visual} comparison of model training behaviors plotted on identical scales for direct comparability. The horizontal axis represents the number of Epochs, and the vertical axis indicates the Loss value. (\textbf{a}) Illustrates \textbf{\hl{overfitting}}, where the model memorizes the training data (blue line decreases) but fails to generalize to new data (red validation line increases). (\textbf{b}) Illustrates \textbf{\hl{underfitting}}, characterized by the inability of the model to capture underlying patterns, resulting in high loss values for both curves. \hl{(\textbf{a})}  %MDPI: We moved the subfigure explanations into the figure caption, please confirm. %Response: Confirmed.
+\caption{{Visual} comparison of model training behaviors plotted on identical scales for direct comparability. The horizontal axis represents the number of Epochs, and the vertical axis indicates the Loss value. (\textbf{a}) Illustrates \textbf{\hl{overfitting}}, where the model memorizes the training data (blue line decreases) but fails to generalize to new data (red validation line increases). (\textbf{b}) Illustrates \textbf{\hl{underfitting}}, characterized by the inability of the model to capture underlying patterns, resulting in high loss values for both curves. \hl{(\textbf{a})}  %MDPI: We moved the subfigure explanations into the figure caption, please confirm.
 Overfitting scenario: Validation loss diverges while training loss decreases. (\textbf{b}) Underfitting scenario: Both training and validation losses remain high without convergence.}
 \label{fig:overfitting_underfitting_examples}
 \end{figure}
@@ -363,11 +363,11 @@ Overfitting scenario: Validation loss diverges while training loss decreases. (\
 
 The regularization strategy evolved through multiple configurations during an initial exploratory phase conducted on the \textbf{\hl{binary}} corpus (Real vs.\ Fake) using DistilBERT as a fast, low-cost reference architecture. Table \ref{tab:hyperparam_evolution} documents the milestone versions of this exploratory trajectory; intermediate versions (e.g., V7 through V10) are omitted for brevity but followed the same path toward progressively stronger regularization. This exploratory phase established the qualitative ``Anti-Overfitting'' recipe later transferred to the final model: a low learning rate for stable convergence, elevated dropout, an explicit L2 penalty, a small batch size to inject stochastic gradient noise, and dynamic early stopping. We emphasize that the numerical values in Table \ref{tab:hyperparam_evolution} correspond to this preliminary binary exploration and not to the final three-class BETO model, whose validated configuration is reported separately below.
 
-\textbf{\hl{Final BETO configuration (three-class task).}} Applying this recipe to BETO on the final three-class corpus, the validated configuration was a learning rate of $1 \times 10^{-6}$, a dropout rate of 0.4 (applied to both hidden and attention layers), an L2 penalty of 0.02, a Gaussian weight-noise factor of 0.01, and a batch size of 8, optimized with AdamW (local TensorFlow run; the cloud PyTorch run used an equivalent configuration with a linear warmup schedule over 10\% of training steps and a batch size of 16). Inputs were tokenized to a maximum sequence length of 128 subword tokens. This configuration is the one used for all reported BETO results and for the deployed model. %MDPI: \label{sec:final-beto-config-text} is the label of this paragraph, but paragraph can not add label, only section title can be cited, please check the whole text citations and highlighting. %Response: Removed the paragraph label; the two cross-references were reworded to name this paragraph instead of citing it as a numbered Section.
+\textbf{\hl{Final BETO configuration (three-class task).}}\label{sec:final-beto-config-text} Applying this recipe to BETO on the final three-class corpus, the validated configuration was a learning rate of $1 \times 10^{-6}$, a dropout rate of 0.4 (applied to both hidden and attention layers), an L2 penalty of 0.02, a Gaussian weight-noise factor of 0.01, and a batch size of 8, optimized with AdamW (local TensorFlow run; the cloud PyTorch run used an equivalent configuration with a linear warmup schedule over 10\% of training steps and a batch size of 16). Inputs were tokenized to a maximum sequence length of 128 subword tokens. This configuration is the one used for all reported BETO results and for the deployed model. %MDPI: \label{sec:final-beto-config-text} is the label of this paragraph, but paragraph can not add label, only section title can be cited, please check the whole text citations and highlighting.
 
 
 \begin{table}[H]
-\caption{Evolution of hyperparameter configurations during the \textbf{\hl{preliminary exploratory phase}} (binary Real vs.\ Fake task, DistilBERT reference architecture). These values document the search trajectory that established the qualitative anti-overfitting recipe; they are \emph{\hl{not}} the configuration of the final three-class BETO model (reported in the \emph{Final BETO configuration} paragraph and the main text). Accuracy values correspond to the binary task.}
+\caption{Evolution of hyperparameter configurations during the \textbf{\hl{preliminary exploratory phase}} (binary Real vs.\ Fake task, DistilBERT reference architecture). These values document the search trajectory that established the qualitative anti-overfitting recipe; they are \emph{\hl{not}} the configuration of the final three-class BETO model (reported in \hl{\mbox{Section~\ref{sec:final-beto-config-text}}} and the main text). Accuracy values correspond to the binary task.}
 
 \begin{adjustwidth}{-\extralength}{0cm}
 %\centering %% If there is a figure in wide page, please release command \centering, for Table, ``\textwidth" should be ``\fulllength"
@@ -464,7 +464,7 @@ The baseline phase evaluated five classical machine learning algorithms optimize
 
 
 \begin{table}[H] 
-\caption{\hl{Preliminary} %MDPI: We moved the table behind it's first citation, please confirm. %Response: Confirmed.
+\caption{\hl{Preliminary} %MDPI: We moved the table behind it's first citation, please confirm.
 performance comparison on the \textbf{\hl{binary}} task (Real vs.\ Fake). These results correspond to the initial phase of the study and are not directly comparable to the three-class benchmark in Table~\ref{tab:transformer_benchmarking}.}
 
 %\centering %% If there is a figure in wide page, please release command \centering, for Table, ``\textwidth" should be ``\fulllength"
@@ -478,7 +478,7 @@ performance comparison on the \textbf{\hl{binary}} task (Real vs.\ Fake). These 
 \toprule
 \textbf{Algorithm} & \textbf{Accuracy (\%)} & \textbf{F1-Score (Macro)} & \textbf{Precision (Macro)} & \textbf{Recall (Macro)} & \textbf{Specificity (\%)} & \textbf{Ranking} \\
 \midrule
-\multicolumn{7}{c}{\textit{\hl{Transformer Reference (binary task)} %MDPI: Please add an explanation for the use of italics in the table footer. If the italics is unnecessary, please remove it. The following highlights are the same. %Response: The italics mark the emphasised term in the footer; we confirm we wish to keep it.
+\multicolumn{7}{c}{\textit{\hl{Transformer Reference (binary task)} %MDPI: Please add an explanation for the use of italics in the table footer. If the italics is unnecessary, please remove it. The following highlights are the same.
 }} \\
 \midrule
 \textbf{\hl{DistilBERT (binary reference)}} & \textbf{\hl{95.36}} & \textbf{\hl{0.954}} & \textbf{\hl{0.954}} & \textbf{\hl{0.954}} & \textbf{\hl{94.5}} & \textbf{\hl{1st}} \\
@@ -498,7 +498,7 @@ Particle Swarm Opt. (PSO) & 57.67 & 0.489 & 0.736 & 0.575 & 16.3 & 6th \\
 \vspace{-12pt}
 \begin{table}[H]
 \centering
-\caption{\hl{Benchmarking} %MDPI: We moved the table behind it's first citation, please confirm. %Response: Confirmed.
+\caption{\hl{Benchmarking} %MDPI: We moved the table behind it's first citation, please confirm.
 of State-of-the-Art Transformer Models on the 3-Class Test Set.}
 \label{tab:transformer_benchmarking}
 
@@ -540,7 +540,7 @@ RoBERTa-Base-BNE & 0.6402 & 0.5791 & 0.6581 & 0.6651 & 0.7667 \\
 \subfloat[\centering PSO Confusion Matrix]{\includegraphics[width=0.48\textwidth]{Figures/confusion_matrix_pso.png}}
 \hfill
 \subfloat[\centering DistilBERT (binary reference)]{\includegraphics[width=0.48\textwidth]{Figures/DistilBERT_confusion_matrix.png}}
-\caption{Confusion matrices for the \textbf{\hl{preliminary binary task}} (Real vs.\ Fake), evaluated on the binary test set. Panels (\textbf{a}--\textbf{e}) show the classical metaheuristic algorithms; panel (\textbf{f}) shows the DistilBERT reference used in this preliminary phase. These matrices belong to the binary exploratory analysis and are \emph{\hl{not}} the final three-class results; the final BETO three-class confusion matrix is shown separately in \hl{Figure}~\ref{fig:beto_confusion_matrix}.} %MDPI: Figures should be numbered in order of appearance. The citation of Figure 8 is before Figure 7, please revised and ensure that the first citation of each figure appears in numerical order. %Response: Reordered so figure numbering follows first-citation order: the three-class BETO confusion matrix (cited first) is now Figure 7 and the training curves are Figure 8.
+\caption{Confusion matrices for the \textbf{\hl{preliminary binary task}} (Real vs.\ Fake), evaluated on the binary test set. Panels (\textbf{a}--\textbf{e}) show the classical metaheuristic algorithms; panel (\textbf{f}) shows the DistilBERT reference used in this preliminary phase. These matrices belong to the binary exploratory analysis and are \emph{\hl{not}} the final three-class results; the final BETO three-class confusion matrix is shown separately in \hl{Figure}~\ref{fig:beto_confusion_matrix}.} %MDPI: Figures should be numbered in order of appearance. The citation of Figure 8 is before Figure 7, please revised and ensure that the first citation of each figure appears in numerical order.
 \label{fig:metaheuristic_confusion_matrices}
 \end{figure}
 
@@ -571,7 +571,7 @@ The per-class breakdown reveals that the residual error of the model is concentr
 
 \begin{table}[H]
 \centering
-\caption{\hl{Per-class} %MDPI: To reduce the blank space, we moved the Table, please confirm. %Response: Confirmed.
+\caption{\hl{Per-class} %MDPI: To reduce the blank space, we moved the Table, please confirm.
 performance of the final deployed BETO model on the three-class held-out test set (local TensorFlow run; overall accuracy 0.8918, Macro F1 0.9095).}
 \label{tab:beto_per_class}
 \begin{tabularx}{\textwidth}{lCCCC}
@@ -641,18 +641,18 @@ The generalization gap (difference between validation and training loss) at the 
 
 
 \begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{Figures/beto_training_curves.png} 
+\caption{\hl{Training} %MDPI: To reduce the blank space, I moved the Figure, please confirm.
+ and validation curves for the optimal BETO model (local TensorFlow implementation) over the full 30-epoch run. Solid lines show accuracy (left axis) and dashed lines show loss (right axis), for training (blue) and validation (red). After a rapid initial change in the first few epochs, both validation accuracy and validation loss flatten into a stable plateau that persists through epoch 30, keeping the generalization gap bounded ($\approx$0.066). The gold marker indicates the end of the 30-epoch run; the early stopping criterion selected the checkpoint of minimum validation loss (epoch 27) for the reported model. The absence of an upward divergence in the validation loss across the plateau is the signature of successful regularization, in contrast to the overfitting illustrated in Figure~\ref{fig:overfitting_underfitting_examples}.}
+\label{fig:beto_training_curves}
+\end{figure}
+\vspace{-10pt}
+\begin{figure}[H]
 %\centering
 \includegraphics[width=0.5\textwidth]{Figures/beto_confusion_matrix.png} % Asegúrate de que este sea el nombre de tu imagen
 \caption{Confusion matrix of the \textbf{\hl{final three-class BETO model}} (the deployed model) on the held-out test set, distinguishing Fake (Class 0), Real (Class 1), and Satire (Class 2). This is the confusion matrix corresponding to the main results of the paper, in contrast to the preliminary binary matrices in Figure~\ref{fig:metaheuristic_confusion_matrices}.}
 \label{fig:beto_confusion_matrix}
-\end{figure}
-\vspace{-10pt}
-\begin{figure}[H]
-\centering
-\includegraphics[width=\textwidth]{Figures/beto_training_curves.png} 
-\caption{\hl{Training} %MDPI: To reduce the blank space, I moved the Figure, please confirm. %Response: Confirmed.
- and validation curves for the optimal BETO model (local TensorFlow implementation) over the full 30-epoch run. Solid lines show accuracy (left axis) and dashed lines show loss (right axis), for training (blue) and validation (red). After a rapid initial change in the first few epochs, both validation accuracy and validation loss flatten into a stable plateau that persists through epoch 30, keeping the generalization gap bounded ($\approx$0.066). The gold marker indicates the end of the 30-epoch run; the early stopping criterion selected the checkpoint of minimum validation loss (epoch 27) for the reported model. The absence of an upward divergence in the validation loss across the plateau is the signature of successful regularization, in contrast to the overfitting illustrated in Figure~\ref{fig:overfitting_underfitting_examples}.}
-\label{fig:beto_training_curves}
 \end{figure}
 
 
@@ -716,19 +716,19 @@ Beyond the case study, a key design goal of the framework is its potential adapt
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \authorcontributions{Conceptualization, G.H.A. and J.A.R.-O.; Data Curation, G.H.A. and \mbox{R.A.M.-G.}; Formal Analysis, J.P.C. and Ó.H.A.; Funding Acquisition, J.A.R.-O.; Investigation, G.H.A.; Methodology, G.H.A., J.A.R.-O., R.A.M.-G., J.P.C. and Ó.H.A.; Project Administration, J.A.R.-O.; Resources, G.H.A., J.A.R.-O. and Ó.H.A.; Software, G.H.A.; Supervision, J.A.R.-O., R.A.M.-G. and Ó.H.A.; Validation, J.P.C., R.A.M.-G. and Ó.H.A.; Visualization, G.H.A., J.A.R.-O., R.A.M.-G. and J.P.C.; Writing—Original Draft, G.H.A.; Writing—Review and Editing, J.A.R.-O., R.A.M.-G., J.P.C. and Ó.H.A. All authors have read and agreed to the published version of the manuscript.}
 
-\funding{This research was supported by the Secretaría de Ciencia, Humanidades, Tecnología e Innovación del Gobierno de México (SECIHTI) through scholarship No. 4013730 (CVU: 1313870) awarded to G.H.A.}
+\funding{This research received no external funding.}
 
 \institutionalreview{Not applicable.}
 
 \informedconsent{Not applicable.}
 
-\dataavailability{The unified corpus and trained models used in this study are publicly available at: \url{https://huggingface.co/datasets/gabrielhuav/Unified-and-Balanced-Spanish-Fake-News-Corpus} (accessed on 29 May 2026) \hl{and} %MDPI: Please provide the date you accessed the URL in the following format: “URL (accessed on Day Month Year)”. %Response: Access date added.
- \url{https://github.com/gabrielhuav/Spanish-Fake-News-Detection-Training} (accessed on 29 May 2026) \hl{respectively} %MDPI: Please provide the date you accessed the URL in the following format: “URL (accessed on Day Month Year)”. %Response: Access date added.
-. The source code of the web application is available \hl{at}%MDPI: Please provide the date you accessed the URL in the following format: “URL (accessed on Day Month Year)”. %Response: Access date added.
-: \url{https://github.com/gabrielhuav/Spanish-Fake-News-Detection-Web-App} (accessed on 29 May 2026).}
+\dataavailability{The unified corpus and trained models used in this study are publicly available at: \url{https://huggingface.co/datasets/gabrielhuav/Unified-and-Balanced-Spanish-Fake-News-Corpus} \hl{and} %MDPI: Please provide the date you accessed the URL in the following format: “URL (accessed on Day Month Year)”.
+ \url{https://github.com/gabrielhuav/Spanish-Fake-News-Detection-Training} \hl{respectively} %MDPI: Please provide the date you accessed the URL in the following format: “URL (accessed on Day Month Year)”.
+. The source code of the web application is available \hl{at}%MDPI: Please provide the date you accessed the URL in the following format: “URL (accessed on Day Month Year)”.
+: \url{https://github.com/gabrielhuav/Spanish-Fake-News-Detection-Web-App}.}
 
-\acknowledgments{\hl{The} %MDPI: please confirm whether the funding information in the Acknowledgments section should be moved to the Funding section. %Response: Done -- the SECIHTI scholarship has been moved to the Funding section.
- authors would like to thank Universidad Autónoma Metropolitana, Unidad Azcapotzalco.}
+\acknowledgments{\hl{The} %MDPI: please confirm whether the funding information in the Acknowledgments section should be moved to the Funding section.
+ authors would like to thank Universidad Autónoma Metropolitana, Unidad Azcapotzalco, and the \textit{\hl{Secretaría de Ciencia, Humanidades, Tecnología e Innovación del Gobierno de México (SECIHTI)}}, Mexico, for scholarship No. 4013730 (CVU: 1313870), granted to support the development of this research.}
 
 \conflictsofinterest{The authors declare no conflicts of interest.} 
 
@@ -758,28 +758,28 @@ Tsfati, Y.; Boomgaarden, H.G.; Strömbäck, J.; Vliegenthart, R.; Damstra, A.; L
 Allcott, H.; Gentzkow, M. Social Media and Fake News in the 2016 Election. \textit{J. Econ. Perspect.} \textbf{2017}, \textit{31}, 211--236. \href{https://doi.org/10.1257/jep.31.2.211}{https://doi.org/10.1257/jep.31.2.211}.
  
 \bibitem[6]{scam2025investment}
-PEMEX Investment Scam Landing Page. \hl{Available online:} {\url{https://web.archive.org/web/20250720083802/https://artcanvas.digital/v1vBtq9ye}} (accessed on 29 May 2026). %MDPI: Please confirm whether this is one URL or two URLs. Please also confirm that all URLs of this type are correct. %Response: This is a single URL (a Web Archive / Wayback Machine snapshot of the page); confirmed correct.
+PEMEX Investment Scam Landing Page. \hl{Available online:} {\url{https://web.archive.org/web/20250720083802/https://artcanvas.digital/v1vBtq9ye}} (accessed on 25 May 2026). %MDPI: Please confirm whether this is one URL or two URLs. Please also confirm that all URLs of this type are correct.
  
 \bibitem[7]{scam2025cosmetics}
-Fraudulent Anti-Aging Cosmetics Scam Page. \hl{Available online:} {\url{https://web.archive.org/web/20250720090808/http://web.archive.org/screenshot/https://beauty-plus365.com/ox-mx-ext/}} (accessed on 29 May 2026). %MDPI: Please confirm whether this is one URL or two URLs. Please also confirm that all URLs of this type are correct. %Response: This is a single URL (a Web Archive / Wayback Machine snapshot of the page); confirmed correct.
+Fraudulent Anti-Aging Cosmetics Scam Page. \hl{Available online:} {\url{https://web.archive.org/web/20250720090808/http://web.archive.org/screenshot/https://beauty-plus365.com/ox-mx-ext/}} (accessed on 25 May 2026). %MDPI: Please confirm whether this is one URL or two URLs. Please also confirm that all URLs of this type are correct.
  
 \bibitem[8]{scam2025ecommerce}
-Fraudulent Smart Glasses E-Commerce Scam Page. Available online: \url{https://web.archive.org/web/20250722220434/https://aabbkl.com/detail/5nuf776U53YKCdjArvdT} (accessed on 29 May 2026).
+Fraudulent Smart Glasses E-Commerce Scam Page. Available online: \url{https://web.archive.org/web/20250722220434/https://aabbkl.com/detail/5nuf776U53YKCdjArvdT} (accessed on 25 May 2026).
  
 \bibitem[9]{scam2026aurrera1}
-Fraudulent Bodega Aurrera Liquidation Sale Impersonation Page (Variant 1). Available online: \url{https://web.archive.org/web/20260218001617/https://mgluckly-mx.shop/collections/\%C2\%A1gran-liquidaci\%C3\%B3n-en-bodega-aurrera!-solo-72-horas} \linebreak  (accessed on 29 May 2026).
+Fraudulent Bodega Aurrera Liquidation Sale Impersonation Page (Variant 1). Available online: \url{https://web.archive.org/web/20260218001617/https://mgluckly-mx.shop/collections/\%C2\%A1gran-liquidaci\%C3\%B3n-en-bodega-aurrera!-solo-72-horas} \linebreak  (accessed on 25 May 2026).
  
 \bibitem[10]{scam2026aurrera2}
 Fraudulent Bodega Aurrera Liquidation Sale Impersonation Page (Variant 2). Available online: \url{https://web.archive.org/web/20260218002025/https://mexico-promocion.shop/collections/bodega-aurrera-venta-de-liquidaci\%C3\%B3n} (accessed on 25 \linebreak  May 2026).
  
 \bibitem[11]{scam2026aurrera3}
-Fraudulent Bodega Aurrera Liquidation Sale Impersonation Page (Variant 3). Available online: \url{https://web.archive.org/web/20260218013806/https://bodgaavrrera.shop/collections/} (accessed on 29 May 2026).
+Fraudulent Bodega Aurrera Liquidation Sale Impersonation Page (Variant 3). Available online: \url{https://web.archive.org/web/20260218013806/https://bodgaavrrera.shop/collections/} (accessed on 25 May 2026).
  
 \bibitem[12]{scam2026celulares}
-Fraudulent Electronics Liquidation E-Commerce Scam Page. Available online: \url{https://web.archive.org/web/20260218002729/https://mercadocelulares.store/} (accessed on 29 May 2026).
+Fraudulent Electronics Liquidation E-Commerce Scam Page. Available online: \url{https://web.archive.org/web/20260218002729/https://mercadocelulares.store/} (accessed on 25 May 2026).
  
 \bibitem[13]{scam2025health}
-Celebrity Health Misinformation Clickbait Page Promoting Fraudulent Medical Products. Available online: \url{https://web.archive.org/web/20250720091118/https://k-m-kalash.space/} (accessed on 29 May 2026).
+Celebrity Health Misinformation Clickbait Page Promoting Fraudulent Medical Products. Available online: \url{https://web.archive.org/web/20250720091118/https://k-m-kalash.space/} (accessed on 25 May 2026).
  
 \bibitem[14]{kaliyar2021fakebert}
 Kaliyar, R.K.; Goswami, A.; Narang, P. FakeBERT: Fake news detection in social media with a BERT-based deep learning approach. \textit{Multimed. Tools Appl.} \textbf{2021}, \textit{80}, 11765--11788. \href{https://doi.org/10.1007/s11042-020-10183-2}{https://doi.org/10.1007/s11042-020-10183-2}.
@@ -800,8 +800,8 @@ Shu, K.; Sliva, A.; Wang, S.; Tang, J.; Liu, H. Fake News Detection on Social Me
 Ali, I.; Ayub, M.N.B.; Shivakumara, P.; Noor, N.F.B.M. Fake News Detection Techniques on Social Media: A Survey. \textit{Wirel. Commun. Mob. Comput.} \textbf{2022}, \textit{2022}, 6072084. \href{https://doi.org/10.1155/2022/6072084}{https://doi.org/10.1155/2022/6072084}.
  
 \bibitem[20]{perez2018automatic}
-Pérez-Rosas, V.; Kleinberg, B.; Lefevre, A.; Mihalcea, R. Automatic Detection of Fake News. In \emph{Proceedings of the 27th International Conference on Computational Linguistics (COLING 2018)}; Association for Computational Linguistics: Santa Fe, NM, USA, 2018; \linebreak  pp. 3391--3401. \hl{Available online: } %MDPI: Please add the access date (format: Date Month Year), e.g., accessed on 1 January 2020. Kindly note that the access date should be before the accepted date. %Response: Access date added (consistent with the other references); please confirm it precedes the acceptance date.
- \href{https://aclanthology.org/C18-1287}{https://aclanthology.org/C18-1287} (accessed on 29 May 2026).
+Pérez-Rosas, V.; Kleinberg, B.; Lefevre, A.; Mihalcea, R. Automatic Detection of Fake News. In \emph{Proceedings of the 27th International Conference on Computational Linguistics (COLING 2018)}; Association for Computational Linguistics: Santa Fe, NM, USA, 2018; \linebreak  pp. 3391--3401. \hl{Available online: } %MDPI: Please add the access date (format: Date Month Year), e.g., accessed on 1 January 2020. Kindly note that the access date should be before the accepted date.
+ \href{https://aclanthology.org/C18-1287}{https://aclanthology.org/C18-1287}.
  
 \bibitem[21]{nasir2021fake}
 Nasir, J.A.; Khan, O.S.; Varlamis, I. Fake news detection: A hybrid CNN-RNN based deep learning approach. \textit{Int. J. Inf. Manag. Data Insights} \textbf{2021}, \textit{1}, 100007. \href{https://doi.org/10.1016/j.jjimei.2020.100007}{https://doi.org/10.1016/j.jjimei.2020.100007}.
@@ -831,15 +831,15 @@ Martínez-Gallego, K.; Álvarez-Ortiz, A.M.; Arias-Londoño, J.D. Fake news dete
 Posadas-Durán, J.P.; Gómez-Adorno, H.; Sidorov, G.; Escobar, J.J.M. Detection of fake news in a new corpus for the Spanish language. \textit{J. Intell. Fuzzy Syst.} \textbf{2019}, \textit{36}, 4869--4876. \href{https://doi.org/10.3233/jifs-179034}{https://doi.org/10.3233/jifs-179034}.
  
 \bibitem[30]{acosta2019construccion}
-Acosta, F.A.Z. Construction of a News Dataset for the Training and Evaluation of Automated Classifiers. Master's Thesis, Polytechnic University of Madrid, Madrid, Spain, \hl{2019.} \href{https://doi.org/10.13140/RG.2.2.31181.49126}{https://doi.org/10.13140/RG.2.2.31181.49126}. %MDPI: doi link no need accessed date, we removed it, please confirm. %Response: Confirmed.
+Acosta, F.A.Z. Construction of a News Dataset for the Training and Evaluation of Automated Classifiers. Master's Thesis, Polytechnic University of Madrid, Madrid, Spain, \hl{2019.} \href{https://doi.org/10.13140/RG.2.2.31181.49126}{https://doi.org/10.13140/RG.2.2.31181.49126}. %MDPI: doi link no need accessed date, we removed it, please confirm.
  
 \bibitem[31]{tretiakov2022detection}
-Tretiakov, A.; Martín García, A.; Camacho, D. Detection of false information in Spanish using machine learning techniques. In \emph{Intelligent Data Engineering and Automated Learning---IDEAL 2022}; Yin, H., Camacho, D., Tino, P., Eds.; Lecture Notes in Computer Science; Springer International Publishing: Cham, Switzerland, 2022; Volume 13756, pp. 42--\hl{53}. %MDPI: We removed the unnecessary ISBN information, please confirm. %Response: Confirmed.
+Tretiakov, A.; Martín García, A.; Camacho, D. Detection of false information in Spanish using machine learning techniques. In \emph{Intelligent Data Engineering and Automated Learning---IDEAL 2022}; Yin, H., Camacho, D., Tino, P., Eds.; Lecture Notes in Computer Science; Springer International Publishing: Cham, Switzerland, 2022; Volume 13756, pp. 42--\hl{53}. %MDPI: We removed the unnecessary ISBN information, please confirm.
  \href{https://doi.org/10.1007/978-3-031-21753-1_5}{https://doi.org/10.1007/978-3-031-21753-1\_5}.
  
 \bibitem[32]{thota2018fake}
-Thota, A.; Tilak, P.; Ahluwalia, S.; Lohia, N. Fake news detection: A deep learning approach. \textit{SMU Data Sci. Rev.} \textbf{2018}, \textit{1}, \hl{10}%MDPI: We added the e-location ID/article number. Please confirm. %Response: Confirmed.
-. Available online: \href{https://scholar.smu.edu/datasciencereview/vol1/iss3/10/}{https://scholar.smu.edu/datasciencereview/vol1/iss3/10/} (accessed on 29 May 2026).
+Thota, A.; Tilak, P.; Ahluwalia, S.; Lohia, N. Fake news detection: A deep learning approach. \textit{SMU Data Sci. Rev.} \textbf{2018}, \textit{1}, \hl{10}%MDPI: We added the e-location ID/article number. Please confirm.
+. Available online: \href{https://scholar.smu.edu/datasciencereview/vol1/iss3/10/}{https://scholar.smu.edu/datasciencereview/vol1/iss3/10/} (accessed on 25 May 2026).
  
 \bibitem[33]{zhen2026csteer}
 Zhen, Z.; Li, Y. C-STEER: A Dynamic Sentiment-Aware Framework for Fake News Detection with Lifecycle Emotional Evolution. \textit{Informatics} \textbf{2026}, \textit{13}, 4. \href{https://doi.org/10.3390/informatics13010004}{https://doi.org/10.3390/informatics13010004}.
@@ -851,11 +851,11 @@ Shang, W.; Yang, J.; Zhang, L.; Yi, T.; Liu, P. ETICD-Net: A Multimodal Fake New
 Conneau, A.; Khandelwal, K.; Goyal, N.; Chaudhary, V.; Wenzek, G.; Guzmán, F.; Grave, E.; Ott, M.; Zettlemoyer, L.; Stoyanov, V. Unsupervised Cross-lingual Representation Learning at Scale. \textit{arXiv} \textbf{2019}, arXiv:1911.02116. \href{https://doi.org/10.48550/arXiv.1911.02116}{https://doi.org/10.48550/arXiv.1911.02116}.
  
 \bibitem[36]{canete2020spanish}
-Cañete, J.; Chaperon, G.; Fuentes, R.; Ho, J.H.; Kang, H.; Pérez, J. Spanish Pre-Trained BERT Model and Evaluation Data. In \emph{Proceedings of the Practical ML for Developing Countries Workshop at ICLR 2020}; \hl{ICLR:} %MDPI: We added the publisher. Please confirm. %Response: Confirmed.
- Addis Ababa, Ethiopia, 2020. Available online: \href{https://users.dcc.uchile.cl/~jperez/papers/pml4dc2020.pdf}{https://users.dcc.uchile.cl/\~{}jperez/papers/pml4dc2020.pdf} (accessed on 29 May 2026).
+Cañete, J.; Chaperon, G.; Fuentes, R.; Ho, J.H.; Kang, H.; Pérez, J. Spanish Pre-Trained BERT Model and Evaluation Data. In \emph{Proceedings of the Practical ML for Developing Countries Workshop at ICLR 2020}; \hl{ICLR:} %MDPI: We added the publisher. Please confirm.
+ Addis Ababa, Ethiopia, 2020. Available online: \href{https://users.dcc.uchile.cl/~jperez/papers/pml4dc2020.pdf}{https://users.dcc.uchile.cl/\~{}jperez/papers/pml4dc2020.pdf} (accessed on 25 May 2026).
  
 \bibitem[37]{gutierrez2022roberta}
-Gutiérrez-Fandiño, A.; Armengol-Estapé, J.; Pàmies, A.; Llorca, V.; Silveira-Ocampo, J.; Carrino, C.P.; Armentano-Oller, C.; Rodriguez-Penagos, C.; Gonzalez-Agirre, A.; Villegas, M. MarIA: Spanish Language Models. \textit{Proces. Leng. Nat.} \textbf{2022}, \textit{68}, 39--60. Available online: \href{http://journal.sepln.org/sepln/ojs/ojs/index.php/pln/article/view/6405}{http://journal.sepln.org/sepln/ojs/ojs/index.php/pln/article/view/6405} (accessed on 29 May 2026).
+Gutiérrez-Fandiño, A.; Armengol-Estapé, J.; Pàmies, A.; Llorca, V.; Silveira-Ocampo, J.; Carrino, C.P.; Armentano-Oller, C.; Rodriguez-Penagos, C.; Gonzalez-Agirre, A.; Villegas, M. MarIA: Spanish Language Models. \textit{Proces. Leng. Nat.} \textbf{2022}, \textit{68}, 39--60. Available online: \href{http://journal.sepln.org/sepln/ojs/ojs/index.php/pln/article/view/6405}{http://journal.sepln.org/sepln/ojs/ojs/index.php/pln/article/view/6405} (accessed on 25 May 2026).
  
 \bibitem[38]{padilla2024medicobert}
 Padilla Cuevas, J.; Reyes-Ortiz, J.A.; Cuevas-Rasgado, A.D.; Mora-Gutiérrez, R.A.; Bravo, M. MédicoBERT: A Medical Language Model for Spanish Natural Language Processing Tasks with a Question-Answering Application Using Hyperparameter Optimization. \textit{Appl. Sci.} \textbf{2024}, \textit{14}, 7031. \href{https://doi.org/10.3390/app14167031}{https://doi.org/10.3390/app14167031}.
@@ -867,7 +867,7 @@ Yildirim, G. A novel hybrid multi-thread metaheuristic approach for fake news de
 Gravanis, G.; Vakali, A.; Diamantaras, K.; Karadais, P. Behind the Cues: A Benchmarking Study for Fake News Detection. \textit{Expert Syst. Appl.} \textbf{2019}, \textit{128}, 201--213. \href{https://doi.org/10.1016/j.eswa.2019.03.036}{https://doi.org/10.1016/j.eswa.2019.03.036}.
  
 \bibitem[41]{sanh2019distilbert}
-Sanh, V.; Debut, L.; Chaumond, J.; Wolf, T. DistilBERT, a distilled version of BERT: Smaller, faster, cheaper and lighter. \textit{arXiv} \textbf{2019}, \hl{arXiv:1910.01108}. %MDPI: We removed the extra content `` Model available online: \url{https://huggingface.co/distilbert-base-multilingual-cased} (accessed on 29 May 2026). Apache-2.0 License.'', please confirm. %Response: Confirmed.
+Sanh, V.; Debut, L.; Chaumond, J.; Wolf, T. DistilBERT, a distilled version of BERT: Smaller, faster, cheaper and lighter. \textit{arXiv} \textbf{2019}, \hl{arXiv:1910.01108}. %MDPI: We removed the extra content `` Model available online: \url{https://huggingface.co/distilbert-base-multilingual-cased} (accessed on 25 May 2026). Apache-2.0 License.'', please confirm.
 \href{https://doi.org/10.48550/arXiv.1910.01108}{https://doi.org/10.48550/arXiv.1910.01108}.
 \end{thebibliography}
 \PublishersNote{}

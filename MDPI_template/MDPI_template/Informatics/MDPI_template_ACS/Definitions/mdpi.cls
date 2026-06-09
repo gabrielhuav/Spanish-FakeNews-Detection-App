@@ -1,5 +1,5 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%	MDPI class for LaTeX files	 16 December 2025
+%%%%	MDPI class for LaTeX files	 13 March 2026
 %% %%	For any information please send an e-mail to:
 %% %%		latex@mdpi.com
 %% %%
@@ -24,7 +24,7 @@
 
 %% IDENTIFICATION
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{Definitions/mdpi}[16/12/2025 MDPI paper class]
+\ProvidesClass{Definitions/mdpi}[13/03/2026 MDPI paper class]
 
  %% PRELIMINARY DECLARATIONS
 \LoadClass[10pt,a4paper]{article}
@@ -69,6 +69,7 @@
 \RequirePackage{xstring} % For citation in left column
 \RequirePackage[labelformat=simple]{subfig} % Support to add subfigures
 \renewcommand\thesubfigure{\normalfont(\textbf{\alph{subfigure}})} % Change subfigure label format
+\RequirePackage{alphalph} % Provide double letters numbers
 
 %% OPTIONS
 % For transition period to change back to continuous page numbers
@@ -305,6 +306,7 @@
 		\OR \equal{\@journal}{jsam}             % New APA Journal
 		\OR \equal{\@journal}{languages}      % Transfer to APA type
 		\OR \equal{\@journal}{peacestud}      % New APA Journal
+		\OR \equal{\@journal}{projmanag}      % New APA Journal
 		\OR \equal{\@journal}{psycholint}      % Transfer to APA type
 		\OR \equal{\@journal}{publications}   % Transfer to APA type
 		\OR \equal{\@journal}{tourismhosp}   % Transfer to APA type
@@ -345,6 +347,7 @@
 		\OR \equal{\@journal}{jsam}
 		\OR \equal{\@journal}{languages}
 		\OR \equal{\@journal}{peacestud}
+		\OR \equal{\@journal}{projmanag}
 		\OR \equal{\@journal}{psycholint}      
 		\OR \equal{\@journal}{publications}   
 		\OR \equal{\@journal}{tourismhosp}   
@@ -1173,16 +1176,15 @@
 	\noindent\textbf{Featured Application\vspace{6pt}\\}\@featuredapplication
 	\vspace{12pt}
 	\par
-}	
-%
-%10
-\ifthenelse{\equal{\@simplesumm}{\@empty}}{}{
-	\noindent\textbf{Simple Summary\vspace{6pt}\\}\@simplesumm
+}
+%6
+\ifthenelse{\equal{\@addhighlights}{\@empty}}{}{
+	\noindent\textbf{Highlights\vspace{-6pt}\\}\addhighlights % redefined in .tex to use itemize
 	\vspace{12pt}
 	\par
 }
-\ifthenelse{\equal{\@addhighlights}{\@empty}}{}{
-	\noindent\textbf{Highlights\vspace{-6pt}\\}\addhighlights % redefined in .tex to use itemize
+\ifthenelse{\equal{\@simplesumm}{\@empty}}{}{
+	\noindent\textbf{Simple Summary\vspace{6pt}\\}\@simplesumm
 	\vspace{12pt}
 	\par
 }
@@ -1196,56 +1198,51 @@
 	\vspace{12pt}
 	\par
 }
-%10
+%7
 % For journal Data:
 \ifthenelse{\equal{\@dataset}{\@empty}}{}{
 	\noindent\textbf{Dataset:\space}\@dataset
 	\vspace{12pt}
 	\par
 }
-%
 %For journal Data:
 \ifthenelse{\equal{\@datasetlicense}{\@empty}}{}{
 	\noindent\textbf{Dataset License:\space}\@datasetlicense
 	\vspace{12pt}
 	\par
 }
-%
-%11
+%8
 \ifthenelse{\equal{\@keyword}{\@empty}}{}{
 	\noindent\textbf{Keywords:\space}\@keyword
 	\vspace{12pt}
 	\par
 }
-%11
+%9
 %For journal Toxins:
 \ifthenelse{\equal{\@keycontribution}{\@empty}}{}{
 	\noindent\textbf{Key Contribution:\space}\@keycontribution
 	\vspace{12pt}
 	\par
 }
-%11
-%12
+%10
 \ifthenelse{\equal{\@pacs}{\@empty}}{}{
 	\noindent\textbf{PACS:\space}\@pacs
 	\vspace{12pt}
 	\par
 }
-%12
-%13
+%11
 \ifthenelse{\equal{\@msc}{\@empty}}{}{
 	\noindent\textbf{MSC:\space}\@msc
 	\vspace{12pt}
 	\par
 }
-%13
-%14
+%12
 \ifthenelse{\equal{\@jel}{\@empty}}{}{
 	\noindent\textbf{JEL Classification:\space}\@jel
 	\vspace{12pt}
 	\par
 }
-%14
+%13
 \vspace{4pt}
 \isBookContribution{}{\hrule}
 \vspace{12pt}
@@ -1413,11 +1410,10 @@
 \setcounter{graph}{0}
 }
 
-\RequirePackage{alphalph} % Provide double letters numbers
 \renewcommand{\appendix}{%
 %
-\gdef\thesection{\@Alph\c@section}%
-\gdef\thesubsection{\@Alph\c@section.\@arabic\c@subsection}%
+\gdef\thesection{\AlphAlph{\value{section}}}%
+\gdef\thesubsection{\AlphAlph{\value{section}}.\@arabic\c@subsection}%
 
 \titleformat {\section} [block] {\raggedright\bfseries\fontsize{12}{12}\selectfont} {\fontsize{12}{12}\selectfont\bfseries%
 	\ifthenelse{\equal{\@appendixtitles}{yes}}{%
@@ -1446,12 +1442,8 @@
 	} {0pt} {}
 \titlespacing {\section} {0pt} {12pt} {3pt}
 %
-\@addtoreset{section}{part}
-\renewcommand{\thesection}{\@Alph\c@section}% for hyperref
-\setcounter{section}{0}
-\@addtoreset{subsection}{part}
-\renewcommand{\thesubsection}{\@Alph\c@section.\@arabic\c@subsection}% for hyperref
-\setcounter{subsection}{0}
+\gdef\thesection{\AlphAlph{\value{section}}}% for hyperref
+\gdef\thesubsection{\AlphAlph{\value{section}}.\@arabic\c@subsection}% for hyperref
 \csname appendixmore\endcsname
 \renewcommand{\thefigure}{A\arabic{figure}}
 \renewcommand{\thetable}{A\arabic{table}}
