@@ -589,6 +589,15 @@ SATIRE & 0.99 & 1.00 & 1.00 & 1797 \\
 \end{table}
 
 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.75\textwidth]{Figures/beto_confusion_matrix.png} % Asegúrate de que este sea el nombre de tu imagen
+\caption{Confusion matrix of the \textbf{\hl{final three-class BETO model}} (the deployed model) on the held-out test set, distinguishing Fake (Class 0), Real (Class 1), and Satire (Class 2). This is the confusion matrix corresponding to the main results of the paper, in contrast to the preliminary binary matrices in Figure~\ref{fig:metaheuristic_confusion_matrices}.}
+\label{fig:beto_confusion_matrix}
+\end{figure}
+%\vspace{-10pt}
+
+
 \subsection{Adversarial Robustness and Source Leakage Mitigation}
 To directly address concerns regarding potential source leakage—where a model might trivially memorize specific publisher names, recurring political figures, or stylistic formatting rather than learning the underlying deceptive semantics—an adversarial robustness test under strong text perturbation was conducted on the completely held-out test set (12,336 records).
 
@@ -640,13 +649,6 @@ The generalization gap (difference between validation and training loss) at the 
 
 
 
-\begin{figure}[H]
-%\centering
-\includegraphics[width=0.5\textwidth]{Figures/beto_confusion_matrix.png} % Asegúrate de que este sea el nombre de tu imagen
-\caption{Confusion matrix of the \textbf{\hl{final three-class BETO model}} (the deployed model) on the held-out test set, distinguishing Fake (Class 0), Real (Class 1), and Satire (Class 2). This is the confusion matrix corresponding to the main results of the paper, in contrast to the preliminary binary matrices in Figure~\ref{fig:metaheuristic_confusion_matrices}.}
-\label{fig:beto_confusion_matrix}
-\end{figure}
-\vspace{-10pt}
 \begin{figure}[H]
 \centering
 \includegraphics[width=\textwidth]{Figures/beto_training_curves.png} 
