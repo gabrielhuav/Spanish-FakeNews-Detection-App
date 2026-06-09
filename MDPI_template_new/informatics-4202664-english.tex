@@ -350,7 +350,6 @@ The hyperparameter search for the final three-class BETO model was conducted ind
 
 \begin{figure}[H]
 \centering
-% Usamos 0.49\textwidth para que cada una ocupe la mitad del ancho del TEXTO
 \subfloat[\centering ]{\includegraphics[width=0.49\textwidth]{Figures/overfitting_example.png} \label{fig:overfitting_example}}
 \hfill
 \subfloat[\centering ]{\includegraphics[width=0.49\textwidth]{Figures/underfitting_example.png} \label{fig:underfitting_example}}
@@ -591,7 +590,8 @@ SATIRE & 0.99 & 1.00 & 1.00 & 1797 \\
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.75\textwidth]{Figures/beto_confusion_matrix.png} % Asegúrate de que este sea el nombre de tu imagen
+\includegraphics[width=0.75\textwidth]{Figures/beto_confusion_matrix.png}
+%Response (authors): the figure width was increased to 0.75\textwidth for legibility and the figure was placed immediately after its first in-text citation; this introduces no additional blank space or extra pages.
 \caption{Confusion matrix of the \textbf{\hl{final three-class BETO model}} (the deployed model) on the held-out test set, distinguishing Fake (Class 0), Real (Class 1), and Satire (Class 2). This is the confusion matrix corresponding to the main results of the paper, in contrast to the preliminary binary matrices in Figure~\ref{fig:metaheuristic_confusion_matrices}.}
 \label{fig:beto_confusion_matrix}
 \end{figure}

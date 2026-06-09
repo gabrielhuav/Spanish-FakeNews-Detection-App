@@ -1,6 +1,7 @@
 # Fdb version 4
-["pdflatex"] 1780984966.18485 "c:/Users/gabri/Documents/GitHub Desktop/Spanish-FakeNews-Detection-App/MDPI_template_new/informatics-4202664-english.tex" "informatics-4202664-english.pdf" "informatics-4202664-english" 1780984985.34696 2
+["pdflatex"] 1780986769.7117 "c:/Users/gabri/Documents/GitHub Desktop/Spanish-FakeNews-Detection-App/MDPI_template_new/informatics-4202664-english.tex" "informatics-4202664-english.pdf" "informatics-4202664-english" 1780986787.0482 0
   "C:/Users/gabri/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1777266892 82507 a9eef8696c92627b87e9975edea03b2a ""
+  "C:/Users/gabri/AppData/Local/MiKTeX/fonts/pk/ljfour/jknappen/ec/dpi600/ectt1000.pk" 1754545168 20028 7815e30666db75f445558da507563fd8 ""
   "C:/Users/gabri/AppData/Local/MiKTeX/miktex/data/le/pdftex/pdflatex.fmt" 1767938565 13333486 74f33b3421a44c344e27b83f086ce328 ""
   "C:/Users/gabri/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc" 1458473887 4993 80dc9bab7f31fb78a000ccfed0e27cab ""
   "C:/Users/gabri/AppData/Local/Programs/MiKTeX/fonts/tfm/adobe/palatino/pplb7t.tfm" 1136793854 1616 371d1ee60c04b008c8fd760060cd34f1 ""
@@ -36,6 +37,13 @@
   "C:/Users/gabri/AppData/Local/Programs/MiKTeX/fonts/tfm/public/mathpazo/zplmr7t.tfm" 1136793854 1828 bb8add3bd19426549f9267c88b0cb8bd ""
   "C:/Users/gabri/AppData/Local/Programs/MiKTeX/fonts/tfm/public/mathpazo/zplmr7v.tfm" 1136793854 1012 955c4ca523d7827d33db91a33412b048 ""
   "C:/Users/gabri/AppData/Local/Programs/MiKTeX/fonts/tfm/public/mathpazo/zplmr7y.tfm" 1136793854 1316 b4037e9c09961a72f8476628774e1ec1 ""
+  "C:/Users/gabri/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbsy10.pfb" 1247596666 34793 ae7a3e2775dc0ce90475eeabcb46f9f1 ""
+  "C:/Users/gabri/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb" 1247596667 35752 024fb6c41858982481f6968b5fc26508 ""
+  "C:/Users/gabri/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb" 1247596667 32569 5e5ddc8df908dea60932f3c484a54c0d ""
+  "C:/Users/gabri/AppData/Local/Programs/MiKTeX/fonts/type1/public/mathpazo/fplmr.pfb" 1136874948 9356 3e1f7eacbb57d05d0b682da8d83eb600 ""
+  "C:/Users/gabri/AppData/Local/Programs/MiKTeX/fonts/type1/urw/palatino/uplb8a.pfb" 1136874948 52406 dad2f72863a03727d5f536c64a69c452 ""
+  "C:/Users/gabri/AppData/Local/Programs/MiKTeX/fonts/type1/urw/palatino/uplr8a.pfb" 1136874948 52665 661b1e6b26edb5f50dd491f8a701cb57 ""
+  "C:/Users/gabri/AppData/Local/Programs/MiKTeX/fonts/type1/urw/palatino/uplri8a.pfb" 1136874948 50022 90249cba7e3e4e9845f80328d6f9bd13 ""
   "C:/Users/gabri/AppData/Local/Programs/MiKTeX/fonts/vf/adobe/palatino/pplb7t.vf" 1136793854 1380 798ef26de8f0a21f37c9b1147f4fe5d8 ""
   "C:/Users/gabri/AppData/Local/Programs/MiKTeX/fonts/vf/adobe/palatino/pplb8t.vf" 1136793854 2316 c3899bd8afb459a9a5a9a546bf3029a2 ""
   "C:/Users/gabri/AppData/Local/Programs/MiKTeX/fonts/vf/adobe/palatino/pplr7t.vf" 1136793854 1380 037725697594405988999f61172f52de ""
@@ -265,10 +273,10 @@
   "Figures/system_architecture_p2.png" 1780976129 3358540 c9692c44f627fb7bcf7fbd22d3c8498f ""
   "Figures/system_architecture_p3.png" 1780983270 254476 573fc9cc66bad8cc8066dcb4fd2b9d8a ""
   "Figures/underfitting_example.png" 1780970975 64322 9ff95c35c997ae1254fff9121d71386a ""
-  "c:/Users/gabri/Documents/GitHub Desktop/Spanish-FakeNews-Detection-App/MDPI_template_new/informatics-4202664-english.tex" 1780984965 121598 f1719413aab1e1b67f60238967f3bd4c ""
-  "informatics-4202664-english.aux" 1780984984 28076 fd4f24f8aca3a439e4c2be84742f4a24 "pdflatex"
-  "informatics-4202664-english.out" 1780984984 7316 e9fe6fa8a871da322226986d3065f62b "pdflatex"
-  "informatics-4202664-english.tex" 1780984965 121598 f1719413aab1e1b67f60238967f3bd4c ""
+  "c:/Users/gabri/Documents/GitHub Desktop/Spanish-FakeNews-Detection-App/MDPI_template_new/informatics-4202664-english.tex" 1780986768 121686 0a4c7ad1d14cdf2ff37d7053a7a5c788 ""
+  "informatics-4202664-english.aux" 1780986786 28076 931037fbf3bf3caaa3a08841a8e1f2b7 "pdflatex"
+  "informatics-4202664-english.out" 1780986786 7316 e9fe6fa8a871da322226986d3065f62b "pdflatex"
+  "informatics-4202664-english.tex" 1780986768 121686 0a4c7ad1d14cdf2ff37d7053a7a5c788 ""
   (generated)
   "informatics-4202664-english.aux"
   "informatics-4202664-english.log"
